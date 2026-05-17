@@ -1,0 +1,763 @@
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f0f2f5;color:#222}
+.apz-wrap{max-width:1280px;margin:0 auto;padding:16px}
+/* Header strip */
+.apz-hero{background:linear-gradient(135deg,#1a2634 60%,#243447);color:#fff;border-radius:10px;padding:28px 32px;margin-bottom:20px}
+.apz-hero h1{font-size:1.7rem;font-weight:700;margin-bottom:6px}
+.apz-hero p{color:#b0bec5;font-size:.95rem}
+/* Steps */
+.apz-steps{display:flex;gap:0;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:20px}
+.apz-step{flex:1;padding:14px 10px;text-align:center;border-right:1px solid #e0e0e0;position:relative;cursor:pointer;transition:background .2s}
+.apz-step:last-child{border-right:none}
+.apz-step .sn{display:inline-block;width:26px;height:26px;border-radius:50%;background:#e8eaf0;color:#666;font-size:.75rem;font-weight:700;line-height:26px;margin-bottom:6px}
+.apz-step.active .sn{background:#d42b2b;color:#fff}
+.apz-step.done .sn{background:#1a2634;color:#fff}
+.apz-step .sl{font-size:.72rem;color:#888;display:block;text-transform:uppercase;letter-spacing:.5px}
+.apz-step .sv{font-size:.88rem;font-weight:600;color:#1a2634;min-height:18px}
+.apz-step.active .sv{color:#d42b2b}
+/* Selectors */
+.apz-selectors{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.apz-selectors select{flex:1;min-width:140px;padding:10px 12px;border:2px solid #ddd;border-radius:6px;font-size:.9rem;background:#fff;color:#333;outline:none;transition:border-color .2s;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M6 8L0 0h12z' fill='%23666'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:calc(100% - 10px) center}
+.apz-selectors select:focus{border-color:#d42b2b}
+.apz-selectors select:disabled{background:#f5f5f5;color:#aaa}
+.apz-btn-search{padding:10px 28px;background:#d42b2b;color:#fff;border:none;border-radius:6px;font-size:.95rem;font-weight:700;cursor:pointer;transition:background .2s}
+.apz-btn-search:hover{background:#b71c1c}
+/* VIN tab */
+.apz-tabs{display:flex;gap:0;margin-bottom:16px}
+.apz-tab{padding:9px 20px;border:2px solid #ddd;border-radius:6px 6px 0 0;cursor:pointer;font-size:.85rem;font-weight:600;color:#666;background:#f5f5f5;margin-right:4px;transition:.2s}
+.apz-tab.active{background:#1a2634;color:#fff;border-color:#1a2634}
+.apz-panel{display:none;background:#fff;border-radius:0 10px 10px 10px;padding:20px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:20px}
+.apz-panel.active{display:block}
+.vin-row{display:flex;gap:10px;align-items:center}
+.vin-row input{flex:1;padding:10px 14px;border:2px solid #ddd;border-radius:6px;font-size:1rem;font-family:monospace;letter-spacing:2px;text-transform:uppercase}
+.vin-row input:focus{border-color:#d42b2b;outline:none}
+.vin-result{margin-top:12px;padding:10px 14px;background:#e8f5e9;border-radius:6px;font-size:.9rem;color:#2e7d32;display:none}
+/* Layout */
+.apz-layout{display:flex;gap:20px}
+.apz-sidebar{width:230px;flex-shrink:0}
+.apz-main{flex:1}
+/* Sidebar */
+.apz-cat-box{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);overflow:hidden;margin-bottom:16px}
+.apz-cat-title{background:#1a2634;color:#fff;padding:12px 16px;font-size:.85rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.apz-cat-list{list-style:none}
+.apz-cat-list li a{display:flex;align-items:center;gap:8px;padding:10px 16px;text-decoration:none;color:#333;font-size:.85rem;border-bottom:1px solid #f0f0f0;transition:background .15s}
+.apz-cat-list li a:hover,.apz-cat-list li a.active{background:#fff5f5;color:#d42b2b}
+.apz-cat-list li a .ci{font-size:1rem}
+/* Results */
+.apz-results-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.apz-results-hdr h2{font-size:1.1rem;color:#1a2634;font-weight:700}
+.apz-count{font-size:.85rem;color:#666}
+.apz-sort{padding:6px 10px;border:1px solid #ddd;border-radius:4px;font-size:.82rem;color:#444}
+/* Product grid */
+.apz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.apz-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);display:flex;flex-direction:column;transition:box-shadow .2s,transform .2s}
+.apz-card:hover{box-shadow:0 6px 20px rgba(0,0,0,.14);transform:translateY(-2px)}
+.apz-card-img{height:160px;background:#f5f7fa;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.apz-card-img img{max-height:140px;max-width:100%;object-fit:contain}
+.apz-card-img .no-img{color:#ccc;font-size:3rem}
+.apz-badge{position:absolute;top:8px;left:8px;background:#1a2634;color:#fff;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase}
+.apz-sale-badge{position:absolute;top:8px;right:8px;background:#d42b2b;color:#fff;font-size:.65rem;font-weight:700;padding:2px 7px;border-radius:3px}
+.apz-card-body{padding:12px;flex:1;display:flex;flex-direction:column}
+.apz-ref{font-size:.7rem;color:#888;margin-bottom:3px;font-family:monospace}
+.apz-card-title{font-size:.85rem;font-weight:700;color:#1a2634;margin-bottom:6px;line-height:1.3;flex:1}
+.apz-compat{font-size:.7rem;color:#4caf50;margin-bottom:8px}
+.apz-price-row{display:flex;align-items:baseline;gap:8px}
+.apz-price{font-size:1.15rem;font-weight:800;color:#d42b2b}
+.apz-price-old{font-size:.8rem;color:#aaa;text-decoration:line-through}
+.apz-card-footer{padding:0 12px 12px}
+.apz-btn-add{width:100%;padding:9px;background:#d42b2b;color:#fff;border:none;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;transition:background .2s}
+.apz-btn-add:hover{background:#b71c1c}
+.apz-btn-detail{width:100%;padding:9px;background:transparent;color:#1a2634;border:2px solid #1a2634;border-radius:6px;font-size:.82rem;font-weight:700;cursor:pointer;margin-top:6px;transition:.2s}
+.apz-btn-detail:hover{background:#1a2634;color:#fff}
+/* Empty */
+.apz-empty{text-align:center;padding:60px 20px;color:#666}
+.apz-empty .ico{font-size:4rem;margin-bottom:14px}
+.apz-empty h3{font-size:1.1rem;color:#1a2634;margin-bottom:8px}
+/* Loader */
+.apz-loader{text-align:center;padding:40px;display:none}
+.apz-spinner{width:40px;height:40px;border:4px solid #f0f0f0;border-top-color:#d42b2b;border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Responsive */
+@media(max-width:768px){
+  .apz-layout{flex-direction:column}
+  .apz-sidebar{width:100%}
+  .apz-step .sl{display:none}
+  .apz-hero{padding:20px}
+  .apz-hero h1{font-size:1.3rem}
+}
+</style>
+
+<div class="apz-wrap">
+
+<!-- Hero -->
+<div class="apz-hero">
+  <h1>🔍 Rechercher des pièces par véhicule</h1>
+  <p>Sélectionnez votre véhicule pour trouver les pièces compatibles — Livraison Cash à la Livraison · 48 wilayas</p>
+</div>
+
+<!-- Tabs -->
+<div class="apz-tabs">
+  <div class="apz-tab active" onclick="apzTab('vehicle')">🚗 Par véhicule</div>
+  <div class="apz-tab" onclick="apzTab('vin')">🔑 Décodeur VIN</div>
+</div>
+
+<!-- Panel: Vehicle -->
+<div class="apz-panel active" id="panel-vehicle">
+  <!-- Step indicators -->
+  <div class="apz-steps" id="apz-steps">
+    <div class="apz-step active" id="step1"><span class="sn">1</span><span class="sl">Marque</span><div class="sv" id="sv1">—</div></div>
+    <div class="apz-step" id="step2"><span class="sn">2</span><span class="sl">Modèle</span><div class="sv" id="sv2">—</div></div>
+    <div class="apz-step" id="step3"><span class="sn">3</span><span class="sl">Année</span><div class="sv" id="sv3">—</div></div>
+    <div class="apz-step" id="step4"><span class="sn">4</span><span class="sl">Motorisation</span><div class="sv" id="sv4">—</div></div>
+    <div class="apz-step" id="step5"><span class="sn">5</span><span class="sl">Pièces</span><div class="sv" id="sv5">—</div></div>
+  </div>
+  <div class="apz-selectors">
+    <select id="sel-make" onchange="apzOnMake()"><option value="">-- Marque --</option></select>
+    <select id="sel-model" onchange="apzOnModel()" disabled><option value="">-- Modèle --</option></select>
+    <select id="sel-year" onchange="apzOnYear()" disabled><option value="">-- Année --</option></select>
+    <select id="sel-engine" onchange="apzOnEngine()" disabled><option value="">-- Motorisation --</option></select>
+    <button class="apz-btn-search" onclick="apzSearch()">Rechercher</button>
+  </div>
+</div>
+
+<!-- Panel: VIN -->
+<div class="apz-panel" id="panel-vin">
+  <div class="vin-row">
+    <input id="vin-input" maxlength="17" placeholder="Entrez vos 17 caractères VIN..." oninput="this.value=this.value.toUpperCase()">
+    <button class="apz-btn-search" onclick="apzDecodeVIN()">Décoder</button>
+  </div>
+  <div class="vin-result" id="vin-result"></div>
+  <p style="margin-top:12px;font-size:.78rem;color:#999">Le VIN se trouve sur la plaque constructeur (portière, tableau de bord ou carte grise).</p>
+</div>
+
+<!-- Main layout -->
+<div class="apz-layout">
+
+  <!-- Sidebar -->
+  <div class="apz-sidebar">
+    <div class="apz-cat-box">
+      <div class="apz-cat-title">Catégories</div>
+      <ul class="apz-cat-list" id="cat-list">
+        <li><a href="#" onclick="apzFilterCat('');return false" class="active" id="cat-all"><span class="ci">🔧</span> Toutes les pièces</a></li>
+        <li><a href="#" onclick="apzFilterCat('filtration');return false"><span class="ci">🔵</span> Filtration</a></li>
+        <li><a href="#" onclick="apzFilterCat('freinage');return false"><span class="ci">🔴</span> Freinage</a></li>
+        <li><a href="#" onclick="apzFilterCat('distribution');return false"><span class="ci">⚙️</span> Distribution</a></li>
+        <li><a href="#" onclick="apzFilterCat('suspension');return false"><span class="ci">🔩</span> Suspension</a></li>
+        <li><a href="#" onclick="apzFilterCat('electrique');return false"><span class="ci">⚡</span> Électrique</a></li>
+        <li><a href="#" onclick="apzFilterCat('huiles');return false"><span class="ci">🛢️</span> Huiles</a></li>
+        <li><a href="#" onclick="apzFilterCat('moteur');return false"><span class="ci">🏎️</span> Moteur</a></li>
+        <li><a href="#" onclick="apzFilterCat('refroidissement');return false"><span class="ci">❄️</span> Refroidissement</a></li>
+        <li><a href="#" onclick="apzFilterCat('carrosserie');return false"><span class="ci">🚗</span> Carrosserie</a></li>
+      </ul>
+    </div>
+    <div class="apz-cat-box" style="padding:16px">
+      <div style="font-size:.78rem;color:#888;line-height:1.6">
+        <strong style="color:#1a2634">💬 Besoin d'aide ?</strong><br>
+        WhatsApp : +213 XXX XXX XXX<br>
+        Cash à la Livraison<br>
+        Livraison 48 wilayas<br>
+        Délai : 2–5 jours
+      </div>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="apz-main">
+    <div class="apz-results-hdr">
+      <h2 id="results-title">Sélectionnez votre véhicule</h2>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="apz-count" id="results-count"></span>
+        <select class="apz-sort" id="sort-sel" onchange="apzSort()">
+          <option value="default">Trier par défaut</option>
+          <option value="price-asc">Prix croissant</option>
+          <option value="price-desc">Prix décroissant</option>
+          <option value="name">Nom A–Z</option>
+        </select>
+      </div>
+    </div>
+    <div class="apz-loader" id="apz-loader"><div class="apz-spinner"></div><p>Recherche en cours...</p></div>
+    <div class="apz-grid" id="apz-grid"></div>
+    <div class="apz-empty" id="apz-empty" style="display:none">
+      <div class="ico">🔍</div>
+      <h3>Aucune pièce trouvée</h3>
+      <p>Essayez une autre motorisation ou contactez-nous pour une recherche spécialisée.</p>
+    </div>
+    <div id="apz-welcome" style="text-align:center;padding:50px 20px;color:#666">
+      <div style="font-size:5rem;margin-bottom:16px">🚗</div>
+      <h3 style="font-size:1.2rem;color:#1a2634;margin-bottom:10px">Trouvez les pièces pour votre véhicule</h3>
+      <p style="font-size:.9rem">Sélectionnez la marque, le modèle, l'année et la motorisation<br>pour voir toutes les pièces compatibles disponibles.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+// ===== VEHICLE DATABASE =====
+var DB = {
+"Alfa Romeo":{
+  "145":{y:[1994,2001],e:["1.4 ie 16V","1.6 ie","1.8 ie 16V","1.9 TD","2.0 Twin Spark"]},
+  "146":{y:[1995,2001],e:["1.4 ie","1.6 ie","1.8 ie","1.9 TD","2.0 Twin Spark"]},
+  "147":{y:[2001,2010],e:["1.6 TS 16V","1.9 JTD","2.0 TS 16V","1.9 JTDm"]},
+  "156":{y:[1997,2007],e:["1.6 TS","1.8 TS","1.9 JTD","2.0 TS","2.4 JTD","1.9 JTDm"]},
+  "159":{y:[2005,2011],e:["1.8 MPI","1.9 JTDm","2.2 JTS","2.4 JTDm"]},
+  "Giulietta":{y:[2010,2020],e:["1.4 TB MultiAir","1.6 JTDm","1.8 TBi","2.0 JTDm"]},
+  "MiTo":{y:[2008,2018],e:["1.4","1.4 TB MultiAir","1.3 JTDm","1.6 JTDm"]}
+},
+"Audi":{
+  "A1":{y:[2010,2018],e:["1.0 TFSI","1.2 TFSI","1.4 TFSI","1.6 TDI","1.8 TFSI"]},
+  "A3 (8L)":{y:[1996,2003],e:["1.6","1.8","1.8 T","1.9 TDI","1.8 T quattro"]},
+  "A3 (8P)":{y:[2003,2012],e:["1.4 TFSI","1.6","1.6 FSI","1.8 TFSI","2.0 FSI","2.0 TDI","1.9 TDI"]},
+  "A4 (B5)":{y:[1994,2001],e:["1.6","1.8","1.8 T","1.9 TDI","2.5 TDI"]},
+  "A4 (B6)":{y:[2000,2004],e:["1.6","1.8 T","2.0","1.9 TDI","2.5 TDI"]},
+  "A4 (B7)":{y:[2004,2008],e:["1.6","1.8 T","2.0 TFSI","1.9 TDI","2.0 TDI","2.7 TDI"]},
+  "A4 (B8)":{y:[2007,2015],e:["1.8 TFSI","2.0 TFSI","2.0 TDI","2.7 TDI","3.0 TDI"]},
+  "A5":{y:[2007,2016],e:["1.8 TFSI","2.0 TFSI","2.7 TDI","3.0 TDI","3.0 TFSI"]},
+  "A6 (C5)":{y:[1997,2005],e:["1.8 T","2.4","2.7 T","1.9 TDI","2.5 TDI"]},
+  "A6 (C6)":{y:[2004,2011],e:["2.0 TFSI","2.4","2.8 FSI","1.9 TDI","2.0 TDI","2.7 TDI","3.0 TDI"]},
+  "A6 (C7)":{y:[2010,2018],e:["1.8 TFSI","2.0 TFSI","2.0 TDI","3.0 TDI","3.0 TFSI"]},
+  "Q3":{y:[2011,2018],e:["1.4 TFSI","2.0 TFSI","2.0 TDI"]},
+  "Q5":{y:[2008,2017],e:["2.0 TFSI","2.0 TDI","3.0 TDI","3.2 FSI"]},
+  "Q7":{y:[2006,2015],e:["3.0 TDI","3.6 FSI","4.2 TDI","4.2 FSI"]},
+  "TT":{y:[1998,2006],e:["1.8 T","1.8 T quattro","3.2 quattro"]}
+},
+"BMW":{
+  "Série 1 (E87)":{y:[2004,2011],e:["116i","118i","120i","123d","116d","118d","120d","125i"]},
+  "Série 3 (E36)":{y:[1990,2000],e:["316i","318i","320i","323i","325i","328i","316g","318tds","320d"]},
+  "Série 3 (E46)":{y:[1998,2005],e:["316i","318i","320i","323i","325i","328i","330i","318d","320d","330d"]},
+  "Série 3 (E90)":{y:[2005,2012],e:["316i","318i","320i","323i","325i","330i","316d","318d","320d","330d","335i"]},
+  "Série 3 (F30)":{y:[2011,2018],e:["316i","318i","320i","328i","330i","316d","318d","320d","330d","335i"]},
+  "Série 5 (E39)":{y:[1995,2004],e:["520i","523i","525i","528i","530i","525d","530d"]},
+  "Série 5 (E60)":{y:[2003,2010],e:["520i","523i","525i","530i","535i","525d","530d","535d"]},
+  "Série 5 (F10)":{y:[2009,2017],e:["520i","523i","525i","528i","530i","520d","525d","530d","535d"]},
+  "X1 (E84)":{y:[2009,2015],e:["sDrive18i","sDrive20i","xDrive28i","sDrive16d","sDrive18d","xDrive20d"]},
+  "X3 (E83)":{y:[2003,2010],e:["2.0i","2.5i","3.0i","2.0d","3.0d"]},
+  "X5 (E53)":{y:[1999,2006],e:["3.0i","4.4i","4.6is","3.0d"]}
+},
+"Chevrolet / Daewoo":{
+  "Matiz / Spark":{y:[1998,2015],e:["0.8","1.0","1.0 LPG"]},
+  "Aveo / Kalos":{y:[2003,2011],e:["1.2","1.4","1.6","1.3 CDTI","1.7 CDTi"]},
+  "Lacetti":{y:[2003,2009],e:["1.4 16V","1.6 16V","1.8 16V","1.9 CDTi","2.0 VCDI"]},
+  "Cruze":{y:[2009,2016],e:["1.6","1.8","1.4 Turbo","2.0 VCDI","1.7 CDTI"]},
+  "Captiva":{y:[2006,2011],e:["2.4","3.2","2.0 VCDi","2.0 D"]}
+},
+"Citroën":{
+  "C1":{y:[2005,2022],e:["1.0","1.2 PureTech","1.4 HDi"]},
+  "C2":{y:[2003,2009],e:["1.1","1.4","1.4 HDi","1.6 HDi","1.6 VTS"]},
+  "C3 (I)":{y:[2002,2009],e:["1.1i","1.4i","1.4 HDi","1.6i 16V","1.6 HDi"]},
+  "C3 (II)":{y:[2009,2016],e:["1.2 PureTech","1.4 VTi","1.6 VTi","1.4 HDi","1.6 HDi","1.6 e-HDi"]},
+  "C4 (I)":{y:[2004,2011],e:["1.4i 16V","1.6i 16V","1.6 THP","1.6 HDi","2.0 HDi"]},
+  "C4 (II)":{y:[2011,2018],e:["1.2 PureTech","1.6 VTi","1.6 THP","1.6 HDi","2.0 HDi e-HDi"]},
+  "C5":{y:[2001,2017],e:["1.8i 16V","2.0i 16V","2.0 HPi","1.6 HDi","2.0 HDi","2.2 HDi","3.0 V6"]},
+  "Berlingo (I)":{y:[1996,2008],e:["1.4i","1.6i 16V","1.8i","1.9 D","1.9 SDi","2.0 HDi"]},
+  "Berlingo (II)":{y:[2008,2018],e:["1.6 VTi","1.6 HDi","2.0 HDi","1.6 e-HDi"]},
+  "Xsara":{y:[1997,2004],e:["1.4i","1.6i","1.8i 16V","2.0 16V","1.9 SD","2.0 HDi"]},
+  "Xsara Picasso":{y:[1999,2012],e:["1.6i 16V","1.8i 16V","2.0i 16V","1.6 HDi","2.0 HDi"]}
+},
+"Dacia":{
+  "1310 / 1325":{y:[1979,2006],e:["1.3","1.4","1.3 Diesel"]},
+  "Logan (I)":{y:[2004,2012],e:["1.4 MPI","1.6 MPI","1.5 dCi 65","1.5 dCi 85","1.6 MPI 90"]},
+  "Logan (II)":{y:[2012,2020],e:["0.9 TCe 90","1.2 16V 75","1.6 SCe 115","1.5 dCi 75","1.5 dCi 90","1.5 dCi 110"]},
+  "Sandero (I)":{y:[2008,2012],e:["1.2 16V","1.4 MPI","1.6 MPI","1.5 dCi 70","1.5 dCi 85"]},
+  "Sandero (II)":{y:[2012,2020],e:["0.9 TCe 90","1.2 16V 75","1.6 SCe 115","1.5 dCi 75","1.5 dCi 90","Stepway 0.9 TCe"]},
+  "Duster (I)":{y:[2010,2017],e:["1.6 SCe 105","1.6 SCe 115","2.0 SCe 143","1.5 dCi 85","1.5 dCi 90","1.5 dCi 105","1.5 dCi 110"]},
+  "Duster (II)":{y:[2017,2023],e:["1.0 TCe 100","1.3 TCe 130","1.6 SCe 115","1.5 Blue dCi 95","1.5 Blue dCi 115"]},
+  "MCV":{y:[2006,2013],e:["1.4 MPI","1.6 MPI","1.5 dCi 70","1.5 dCi 85","1.5 dCi 90"]},
+  "Dokker":{y:[2012,2021],e:["1.2 TCe 115","1.6 SCe 102","1.5 dCi 75","1.5 dCi 90"]},
+  "Lodgy":{y:[2012,2022],e:["1.2 TCe 115","1.6 SCe 102","1.5 dCi 90","1.5 dCi 110","1.2 TCe 130"]}
+},
+"Fiat":{
+  "Punto (I)":{y:[1993,1999],e:["1.1","1.2","1.4 GT Turbo","1.7 diesel","1.7 TD"]},
+  "Punto (II)":{y:[1999,2006],e:["1.2 8V","1.2 16V","1.4 16V","1.8 16V HGT","1.9 D","1.3 JTD"]},
+  "Punto (III / Evo)":{y:[2005,2018],e:["1.2 8V","1.4 8V","1.4 T-Jet","1.3 Multijet","1.6 Multijet","1.9 Multijet"]},
+  "Panda (II)":{y:[2003,2012],e:["1.1","1.2","1.4 16V","1.3 Multijet","1.4 Turbo"]},
+  "500":{y:[2007,2023],e:["1.2","1.4","0.9 TwinAir","1.3 Multijet","1.6 Multijet"]},
+  "Bravo (II)":{y:[2007,2014],e:["1.4 T-Jet","1.6 Multijet","1.9 Multijet","2.0 Multijet"]},
+  "Doblo":{y:[2000,2022],e:["1.2","1.4","1.9","1.3 Multijet","1.9 JTD","2.0 Multijet"]},
+  "Tipo":{y:[2015,2023],e:["1.4 T-Jet","1.6 Multijet","1.3 Multijet","2.0 Multijet"]},
+  "Uno":{y:[1983,1993],e:["0.9","1.0","1.1","1.3","1.4 Turbo","1.3 diesel"]}
+},
+"Ford":{
+  "Fiesta (IV)":{y:[1995,2002],e:["1.0","1.25","1.3","1.4","1.6","1.8 D","1.8 TD","1.8 DI"]},
+  "Fiesta (V)":{y:[2001,2008],e:["1.25 16V","1.3","1.4 16V","1.6 16V","1.4 TDCi","1.6 TDCi"]},
+  "Fiesta (VI)":{y:[2008,2017],e:["1.0 EcoBoost 65","1.0 EcoBoost 80","1.0 EcoBoost 100","1.25 82","1.4","1.6 Ti-VCT","1.4 TDCi","1.6 TDCi"]},
+  "Focus (I)":{y:[1998,2004],e:["1.4 16V","1.6 16V","1.8 16V","2.0 16V","1.8 TDCi","1.8 TDDI","1.8 DI"]},
+  "Focus (II)":{y:[2004,2011],e:["1.4 16V","1.6 16V","1.8 16V","2.0 16V","1.6 TDCi","1.8 TDCi","2.0 TDCi","ST 2.5 T"]},
+  "Focus (III)":{y:[2011,2018],e:["1.0 EcoBoost 100","1.0 EcoBoost 125","1.5 EcoBoost 150","1.5 EcoBoost 182","1.6 TDCi","2.0 TDCi"]},
+  "Mondeo (II)":{y:[1996,2000],e:["1.6 16V","1.8 16V","2.0 16V","2.5 V6","1.8 TD","2.0 TDCi"]},
+  "Mondeo (III)":{y:[2000,2007],e:["1.8 16V","2.0 16V","2.0 Duratec-HE","1.8 TDCi","2.0 TDCi","2.2 TDCi"]},
+  "Mondeo (IV)":{y:[2007,2014],e:["1.6 Ti-VCT","2.0 Duratec","2.3 16V","1.6 TDCi","1.8 TDCi","2.0 TDCi"]},
+  "Kuga":{y:[2008,2019],e:["2.0 EcoBoost 240","1.5 EcoBoost 120","1.5 EcoBoost 150","2.0 TDCi 110","2.0 TDCi 140","2.0 TDCi 163"]},
+  "C-Max (I)":{y:[2003,2010],e:["1.6 16V","1.8 16V","2.0 16V","1.6 TDCi","1.8 TDCi","2.0 TDCi"]}
+},
+"Honda":{
+  "Civic (V)":{y:[1991,1995],e:["1.3","1.5","1.6 VTi","1.8 VTEC","1.9 D"]},
+  "Civic (VI)":{y:[1995,2001],e:["1.4","1.5","1.6 VTEC","1.8 VTi","1.9 SDi"]},
+  "Civic (VII)":{y:[2001,2005],e:["1.4 i","1.6 i-VTEC","2.0 i-VTEC","1.7 CTDi"]},
+  "Civic (VIII)":{y:[2005,2011],e:["1.4","1.8 i-VTEC","2.0 i-VTEC Type R","2.2 i-CTDi"]},
+  "Jazz / Fit (I)":{y:[2002,2008],e:["1.2 i-DSI","1.4 i-DSI"]},
+  "Jazz / Fit (II)":{y:[2008,2015],e:["1.2 i-VTEC","1.4 i-VTEC","1.5 i-VTEC"]},
+  "CR-V (II)":{y:[2001,2006],e:["2.0 i-VTEC","2.4 i-VTEC","2.2 i-CTDi"]},
+  "CR-V (III)":{y:[2006,2012],e:["2.0 i-VTEC","2.4 i-VTEC","2.2 i-DTEC"]},
+  "Accord (VI)":{y:[1997,2002],e:["1.8","2.0","2.3","3.0 V6","2.2 TDi"]},
+  "Accord (VII)":{y:[2003,2008],e:["2.0","2.4","3.0 V6","2.2 i-CTDi","2.4 VTEC"]}
+},
+"Hyundai":{
+  "i10 (I)":{y:[2007,2013],e:["1.1","1.2","1.1 CRDi"]},
+  "i10 (II)":{y:[2013,2019],e:["1.0","1.2","1.2 MPI","1.1 CRDi"]},
+  "i20 (I)":{y:[2008,2014],e:["1.2","1.4","1.6","1.2 CRDi","1.4 CRDi","1.6 CRDi"]},
+  "i20 (II)":{y:[2014,2020],e:["1.0 T-GDi","1.2 MPI","1.4 MPI","1.1 CRDi","1.4 CRDi"]},
+  "i30 (I)":{y:[2007,2012],e:["1.4","1.6","2.0","1.4 CRDi","1.6 CRDi","2.0 CRDi"]},
+  "i30 (II)":{y:[2012,2017],e:["1.4 MPI","1.6 MPI","1.8 MPI","1.4 T-GDi","1.6 CRDi"]},
+  "Accent (III)":{y:[2005,2010],e:["1.4","1.6","1.5 CRDi"]},
+  "Accent (IV)":{y:[2010,2017],e:["1.4 MPI","1.6 MPI","1.6 CRDi"]},
+  "Elantra (IV)":{y:[2006,2010],e:["1.6","2.0","1.6 CRDi"]},
+  "Elantra (V)":{y:[2010,2016],e:["1.6 MPI","1.8 MPI","2.0 MPI","1.6 CRDi","2.0 CRDi"]},
+  "Tucson (I)":{y:[2004,2010],e:["2.0 CRDi","2.7 V6","2.0","2.0 CRDi 140"]},
+  "Tucson (II) / ix35":{y:[2009,2015],e:["1.6 GDi","2.0 MPI","2.0 GDi","1.7 CRDi","2.0 CRDi 135","2.0 CRDi 184"]},
+  "Santa Fe (I)":{y:[2000,2006],e:["2.4 GLS","2.7 V6","2.0 CRDi"]},
+  "Santa Fe (II)":{y:[2005,2012],e:["2.2 CRDi","2.7 V6","3.3 V6"]}
+},
+"Jeep":{
+  "Cherokee (XJ)":{y:[1984,2001],e:["2.5","4.0 i6","2.1 TD","2.5 TD"]},
+  "Cherokee (KJ)":{y:[2001,2008],e:["2.4","3.7 V6","2.5 CRD","2.8 CRD"]},
+  "Grand Cherokee (WJ)":{y:[1999,2004],e:["4.0 i6","4.7 V8","3.1 TD"]},
+  "Grand Cherokee (WK)":{y:[2004,2010],e:["3.7 V6","4.7 V8","5.7 Hemi","3.0 CRD"]},
+  "Compass":{y:[2006,2017],e:["2.4 4x2","2.4 4x4","2.0 CRD","2.2 CRD"]},
+  "Wrangler (JK)":{y:[2007,2018],e:["3.8 V6","3.6 V6","2.8 CRD"]},
+  "Renegade":{y:[2014,2023],e:["1.0 T3","1.3 T4","2.4 4x4","1.6 E-torQ","1.6 Multijet","2.0 Multijet"]}
+},
+"Kia":{
+  "Picanto (I)":{y:[2004,2011],e:["1.0","1.1","1.1 CRDi"]},
+  "Picanto (II)":{y:[2011,2017],e:["1.0","1.2","1.1 CRDi"]},
+  "Rio (II)":{y:[2005,2011],e:["1.4 CVVT","1.6 CVVT","1.5 CRDi","1.4 CRDi"]},
+  "Rio (III)":{y:[2011,2017],e:["1.2 CVVT","1.4 CVVT","1.6 CVVT","1.1 CRDi","1.4 CRDi","1.6 CRDi"]},
+  "Ceed (I)":{y:[2006,2012],e:["1.4 CVVT","1.6 CVVT","2.0 CVVT","1.4 CRDi","1.6 CRDi","2.0 CRDi"]},
+  "Ceed (II)":{y:[2012,2018],e:["1.0 T-GDi","1.4 CVVT","1.6 GDi","1.6 T-GDi","1.4 CRDi","1.6 CRDi"]},
+  "Sportage (II)":{y:[2004,2010],e:["2.0 CVVT","2.7 V6","2.0 CRDi"]},
+  "Sportage (III)":{y:[2010,2016],e:["1.6 GDi","2.0 CVVT","2.0 GDi","1.7 CRDi","2.0 CRDi 135","2.0 CRDi 184"]},
+  "Cerato":{y:[2003,2009],e:["1.5","1.6","2.0","1.5 CRDi","2.0 CRDi"]},
+  "Sorento":{y:[2002,2009],e:["2.5 CRDi","3.5 V6","2.4 CVVT"]}
+},
+"Lada":{
+  "2101 / 2102 / 2103 / 2104":{y:[1970,2012],e:["1.2","1.3","1.5","1.6"]},
+  "2105 / 2107":{y:[1980,2012],e:["1.2","1.5","1.6"]},
+  "2108 / 2109 / 21099":{y:[1984,2013],e:["1.1","1.3","1.5","1.6","1.5 carbu"]},
+  "2110 / 2111 / 2112":{y:[1995,2014],e:["1.5","1.6 16V","1.5 8V","1.6 8V"]},
+  "2115":{y:[1997,2012],e:["1.5","1.6"]},
+  "Granta":{y:[2011,2022],e:["1.6 8V 87","1.6 16V 106"]},
+  "Niva / 4x4":{y:[1977,2023],e:["1.6","1.7","1.7i"]},
+  "Largus":{y:[2012,2022],e:["1.6 8V 84","1.6 16V 102","1.5 dCi"]}
+},
+"Mazda":{
+  "323 (BJ)":{y:[1998,2004],e:["1.3","1.5","1.6","1.8","2.0","2.0 D"]},
+  "Mazda 2":{y:[2007,2014],e:["1.3","1.4 CD TDi","1.5","1.6 CD"]},
+  "Mazda 3 (BK)":{y:[2003,2009],e:["1.4","1.6","2.0","2.3","2.3 MPS Turbo","1.6 CD","2.0 CD"]},
+  "Mazda 3 (BL)":{y:[2009,2013],e:["1.6","2.0","2.5","1.6 CD","2.2 CD"]},
+  "Mazda 6 (GG)":{y:[2002,2007],e:["1.8","2.0","2.3","2.3 MPS","2.0 CD","2.2 CD"]},
+  "CX-5":{y:[2012,2017],e:["2.0 SKYACTIV-G","2.5 SKYACTIV-G","2.2 SKYACTIV-D"]}
+},
+"Mercedes":{
+  "Classe A (W168)":{y:[1997,2004],e:["A140","A160","A170 CDI","A190"]},
+  "Classe A (W169)":{y:[2004,2012],e:["A150","A160","A180","A200","A160 CDI","A180 CDI","A200 CDI","A200 Turbo"]},
+  "Classe A (W176)":{y:[2012,2018],e:["A180","A200","A250","A200 CDI","A220 CDI","A45 AMG"]},
+  "Classe C (W202)":{y:[1993,2000],e:["C180","C200","C220","C230","C250","C180 D","C200 D","C220 D","C200 CDI","C220 CDI"]},
+  "Classe C (W203)":{y:[2000,2007],e:["C180","C200","C220","C230","C270","C200 CDI","C220 CDI","C270 CDI","C200 Kompressor"]},
+  "Classe C (W204)":{y:[2007,2014],e:["C180","C200","C220","C250","C180 CDI","C200 CDI","C220 CDI","C250 CDI","C63 AMG"]},
+  "Classe E (W210)":{y:[1995,2003],e:["E200","E220","E230","E240","E280","E320","E200 D","E220 D","E290 TD","E200 CDI","E220 CDI","E270 CDI","E320 CDI"]},
+  "Classe E (W211)":{y:[2002,2009],e:["E200","E220","E240","E280","E320","E200 CDI","E220 CDI","E270 CDI","E320 CDI","E63 AMG"]},
+  "Sprinter":{y:[1995,2006],e:["208 D","211 CDI","213 CDI","216 CDI","311 D","311 CDI","313 CDI","316 CDI"]}
+},
+"Mitsubishi":{
+  "Colt (VI)":{y:[2002,2012],e:["1.1","1.3","1.5","1.5 Turbo","1.5 DI-D"]},
+  "Lancer (VII)":{y:[1996,2003],e:["1.3","1.5","1.6","1.8","2.0","1.9 D"]},
+  "Galant":{y:[1996,2006],e:["1.8","2.0","2.4","2.5 V6","2.0 Di-D"]},
+  "L200":{y:[1996,2015],e:["2.4","2.5 TD","2.5 Di-D"]},
+  "Pajero (III)":{y:[2000,2006],e:["3.2 Di-D","3.5 V6","3.8 V6 GDI"]},
+  "Outlander (II)":{y:[2006,2012],e:["2.0","2.4 MIVEC","2.0 Di-D","2.2 Di-D"]},
+  "Space Star":{y:[1998,2004],e:["1.3","1.6","1.8 GDi","1.9 Di-D"]}
+},
+"Nissan":{
+  "Micra (K11)":{y:[1992,2002],e:["1.0","1.3","1.4","1.5 D"]},
+  "Micra (K12)":{y:[2003,2010],e:["1.0","1.2","1.4","1.5 dCi 65","1.5 dCi 86"]},
+  "Micra (K13)":{y:[2010,2017],e:["1.2 80","1.2 DIG-S","1.5 dCi 90"]},
+  "Almera (N15)":{y:[1995,2000],e:["1.4","1.6","2.0 GTi","2.0 D","2.0 TD"]},
+  "Almera (N16)":{y:[2000,2006],e:["1.5","1.8","2.2 D","1.5 dCi"]},
+  "Primera (P11)":{y:[1996,2002],e:["1.6","1.8","2.0","2.0 D"]},
+  "Primera (P12)":{y:[2001,2007],e:["1.6 16V","1.8 16V","2.0 16V","1.9 dCi","2.2 dCi"]},
+  "Note":{y:[2005,2013],e:["1.4 16V","1.6 16V","1.5 dCi"]},
+  "Qashqai (I)":{y:[2006,2013],e:["1.6 16V","2.0 16V","1.5 dCi","2.0 dCi"]},
+  "Qashqai (II)":{y:[2013,2021],e:["1.2 DIG-T 115","1.6 DIG-T 163","1.5 dCi 110","1.6 dCi 130"]},
+  "Juke":{y:[2010,2019],e:["1.2 DIG-T 115","1.6","1.6 Turbo","1.5 dCi","1.6 dCi"]},
+  "X-Trail (T30)":{y:[2001,2007],e:["2.0","2.5","2.2 D","2.2 dCi"]},
+  "X-Trail (T31)":{y:[2007,2014],e:["2.0 16V","2.5 16V","2.0 dCi 150","1.6 dCi 130"]},
+  "Navara":{y:[2005,2015],e:["2.5 dCi 144","2.5 dCi 163","4.0 V6"]}
+},
+"Opel / Vauxhall":{
+  "Astra (F)":{y:[1991,1998],e:["1.4 i","1.6 i","1.8 i","2.0 i","1.7 D","1.7 TD"]},
+  "Astra (G)":{y:[1998,2004],e:["1.2 16V","1.4 16V","1.6 16V","1.8 16V","2.0 OPC","1.7 CDTI","2.0 DTI"]},
+  "Astra (H)":{y:[2004,2009],e:["1.4 Twinport","1.6 Twinport","1.8 16V","2.0 Turbo OPC","1.3 CDTI","1.7 CDTI","1.9 CDTI"]},
+  "Astra (J)":{y:[2009,2015],e:["1.4 Turbo","1.6","1.6 Turbo","2.0 Turbo OPC","1.3 CDTI","1.6 CDTI","1.7 CDTI","2.0 CDTI"]},
+  "Corsa (B)":{y:[1993,2000],e:["1.0 12V","1.2 16V","1.4 16V","1.6 16V","1.7 D","1.7 TD"]},
+  "Corsa (C)":{y:[2000,2006],e:["1.0 12V","1.2 16V","1.4 16V","1.8 16V","1.3 CDTI","1.7 CDTI"]},
+  "Corsa (D)":{y:[2006,2014],e:["1.0","1.2","1.4 Turbo","1.6 Turbo OPC","1.3 CDTI","1.7 CDTI"]},
+  "Vectra (B)":{y:[1995,2002],e:["1.6 16V","1.8 16V","2.0 16V","2.5 V6","1.7 TDS","2.0 DTI"]},
+  "Vectra (C)":{y:[2002,2008],e:["1.8 16V","2.0 Turbo","2.2 DTI","1.9 CDTI","2.0 CDTI","2.2 direct"]},
+  "Zafira (A)":{y:[1999,2005],e:["1.6 16V","1.8 16V","2.0 Turbo OPC","1.8 16V CNG","2.0 DTI","1.9 CDTI","2.2 DTI"]},
+  "Zafira (B)":{y:[2005,2014],e:["1.6 16V","1.8 16V","2.0 Turbo","1.7 CDTI","1.9 CDTI","2.0 CDTI"]},
+  "Meriva":{y:[2003,2017],e:["1.4","1.6","1.7 CDTI","1.3 CDTI"]}
+},
+"Peugeot":{
+  "106":{y:[1991,2003],e:["1.0","1.1","1.4","1.6","1.4 D","1.5 D","1.6 16V"]},
+  "205":{y:[1983,1998],e:["1.0","1.1","1.4","1.6","1.9","1.6 D","1.8 D","1.9 TD"]},
+  "206":{y:[1998,2010],e:["1.1","1.4","1.6","2.0","2.0 RC","1.4 HDi","1.6 HDi","2.0 HDi"]},
+  "207":{y:[2006,2014],e:["1.4 VTi","1.6 VTi","1.6 THP 150","2.0 RC","1.4 HDi","1.6 HDi","2.0 HDi"]},
+  "208":{y:[2012,2019],e:["1.0 VTi","1.2 PureTech","1.2 PureTech 82","1.4 VTi","1.6 VTi","1.6 THP","1.4 HDi","1.6 e-HDi"]},
+  "301":{y:[2012,2021],e:["1.2 PureTech 82","1.6 VTi 115","1.6 BlueHDi"]},
+  "306":{y:[1993,2002],e:["1.4","1.6","1.8","2.0","1.9 D","1.9 TD","2.0 HDi"]},
+  "307":{y:[2001,2008],e:["1.4 16V","1.6 16V","1.8 16V","2.0 16V","1.4 HDi","1.6 HDi","2.0 HDi"]},
+  "308 (I)":{y:[2007,2013],e:["1.4 VTi","1.6 VTi","1.6 THP 140","1.6 THP 175","1.6 HDi 90","1.6 HDi 110","2.0 HDi"]},
+  "308 (II)":{y:[2013,2020],e:["1.2 PureTech 82","1.2 PureTech 110","1.6 THP","1.6 BlueHDi 120","2.0 BlueHDi 150"]},
+  "405":{y:[1987,1996],e:["1.4","1.6","1.8","1.9","2.0","1.8 TD","1.9 TD"]},
+  "406":{y:[1995,2004],e:["1.6","1.8","2.0","2.2","1.9 TD","2.0 HDi","2.1 TD","2.2 HDi"]},
+  "407":{y:[2004,2011],e:["1.8 16V","2.0 16V","2.2 16V","1.6 HDi","2.0 HDi","2.7 V6 HDi"]},
+  "3008 (I)":{y:[2009,2016],e:["1.6 VTi 120","1.6 THP 156","1.6 HDi 110","2.0 HDi 150","1.6 e-HDi"]},
+  "Partner":{y:[1996,2015],e:["1.4","1.6 16V","1.6 VTi","1.9 D","1.9 SD","2.0 HDi","1.6 e-HDi"]},
+  "Expert":{y:[1995,2016],e:["1.8","1.9 D","2.0","2.0 HDi","1.6 HDi"]}
+},
+"Renault":{
+  "Twingo (I)":{y:[1993,2007],e:["1.2","1.2 16V","1.2 TCe"]},
+  "Twingo (II)":{y:[2007,2014],e:["1.2 16V","1.2 TCe 100","1.5 dCi"]},
+  "Clio (I)":{y:[1990,1998],e:["1.2","1.4","1.8","1.8 16V","1.9 D","1.9 TD"]},
+  "Clio (II)":{y:[1998,2005],e:["1.2","1.4","1.6","2.0 RS","1.5 dCi 65","1.5 dCi 80","1.9 D","1.9 DTI"]},
+  "Clio (III)":{y:[2005,2012],e:["1.2 16V","1.2 TCe 100","1.4 16V","1.6 16V","2.0 RS","1.5 dCi 65","1.5 dCi 86","1.5 dCi 106"]},
+  "Clio (IV)":{y:[2012,2019],e:["0.9 TCe 90","1.2 16V 75","1.2 TCe 120","1.4 16V","1.6 RS","1.5 dCi 75","1.5 dCi 90","1.5 dCi 110"]},
+  "Megane (I)":{y:[1995,2002],e:["1.4","1.6","2.0","1.9 D","1.9 dTi","1.9 dCi"]},
+  "Megane (II)":{y:[2002,2008],e:["1.4 16V","1.6 16V","2.0 16V","2.0 T","1.5 dCi 80","1.5 dCi 100","1.9 dCi","2.0 dCi"]},
+  "Megane (III)":{y:[2008,2016],e:["1.2 TCe 115","1.4 TCe 130","1.6 16V","2.0 RS","1.5 dCi 90","1.5 dCi 110","2.0 dCi"]},
+  "Scenic (I)":{y:[1996,2003],e:["1.4","1.6","1.8","2.0","1.9 dTi","1.9 dCi"]},
+  "Scenic (II)":{y:[2003,2009],e:["1.4 16V","1.6 16V","2.0 16V","2.0 T","1.5 dCi 80","1.5 dCi 100","1.9 dCi","2.0 dCi"]},
+  "Laguna (I)":{y:[1993,2001],e:["1.6","1.8","2.0","3.0 V6","1.9 dTi","2.2 D"]},
+  "Laguna (II)":{y:[2001,2007],e:["1.6 16V","1.8 16V","2.0 16V","2.0 T","1.9 dCi","2.2 dCi","2.0 dCi"]},
+  "Logan (I)":{y:[2004,2012],e:["1.4 MPI","1.6 MPI","1.5 dCi 65","1.5 dCi 85","1.6 MPI 90"]},
+  "Logan (II)":{y:[2012,2022],e:["0.9 TCe 90","1.2 16V 75","1.6 SCe 115","1.5 dCi 75","1.5 dCi 90"]},
+  "Duster":{y:[2010,2021],e:["1.6 SCe 105","1.6 SCe 115","2.0 SCe 143","1.5 dCi 85","1.5 dCi 90","1.5 dCi 105","1.5 dCi 110"]},
+  "Kangoo (I)":{y:[1997,2007],e:["1.2 16V","1.4 MPI","1.6 MPI","1.9 D","1.5 dCi","1.9 dCi"]},
+  "Kangoo (II)":{y:[2007,2021],e:["1.2 16V 75","1.2 TCe 115","1.6 16V 106","1.5 dCi 70","1.5 dCi 90","1.5 dCi 110"]},
+  "Symbol (I)":{y:[2000,2008],e:["1.4 MPI","1.6 MPI","1.5 dCi"]},
+  "Symbol (II)":{y:[2008,2016],e:["1.2 16V","1.5 dCi 85","1.6 MPI"]}
+},
+"Seat":{
+  "Ibiza (II)":{y:[1993,2002],e:["1.0","1.4","1.6","2.0","1.9 D","1.9 TDI","1.9 SDI"]},
+  "Ibiza (III)":{y:[2001,2008],e:["1.2 12V","1.4 16V","1.6 16V","2.0","1.4 TDI","1.9 SDI","1.9 TDI"]},
+  "Ibiza (IV)":{y:[2008,2017],e:["1.2","1.2 TSI","1.4","1.6 MPI","1.6 TDI","2.0 TDI FR"]},
+  "Leon (I)":{y:[1999,2006],e:["1.4 16V","1.6 16V","1.8 20V","1.8 T","2.8 V6","1.9 TDI","1.9 SDI"]},
+  "Leon (II)":{y:[2005,2012],e:["1.4 TSI","1.6","1.8 T","2.0 TFSI","2.0 TDI FR","1.9 TDI","2.0 TDI"]},
+  "Leon (III)":{y:[2012,2020],e:["1.0 TSI","1.2 TSI","1.4 TSI","1.6 TDI","2.0 TDI","Cupra 2.0 TSI"]},
+  "Altea":{y:[2004,2015],e:["1.4 TSI","1.6 MPI","1.8 TFSI","1.6 TDI","2.0 TDI"]},
+  "Toledo (III)":{y:[2004,2009],e:["1.4 16V","1.6 MPI","2.0 TFSI","1.9 TDI","2.0 TDI"]}
+},
+"Skoda":{
+  "Fabia (I)":{y:[1999,2007],e:["1.0","1.2 12V","1.4 16V","1.6 16V","1.4 TDI","1.9 SDI","1.9 TDI"]},
+  "Fabia (II)":{y:[2006,2014],e:["1.2","1.2 TSI","1.4","1.6 MPI","1.4 TDI","1.6 TDI","1.9 TDI"]},
+  "Octavia (I)":{y:[1996,2010],e:["1.4 16V","1.6","1.8 T","2.0","1.9 SDI","1.9 TDI","2.0 TDI"]},
+  "Octavia (II)":{y:[2004,2013],e:["1.4 MPI","1.6 FSI","1.8 T","2.0 TFSI RS","1.9 TDI","2.0 TDI"]},
+  "Octavia (III)":{y:[2012,2020],e:["1.0 TSI","1.2 TSI","1.4 TSI","1.5 TSI","1.6 TDI","2.0 TDI"]},
+  "Rapid":{y:[2012,2019],e:["1.0 MPI","1.2 TSI","1.4 TSI","1.6 MPI","1.4 TDI","1.6 TDI"]},
+  "Superb (I)":{y:[2001,2008],e:["1.8 T","2.0","2.5 TDI","1.9 TDI"]},
+  "Yeti":{y:[2009,2017],e:["1.2 TSI","1.4 TSI","1.8 TSI","2.0 TDI 110","2.0 TDI 140"]}
+},
+"Suzuki":{
+  "Alto":{y:[1995,2014],e:["0.8","1.0","1.1 GA"]},
+  "Baleno":{y:[1995,2002],e:["1.3 16V","1.6 16V","1.9 D"]},
+  "Swift (II)":{y:[2004,2010],e:["1.3","1.5","1.3 DDiS"]},
+  "Swift (III)":{y:[2010,2017],e:["1.2 VVT","1.2 DualJet","1.3 DDiS"]},
+  "Jimny":{y:[1998,2018],e:["1.3 16V","1.5 DDiS"]},
+  "SX4":{y:[2006,2014],e:["1.6 VVT","2.0","1.6 DDiS"]},
+  "Vitara":{y:[2015,2023],e:["1.0 Boosterjet","1.4 Boosterjet","1.6","1.6 DDiS"]},
+  "Celerio":{y:[2014,2021],e:["1.0"]}
+},
+"Toyota":{
+  "Yaris (I)":{y:[1999,2005],e:["1.0 VVT-i","1.3 VVT-i","1.5 VVT-i","1.4 D-4D"]},
+  "Yaris (II)":{y:[2005,2011],e:["1.0 VVT-i","1.3 VVT-i","1.5 VVT-i","1.4 D-4D 90"]},
+  "Yaris (III)":{y:[2011,2020],e:["1.0 VVT-i","1.33 Dual VVT-i","1.5 Hybrid","1.4 D-4D"]},
+  "Corolla (E10)":{y:[1992,1997],e:["1.3","1.4","1.6","2.0 D"]},
+  "Corolla (E11)":{y:[1997,2002],e:["1.4 VVT-i","1.6 VVT-i","1.8 VVT-i","2.0 D"]},
+  "Corolla (E12)":{y:[2001,2007],e:["1.4 VVT-i","1.6 VVT-i","1.8 VVT-i","2.0 D-4D","1.4 D-4D"]},
+  "Corolla (E15)":{y:[2006,2013],e:["1.4 VVT-i","1.6 VVT-i","1.8 VVT-i","2.0 D-4D","1.4 D-4D"]},
+  "Avensis (I)":{y:[1997,2003],e:["1.6 VVT-i","1.8 VVT-i","2.0","2.0 D-4D"]},
+  "Avensis (II)":{y:[2003,2009],e:["1.6 VVT-i","1.8 VVT-i","2.0 VVT-i","2.0 D-4D","2.2 D-4D","2.4 VVT-i"]},
+  "RAV4 (II)":{y:[2000,2005],e:["1.8 VVT-i","2.0 VVT-i","2.0 D-4D"]},
+  "RAV4 (III)":{y:[2005,2012],e:["2.0 VVT-i","2.0 VVT-i 4WD","2.2 D-4D","2.2 D-CAT"]},
+  "Hilux":{y:[2005,2016],e:["2.5 D-4D","3.0 D-4D","2.7 VVT-i 4WD"]},
+  "Land Cruiser Prado":{y:[2002,2009],e:["3.4 V6","4.0 V6","3.0 D-4D"]}
+},
+"Volkswagen":{
+  "Golf (II)":{y:[1983,1991],e:["1.0","1.3","1.6","1.8","1.8 GTI 8V","1.8 GTI 16V","1.6 TD","1.6 D"]},
+  "Golf (III)":{y:[1991,1997],e:["1.4","1.6","1.8","2.0","2.8 VR6","1.9 D","1.9 TDI","1.9 SDI"]},
+  "Golf (IV)":{y:[1997,2006],e:["1.4 16V","1.6","1.8 T","1.8 T GTI","2.0","2.3 V5","1.9 SDI","1.9 TDI","2.8 VR6"]},
+  "Golf (V)":{y:[2003,2009],e:["1.4 FSI","1.4 TSI","1.6 FSI","1.6 MPI","2.0 TFSI GTI","2.0 TDI","1.9 TDI","1.6 TDI"]},
+  "Golf (VI)":{y:[2008,2013],e:["1.2 TSI","1.4 TSI","1.6 MPI","2.0 TSI GTI","2.0 TDI","1.6 TDI"]},
+  "Golf (VII)":{y:[2012,2019],e:["1.0 TSI","1.2 TSI","1.4 TSI","2.0 TSI GTI","1.6 TDI","2.0 TDI"]},
+  "Polo (III)":{y:[1994,2001],e:["1.0","1.4","1.6","1.9 D","1.9 SDI","1.9 TDI"]},
+  "Polo (IV)":{y:[2001,2009],e:["1.2","1.4 16V","1.6 16V","1.8 T GTI","1.4 TDI","1.9 SDI","1.9 TDI"]},
+  "Polo (V)":{y:[2009,2017],e:["1.0","1.2","1.2 TSI","1.4 TSI","1.4","1.6 TDI","1.2 TDI"]},
+  "Passat (B5)":{y:[1996,2005],e:["1.6","1.8 T","2.0","2.3 V5","2.8 V6","1.9 TDI","2.5 V6 TDI"]},
+  "Passat (B6)":{y:[2005,2010],e:["1.6","1.8 TSI","2.0 TFSI","2.0 TDI","1.9 TDI","2.5 TDI V6"]},
+  "Bora":{y:[1998,2005],e:["1.4","1.6","1.8 T","2.0","2.3 V5","2.8 V6","1.9 TDI","1.9 SDI"]},
+  "Jetta (V)":{y:[2005,2010],e:["1.4 TSI","1.6 FSI","2.0 FSI","2.0 TFSI","1.9 TDI","2.0 TDI"]},
+  "Caddy (II)":{y:[1995,2004],e:["1.4","1.6","1.9 D","1.9 SDI","1.9 TDI"]},
+  "Caddy (III)":{y:[2004,2015],e:["1.2 TSI","1.6 MPI","2.0 EcoFuel","1.6 TDI","1.9 TDI","2.0 TDI"]}
+},
+"Volvo":{
+  "S40 (I)":{y:[1995,2004],e:["1.6","1.8","1.8 T4","2.0 T","1.9 TD","1.9 D"]},
+  "S40 (II)":{y:[2004,2012],e:["1.6","1.8","2.0","2.4 i","1.6 D","2.0 D","2.4 D5"]},
+  "V40":{y:[2012,2019],e:["1.5 T2","1.5 T3","2.0 T4","2.0 T5","1.6 D2","2.0 D3","2.0 D4"]},
+  "S60":{y:[2000,2018],e:["2.0 T","2.4","2.4 T5","2.4 D5","1.6 D","2.0 D3","2.0 D4"]},
+  "V70":{y:[1996,2016],e:["2.0","2.3 T5","2.4","2.5 T","2.4 D5","1.6 DRIVe","2.0 D3"]},
+  "S80":{y:[1998,2016],e:["2.0 T","2.4","2.5 T","2.4 D5","3.2","1.6 D","2.0 D3","2.0 D4","2.0 D5"]},
+  "XC90":{y:[2002,2014],e:["2.5 T","2.9 T6","2.4 D5 AWD","3.2"]}
+}
+};
+
+// ===== WMI VIN TABLE =====
+var WMI={VF3:"Peugeot",VF7:"Citroën",VF1:"Renault",VF2:"Renault",VF6:"Renault",VF8:"Renault",UU1:"Dacia",UU2:"Dacia",WVW:"Volkswagen",WV1:"Volkswagen",WV2:"Volkswagen",WBA:"BMW",WBX:"BMW",WDB:"Mercedes",WDD:"Mercedes",TMB:"Skoda",VSS:"Seat",VSF:"Seat",KMH:"Hyundai",KMF:"Hyundai",KNA:"Kia",KND:"Kia",JT2:"Toyota",JT3:"Toyota",JTN:"Toyota",WF0:"Ford",WF1:"Ford",W0L:"Opel",W0V:"Opel",SAJ:"Jaguar",SAL:"Land Rover",WMI:"MINI",AAV:"Volkswagen",XTA:"Lada",ZAR:"Alfa Romeo",ZFF:"Ferrari",VNK:"Toyota",MNB:"Honda",SHH:"Honda"};
+var YCHAR={A:1980,B:1981,C:1982,D:1983,E:1984,F:1985,G:1986,H:1987,J:1988,K:1989,L:1990,M:1991,N:1992,P:1993,R:1994,S:1995,T:1996,V:1997,W:1998,X:1999,Y:2000,1:2001,2:2002,3:2003,4:2004,5:2005,6:2006,7:2007,8:2008,9:2009,A:2010,B:2011,C:2012,D:2013,E:2014,F:2015,G:2016,H:2017,J:2018,K:2019,L:2020,M:2021,N:2022,P:2023};
+
+// ===== STATE =====
+var APZ={make:'',model:'',year:'',engine:'',cat:'',prods:[],filtered:[],loaded:false};
+
+// ===== POPULATE MAKES =====
+(function(){
+  var sel=document.getElementById('sel-make');
+  var makes=Object.keys(DB).sort();
+  makes.forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=m;sel.appendChild(o);});
+})();
+
+// ===== TABS =====
+function apzTab(t){
+  document.querySelectorAll('.apz-tab').forEach(function(el,i){el.classList.toggle('active',i===(t==='vin'?1:0));});
+  document.getElementById('panel-vehicle').classList.toggle('active',t==='vehicle');
+  document.getElementById('panel-vin').classList.toggle('active',t==='vin');
+}
+
+// ===== STEP UPDATES =====
+function updateStep(n,val,done){
+  var el=document.getElementById('step'+n);
+  document.getElementById('sv'+n).textContent=val||'—';
+  el.classList.toggle('done',done&&!!val);
+  el.classList.toggle('active',!done||!val);
+}
+
+// ===== MAKE SELECT =====
+function apzOnMake(){
+  var mk=document.getElementById('sel-make').value;
+  APZ.make=mk;APZ.model='';APZ.year='';APZ.engine='';
+  var s2=document.getElementById('sel-model');
+  var s3=document.getElementById('sel-year');
+  var s4=document.getElementById('sel-engine');
+  s2.innerHTML='<option value="">-- Modèle --</option>';
+  s3.innerHTML='<option value="">-- Année --</option>';
+  s4.innerHTML='<option value="">-- Motorisation --</option>';
+  s2.disabled=!mk; s3.disabled=true; s4.disabled=true;
+  if(mk&&DB[mk]){
+    Object.keys(DB[mk]).sort().forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=m;s2.appendChild(o);});
+  }
+  updateStep(1,mk,true); updateStep(2,'—',false); updateStep(3,'—',false); updateStep(4,'—',false);
+}
+function apzOnModel(){
+  var mo=document.getElementById('sel-model').value;
+  APZ.model=mo;APZ.year='';APZ.engine='';
+  var s3=document.getElementById('sel-year');
+  var s4=document.getElementById('sel-engine');
+  s3.innerHTML='<option value="">-- Année --</option>';
+  s4.innerHTML='<option value="">-- Motorisation --</option>';
+  s3.disabled=!mo; s4.disabled=true;
+  if(mo&&DB[APZ.make]&&DB[APZ.make][mo]){
+    var d=DB[APZ.make][mo];
+    for(var y=d.y[1];y>=d.y[0];y--){var o=document.createElement('option');o.value=y;o.textContent=y;s3.appendChild(o);}
+  }
+  updateStep(2,mo,true); updateStep(3,'—',false); updateStep(4,'—',false);
+}
+function apzOnYear(){
+  var yr=document.getElementById('sel-year').value;
+  APZ.year=yr;APZ.engine='';
+  var s4=document.getElementById('sel-engine');
+  s4.innerHTML='<option value="">-- Motorisation --</option>';
+  s4.disabled=!yr;
+  if(yr&&DB[APZ.make]&&DB[APZ.make][APZ.model]){
+    DB[APZ.make][APZ.model].e.forEach(function(e){var o=document.createElement('option');o.value=e;o.textContent=e;s4.appendChild(o);});
+  }
+  updateStep(3,yr,true); updateStep(4,'—',false);
+}
+function apzOnEngine(){
+  var eng=document.getElementById('sel-engine').value;
+  APZ.engine=eng;
+  updateStep(4,eng,true);
+}
+
+// ===== SLUG =====
+function slug(s){
+  return s.toLowerCase()
+    .replace(/[éèêë]/g,'e').replace(/[àâä]/g,'a').replace(/[ùûü]/g,'u')
+    .replace(/[îï]/g,'i').replace(/[ôö]/g,'o').replace(/[ç]/g,'c')
+    .replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+}
+
+// ===== LOAD ALL PRODUCTS =====
+function loadProds(cb){
+  if(APZ.loaded){cb();return;}
+  document.getElementById('apz-loader').style.display='block';
+  document.getElementById('apz-welcome').style.display='none';
+  var all=[];
+  function page(p){
+    fetch('/products.json?limit=250&page='+p)
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if(d.products&&d.products.length){
+          all=all.concat(d.products);
+          if(d.products.length===250){page(p+1);}
+          else{APZ.prods=all;APZ.loaded=true;document.getElementById('apz-loader').style.display='none';cb();}
+        }else{APZ.prods=all;APZ.loaded=true;document.getElementById('apz-loader').style.display='none';cb();}
+      })
+      .catch(function(){APZ.prods=all;APZ.loaded=true;document.getElementById('apz-loader').style.display='none';cb();});
+  }
+  page(1);
+}
+
+// ===== SEARCH =====
+function apzSearch(){
+  if(!APZ.make){alert('Veuillez sélectionner une marque.');return;}
+  var tagMk=slug(APZ.make);
+  var tagMo=APZ.model?slug(APZ.model):'';
+  var tagEng=APZ.engine?slug(APZ.engine):'';
+  loadProds(function(){
+    var filtered=APZ.prods.filter(function(p){
+      var tags=(p.tags||'').toLowerCase().split(', ');
+      return tags.some(function(t){
+        if(t==='compat-universel') return true;
+        if(!t.startsWith('compat-'+tagMk)) return false;
+        if(!tagMo) return true;
+        var rest=t.slice(('compat-'+tagMk+'-').length);
+        if(!rest) return false;
+        if(tagEng&&rest.startsWith(slug(tagMo)+'-'+tagEng)) return true;
+        if(rest.startsWith(slug(tagMo))) return true;
+        return false;
+      });
+    });
+    APZ.filtered=filtered;
+    APZ.cat='';
+    renderGrid(filtered);
+    updateStep(5,filtered.length+' pièce'+(filtered.length!==1?'s':''),false);
+    document.getElementById('results-title').textContent='Pièces pour '+APZ.make+(APZ.model?' · '+APZ.model:'')+(APZ.engine?' · '+APZ.engine:'');
+    document.getElementById('results-count').textContent=filtered.length+' résultat'+(filtered.length!==1?'s':'');
+  });
+}
+
+// ===== FILTER BY CAT =====
+function apzFilterCat(cat){
+  APZ.cat=cat;
+  document.querySelectorAll('.apz-cat-list a').forEach(function(a){a.classList.remove('active');});
+  document.getElementById('cat-all').classList.toggle('active',!cat);
+  var prods=APZ.filtered.length?APZ.filtered:APZ.prods;
+  if(!prods.length){loadProds(function(){filterAndRender(cat);});return;}
+  filterAndRender(cat);
+}
+function filterAndRender(cat){
+  var prods=APZ.filtered.length?APZ.filtered:APZ.prods;
+  if(!cat){renderGrid(prods);return;}
+  var catMap={filtration:['filtre','filtration','oil filter','air filter','fuel filter'],freinage:['frein','plaquette','disque','brake','étrier'],distribution:['distribut','courroie','timing','kit dist'],suspension:['amortisseur','rotule','silent','roulement','suspension','shock'],electrique:['bougie','alternateur','démarreur','bobine','capteur','sonde','spark','lambda'],huiles:['huile','lubrifiant','oil','5w','10w','0w','castrol','total','motul'],moteur:['embrayage','joint culasse','thermostat','pompe à eau'],refroidissement:['refroid','radiateur','antigel','inugel'],carrosserie:['pare-choc','rétroviseur','feu arrière','carrosserie','bouclier']};
+  var kws=catMap[cat]||[];
+  var res=prods.filter(function(p){var title=(p.title||'').toLowerCase();return kws.some(function(k){return title.includes(k);});});
+  renderGrid(res);
+}
+
+// ===== RENDER GRID =====
+function renderGrid(prods){
+  var sort=document.getElementById('sort-sel').value;
+  var arr=prods.slice();
+  if(sort==='price-asc') arr.sort(function(a,b){return price(a)-price(b);});
+  else if(sort==='price-desc') arr.sort(function(a,b){return price(b)-price(a);});
+  else if(sort==='name') arr.sort(function(a,b){return a.title.localeCompare(b.title);});
+
+  var grid=document.getElementById('apz-grid');
+  var empty=document.getElementById('apz-empty');
+  var welcome=document.getElementById('apz-welcome');
+  if(!arr.length){grid.innerHTML='';empty.style.display='block';welcome.style.display='none';return;}
+  empty.style.display='none'; welcome.style.display='none';
+  grid.innerHTML=arr.map(function(p){
+    var v=p.variants&&p.variants[0]?p.variants[0]:{};
+    var pr=parseFloat(v.price)||0;
+    var cp=parseFloat(v.compare_at_price)||0;
+    var img=p.images&&p.images[0]?p.images[0].src:'';
+    var ref=p.variants&&p.variants[0]?p.variants[0].sku||'':'';
+    var brand=p.vendor||'';
+    var sale=cp>pr&&cp>0;
+    var disc=sale?Math.round((1-pr/cp)*100):'';
+    return '<div class="apz-card">'
+      +'<div class="apz-card-img">'
+      +(img?'<img src="'+img+'" alt="'+esc(p.title)+'">':"<div class='no-img'>🔧</div>")
+      +(brand?"<div class='apz-badge'>"+esc(brand)+"</div>":'')
+      +(sale?"<div class='apz-sale-badge'>-"+disc+"%</div>":'')
+      +'</div>'
+      +'<div class="apz-card-body">'
+      +(ref?"<div class='apz-ref'>Réf : "+esc(ref)+"</div>":'')
+      +"<div class='apz-card-title'>"+esc(p.title)+"</div>"
+      +"<div class='apz-compat'>✔ Compatible</div>"
+      +'<div class="apz-price-row">'
+      +"<span class='apz-price'>"+pr.toLocaleString('fr-DZ')+" DZD</span>"
+      +(sale?"<span class='apz-price-old'>"+cp.toLocaleString('fr-DZ')+" DZD</span>":'')
+      +'</div></div>'
+      +'<div class="apz-card-footer">'
+      +"<button class='apz-btn-add' onclick=\"addCart('"+p.variants[0].id+"')\">🛒 Ajouter au panier</button>"
+      +"<button class='apz-btn-detail' onclick=\"location.href='/products/"+esc(p.handle)+"'\">Voir détails</button>"
+      +'</div></div>';
+  }).join('');
+}
+function price(p){var v=p.variants&&p.variants[0]?p.variants[0]:{};return parseFloat(v.price)||0;}
+function esc(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+// ===== ADD TO CART =====
+function addCart(vid){
+  fetch('/cart/add.js',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:vid,quantity:1})})
+    .then(function(){window.location.href='/cart';})
+    .catch(function(){alert('Erreur — veuillez réessayer.');});
+}
+
+// ===== SORT =====
+function apzSort(){
+  var prods=APZ.filtered.length?APZ.filtered:APZ.prods;
+  renderGrid(prods);
+}
+
+// ===== VIN DECODER =====
+function apzDecodeVIN(){
+  var vin=document.getElementById('vin-input').value.trim().toUpperCase();
+  var res=document.getElementById('vin-result');
+  if(vin.length!==17){res.style.display='block';res.style.background='#ffebee';res.style.color='#c62828';res.innerHTML='⚠️ Le VIN doit contenir exactement 17 caractères.';return;}
+  var wmi=vin.substring(0,3);
+  var wmi2=vin.substring(0,2);
+  var brand=WMI[wmi]||WMI[wmi2]||null;
+  var yearChar=vin[9];
+  var year=YCHAR[yearChar]||null;
+  res.style.display='block';
+  if(brand||year){
+    res.style.background='#e8f5e9';res.style.color='#2e7d32';
+    res.innerHTML='✅ <strong>Marque détectée :</strong> '+(brand||'Inconnue')+' &nbsp;|&nbsp; <strong>Année :</strong> '+(year||'Inconnue')
+      +'<br><small>WMI : '+wmi+' &nbsp;|&nbsp; Code année : '+yearChar+'</small>'
+      +'<br><br><button class="apz-btn-search" style="font-size:.8rem;padding:7px 16px" onclick="prefillVIN(\''+esc(brand||'')+'\','+year+')">Rechercher les pièces →</button>';
+  } else {
+    res.style.background='#fff3e0';res.style.color='#e65100';
+    res.innerHTML='⚠️ Marque ou année non reconnue (WMI : '+wmi+'). Sélectionnez manuellement votre véhicule ci-dessus.';
+  }
+}
+function prefillVIN(brand,year){
+  var sel=document.getElementById('sel-make');
+  if(brand&&sel){
+    var opts=Array.from(sel.options);
+    var found=opts.find(function(o){return o.value===brand||o.value.includes(brand);});
+    if(found){sel.value=found.value;apzOnMake();}
+  }
+  apzTab('vehicle');
+}
+</script>
