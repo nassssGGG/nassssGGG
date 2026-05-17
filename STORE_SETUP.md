@@ -3,7 +3,7 @@
 Store : `fjz1m0-je.myshopify.com`  
 Marché cible : Algérie (48 wilayas, Cash à la Livraison)  
 Modèle : Autodoc-style  
-**Catalogue actuel : ~86 produits actifs**
+**Catalogue actuel : ~145 produits actifs**
 
 ---
 
@@ -56,7 +56,23 @@ Garantie X an(s). Livraison Cash à la Livraison — 48 wilayas.
 | Huiles | Motul 8100 5W-40 5L, Total Quartz 7000 10W-40 5L |
 | Refroidissement | Motul Inugel Optimal –37°C 5L |
 
-**Tags de compatibilité ajoutés** : Renault Clio/Megane/Scenic/Laguna/Kangoo, Dacia Sandero/MCV, Toyota Yaris/Corolla/Hilux, Hyundai i20/i30/Accent/Tucson, Kia Rio/Picanto/Sportage/Ceed, BMW Série 3/5, Mercedes Classe C/E, Nissan Micra/Note/Qashqai
+**Tags de compatibilité ajoutés (Lot 3)** : Renault Clio/Megane/Scenic/Laguna/Kangoo/Duster, Dacia Sandero/MCV/Duster, Toyota Yaris/Corolla/Hilux, Hyundai i20/i30/Accent/Tucson/ix35/Santa Fe, Kia Rio/Picanto/Sportage/Ceed, BMW Série 3/5, Mercedes Classe C/E, Nissan Micra/Note/Qashqai, Ford Focus/Fiesta, Opel Astra/Corsa/Vectra/Zafira
+
+### Lot 4 — 60 nouveaux produits (couverture par motorisation)
+
+Couverture complète par famille moteur :
+
+| Famille moteur | Pièces ajoutées |
+|---|---|
+| Renault K9K 1.5 dCi | Filtre huile, filtre air, filtre carburant, kit distribution Gates, kit distrib+pompe Dayco, thermostat, pompe à eau, capteur vilebrequin |
+| PSA TU3/TU5 (1.4/1.6 ess) | Kit 4 filtres 206, courroie accessoires, amortisseur AR, kit embrayage Valeo, rotule 207/307/308 |
+| VW 1.9/2.0 TDI | Kit 4 filtres TDI, kit distribution 1.9 TDI, kit distribution 2.0 TDI, kit embrayage 1.4/1.6 |
+| Renault/Dacia essence 1.4/1.6 | Courroie accessoires, alternateur Valeo 75A, démarreur Valeo |
+| Ford 1.4/1.6 TDCi | Filtre huile, plaquettes Focus II/C-Max |
+| Opel 1.4/1.6/1.8 | Filtre huile, plaquettes Astra/Corsa |
+| Hyundai/Kia | Filtre Tucson/ix35, amortisseur i30/Ceed, bougies i10/i20 Iridium |
+| Toyota | Plaquettes Yaris/Corolla, amortisseur Yaris/Corolla |
+| BMW diesel M47/M57/N47 | Filtre huile cartouche, disques E90, plaquettes Mercedes |
 
 ---
 
