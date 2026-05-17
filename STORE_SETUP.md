@@ -2,7 +2,8 @@
 
 Store : `fjz1m0-je.myshopify.com`  
 Marché cible : Algérie (48 wilayas, Cash à la Livraison)  
-Modèle : Autodoc-style
+Modèle : Autodoc-style  
+**Catalogue actuel : ~86 produits actifs**
 
 ---
 
@@ -42,7 +43,24 @@ Caractéristiques : [specs]
 Garantie X an(s). Livraison Cash à la Livraison — 48 wilayas.
 ```
 
-### 5. Système de recherche par véhicule
+### 5. Ajout de 35 nouveaux produits (mai 2026 — Lot 3)
+
+| Catégorie | Nouveaux produits |
+|---|---|
+| Filtration | Purflux LS269A (Renault/Dacia), A1242 (Clio/Megane), AHC212 (Logan/Dacia), Mann W7008 (VW/Seat/Skoda), C27006 (Golf/Polo), Bosch Hyundai/Kia, Mann Toyota, Kit 4 filtres Logan, Mann BMW Série 3/5, Mann Nissan |
+| Freinage | Bosch Renault Clio/Megane, Zimmermann 307/308/C4, Ferodo Dacia Logan, TRW VW Golf, Lucas Renault Clio, ATE Mercedes C/E |
+| Distribution | Dayco KTB483 Renault Clio, Gates VW Golf 1.4/1.6, Dayco KTB574 Peugeot 207/308 HDI |
+| Suspension | Sachs Renault Clio III, Bilstein Dacia Logan/Sandero, Moog VW Golf/Polo, SNR Renault/Dacia, Lemförder Peugeot 206/207, Sachs Peugeot 206/207 |
+| Électrique | NGK BKR5E x4 (universel), NGK Iridium (Peugeot/Renault), Delphi Renault Clio, Bosch lambda VW/Seat |
+| Moteur | LuK embrayage Renault/Dacia, Elring joint culasse Renault, Calorstat thermostat PSA |
+| Huiles | Motul 8100 5W-40 5L, Total Quartz 7000 10W-40 5L |
+| Refroidissement | Motul Inugel Optimal –37°C 5L |
+
+**Tags de compatibilité ajoutés** : Renault Clio/Megane/Scenic/Laguna/Kangoo, Dacia Sandero/MCV, Toyota Yaris/Corolla/Hilux, Hyundai i20/i30/Accent/Tucson, Kia Rio/Picanto/Sportage/Ceed, BMW Série 3/5, Mercedes Classe C/E, Nissan Micra/Note/Qashqai
+
+---
+
+### 6. Système de recherche par véhicule
 **Page** : `/pages/recherche-pieces`
 
 - Sélecteurs cascadants : Marque → Modèle → Année → Motorisation
