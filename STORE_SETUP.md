@@ -95,6 +95,17 @@ compat-bmw-serie-3    compat-mercedes-classe-c  compat-universel
 | Kit distribution + pompe Gates | 10 440 DZD | 12 500 DZD |
 | Kit 3 filtres PSA | 1 670 DZD | 2 100 DZD |
 
+### 9. Pages du site (6 pages actives)
+
+| Page | Handle | Statut |
+|---|---|---|
+| Contactez-nous | `contact` | ✅ Contenu complet (horaires, WhatsApp, livraison, retours) |
+| Livraison & Délais | `livraison` | ✅ Contenu complet |
+| FAQ — Questions fréquentes | `faq` | ✅ Contenu complet |
+| Politique de retour | `politique-de-retour` | ✅ Contenu complet |
+| À propos d'AutoPièces DZ | `a-propos` | ✅ Contenu complet |
+| Rechercher des pièces par véhicule | `recherche-pieces` | ✅ Système de recherche complet |
+
 ---
 
 ## Actions manuelles restantes
