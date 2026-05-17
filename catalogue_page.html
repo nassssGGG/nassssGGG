@@ -1,0 +1,400 @@
+<!-- Page Shopify : Catalogue de pièces détachées -->
+<!-- URL : /pages/catalogue -->
+<!-- ID Shopify : gid://shopify/Page/161962197335 -->
+<!-- 38 catégories Autodoc + liste A-Z de ~250 pièces filtrables -->
+
+<style>
+.page-content{max-width:none!important;padding:0!important;margin:0!important;background:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important}
+.page-content>h1:first-of-type{display:none!important}
+#cat-root{font-family:'Roboto',Arial,sans-serif;color:#1a2634;background:#f0f2f5;min-height:100vh}
+#cat-hero{background:linear-gradient(135deg,#1a2634 0%,#243447 100%);padding:48px 24px 40px;text-align:center;color:#fff}
+#cat-hero h1{font-size:2.2rem;font-weight:700;margin:0 0 8px;color:#fff}
+#cat-hero p{color:#94a3b8;font-size:1rem;margin:0 0 24px}
+#cat-search-bar{max-width:560px;margin:0 auto;position:relative;display:flex}
+#cat-search-bar input{flex:1;padding:14px 20px;border-radius:8px 0 0 8px;border:none;font-size:1rem;outline:none}
+#cat-search-bar button{width:52px;background:#e63946;border:none;border-radius:0 8px 8px 0;cursor:pointer;color:#fff;font-size:1.2rem}
+#cat-section{max-width:1280px;margin:0 auto;padding:32px 16px}
+.sec-title{font-size:1.4rem;font-weight:700;color:#1a2634;margin:0 0 20px;padding-bottom:10px;border-bottom:3px solid #e63946;display:inline-block}
+#cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px;margin-bottom:48px}
+.cat-tile{background:#fff;border-radius:10px;padding:18px 12px;text-align:center;text-decoration:none;color:#1a2634;transition:all .2s;box-shadow:0 2px 8px rgba(0,0,0,.06);display:block}
+.cat-tile:hover{box-shadow:0 6px 20px rgba(230,57,70,.18);transform:translateY(-3px);color:#e63946;text-decoration:none}
+.cat-icon{font-size:2rem;margin-bottom:8px;display:block}
+.cat-name{font-size:.8rem;font-weight:600;line-height:1.3}
+#alpha-section{background:#fff;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.07);margin-bottom:40px}
+#alpha-filter{width:100%;padding:12px 16px;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;margin-bottom:16px;box-sizing:border-box;outline:none}
+#alpha-filter:focus{border-color:#e63946}
+#alpha-letters{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.alpha-btn{padding:6px 12px;background:#f0f2f5;border:none;border-radius:6px;font-weight:700;cursor:pointer;font-size:.85rem;color:#1a2634;transition:all .15s}
+.alpha-btn:hover,.alpha-btn.active{background:#e63946;color:#fff}
+#alpha-list{columns:3;column-gap:24px}
+.alpha-group{break-inside:avoid;margin-bottom:18px}
+.alpha-group h3{font-size:1.1rem;font-weight:800;color:#e63946;margin:0 0 8px;border-bottom:1px solid #fde0e2;padding-bottom:4px}
+.alpha-group ul{list-style:none;margin:0;padding:0}
+.alpha-group ul li{margin:2px 0}
+.alpha-group ul li a{color:#334155;text-decoration:none;font-size:.82rem;display:block;padding:2px 6px;border-radius:4px;transition:all .12s}
+.alpha-group ul li a:hover{color:#e63946;background:#fff5f5;padding-left:10px}
+.cat-hidden{display:none!important}
+@media(max-width:900px){#alpha-list{columns:2}}
+@media(max-width:600px){#alpha-list{columns:1}#cat-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr))}#cat-hero h1{font-size:1.5rem}}
+</style>
+
+<div id="cat-root">
+<div id="cat-hero">
+  <h1>Catalogue de pièces détachées</h1>
+  <p>Toutes les pièces auto pour tous les véhicules — Livraison partout en Algérie</p>
+  <div id="cat-search-bar">
+    <input type="text" id="hero-search" placeholder="Ex: filtre huile, disque de frein, alternateur..." onkeydown="if(event.key==='Enter')window.location='/search?type=product&q='+encodeURIComponent(this.value)">
+    <button onclick="window.location='/search?type=product&q='+encodeURIComponent(document.getElementById('hero-search').value)">🔍</button>
+  </div>
+</div>
+
+<div id="cat-section">
+<div><span class="sec-title">Toutes les catégories (38)</span></div>
+<div id="cat-grid">
+  <a class="cat-tile" href="/search?type=product&q=pneus+jantes"><span class="cat-icon">🛞</span><span class="cat-name">Pneus &amp; jantes</span></a>
+  <a class="cat-tile" href="/collections/huiles-amp-lubrifiants"><span class="cat-icon">🛢️</span><span class="cat-name">Huiles &amp; fluides</span></a>
+  <a class="cat-tile" href="/collections/freinage"><span class="cat-icon">🔴</span><span class="cat-name">Frein</span></a>
+  <a class="cat-tile" href="/collections/filtration"><span class="cat-icon">🔵</span><span class="cat-name">Filtre</span></a>
+  <a class="cat-tile" href="/search?type=product&q=moteur+joint+culasse+soupape"><span class="cat-icon">⚙️</span><span class="cat-name">Moteur</span></a>
+  <a class="cat-tile" href="/search?type=product&q=essuie-glace+balai"><span class="cat-icon">🌧️</span><span class="cat-name">Essuie-glaces</span></a>
+  <a class="cat-tile" href="/search?type=product&q=allumage+bougie+prechauffage"><span class="cat-icon">⚡</span><span class="cat-name">Allumage &amp; préchauffage</span></a>
+  <a class="cat-tile" href="/collections/suspension-amp-direction"><span class="cat-icon">🔩</span><span class="cat-name">Suspension</span></a>
+  <a class="cat-tile" href="/collections/electrique"><span class="cat-icon">🔌</span><span class="cat-name">Électricité</span></a>
+  <a class="cat-tile" href="/search?type=product&q=amortisseur"><span class="cat-icon">🌀</span><span class="cat-name">Amortissement</span></a>
+  <a class="cat-tile" href="/search?type=product&q=egr+vanne+recirculation+gaz"><span class="cat-icon">♻️</span><span class="cat-name">Recirculation des gaz</span></a>
+  <a class="cat-tile" href="/collections/moteur-amp-transmission"><span class="cat-icon">🔗</span><span class="cat-name">Courroies, chaînes &amp; galets</span></a>
+  <a class="cat-tile" href="/search?type=product&q=turbo+suralimentation"><span class="cat-icon">💨</span><span class="cat-name">Suralimentation</span></a>
+  <a class="cat-tile" href="/search?type=product&q=radiateur+refroidissement+thermostat"><span class="cat-icon">🌡️</span><span class="cat-name">Refroidissement moteur</span></a>
+  <a class="cat-tile" href="/collections/carrosserie"><span class="cat-icon">🚗</span><span class="cat-name">Carrosserie</span></a>
+  <a class="cat-tile" href="/search?type=product&q=chauffage+ventilation+soufflante"><span class="cat-icon">🌬️</span><span class="cat-name">Chauffage &amp; ventilation</span></a>
+  <a class="cat-tile" href="/search?type=product&q=joint+etancheite"><span class="cat-icon">🔧</span><span class="cat-name">Joints &amp; étanchéité</span></a>
+  <a class="cat-tile" href="/search?type=product&q=echappement+pot+catalyseur"><span class="cat-icon">💨</span><span class="cat-name">Échappement</span></a>
+  <a class="cat-tile" href="/search?type=product&q=interieur+siege+tableau+bord"><span class="cat-icon">🪑</span><span class="cat-name">Intérieur</span></a>
+  <a class="cat-tile" href="/search?type=product&q=injecteur+pompe+carburant+essence"><span class="cat-icon">⛽</span><span class="cat-name">Système d'alimentation</span></a>
+  <a class="cat-tile" href="/search?type=product&q=direction+cremaillere+rotule+colonne"><span class="cat-icon">🎯</span><span class="cat-name">Direction</span></a>
+  <a class="cat-tile" href="/search?type=product&q=embrayage+disque+butee"><span class="cat-icon">🔄</span><span class="cat-name">Embrayage</span></a>
+  <a class="cat-tile" href="/search?type=product&q=cardan+transmission"><span class="cat-icon">↔️</span><span class="cat-name">Cardan &amp; transmission</span></a>
+  <a class="cat-tile" href="/search?type=product&q=suspension+pneumatique+coussin"><span class="cat-icon">🎈</span><span class="cat-name">Suspension pneumatique</span></a>
+  <a class="cat-tile" href="/search?type=product&q=attelage+remorque"><span class="cat-icon">🚛</span><span class="cat-name">Attelage &amp; accessoires</span></a>
+  <a class="cat-tile" href="/search?type=product&q=boite+vitesse"><span class="cat-icon">⚙️</span><span class="cat-name">Boîte de vitesse</span></a>
+  <a class="cat-tile" href="/search?type=product&q=climatisation+compresseur+condenseur"><span class="cat-icon">❄️</span><span class="cat-name">Climatisation</span></a>
+  <a class="cat-tile" href="/search?type=product&q=roulement+moyeu+roue"><span class="cat-icon">⭕</span><span class="cat-name">Roulements</span></a>
+  <a class="cat-tile" href="/search?type=product&q=arbre+transmission+differentiel"><span class="cat-icon">🔩</span><span class="cat-name">Arbres de transmission</span></a>
+  <a class="cat-tile" href="/collections/electrique"><span class="cat-icon">📡</span><span class="cat-name">Capteurs, relais &amp; UCE</span></a>
+  <a class="cat-tile" href="/search?type=product&q=accessoire+voiture"><span class="cat-icon">🎁</span><span class="cat-name">Accessoires voiture</span></a>
+  <a class="cat-tile" href="/search?type=product&q=kit+reparation"><span class="cat-icon">🧰</span><span class="cat-name">Kits de réparation</span></a>
+  <a class="cat-tile" href="/search?type=product&q=outillage"><span class="cat-icon">🔧</span><span class="cat-name">Outillage</span></a>
+  <a class="cat-tile" href="/search?type=product&q=tuyau+conduite+durite"><span class="cat-icon">〰️</span><span class="cat-name">Tuyaux &amp; conduites</span></a>
+  <a class="cat-tile" href="/search?type=product&q=nettoyage+entretien"><span class="cat-icon">🧹</span><span class="cat-name">Nettoyage &amp; entretien</span></a>
+  <a class="cat-tile" href="/search?type=product&q=eclairage+feux+phare"><span class="cat-icon">💡</span><span class="cat-name">Éclairage</span></a>
+  <a class="cat-tile" href="/search?type=product&q=tuning+sport+performance"><span class="cat-icon">🏎️</span><span class="cat-name">Tuning</span></a>
+  <a class="cat-tile" href="/search?type=product&q=fixation+vis+boulon"><span class="cat-icon">🔩</span><span class="cat-name">Fixations</span></a>
+</div>
+
+<div id="alpha-section">
+<div><span class="sec-title">Toutes les pièces de A à Z</span></div>
+<input type="text" id="alpha-filter" placeholder="Filtrer par nom de pièce..." oninput="filterAlpha(this.value)">
+<div id="alpha-letters">
+  <button class="alpha-btn active" onclick="filterLetter('all',this)">Tout</button>
+  <button class="alpha-btn" onclick="filterLetter('A',this)">A</button>
+  <button class="alpha-btn" onclick="filterLetter('B',this)">B</button>
+  <button class="alpha-btn" onclick="filterLetter('C',this)">C</button>
+  <button class="alpha-btn" onclick="filterLetter('D',this)">D</button>
+  <button class="alpha-btn" onclick="filterLetter('E',this)">E</button>
+  <button class="alpha-btn" onclick="filterLetter('F',this)">F</button>
+  <button class="alpha-btn" onclick="filterLetter('G',this)">G</button>
+  <button class="alpha-btn" onclick="filterLetter('H',this)">H</button>
+  <button class="alpha-btn" onclick="filterLetter('I',this)">I</button>
+  <button class="alpha-btn" onclick="filterLetter('J',this)">J</button>
+  <button class="alpha-btn" onclick="filterLetter('K',this)">K</button>
+  <button class="alpha-btn" onclick="filterLetter('L',this)">L</button>
+  <button class="alpha-btn" onclick="filterLetter('M',this)">M</button>
+  <button class="alpha-btn" onclick="filterLetter('N',this)">N</button>
+  <button class="alpha-btn" onclick="filterLetter('O',this)">O</button>
+  <button class="alpha-btn" onclick="filterLetter('P',this)">P</button>
+  <button class="alpha-btn" onclick="filterLetter('R',this)">R</button>
+  <button class="alpha-btn" onclick="filterLetter('S',this)">S</button>
+  <button class="alpha-btn" onclick="filterLetter('T',this)">T</button>
+  <button class="alpha-btn" onclick="filterLetter('V',this)">V</button>
+</div>
+<div id="alpha-list">
+
+<div class="alpha-group" data-letter="A"><h3>A</h3><ul>
+<li><a href="/search?type=product&q=absorbeur+chocs">Absorbeur de chocs</a></li>
+<li><a href="/search?type=product&q=actuateur+turbo">Actuateur de turbo</a></li>
+<li><a href="/search?type=product&q=aileron+spoiler">Aileron / spoiler</a></li>
+<li><a href="/search?type=product&q=alternateur">Alternateur</a></li>
+<li><a href="/search?type=product&q=amortisseur+avant">Amortisseur avant</a></li>
+<li><a href="/search?type=product&q=amortisseur+arriere">Amortisseur arrière</a></li>
+<li><a href="/search?type=product&q=amortisseur+pneumatique">Amortisseur pneumatique</a></li>
+<li><a href="/search?type=product&q=anneau+etancheite">Anneau d'étanchéité</a></li>
+<li><a href="/search?type=product&q=antenne+radio">Antenne radio</a></li>
+<li><a href="/search?type=product&q=antibrouillard+avant">Antibrouillard avant</a></li>
+<li><a href="/search?type=product&q=antibrouillard+arriere">Antibrouillard arrière</a></li>
+<li><a href="/search?type=product&q=arbre+cames">Arbre à cames</a></li>
+<li><a href="/search?type=product&q=arbre+transmission">Arbre de transmission</a></li>
+<li><a href="/search?type=product&q=axe+piston">Axe de piston</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="B"><h3>B</h3><ul>
+<li><a href="/search?type=product&q=balai+essuie-glace">Balai d'essuie-glace</a></li>
+<li><a href="/search?type=product&q=barre+direction">Barre de direction</a></li>
+<li><a href="/search?type=product&q=barre+stabilisatrice">Barre stabilisatrice</a></li>
+<li><a href="/search?type=product&q=batterie+voiture">Batterie</a></li>
+<li><a href="/search?type=product&q=biellette+stabilisatrice">Biellette de barre stabilisatrice</a></li>
+<li><a href="/search?type=product&q=bobine+allumage">Bobine d'allumage</a></li>
+<li><a href="/search?type=product&q=boite+vitesse">Boîte de vitesse</a></li>
+<li><a href="/search?type=product&q=boitier+direction">Boîtier de direction</a></li>
+<li><a href="/search?type=product&q=boitier+thermostat">Boîtier de thermostat</a></li>
+<li><a href="/search?type=product&q=boitier+papillon">Boîtier papillon</a></li>
+<li><a href="/search?type=product&q=bouchon+radiateur">Bouchon de radiateur</a></li>
+<li><a href="/search?type=product&q=bougie+allumage">Bougie d'allumage</a></li>
+<li><a href="/search?type=product&q=bougie+prechauffage">Bougie de préchauffage</a></li>
+<li><a href="/search?type=product&q=boulon+roue">Boulon / écrou de roue</a></li>
+<li><a href="/search?type=product&q=butee+suspension">Butée de suspension</a></li>
+<li><a href="/search?type=product&q=butee+embrayage">Butée d'embrayage</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="C"><h3>C</h3><ul>
+<li><a href="/search?type=product&q=cable+accelerateur">Câble d'accélérateur</a></li>
+<li><a href="/search?type=product&q=cable+embrayage">Câble d'embrayage</a></li>
+<li><a href="/search?type=product&q=cable+capot">Câble de capot</a></li>
+<li><a href="/search?type=product&q=cable+frein+main">Câble de frein à main</a></li>
+<li><a href="/search?type=product&q=calculateur+moteur+ECU">Calculateur moteur (ECU)</a></li>
+<li><a href="/search?type=product&q=capteur+ABS">Capteur ABS</a></li>
+<li><a href="/search?type=product&q=capteur+debit+air+debitmetre">Capteur de débit d'air (débitmètre)</a></li>
+<li><a href="/search?type=product&q=capteur+arbre+cames">Capteur d'arbre à cames</a></li>
+<li><a href="/search?type=product&q=capteur+pression+suralimentation">Capteur de pression de suralimentation</a></li>
+<li><a href="/search?type=product&q=capteur+temperature">Capteur de température</a></li>
+<li><a href="/search?type=product&q=capteur+vilebrequin">Capteur de vilebrequin</a></li>
+<li><a href="/search?type=product&q=capteur+oxygene+sonde+lambda">Capteur d'oxygène (sonde lambda)</a></li>
+<li><a href="/search?type=product&q=carburateur">Carburateur</a></li>
+<li><a href="/search?type=product&q=carter+huile">Carter d'huile</a></li>
+<li><a href="/search?type=product&q=carter+distribution">Carter de distribution</a></li>
+<li><a href="/search?type=product&q=catalyseur">Catalyseur (pot catalytique)</a></li>
+<li><a href="/search?type=product&q=chaine+distribution">Chaîne de distribution</a></li>
+<li><a href="/search?type=product&q=charniere+capot">Charnière de capot</a></li>
+<li><a href="/search?type=product&q=charniere+porte">Charnière de porte</a></li>
+<li><a href="/search?type=product&q=climatisation+compresseur">Climatiseur (compresseur)</a></li>
+<li><a href="/search?type=product&q=collecteur+admission">Collecteur d'admission</a></li>
+<li><a href="/search?type=product&q=collecteur+echappement">Collecteur d'échappement</a></li>
+<li><a href="/search?type=product&q=combine+ressort+amortisseur">Combiné ressort-amortisseur</a></li>
+<li><a href="/search?type=product&q=condenseur+climatisation">Condenseur de climatisation</a></li>
+<li><a href="/search?type=product&q=contacteur+frein">Contacteur de frein</a></li>
+<li><a href="/search?type=product&q=courroie+accessoire">Courroie accessoire (poly-V)</a></li>
+<li><a href="/search?type=product&q=courroie+distribution">Courroie de distribution</a></li>
+<li><a href="/search?type=product&q=coussinet+bielle">Coussinet de bielle</a></li>
+<li><a href="/search?type=product&q=cremaillere+direction">Crémaillère de direction</a></li>
+<li><a href="/search?type=product&q=culasse">Culasse</a></li>
+<li><a href="/search?type=product&q=cylindre+frein">Cylindre de frein</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="D"><h3>D</h3><ul>
+<li><a href="/search?type=product&q=debitmetre+air">Débitmètre d'air (MAF)</a></li>
+<li><a href="/search?type=product&q=deflecteur+air">Déflecteur d'air</a></li>
+<li><a href="/search?type=product&q=demarreur">Démarreur</a></li>
+<li><a href="/search?type=product&q=deshydrateur+filtre+climatisation">Déshydrateur / filtre sec</a></li>
+<li><a href="/search?type=product&q=detendeur+climatisation">Détendeur de climatisation</a></li>
+<li><a href="/search?type=product&q=differentiel">Différentiel</a></li>
+<li><a href="/search?type=product&q=disque+frein+avant">Disque de frein avant</a></li>
+<li><a href="/search?type=product&q=disque+frein+arriere">Disque de frein arrière</a></li>
+<li><a href="/search?type=product&q=durite+chauffage">Durite de chauffage</a></li>
+<li><a href="/search?type=product&q=durite+radiateur">Durite de radiateur</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="E"><h3>E</h3><ul>
+<li><a href="/search?type=product&q=ecran+thermique+echappement">Écran thermique d'échappement</a></li>
+<li><a href="/search?type=product&q=echangeur+chaleur+intercooler">Échangeur de chaleur (intercooler)</a></li>
+<li><a href="/search?type=product&q=embrayage+kit">Embrayage (kit complet)</a></li>
+<li><a href="/search?type=product&q=enjoliveur+roue">Enjoliveur de roue</a></li>
+<li><a href="/search?type=product&q=etrier+frein">Étrier de frein</a></li>
+<li><a href="/search?type=product&q=essuie-glace+moteur">Essuie-glace (moteur)</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="F"><h3>F</h3><ul>
+<li><a href="/search?type=product&q=filtre+air">Filtre à air</a></li>
+<li><a href="/search?type=product&q=filtre+carburant">Filtre à carburant</a></li>
+<li><a href="/search?type=product&q=filtre+huile">Filtre à huile</a></li>
+<li><a href="/search?type=product&q=filtre+habitacle+pollen">Filtre d'habitacle (anti-pollen)</a></li>
+<li><a href="/search?type=product&q=filtre+boite+automatique">Filtre de boîte automatique</a></li>
+<li><a href="/search?type=product&q=filtre+deshydrateur">Filtre déshydrateur (clim)</a></li>
+<li><a href="/search?type=product&q=flexible+frein">Flexible de frein</a></li>
+<li><a href="/search?type=product&q=fusee+essieu">Fusée d'essieu</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="G"><h3>G</h3><ul>
+<li><a href="/search?type=product&q=galet+enrouleur">Galet enrouleur</a></li>
+<li><a href="/search?type=product&q=galet+tendeur">Galet tendeur</a></li>
+<li><a href="/search?type=product&q=garniture+frein+plaquettes">Garniture de frein (plaquettes)</a></li>
+<li><a href="/search?type=product&q=garniture+tambour">Garniture de tambour</a></li>
+<li><a href="/search?type=product&q=gicleur+lave-glace">Gicleur de lave-glace</a></li>
+<li><a href="/search?type=product&q=glace+retroviseur">Glace de rétroviseur</a></li>
+<li><a href="/search?type=product&q=groupe+moto-ventilateur">Groupe moto-ventilateur</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="H"><h3>H</h3><ul>
+<li><a href="/search?type=product&q=huile+boite+vitesse">Huile de boîte de vitesse</a></li>
+<li><a href="/search?type=product&q=liquide+frein+DOT4">Liquide de frein (DOT4/DOT5)</a></li>
+<li><a href="/search?type=product&q=huile+moteur">Huile moteur</a></li>
+<li><a href="/search?type=product&q=huile+transmission">Huile de transmission</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="I"><h3>I</h3><ul>
+<li><a href="/search?type=product&q=injecteur+carburant">Injecteur de carburant</a></li>
+<li><a href="/search?type=product&q=intercooler+echangeur">Intercooler (échangeur d'air)</a></li>
+<li><a href="/search?type=product&q=interrupteur+contacteur">Interrupteur / contacteur</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="J"><h3>J</h3><ul>
+<li><a href="/search?type=product&q=joint+arbre">Joint d'arbre</a></li>
+<li><a href="/search?type=product&q=joint+cardan+soufflet">Joint de cardan (soufflet)</a></li>
+<li><a href="/search?type=product&q=joint+carter+huile">Joint de carter d'huile</a></li>
+<li><a href="/search?type=product&q=joint+culasse">Joint de culasse</a></li>
+<li><a href="/search?type=product&q=joint+direction">Joint de direction</a></li>
+<li><a href="/search?type=product&q=joint+porte+carrosserie">Joint de porte / carrosserie</a></li>
+<li><a href="/search?type=product&q=joint+spi">Joint spi</a></li>
+<li><a href="/search?type=product&q=jante+aluminium">Jante aluminium</a></li>
+<li><a href="/search?type=product&q=jante+acier">Jante acier</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="K"><h3>K</h3><ul>
+<li><a href="/search?type=product&q=kit+courroie+distribution">Kit courroie de distribution</a></li>
+<li><a href="/search?type=product&q=kit+embrayage">Kit d'embrayage</a></li>
+<li><a href="/search?type=product&q=kit+distribution+pompe+eau">Kit distribution + pompe à eau</a></li>
+<li><a href="/search?type=product&q=kit+reparation+freins">Kit de réparation freins</a></li>
+<li><a href="/search?type=product&q=kit+joints+moteur">Kit joints moteur</a></li>
+<li><a href="/search?type=product&q=kit+filtre+entretien">Kit filtres entretien</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="L"><h3>L</h3><ul>
+<li><a href="/search?type=product&q=leve-vitre+moteur">Lève-vitre (moteur)</a></li>
+<li><a href="/search?type=product&q=liquide+refroidissement+antigel">Liquide de refroidissement / antigel</a></li>
+<li><a href="/search?type=product&q=longeron+chassis">Longeron de châssis</a></li>
+<li><a href="/search?type=product&q=liquide+direction+assistee">Liquide de direction assistée</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="M"><h3>M</h3><ul>
+<li><a href="/search?type=product&q=maitre+cylindre+frein">Maître-cylindre de frein</a></li>
+<li><a href="/search?type=product&q=membrane+servo+frein">Membrane de servofrein</a></li>
+<li><a href="/search?type=product&q=moteur+essuie+glace">Moteur d'essuie-glace</a></li>
+<li><a href="/search?type=product&q=moteur+leve-vitre">Moteur de lève-vitre</a></li>
+<li><a href="/search?type=product&q=moteur+ventilateur+radiateur">Moteur de ventilateur</a></li>
+<li><a href="/search?type=product&q=moyeu+roue">Moyeu de roue</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="N"><h3>N</h3><ul>
+<li><a href="/search?type=product&q=noix+cardan">Noix de cardan</a></li>
+<li><a href="/search?type=product&q=niveau+huile+jauge">Jauge de niveau d'huile</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="O"><h3>O</h3><ul>
+<li><a href="/search?type=product&q=optique+phare+avant">Optique de phare avant</a></li>
+<li><a href="/search?type=product&q=optique+phare+arriere">Optique de phare arrière</a></li>
+<li><a href="/search?type=product&q=outillage+special">Outillage spécifique</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="P"><h3>P</h3><ul>
+<li><a href="/search?type=product&q=palier+arbre+cames">Palier d'arbre à cames</a></li>
+<li><a href="/search?type=product&q=pare-chocs+avant">Pare-chocs avant</a></li>
+<li><a href="/search?type=product&q=pare-chocs+arriere">Pare-chocs arrière</a></li>
+<li><a href="/search?type=product&q=phare+projecteur">Phare / projecteur</a></li>
+<li><a href="/search?type=product&q=pignon+demarreur">Pignon de démarreur</a></li>
+<li><a href="/search?type=product&q=piston+frein">Piston de frein</a></li>
+<li><a href="/search?type=product&q=plaquettes+frein+avant">Plaquettes de frein avant</a></li>
+<li><a href="/search?type=product&q=plaquettes+frein+arriere">Plaquettes de frein arrière</a></li>
+<li><a href="/search?type=product&q=pompe+carburant">Pompe à carburant</a></li>
+<li><a href="/search?type=product&q=pompe+eau">Pompe à eau</a></li>
+<li><a href="/search?type=product&q=pompe+huile">Pompe à huile</a></li>
+<li><a href="/search?type=product&q=pompe+direction+assistee">Pompe de direction assistée</a></li>
+<li><a href="/search?type=product&q=pompe+lave-glace">Pompe de lave-glace</a></li>
+<li><a href="/search?type=product&q=pot+catalytique">Pot catalytique</a></li>
+<li><a href="/search?type=product&q=pot+echappement">Pot d'échappement</a></li>
+<li><a href="/search?type=product&q=poulie+vilebrequin">Poulie de vilebrequin</a></li>
+<li><a href="/search?type=product&q=poulie+direction+assistee">Poulie de direction assistée</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="R"><h3>R</h3><ul>
+<li><a href="/search?type=product&q=radiateur+eau">Radiateur (eau moteur)</a></li>
+<li><a href="/search?type=product&q=radiateur+chauffage+habitacle">Radiateur de chauffage</a></li>
+<li><a href="/search?type=product&q=recepteur+embrayage">Récepteur d'embrayage</a></li>
+<li><a href="/search?type=product&q=regulateur+alternateur">Régulateur d'alternateur</a></li>
+<li><a href="/search?type=product&q=regulateur+pression+carburant">Régulateur de pression carburant</a></li>
+<li><a href="/search?type=product&q=relais">Relais</a></li>
+<li><a href="/search?type=product&q=renfort+pare-chocs">Renfort de pare-chocs</a></li>
+<li><a href="/search?type=product&q=ressort+suspension+avant">Ressort de suspension avant</a></li>
+<li><a href="/search?type=product&q=ressort+suspension+arriere">Ressort de suspension arrière</a></li>
+<li><a href="/search?type=product&q=retroviseur+exterieur+gauche">Rétroviseur extérieur gauche</a></li>
+<li><a href="/search?type=product&q=retroviseur+exterieur+droit">Rétroviseur extérieur droit</a></li>
+<li><a href="/search?type=product&q=rotule+direction">Rotule de direction</a></li>
+<li><a href="/search?type=product&q=rotule+triangle">Rotule de triangle</a></li>
+<li><a href="/search?type=product&q=roulement+roue+avant">Roulement de roue avant</a></li>
+<li><a href="/search?type=product&q=roulement+roue+arriere">Roulement de roue arrière</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="S"><h3>S</h3><ul>
+<li><a href="/search?type=product&q=segment+piston">Segment de piston</a></li>
+<li><a href="/search?type=product&q=serrure+porte">Serrure de porte</a></li>
+<li><a href="/search?type=product&q=servofrein">Servofrein</a></li>
+<li><a href="/search?type=product&q=silencieux+echappement">Silencieux (pot d'échappement)</a></li>
+<li><a href="/search?type=product&q=silent-bloc+bras">Silent-bloc de bras</a></li>
+<li><a href="/search?type=product&q=silent-bloc+moteur">Silent-bloc de moteur</a></li>
+<li><a href="/search?type=product&q=sonde+lambda+oxygene">Sonde lambda (capteur O2)</a></li>
+<li><a href="/search?type=product&q=sonde+temperature+eau">Sonde de température d'eau</a></li>
+<li><a href="/search?type=product&q=sonde+temperature+air">Sonde de température d'air</a></li>
+<li><a href="/search?type=product&q=soufflet+cardan">Soufflet de cardan</a></li>
+<li><a href="/search?type=product&q=soufflet+direction">Soufflet de direction</a></li>
+<li><a href="/search?type=product&q=stabilisateur+barre+anti-roulis">Stabilisateur (barre anti-roulis)</a></li>
+<li><a href="/search?type=product&q=soupape+admission">Soupape d'admission</a></li>
+<li><a href="/search?type=product&q=soupape+echappement">Soupape d'échappement</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="T"><h3>T</h3><ul>
+<li><a href="/search?type=product&q=tambour+frein">Tambour de frein</a></li>
+<li><a href="/search?type=product&q=tendeur+courroie">Tendeur de courroie</a></li>
+<li><a href="/search?type=product&q=thermostat+refroidissement">Thermostat de refroidissement</a></li>
+<li><a href="/search?type=product&q=triangle+suspension+avant">Triangle de suspension avant</a></li>
+<li><a href="/search?type=product&q=triangle+suspension+arriere">Triangle de suspension arrière</a></li>
+<li><a href="/search?type=product&q=turbocompresseur+turbo">Turbocompresseur</a></li>
+<li><a href="/search?type=product&q=tuyau+admission+air">Tuyau d'admission d'air</a></li>
+<li><a href="/search?type=product&q=tuyau+echappement">Tuyau d'échappement</a></li>
+<li><a href="/search?type=product&q=tuyau+refroidissement+durite">Tuyau de refroidissement (durite)</a></li>
+</ul></div>
+
+<div class="alpha-group" data-letter="V"><h3>V</h3><ul>
+<li><a href="/search?type=product&q=vanne+egr">Vanne EGR</a></li>
+<li><a href="/search?type=product&q=vanne+wastegate+bypass">Vanne wastegate / bypass</a></li>
+<li><a href="/search?type=product&q=vase+expansion">Vase d'expansion</a></li>
+<li><a href="/search?type=product&q=ventilateur+radiateur">Ventilateur de radiateur</a></li>
+<li><a href="/search?type=product&q=volant+moteur">Volant moteur</a></li>
+<li><a href="/search?type=product&q=volant+bimasse">Volant bimasse</a></li>
+</ul></div>
+
+</div>
+</div>
+</div>
+</div>
+
+<script>
+function filterAlpha(q){
+  q=q.toLowerCase().trim();
+  document.querySelectorAll('.alpha-group').forEach(function(g){
+    var visible=false;
+    g.querySelectorAll('li').forEach(function(li){
+      if(!q||li.textContent.toLowerCase().includes(q)){li.classList.remove('cat-hidden');visible=true;}
+      else li.classList.add('cat-hidden');
+    });
+    g.classList.toggle('cat-hidden',!visible);
+  });
+  document.querySelectorAll('.alpha-btn').forEach(function(b){b.classList.remove('active');});
+  document.querySelector('.alpha-btn').classList.add('active');
+}
+function filterLetter(l,btn){
+  document.querySelectorAll('.alpha-btn').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');
+  document.querySelectorAll('.alpha-group').forEach(function(g){
+    g.classList.toggle('cat-hidden',l!=='all'&&g.dataset.letter!==l);
+  });
+  document.getElementById('alpha-filter').value='';
+  document.querySelectorAll('.alpha-group li').forEach(function(li){li.classList.remove('cat-hidden');});
+}
+</script>
