@@ -1,545 +1,659 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-.adh *{box-sizing:border-box;margin:0;padding:0}
-.adh{font-family:'Inter',Arial,sans-serif;color:#132530;background:#fff}
-.adh-w{max-width:1270px;margin:0 auto;padding:0 15px}
-.adh-title{font-family:'Montserrat','Inter',Arial,sans-serif;font-size:1.05rem;font-weight:700;text-transform:uppercase;color:#132530;text-align:center;margin-bottom:18px;letter-spacing:.02em}
+/* BASE */
+.pdz *,.pdz *::before,.pdz *::after{box-sizing:border-box;margin:0;padding:0}
+.pdz{font-family:'Inter',Arial,sans-serif;color:#132530;background:#fff}
+.pdz a{text-decoration:none;color:inherit}
+.pdz ul{list-style:none}
+.pdz img{display:block}
+
+/* LAYOUT */
+.wrap{max-width:1270px;margin:0 auto;padding:0 15px}
+.section{padding:28px 0}
+.section--grey{background:#f5f6f8}
+.section-div{border-top:1px solid #e8ecf0}
+
+/* TYPOGRAPHY */
+.section__title{font-family:'Montserrat',Arial,sans-serif;font-size:1.08rem;font-weight:700;text-transform:uppercase;text-align:center;color:#132530;margin-bottom:22px;letter-spacing:.02em;line-height:1.35}
+.section__btn{text-align:center;margin-top:20px}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:10px 26px;border-radius:3px;font-weight:600;font-size:.84rem;cursor:pointer;border:none;font-family:'Inter',Arial,sans-serif;transition:all .15s;text-decoration:none}
+.btn--orange{background:#f85a00;color:#fff}
+.btn--orange:hover{background:#d94e00;color:#fff}
+.btn--outline-dk{border:1px solid #132530;color:#132530;background:transparent}
+.btn--outline-dk:hover{background:#132530;color:#fff}
+.btn--outline-wh{border:1px solid rgba(255,255,255,.55);color:#fff;background:rgba(255,255,255,.12)}
+.btn--outline-wh:hover{background:rgba(255,255,255,.26);color:#fff}
+
+/* GRID */
+.row{display:flex;flex-wrap:wrap;margin:0 -7px}
+.row-gap{gap:14px 0}
+.col{padding:0 7px}
+.row-cols-2>.col{flex:0 0 50%;max-width:50%}
+.row-cols-3>.col{flex:0 0 33.333%;max-width:33.333%}
+
+@media(min-width:768px){
+  .row-cols-md-3>.col{flex:0 0 33.333%;max-width:33.333%}
+  .row-cols-md-4>.col{flex:0 0 25%;max-width:25%}
+  .row-cols-md-5>.col{flex:0 0 20%;max-width:20%}
+}
+@media(min-width:992px){
+  .row-cols-lg-4>.col{flex:0 0 25%;max-width:25%}
+  .row-cols-lg-6>.col{flex:0 0 16.666%;max-width:16.666%}
+  .row-cols-lg-9>.col{flex:0 0 11.111%;max-width:11.111%}
+}
+@media(min-width:1200px){
+  .row-cols-xl-6>.col{flex:0 0 16.666%;max-width:16.666%}
+}
+
 /* ANNOUNCE BAR */
-.adh-bar{background:#f85a00;color:#fff;text-align:center;padding:8px 15px;font-size:.78rem;font-weight:600}
-.adh-bar a{color:#fff;text-decoration:underline}
+.header-promo{background:#f85a00;color:#fff;text-align:center;padding:9px 15px;font-size:.78rem;font-weight:600}
+.header-promo a{color:#fff;text-decoration:underline}
+
 /* HERO */
-.adh-hero-inner{display:flex;min-height:200px;max-width:1270px;margin:0 auto}
-.adh-vs-col{flex:0 0 65%;padding:20px 20px 20px 15px;border-right:1px solid rgba(255,255,255,.1)}
-.adh-promo-col{flex:0 0 35%;background:linear-gradient(135deg,#0e1c26 0%,#1a3a2a 50%,#0e1c26 100%);display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;position:relative;overflow:hidden}
-.adh-promo-col::before{content:'';position:absolute;right:-20px;top:50%;transform:translateY(-50%);width:140px;height:140px;border-radius:50%;background:rgba(34,197,94,.07)}
-.adh-vs-title{color:rgba(255,255,255,.7);font-size:.78rem;margin-bottom:10px}
-.adh-vs-tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:14px}
-.adh-vs-tab{background:none;border:none;color:rgba(255,255,255,.55);padding:7px 16px 9px;font-size:.8rem;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px}
-.adh-vs-tab.on{color:#fff;border-bottom-color:#f85a00}
-.adh-vs-form{display:flex;gap:7px;flex-wrap:nowrap}
-.adh-vs-step{flex:1}
-.adh-vs-num{color:#f85a00;font-size:.68rem;font-weight:700;margin-bottom:3px}
-.adh-vs-sel{width:100%;padding:9px 10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;border-radius:2px;font-size:.8rem;font-family:inherit;appearance:none}
-.adh-vs-sel option{color:#132530;background:#fff}
-.adh-vs-btn{background:#f85a00;color:#fff;border:none;padding:9px 20px;border-radius:2px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;white-space:nowrap;align-self:flex-end}
-.adh-vs-btn:hover{background:#d94e00}
-.adh-vs-nf{color:rgba(255,255,255,.45);font-size:.72rem;display:block;margin-top:8px;text-decoration:underline;cursor:pointer}
-.adh-immat-in{flex:1;padding:9px 10px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);color:#fff;border-radius:2px;font-size:.8rem;font-family:inherit}
-.adh-immat-in::placeholder{color:rgba(255,255,255,.38)}
-.adh-promo-badge{background:#f85a00;color:#fff;font-size:.62rem;font-weight:700;padding:3px 8px;border-radius:2px;text-transform:uppercase;letter-spacing:.05em;margin-bottom:10px;display:inline-block}
-.adh-promo-title{color:#fff;font-family:'Montserrat',Arial,sans-serif;font-size:1.1rem;font-weight:700;line-height:1.3;text-transform:uppercase;margin-bottom:8px}
-.adh-promo-title span{color:#4ade80}
-.adh-promo-sub{color:rgba(255,255,255,.65);font-size:.73rem;margin-bottom:14px;line-height:1.5}
-.adh-promo-cta{background:#f85a00;color:#fff;padding:8px 18px;border-radius:2px;text-decoration:none;font-weight:700;font-size:.78rem}
-.adh-promo-cta:hover{background:#d94e00}
+.main-block{background:#132530}
+.main-block__inner{display:flex;align-items:stretch;min-height:230px;max-width:1270px;margin:0 auto}
+
+.search-car-box{flex:0 0 41.666%;padding:22px 20px 24px;display:flex;flex-direction:column;justify-content:center}
+.search-car-box__title{font-size:.8rem;color:rgba(255,255,255,.7);margin-bottom:14px;line-height:1.45}
+.car-selector__tabs{display:flex;border-bottom:1px solid rgba(255,255,255,.15);margin-bottom:16px}
+.car-selector__tab{background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;padding:8px 16px;font-size:.8rem;font-weight:500;color:rgba(255,255,255,.5);cursor:pointer;font-family:'Inter',Arial,sans-serif;transition:color .15s}
+.car-selector__tab.active,.car-selector__tab:hover{color:#fff}
+.car-selector__tab.active{border-bottom-color:#f85a00}
+.car-selector__form{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.car-selector__step{flex:1;min-width:100px}
+.car-selector__step-num{font-size:.66rem;font-weight:700;color:#f85a00;margin-bottom:4px}
+.car-selector__select{width:100%;padding:9px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:3px;font-size:.8rem;font-family:'Inter',Arial,sans-serif;appearance:none;cursor:pointer}
+.car-selector__select option{color:#132530;background:#fff}
+.car-selector__select:disabled{opacity:.42;cursor:default}
+.car-selector__btn{background:#f85a00;color:#fff;border:none;padding:10px 18px;border-radius:3px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:'Inter',Arial,sans-serif;white-space:nowrap;align-self:flex-end}
+.car-selector__btn:hover{background:#d94e00}
+.car-selector__note{display:block;margin-top:10px;font-size:.7rem;color:rgba(255,255,255,.4);text-decoration:underline;cursor:pointer}
+.car-selector__immat{display:flex;gap:8px;align-items:center}
+.car-selector__immat-input{flex:1;padding:9px 10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;border-radius:3px;font-size:.8rem;font-family:'Inter',Arial,sans-serif;outline:none}
+.car-selector__immat-input::placeholder{color:rgba(255,255,255,.38)}
+
+/* PROMO COL */
+.promo-col{flex:1;background:linear-gradient(135deg,#0d2318 0%,#19402c 50%,#0d2318 100%);display:flex;align-items:center;justify-content:center;padding:28px 24px;text-align:center;position:relative;overflow:hidden}
+.promo-col::after{content:'';position:absolute;width:220px;height:220px;border-radius:50%;background:rgba(34,197,94,.06);right:-50px;top:50%;transform:translateY(-50%)}
+.promo-col__inner{position:relative;z-index:1}
+.promo-col__badge{display:inline-block;background:#f85a00;color:#fff;font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:2px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.promo-col__title{font-family:'Montserrat',Arial,sans-serif;font-size:1.3rem;font-weight:800;text-transform:uppercase;color:#fff;line-height:1.3;margin-bottom:10px}
+.promo-col__title span{color:#4ade80}
+.promo-col__sub{font-size:.76rem;color:rgba(255,255,255,.65);margin-bottom:16px;line-height:1.55}
+
 /* POPULAR LINKS */
-.adh-pop{background:#fff;border-bottom:2px solid #f0f0f0;overflow-x:auto;scrollbar-width:none}
-.adh-pop::-webkit-scrollbar{display:none}
-.adh-pop-inner{display:flex;min-width:max-content;max-width:1270px;margin:0 auto}
-.adh-pop-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;padding:10px 13px;min-width:84px;text-align:center}
-.adh-pop-item:hover{background:#fff8f5}
-.adh-pop-icon{width:38px;height:38px;margin-bottom:5px}
-.adh-pop-lbl{font-size:.61rem;color:#132530;line-height:1.2;max-width:74px;font-weight:500}
-/* CATEGORIES */
-.adh-cats-sec{padding:24px 0 20px;background:#fff}
-.adh-cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
-@media(max-width:900px){.adh-cat-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:580px){.adh-cat-grid{grid-template-columns:repeat(3,1fr)}}
-.adh-cat-card{background:#fff;border:1px solid #e5eaed;border-radius:4px;display:flex;flex-direction:column;align-items:center;text-decoration:none;color:#132530;padding:12px 8px 10px;transition:border-color .15s}
-.adh-cat-card:hover{border-color:#f85a00}
-.adh-cat-thumb{width:88px;height:66px;border-radius:3px;display:flex;align-items:center;justify-content:center;margin-bottom:9px}
-.adh-cat-name{font-size:.72rem;font-weight:600;text-align:center;line-height:1.3}
-.bg-tyre{background:linear-gradient(135deg,#2d2d2d,#111)}
-.bg-brake{background:linear-gradient(135deg,#4a4a4a,#222)}
-.bg-engine{background:linear-gradient(135deg,#1e3a5f,#0a1f3d)}
-.bg-belt{background:linear-gradient(135deg,#3d5a2a,#1e2e14)}
-.bg-clutch{background:linear-gradient(135deg,#555,#2e2e2e)}
-.bg-filter{background:linear-gradient(135deg,#b85000,#6b2e00)}
-.bg-shock{background:linear-gradient(135deg,#2a4a6b,#10263d)}
-.bg-susp{background:linear-gradient(135deg,#555,#333)}
-.bg-body{background:linear-gradient(135deg,#5a1f1f,#2d0f0f)}
-.bg-elec{background:linear-gradient(135deg,#2a1a6b,#130e33)}
-.bg-oil{background:linear-gradient(135deg,#b86a00,#6b3d00)}
-.bg-more{background:#f85a00}
-.adh-cats-btn-wrap{text-align:center;margin-top:16px}
-.adh-cats-btn{display:inline-block;border:1px solid #132530;color:#132530;padding:8px 24px;border-radius:2px;font-size:.8rem;font-weight:600;text-decoration:none}
-.adh-cats-btn:hover{background:#132530;color:#fff}
+.popular-links{background:#fff;border-bottom:1px solid #e8ecf0;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.popular-links::-webkit-scrollbar{display:none}
+.popular-links__inner{display:flex;min-width:max-content;max-width:1270px;margin:0 auto}
+.popular-links__item{display:flex;flex-direction:column;align-items:center;text-decoration:none;padding:10px 13px;min-width:86px;text-align:center;border-right:1px solid #f0f0f0;transition:background .12s}
+.popular-links__item:hover{background:#fff8f5}
+.popular-links__icon{width:36px;height:36px;margin-bottom:5px}
+.popular-links__label{font-size:.61rem;color:#132530;line-height:1.25;max-width:74px;font-weight:500}
+
+/* TOP-PARTS (categories) */
+.top-parts-item{height:100%}
+.top-parts-item__content{display:flex;flex-direction:column;align-items:center;background:#fff;border:1px solid #e2e8ed;border-radius:4px;padding:14px 8px 12px;color:#132530;height:100%;transition:border-color .15s,box-shadow .15s}
+.top-parts-item__content:hover{border-color:#f85a00;box-shadow:0 2px 10px rgba(248,90,0,.1)}
+.top-parts-item__img{width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.top-parts-item__img img{width:80px;height:80px;object-fit:contain}
+.top-parts-item__name{font-size:.72rem;font-weight:600;text-align:center;line-height:1.3;color:#132530}
+
 /* ESSENTIALS */
-.adh-ess-sec{background:#f5f5f5;padding:24px 0}
-.adh-ess-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-@media(max-width:700px){.adh-ess-grid{grid-template-columns:1fr}}
-.adh-ess-card{border-radius:4px;overflow:hidden;text-decoration:none;color:#fff;height:130px;display:flex;align-items:flex-end;padding:14px;position:relative}
-.adh-ess-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(19,37,48,.82) 0%,rgba(19,37,48,.15) 100%)}
-.adh-ess-inner{position:relative;z-index:1}
-.adh-ess-title{font-family:'Montserrat',Arial,sans-serif;font-size:.85rem;font-weight:700;text-transform:uppercase;margin-bottom:3px}
-.adh-ess-sub{font-size:.7rem;opacity:.8}
-/* BRANDS */
-.adh-brands-sec{background:#fff;padding:22px 0;border-top:1px solid #e8e8e8}
-.adh-brands-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:12px}
-@media(max-width:580px){.adh-brands-grid{grid-template-columns:repeat(3,1fr)}}
-.adh-brand-item{border:1px solid #e5eaed;border-radius:2px;padding:10px 6px;text-align:center;text-decoration:none;color:#132530;font-size:.75rem;font-weight:700;font-family:'Montserrat',Arial,sans-serif;transition:all .15s;letter-spacing:.03em}
-.adh-brand-item:hover{border-color:#f85a00;color:#f85a00}
-.adh-brands-more{text-align:center}
-.adh-brands-more a{font-size:.78rem;color:#f85a00;border:1px solid #f85a00;padding:7px 20px;border-radius:2px;display:inline-block;font-weight:600;text-decoration:none}
-/* TRUST */
-.adh-trust{background:#f0f2f4;padding:14px 0}
-.adh-trust-inner{display:flex;flex-wrap:wrap;justify-content:space-around}
-.adh-trust-item{display:flex;align-items:center;gap:10px;padding:8px 16px;flex:1 1 200px}
-.adh-trust-icon{width:38px;height:38px;flex-shrink:0;color:#f85a00}
-.adh-trust-ttl{font-size:.78rem;font-weight:700;color:#132530;margin-bottom:1px}
-.adh-trust-sub{font-size:.66rem;color:#666}
-/* BEST SELLERS */
-.adh-bs-sec{background:#fff;padding:24px 0}
-.adh-prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:10px}
-.adh-prod{background:#fff;border:1px solid #e5eaed;border-radius:4px;text-decoration:none;display:flex;flex-direction:column;overflow:hidden;transition:box-shadow .15s}
-.adh-prod:hover{box-shadow:0 2px 12px rgba(0,0,0,.1)}
-.adh-prod-img{height:126px;display:flex;align-items:center;justify-content:center;background:#fafafa;border-bottom:1px solid #f0f0f0}
-.adh-prod-img img{max-height:116px;max-width:100%;object-fit:contain}
-.adh-prod-body{padding:9px 10px 11px;flex:1;display:flex;flex-direction:column}
-.adh-prod-brand{font-size:.63rem;color:#888;text-transform:uppercase;margin-bottom:2px}
-.adh-prod-name{font-size:.76rem;font-weight:500;color:#132530;margin-bottom:5px;line-height:1.3;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.adh-prod-stars{color:#f85a00;font-size:.72rem;margin-bottom:4px}
-.adh-prod-price{font-size:.92rem;font-weight:700;color:#f85a00}
-.adh-prod-compare{font-size:.7rem;color:#bbb;text-decoration:line-through;margin-left:4px;font-weight:400}
-.adh-prod-add{display:block;background:#f85a00;color:#fff;text-align:center;padding:7px;font-size:.74rem;font-weight:700;margin-top:8px;border-radius:2px;text-decoration:none}
-.adh-prod-add:hover{background:#d94e00}
-/* PARTNERS */
-.adh-partners-sec{background:#f5f5f5;padding:16px 0;border-top:1px solid #eaeaea}
-.adh-partners-lbl{font-size:.72rem;font-weight:600;color:#666;text-align:center;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px}
-.adh-partners-row{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
-.adh-partner{background:#fff;border:1px solid #e5eaed;border-radius:3px;padding:8px 16px;font-size:.78rem;font-weight:700;color:#132530;text-decoration:none;font-family:'Montserrat',Arial,sans-serif;letter-spacing:.03em}
-.adh-partner:hover{border-color:#f85a00;color:#f85a00}
-/* APP BANNER */
-.adh-app{background:#f85a00;padding:18px 0}
-.adh-app-inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center}
-.adh-app-ttl{font-family:'Montserrat',Arial,sans-serif;font-size:.95rem;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:3px}
-.adh-app-sub{font-size:.76rem;color:rgba(255,255,255,.88)}
-.adh-app-btn{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.5);padding:8px 16px;border-radius:4px;font-size:.75rem;font-weight:600;text-decoration:none}
+.essentials-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.essential-card{border-radius:5px;overflow:hidden;text-decoration:none;color:#fff;height:144px;display:flex;align-items:flex-end;padding:16px;position:relative}
+.essential-card::before{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(19,37,48,.88) 0%,rgba(19,37,48,.1) 100%)}
+.essential-card__inner{position:relative;z-index:1}
+.essential-card__title{font-family:'Montserrat',Arial,sans-serif;font-size:.88rem;font-weight:700;text-transform:uppercase;margin-bottom:3px}
+.essential-card__sub{font-size:.71rem;opacity:.82}
+
+/* MAKER-BOX (car brands) */
+#maker .row{justify-content:center}
+.maker-box-item{display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8ed;border-radius:4px;padding:12px 10px;height:76px;width:100%;transition:border-color .15s,box-shadow .15s}
+.maker-box-item:hover{border-color:#c5cdd4;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.maker-box-item img{max-width:100%;max-height:40px;object-fit:contain;filter:grayscale(15%);transition:filter .15s}
+.maker-box-item:hover img{filter:none}
+
+/* TRUST BAR */
+.autoparts-features-list{background:#f0f2f5;padding:14px 0}
+.autoparts-features-list--inline .autoparts-features-list__wrap{display:flex;flex-wrap:wrap;justify-content:space-around;max-width:1270px;margin:0 auto;padding:0 15px}
+.autoparts-features-list__item{display:flex;align-items:center;gap:12px;padding:8px 16px;flex:1 1 220px}
+.autoparts-features-list__icon{width:40px;height:40px;flex-shrink:0;color:#f85a00}
+.autoparts-features-list__icon svg{width:40px;height:40px}
+.autoparts-features-list__title{font-size:.8rem;font-weight:700;color:#132530;margin-bottom:2px;font-family:'Montserrat',Arial,sans-serif}
+.autoparts-features-list__text{font-size:.68rem;color:#666}
+
+/* PRODUCT CARD GRID */
+.product-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(178px,1fr));gap:12px}
+.product-card-grid__item{background:#fff;border:1px solid #e2e8ed;border-radius:4px;text-decoration:none;display:flex;flex-direction:column;overflow:hidden;transition:box-shadow .15s}
+.product-card-grid__item:hover{box-shadow:0 3px 14px rgba(0,0,0,.09)}
+.product-card-grid__product-img{height:130px;display:flex;align-items:center;justify-content:center;background:#fafafa;border-bottom:1px solid #f0f0f0;padding:8px}
+.product-card-grid__product-img img{max-height:114px;max-width:100%;object-fit:contain}
+.product-card-grid__body{padding:10px 11px 12px;flex:1;display:flex;flex-direction:column}
+.product-card-grid__product-brand{font-size:.63rem;color:#999;text-transform:uppercase;margin-bottom:3px;letter-spacing:.03em}
+.product-card-grid__product-name{font-size:.77rem;font-weight:500;color:#132530;margin-bottom:6px;line-height:1.35;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-card-grid__product-rating{color:#f85a00;font-size:.72rem;margin-bottom:5px}
+.product-card-grid__product-price{font-size:.95rem;font-weight:700;color:#f85a00}
+.product-card-grid__product-compare{font-size:.72rem;color:#bbb;text-decoration:line-through;margin-left:5px}
+.product-card-grid__add-btn{display:block;background:#f85a00;color:#fff;text-align:center;padding:8px;font-size:.76rem;font-weight:700;margin-top:9px;border-radius:3px}
+.product-card-grid__add-btn:hover{background:#d94e00;color:#fff}
+
+/* BRAND-BOX (partner brands) */
+#brand .row{justify-content:center}
+.brand-box-item{display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8ed;border-radius:3px;padding:10px 6px;height:60px;width:100%;transition:border-color .15s;text-decoration:none}
+.brand-box-item:hover{border-color:#c5cdd4}
+.brand-box-item img{max-width:100%;max-height:38px;object-fit:contain}
+
+/* CTA BANNER */
+.cta-banner{background:#f85a00;padding:22px 0}
+.cta-banner__inner{display:flex;align-items:center;gap:24px;flex-wrap:wrap;justify-content:center}
+.cta-banner__title{font-family:'Montserrat',Arial,sans-serif;font-size:1rem;font-weight:700;text-transform:uppercase;color:#fff;margin-bottom:4px}
+.cta-banner__sub{font-size:.77rem;color:rgba(255,255,255,.9)}
+.cta-banner__btns{display:flex;gap:10px;flex-wrap:wrap}
+
 /* NEWSLETTER */
-.adh-nl{background:#132530;padding:20px 0}
-.adh-nl-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
-.adh-nl-text{color:#fff;font-weight:700;font-size:.88rem}
-.adh-nl-form{display:flex}
-.adh-nl-input{padding:9px 14px;border:none;border-radius:2px 0 0 2px;font-size:.82rem;font-family:inherit;width:240px}
-.adh-nl-submit{background:#f85a00;color:#fff;border:none;padding:9px 16px;border-radius:0 2px 2px 0;font-weight:700;font-size:.78rem;cursor:pointer;font-family:inherit}
-.adh-nl-submit:hover{background:#d94e00}
-@media(max-width:900px){
-  .adh-hero-inner{flex-direction:column}
-  .adh-vs-col,.adh-promo-col{flex:none;width:100%}
-  .adh-promo-col{min-height:110px}
-  .adh-vs-form{flex-wrap:wrap}
+.newsletter{background:#132530;padding:22px 0}
+.newsletter__inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center}
+.newsletter__text{color:#fff;font-weight:700;font-size:.9rem}
+.newsletter__form{display:flex}
+.newsletter__input{padding:10px 14px;border:none;border-radius:3px 0 0 3px;font-size:.82rem;font-family:'Inter',Arial,sans-serif;width:250px;outline:none}
+.newsletter__btn{background:#f85a00;color:#fff;border:none;padding:10px 18px;border-radius:0 3px 3px 0;font-weight:700;font-size:.8rem;cursor:pointer;font-family:'Inter',Arial,sans-serif}
+.newsletter__btn:hover{background:#d94e00}
+
+/* RESPONSIVE */
+@media(max-width:991px){
+  .main-block__inner{flex-direction:column;min-height:unset}
+  .search-car-box{flex:none;width:100%}
+  .promo-col{flex:none;width:100%;min-height:130px}
+}
+@media(max-width:767px){
+  .section__title{font-size:.9rem}
+  .essentials-row{grid-template-columns:1fr}
+  .row-cols-md-3>.col{flex:0 0 50%;max-width:50%}
+  .row-cols-md-5>.col{flex:0 0 33.333%;max-width:33.333%}
+  .product-card-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:575px){
+  .car-selector__form{flex-direction:column}
+  .car-selector__step{min-width:unset;width:100%}
+  .car-selector__btn{align-self:flex-start}
+}
+@media(max-width:400px){
+  .product-card-grid{grid-template-columns:1fr}
 }
 </style>
 
-<div class="adh">
+<div class="pdz">
 
 <!-- 1. ANNOUNCE BAR -->
-<div class="adh-bar">
+<div class="header-promo">
   🚚 Livraison express dans les 48 wilayas &nbsp;|&nbsp; Paiement à la livraison &nbsp;|&nbsp; <a href="/collections/all">Voir tout le catalogue &rarr;</a>
 </div>
 
-<!-- 2. HERO: VEHICLE SELECTOR + PROMO -->
-<section style="background:#132530">
-  <div class="adh-hero-inner">
-    <div class="adh-vs-col">
-      <div class="adh-vs-title">Sélectionnez votre modèle de voiture pour rechercher des pièces détachées</div>
-      <div class="adh-vs-tabs">
-        <button class="adh-vs-tab on" onclick="adhTab('m',this)">Par marque / modèle</button>
-        <button class="adh-vs-tab" onclick="adhTab('i',this)">Par immatriculation</button>
-      </div>
-      <div id="adh-vs-m">
-        <div class="adh-vs-form">
-          <div class="adh-vs-step"><div class="adh-vs-num">1</div><select class="adh-vs-sel" id="adh-brand"><option value="">Choisissez une marque</option></select></div>
-          <div class="adh-vs-step"><div class="adh-vs-num">2</div><select class="adh-vs-sel" id="adh-model" disabled><option value="">Choisissez un modèle</option></select></div>
-          <div class="adh-vs-step"><div class="adh-vs-num">3</div><select class="adh-vs-sel" id="adh-engine" disabled><option value="">Motorisation</option></select></div>
-          <button class="adh-vs-btn" onclick="adhSearch()">RECHERCHER</button>
-        </div>
-        <a class="adh-vs-nf" href="/collections/all">Vous ne trouvez pas votre voiture dans le catalogue ?</a>
-      </div>
-      <div id="adh-vs-i" style="display:none">
-        <div style="display:flex;gap:8px;align-items:center;margin-top:4px">
-          <input class="adh-immat-in" id="adh-immat-val" type="text" placeholder="Ex : 123456-201-16 (numéro immatriculation)" style="flex:1">
-          <button class="adh-vs-btn" onclick="adhImmatSearch()">RECHERCHER</button>
-        </div>
-      </div>
-    </div>
-    <div class="adh-promo-col">
-      <div>
-        <div class="adh-promo-badge">AutoPièces DZ</div>
-        <div class="adh-promo-title">Livraison dans<br><span>48 WILAYAS</span></div>
-        <div class="adh-promo-sub">Paiement à la livraison<br>Garantie 1 an · Pièces certifiées OEM</div>
-        <a class="adh-promo-cta" href="/collections/all">Voir le catalogue</a>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- 2. HERO -->
+<div class="main-block">
+  <div class="main-block__inner">
 
-<!-- 3. POPULAR QUICK LINKS -->
-<div class="adh-pop">
-  <div class="adh-pop-inner">
-    <a class="adh-pop-item" href="/search?type=product&q=disque+frein">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="19" cy="19" r="13"/><circle cx="19" cy="19" r="5.5"/><line x1="19" y1="6" x2="19" y2="10"/><line x1="19" y1="28" x2="19" y2="32"/><line x1="6" y1="19" x2="10" y2="19"/><line x1="28" y1="19" x2="32" y2="19"/></svg>
-      <span class="adh-pop-lbl">Disque de frein</span>
+    <div class="search-car-box">
+      <p class="search-car-box__title">Sélectionnez votre voiture pour trouver les pièces détachées compatibles</p>
+      <div class="car-selector">
+        <div class="car-selector__tabs">
+          <button class="car-selector__tab active" onclick="pdzTab('m',this)">Par marque / modèle</button>
+          <button class="car-selector__tab" onclick="pdzTab('i',this)">Par immatriculation</button>
+        </div>
+        <div id="pdz-vs-m">
+          <div class="car-selector__form">
+            <div class="car-selector__step">
+              <div class="car-selector__step-num">1</div>
+              <select class="car-selector__select" id="pdz-brand"><option value="">Choisissez une marque</option></select>
+            </div>
+            <div class="car-selector__step">
+              <div class="car-selector__step-num">2</div>
+              <select class="car-selector__select" id="pdz-model" disabled><option value="">Choisissez un modèle</option></select>
+            </div>
+            <div class="car-selector__step">
+              <div class="car-selector__step-num">3</div>
+              <select class="car-selector__select" id="pdz-engine" disabled><option value="">Motorisation</option></select>
+            </div>
+            <button class="car-selector__btn" onclick="pdzSearch()">RECHERCHER</button>
+          </div>
+          <a class="car-selector__note" href="/collections/all">Vous ne trouvez pas votre voiture dans le catalogue ?</a>
+        </div>
+        <div id="pdz-vs-i" style="display:none">
+          <div class="car-selector__immat">
+            <input class="car-selector__immat-input" id="pdz-immat-val" type="text" placeholder="Ex : 123456-201-16 (numéro d'immatriculation)">
+            <button class="car-selector__btn" onclick="pdzImmatSearch()">RECHERCHER</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="promo-col">
+      <div class="promo-col__inner">
+        <span class="promo-col__badge">AutoPièces DZ</span>
+        <div class="promo-col__title">Livraison dans<br><span>48 WILAYAS</span></div>
+        <div class="promo-col__sub">Paiement à la livraison — Pièces certifiées OEM<br>Garantie 1 an · Marques premium · Stock permanent</div>
+        <a class="btn btn--orange" href="/collections/all">Voir le catalogue</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 3. POPULAR LINKS BAR -->
+<div class="popular-links">
+  <div class="popular-links__inner">
+    <a class="popular-links__item" href="/search?type=product&q=disque+frein">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="19" cy="19" r="13"/><circle cx="19" cy="19" r="5.5"/><line x1="19" y1="6" x2="19" y2="10"/><line x1="19" y1="28" x2="19" y2="32"/><line x1="6" y1="19" x2="10" y2="19"/><line x1="28" y1="19" x2="32" y2="19"/></svg>
+      <span class="popular-links__label">Disque de frein</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=kit+embrayage">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="19" cy="19" r="12"/><circle cx="19" cy="19" r="6"/><circle cx="19" cy="19" r="2" fill="#f85a00"/></svg>
-      <span class="adh-pop-lbl">Kit d'embrayage</span>
+    <a class="popular-links__item" href="/search?type=product&q=kit+embrayage">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="19" cy="19" r="12"/><circle cx="19" cy="19" r="6"/><circle cx="19" cy="19" r="2" fill="#f85a00"/></svg>
+      <span class="popular-links__label">Kit d'embrayage</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=bras+suspension">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><path d="M5 30L19 9L33 30"/><circle cx="5" cy="30" r="3"/><circle cx="33" cy="30" r="3"/><circle cx="19" cy="9" r="3"/></svg>
-      <span class="adh-pop-lbl">Bras de suspension</span>
+    <a class="popular-links__item" href="/search?type=product&q=bras+suspension">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><path d="M5 30L19 9L33 30"/><circle cx="5" cy="30" r="3"/><circle cx="33" cy="30" r="3"/><circle cx="19" cy="9" r="3"/></svg>
+      <span class="popular-links__label">Bras de suspension</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=plaquettes+frein">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><rect x="9" y="13" width="20" height="12" rx="2"/><rect x="12" y="13" width="14" height="7" rx="1" fill="#f85a00" opacity=".2" stroke="#f85a00"/></svg>
-      <span class="adh-pop-lbl">Plaquettes de frein</span>
+    <a class="popular-links__item" href="/search?type=product&q=plaquettes+frein">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><rect x="9" y="13" width="20" height="12" rx="2"/><rect x="12" y="13" width="14" height="7" rx="1" fill="#f85a00" opacity=".2" stroke="#f85a00"/></svg>
+      <span class="popular-links__label">Plaquettes de frein</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=kit+distribution">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="11" cy="11" r="6"/><circle cx="27" cy="11" r="6"/><circle cx="19" cy="27" r="6"/><path d="M17 11L21 11"/><path d="M13 15L17 23"/><path d="M25 15L21 23"/></svg>
-      <span class="adh-pop-lbl">Kit distribution</span>
+    <a class="popular-links__item" href="/search?type=product&q=kit+distribution">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="11" cy="11" r="6"/><circle cx="27" cy="11" r="6"/><circle cx="19" cy="27" r="6"/><path d="M17 11L21 11"/><path d="M13 15L17 23"/><path d="M25 15L21 23"/></svg>
+      <span class="popular-links__label">Kit distribution</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=filtre+air">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><path d="M7 11L31 11L27 19L23 19L23 29L15 29L15 19L11 19Z"/></svg>
-      <span class="adh-pop-lbl">Filtre à air</span>
+    <a class="popular-links__item" href="/search?type=product&q=filtre+air">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><path d="M7 11L31 11L27 19L23 19L23 29L15 29L15 19L11 19Z"/></svg>
+      <span class="popular-links__label">Filtre à air</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=amortisseur">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><line x1="19" y1="4" x2="19" y2="10"/><path d="M13 10Q19 14 25 10Q19 18 13 14Q19 22 25 18Q19 26 13 22"/><line x1="19" y1="26" x2="19" y2="35"/></svg>
-      <span class="adh-pop-lbl">Amortisseur</span>
+    <a class="popular-links__item" href="/search?type=product&q=amortisseur">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><line x1="19" y1="4" x2="19" y2="10"/><path d="M13 10Q19 14 25 10Q19 18 13 14Q19 22 25 18Q19 26 13 22"/><line x1="19" y1="26" x2="19" y2="35"/></svg>
+      <span class="popular-links__label">Amortisseur</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=filtre+huile">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><rect x="11" y="7" width="16" height="24" rx="3"/><line x1="15" y1="7" x2="15" y2="31"/><line x1="19" y1="7" x2="19" y2="31"/><line x1="23" y1="7" x2="23" y2="31"/></svg>
-      <span class="adh-pop-lbl">Filtre à huile</span>
+    <a class="popular-links__item" href="/search?type=product&q=filtre+huile">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><rect x="11" y="7" width="16" height="24" rx="3"/><line x1="15" y1="7" x2="15" y2="31"/><line x1="19" y1="7" x2="19" y2="31"/><line x1="23" y1="7" x2="23" y2="31"/></svg>
+      <span class="popular-links__label">Filtre à huile</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=alternateur">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="19" cy="19" r="12"/><path d="M19 9L22 16L29 16L23 21L25 29L19 24L13 29L15 21L9 16L16 16Z" fill="#f85a00" opacity=".15" stroke="#f85a00"/></svg>
-      <span class="adh-pop-lbl">Alternateur</span>
+    <a class="popular-links__item" href="/search?type=product&q=alternateur">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="19" cy="19" r="12"/><path d="M19 9L22 16L29 16L23 21L25 29L19 24L13 29L15 21L9 16L16 16Z" fill="#f85a00" opacity=".15" stroke="#f85a00"/></svg>
+      <span class="popular-links__label">Alternateur</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=courroie">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="11" cy="19" r="7"/><circle cx="27" cy="19" r="5"/><path d="M11 12L27 14"/><path d="M11 26L27 24"/></svg>
-      <span class="adh-pop-lbl">Courroie</span>
+    <a class="popular-links__item" href="/search?type=product&q=courroie">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="11" cy="19" r="7"/><circle cx="27" cy="19" r="5"/><path d="M11 12L27 14"/><path d="M11 26L27 24"/></svg>
+      <span class="popular-links__label">Courroie</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=rotule">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><line x1="7" y1="19" x2="31" y2="19"/><circle cx="19" cy="19" r="6"/><line x1="19" y1="7" x2="19" y2="13"/></svg>
-      <span class="adh-pop-lbl">Rotule</span>
+    <a class="popular-links__item" href="/search?type=product&q=rotule">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><line x1="7" y1="19" x2="31" y2="19"/><circle cx="19" cy="19" r="6"/><line x1="19" y1="7" x2="19" y2="13"/></svg>
+      <span class="popular-links__label">Rotule</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=roulement">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="19" cy="19" r="12"/><circle cx="19" cy="19" r="7"/><circle cx="19" cy="8" r="2.5" fill="#f85a00"/><circle cx="19" cy="30" r="2.5" fill="#f85a00"/><circle cx="8" cy="19" r="2.5" fill="#f85a00"/><circle cx="30" cy="19" r="2.5" fill="#f85a00"/></svg>
-      <span class="adh-pop-lbl">Roulement</span>
+    <a class="popular-links__item" href="/search?type=product&q=roulement">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><circle cx="19" cy="19" r="12"/><circle cx="19" cy="19" r="7"/><circle cx="19" cy="8" r="2.5" fill="#f85a00"/><circle cx="19" cy="30" r="2.5" fill="#f85a00"/><circle cx="8" cy="19" r="2.5" fill="#f85a00"/><circle cx="30" cy="19" r="2.5" fill="#f85a00"/></svg>
+      <span class="popular-links__label">Roulement</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=sonde+lambda">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><path d="M19 5L19 19"/><circle cx="19" cy="25" r="6"/><path d="M13 31Q19 37 25 31"/></svg>
-      <span class="adh-pop-lbl">Sonde lambda</span>
+    <a class="popular-links__item" href="/search?type=product&q=sonde+lambda">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><path d="M19 5L19 19"/><circle cx="19" cy="25" r="6"/><path d="M13 31Q19 37 25 31"/></svg>
+      <span class="popular-links__label">Sonde lambda</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=batterie">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><rect x="7" y="13" width="24" height="16" rx="2"/><line x1="13" y1="13" x2="13" y2="9"/><line x1="25" y1="13" x2="25" y2="9"/><line x1="19" y1="18" x2="19" y2="24"/><line x1="16" y1="21" x2="22" y2="21"/></svg>
-      <span class="adh-pop-lbl">Batterie</span>
+    <a class="popular-links__item" href="/search?type=product&q=batterie">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><rect x="7" y="13" width="24" height="16" rx="2"/><line x1="13" y1="13" x2="13" y2="9"/><line x1="25" y1="13" x2="25" y2="9"/><line x1="19" y1="18" x2="19" y2="24"/><line x1="16" y1="21" x2="22" y2="21"/></svg>
+      <span class="popular-links__label">Batterie</span>
     </a>
-    <a class="adh-pop-item" href="/search?type=product&q=phare">
-      <svg class="adh-pop-icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><path d="M7 13L25 7L31 19L25 31L7 25Z"/><circle cx="21" cy="19" r="5"/><line x1="33" y1="19" x2="37" y2="19"/><line x1="33" y1="15" x2="37" y2="13"/><line x1="33" y1="23" x2="37" y2="25"/></svg>
-      <span class="adh-pop-lbl">Phare avant</span>
+    <a class="popular-links__item" href="/search?type=product&q=phare">
+      <svg class="popular-links__icon" viewBox="0 0 38 38" fill="none" stroke="#f85a00" stroke-width="1.7"><path d="M7 13L25 7L31 19L25 31L7 25Z"/><circle cx="21" cy="19" r="5"/><line x1="33" y1="19" x2="37" y2="19"/><line x1="33" y1="15" x2="37" y2="13"/><line x1="33" y1="23" x2="37" y2="25"/></svg>
+      <span class="popular-links__label">Phare avant</span>
     </a>
   </div>
 </div>
 
-<!-- 4. CATEGORY CATALOG GRID -->
-<section class="adh-cats-sec">
-  <div class="adh-w">
-    <div class="adh-title">Trouvez des pièces détachées dans le catalogue AutoPièces DZ</div>
-    <div class="adh-cat-grid">
+<!-- 4. CATEGORIES -->
+<section class="section section-div">
+  <div class="wrap">
+    <h1 class="section__title">Trouvez des pièces détachées dans le catalogue AutoPièces DZ</h1>
+    <div class="row row-gap row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
 
-      <a class="adh-cat-card" href="/search?type=product&q=pneu+jante">
-        <div class="adh-cat-thumb bg-tyre">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="22" cy="22" r="15"/><circle cx="22" cy="22" r="9"/><circle cx="22" cy="22" r="3" fill="#fff" stroke="none"/><line x1="22" y1="13" x2="22" y2="17"/><line x1="22" y1="27" x2="22" y2="31"/><line x1="13" y1="22" x2="17" y2="22"/><line x1="27" y1="22" x2="31" y2="22"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=pneu+jante" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/tyres_wheels.png" alt="Pneus et jantes" loading="lazy"></span>
+            <span class="top-parts-item__name">Pneus et jantes</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Pneus et jantes</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=frein">
-        <div class="adh-cat-thumb bg-brake">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="22" cy="22" r="14"/><circle cx="22" cy="22" r="6"/><line x1="22" y1="8" x2="22" y2="12"/><line x1="22" y1="32" x2="22" y2="36"/><line x1="8" y1="22" x2="12" y2="22"/><line x1="32" y1="22" x2="36" y2="22"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=frein+plaquette+disque" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10106.png" alt="Frein" loading="lazy"></span>
+            <span class="top-parts-item__name">Frein</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Frein</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=moteur">
-        <div class="adh-cat-thumb bg-engine">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><rect x="11" y="15" width="22" height="16" rx="2"/><path d="M15 15L15 11L19 11"/><path d="M25 11L29 11L29 15"/><path d="M33 20L39 20"/><path d="M5 24L11 24"/><rect x="17" y="31" width="10" height="6" rx="1"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=moteur+joint+culasse" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10102.png" alt="Moteur" loading="lazy"></span>
+            <span class="top-parts-item__name">Moteur</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Moteur</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=courroie+distribution+chaine">
-        <div class="adh-cat-thumb bg-belt">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="13" cy="22" r="8"/><circle cx="31" cy="22" r="6"/><path d="M13 14L31 16"/><path d="M13 30L31 28"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=courroie+distribution+chaine+galet" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10116.png" alt="Courroies, chaînes, galets" loading="lazy"></span>
+            <span class="top-parts-item__name">Courroies, chaînes, galets</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Courroies, chaînes, galets</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=embrayage">
-        <div class="adh-cat-thumb bg-clutch">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><circle cx="22" cy="22" r="13"/><circle cx="22" cy="22" r="6"/><circle cx="22" cy="22" r="2.5" fill="#fff" stroke="none"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=embrayage+kit" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10150.png" alt="Embrayage" loading="lazy"></span>
+            <span class="top-parts-item__name">Embrayage</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Embrayage</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=filtre">
-        <div class="adh-cat-thumb bg-filter">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><path d="M8 12L36 12L31 20L27 20L27 34L17 34L17 20L13 20Z"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=filtre+huile+air+habitacle" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10105.png" alt="Filtre" loading="lazy"></span>
+            <span class="top-parts-item__name">Filtre</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Filtre</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=amortisseur">
-        <div class="adh-cat-thumb bg-shock">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><line x1="22" y1="4" x2="22" y2="11"/><path d="M15 11Q22 15 29 11Q22 20 15 16Q22 25 29 21Q22 30 15 26"/><line x1="22" y1="30" x2="22" y2="40"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=amortisseur" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10111.png" alt="Amortissement" loading="lazy"></span>
+            <span class="top-parts-item__name">Amortissement</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Amortissement</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=suspension">
-        <div class="adh-cat-thumb bg-susp">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><path d="M7 32L22 10L37 32"/><circle cx="7" cy="32" r="3"/><circle cx="37" cy="32" r="3"/><circle cx="22" cy="10" r="3"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=suspension+rotule+silent-bloc" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10113.png" alt="Suspension" loading="lazy"></span>
+            <span class="top-parts-item__name">Suspension</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Suspension</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=carrosserie">
-        <div class="adh-cat-thumb bg-body">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><path d="M4 26L8 18Q12 11 22 11Q32 11 36 18L40 26L40 33L4 33Z"/><circle cx="11" cy="33" r="4"/><circle cx="33" cy="33" r="4"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=carrosserie+pare-chocs+retroviseur" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10101.png" alt="Carrosserie" loading="lazy"></span>
+            <span class="top-parts-item__name">Carrosserie</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Carrosserie</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=electrique+alternateur+demarreur">
-        <div class="adh-cat-thumb bg-elec">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><path d="M24 5L15 23L21 23L19 39L29 21L23 21Z" fill="#fff" opacity=".15" stroke="#fff"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=electrique+alternateur+demarreur+bobine" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10110.png" alt="Électricité" loading="lazy"></span>
+            <span class="top-parts-item__name">Électricité</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Électricité</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/search?type=product&q=huile+moteur+liquide">
-        <div class="adh-cat-thumb bg-oil">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="1.6"><path d="M22 6L27 20L35 20C35 33 28 39 22 39C16 37 9 31 9 20L17 20Z"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/search?type=product&q=huile+moteur+liquide+fluide" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10435.png" alt="Huiles &amp; fluides" loading="lazy"></span>
+            <span class="top-parts-item__name">Huiles &amp; fluides</span>
+          </a>
         </div>
-        <span class="adh-cat-name">Huiles &amp; fluides</span>
-      </a>
+      </div>
 
-      <a class="adh-cat-card" href="/collections/all">
-        <div class="adh-cat-thumb bg-more">
-          <svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#fff" stroke-width="2.5"><line x1="22" y1="10" x2="22" y2="34"/><line x1="10" y1="22" x2="34" y2="22"/></svg>
+      <div class="col">
+        <div class="top-parts-item">
+          <a href="/collections/all" class="top-parts-item__content">
+            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/other.png" alt="Autres catégories" loading="lazy"></span>
+            <span class="top-parts-item__name">Autres catégories</span>
+          </a>
         </div>
-        <span class="adh-cat-name" style="color:#f85a00">Autres catégories</span>
-      </a>
+      </div>
 
     </div>
-    <div class="adh-cats-btn-wrap">
-      <a class="adh-cats-btn" href="/collections/all">Plus de pièces détachées &rarr;</a>
+    <div class="section__btn">
+      <a href="/collections/all" class="btn btn--outline-dk">Plus de pièces détachées</a>
     </div>
   </div>
 </section>
 
 <!-- 5. ESSENTIALS -->
-<section class="adh-ess-sec">
-  <div class="adh-w">
-    <div class="adh-title">Essentiels pour la voiture : accessoires, produits de nettoyage et outils</div>
-    <div class="adh-ess-grid">
-      <a class="adh-ess-card" href="/search?type=product&q=accessoire+voiture" style="background:linear-gradient(135deg,#1e3a5f,#0a1f3d)">
-        <div class="adh-ess-inner"><div class="adh-ess-title">Accessoires voiture</div><div class="adh-ess-sub">Housses, tapis, porte-vélos…</div></div>
+<section class="section section--grey">
+  <div class="wrap">
+    <h2 class="section__title">Essentiels pour la voiture : accessoires et produits d'entretien</h2>
+    <div class="essentials-row">
+      <a class="essential-card" href="/search?type=product&q=accessoire+voiture" style="background:linear-gradient(135deg,#1e3a5f,#0a1f3d)">
+        <div class="essential-card__inner"><div class="essential-card__title">Accessoires voiture</div><div class="essential-card__sub">Housses, tapis, porte-vélos…</div></div>
       </a>
-      <a class="adh-ess-card" href="/search?type=product&q=nettoyage+entretien" style="background:linear-gradient(135deg,#1a3a1e,#0a1f0e)">
-        <div class="adh-ess-inner"><div class="adh-ess-title">Produits de nettoyage</div><div class="adh-ess-sub">Cires, shampooings, dégraissants…</div></div>
+      <a class="essential-card" href="/search?type=product&q=nettoyage+entretien+cire" style="background:linear-gradient(135deg,#1a3a1e,#0a1f0e)">
+        <div class="essential-card__inner"><div class="essential-card__title">Produits de nettoyage</div><div class="essential-card__sub">Cires, shampooings, dégraissants…</div></div>
       </a>
-      <a class="adh-ess-card" href="/search?type=product&q=outillage" style="background:linear-gradient(135deg,#3d2a1a,#1f140a)">
-        <div class="adh-ess-inner"><div class="adh-ess-title">Outillage &amp; équipement</div><div class="adh-ess-sub">Clés, extracteurs, vérins…</div></div>
+      <a class="essential-card" href="/search?type=product&q=outillage+outil" style="background:linear-gradient(135deg,#3d2a1a,#1f140a)">
+        <div class="essential-card__inner"><div class="essential-card__title">Outillage &amp; équipement</div><div class="essential-card__sub">Clés, extracteurs, vérins…</div></div>
       </a>
     </div>
   </div>
 </section>
 
 <!-- 6. CAR BRANDS -->
-<section class="adh-brands-sec">
-  <div class="adh-w">
-    <div class="adh-title">Pièces auto par marques de voiture les plus demandées</div>
-    <div class="adh-brands-grid">
-      <a class="adh-brand-item" href="/search?type=product&q=Renault">RENAULT</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Peugeot">PEUGEOT</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Volkswagen">VOLKSWAGEN</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Citroen">CITROËN</a>
-      <a class="adh-brand-item" href="/search?type=product&q=BMW">BMW</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Mercedes">MERCEDES-BENZ</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Opel">OPEL</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Fiat">FIAT</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Toyota">TOYOTA</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Nissan">NISSAN</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Seat">SEAT</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Dacia">DACIA</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Hyundai">HYUNDAI</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Audi">AUDI</a>
-      <a class="adh-brand-item" href="/search?type=product&q=Ford">FORD</a>
-    </div>
-    <div class="adh-brands-more">
-      <a href="/collections/all">Plus de constructeurs automobiles &rarr;</a>
+<section class="section section-div" id="maker">
+  <div class="wrap">
+    <h2 class="section__title">Pièces auto pour les marques les plus demandées en Algérie</h2>
+    <nav>
+      <ul class="row row-gap row-cols-2 row-cols-md-4 row-cols-lg-6">
+        <li class="col"><a href="/search?type=product&q=Renault" class="maker-box-item" data-maker-id="93"><img src="https://scdn.autodoc.de/makers/93.svg" alt="RENAULT" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Peugeot" class="maker-box-item" data-maker-id="88"><img src="https://scdn.autodoc.de/makers/88.svg" alt="PEUGEOT" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Volkswagen" class="maker-box-item" data-maker-id="121"><img src="https://scdn.autodoc.de/makers/121.svg" alt="VOLKSWAGEN" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Citroen" class="maker-box-item" data-maker-id="21"><img src="https://scdn.autodoc.de/makers/21.svg" alt="CITROËN" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=BMW" class="maker-box-item" data-maker-id="16"><img src="https://scdn.autodoc.de/makers/16.svg" alt="BMW" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Mercedes" class="maker-box-item" data-maker-id="74"><img src="https://scdn.autodoc.de/makers/74.svg" alt="MERCEDES-BENZ" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Audi" class="maker-box-item" data-maker-id="5"><img src="https://scdn.autodoc.de/makers/5.svg" alt="AUDI" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Ford" class="maker-box-item" data-maker-id="36"><img src="https://scdn.autodoc.de/makers/36.svg" alt="FORD" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Opel" class="maker-box-item" data-maker-id="84"><img src="https://scdn.autodoc.de/makers/84.svg" alt="OPEL" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Fiat" class="maker-box-item" data-maker-id="35"><img src="https://scdn.autodoc.de/makers/35.svg" alt="FIAT" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Toyota" class="maker-box-item" data-maker-id="111"><img src="https://scdn.autodoc.de/makers/111.svg" alt="TOYOTA" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Nissan" class="maker-box-item" data-maker-id="80"><img src="https://scdn.autodoc.de/makers/80.svg" alt="NISSAN" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Seat" class="maker-box-item" data-maker-id="104"><img src="https://scdn.autodoc.de/makers/104.svg" alt="SEAT" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Dacia" class="maker-box-item" data-maker-id="139"><img src="https://scdn.autodoc.de/makers/139.svg" alt="DACIA" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Hyundai" class="maker-box-item" data-maker-id="183"><img src="https://scdn.autodoc.de/makers/183.svg" alt="HYUNDAI" loading="lazy"></a></li>
+        <li class="col"><a href="/search?type=product&q=Mini" class="maker-box-item" data-maker-id="1523"><img src="https://scdn.autodoc.de/makers/1523.svg" alt="MINI" loading="lazy"></a></li>
+      </ul>
+    </nav>
+    <div class="section__btn">
+      <a href="/collections/all" class="btn btn--outline-dk">Toutes les marques de voiture</a>
     </div>
   </div>
 </section>
 
 <!-- 7. TRUST BAR -->
-<div class="adh-trust">
-  <div class="adh-w">
-    <div class="adh-trust-inner">
-      <div class="adh-trust-item">
-        <svg class="adh-trust-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 3L36 9L36 21C36 30 28 36 20 38C12 36 4 30 4 21L4 9Z"/><path d="M13 20L17 24L27 14" stroke-width="2"/></svg>
-        <div><div class="adh-trust-ttl">Pièces de qualité garanties</div><div class="adh-trust-sub">Marques certifiées OEM &amp; équipementiers</div></div>
+<div class="autoparts-features-list autoparts-features-list--inline">
+  <div class="autoparts-features-list__wrap">
+    <div class="autoparts-features-list__item">
+      <div class="autoparts-features-list__icon">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 3L36 9L36 21C36 30 28 36 20 38C12 36 4 30 4 21L4 9Z"/><path d="M13 20L17 24L27 14" stroke-width="2"/></svg>
       </div>
-      <div class="adh-trust-item">
-        <svg class="adh-trust-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="8" width="36" height="26" rx="3"/><path d="M2 16L38 16"/><circle cx="10" cy="26" r="3"/><line x1="18" y1="26" x2="30" y2="26"/></svg>
-        <div><div class="adh-trust-ttl">Paiement à la livraison</div><div class="adh-trust-sub">Cash on delivery — partout en Algérie</div></div>
+      <div>
+        <div class="autoparts-features-list__title">Pièces de qualité garanties</div>
+        <div class="autoparts-features-list__text">Marques certifiées OEM &amp; équipementiers</div>
       </div>
-      <div class="adh-trust-item">
-        <svg class="adh-trust-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="26" height="22"/><polygon points="28 12 38 12 38 28 28 28"/><circle cx="10" cy="32" r="4"/><circle cx="32" cy="32" r="4"/></svg>
-        <div><div class="adh-trust-ttl">Livraison 48 wilayas</div><div class="adh-trust-sub">Expédition sous 48–72 heures ouvrées</div></div>
+    </div>
+    <div class="autoparts-features-list__item">
+      <div class="autoparts-features-list__icon">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="8" width="36" height="26" rx="3"/><path d="M2 16L38 16"/><circle cx="10" cy="26" r="3"/><line x1="18" y1="26" x2="30" y2="26"/></svg>
       </div>
-      <div class="adh-trust-item">
-        <svg class="adh-trust-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="15"/><path d="M20 10L20 20L28 24"/></svg>
-        <div><div class="adh-trust-ttl">Garantie 1 an</div><div class="adh-trust-sub">Retours acceptés sous 30 jours</div></div>
+      <div>
+        <div class="autoparts-features-list__title">Paiement à la livraison</div>
+        <div class="autoparts-features-list__text">Cash on delivery — partout en Algérie</div>
+      </div>
+    </div>
+    <div class="autoparts-features-list__item">
+      <div class="autoparts-features-list__icon">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="26" height="22"/><polygon points="28 12 38 12 38 28 28 28"/><circle cx="10" cy="32" r="4"/><circle cx="32" cy="32" r="4"/></svg>
+      </div>
+      <div>
+        <div class="autoparts-features-list__title">Livraison 48 wilayas</div>
+        <div class="autoparts-features-list__text">Expédition sous 48–72 heures ouvrées</div>
+      </div>
+    </div>
+    <div class="autoparts-features-list__item">
+      <div class="autoparts-features-list__icon">
+        <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="15"/><path d="M20 10L20 20L28 24"/></svg>
+      </div>
+      <div>
+        <div class="autoparts-features-list__title">Garantie 1 an</div>
+        <div class="autoparts-features-list__text">Retours acceptés sous 30 jours</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- 8. BEST SELLERS -->
-<section class="adh-bs-sec">
-  <div class="adh-w">
-    <div class="adh-title">Les best-sellers — Acheter des pièces détachées à prix avantageux</div>
-    <div class="adh-prod-grid">
+<section class="section">
+  <div class="wrap">
+    <h2 class="section__title">Les best-sellers — Pièces à prix avantageux</h2>
+    <div class="product-card-grid">
       {% for product in collections.all.products limit: 10 %}
-      <a class="adh-prod" href="{{ product.url }}">
-        <div class="adh-prod-img">
+      <a class="product-card-grid__item" href="{{ product.url }}">
+        <div class="product-card-grid__product-img">
           {% if product.featured_image %}
             <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title | escape }}" loading="lazy">
           {% else %}
             <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect width="60" height="60" rx="4" fill="#f0f0f0"/><path d="M20 42L20 30Q22 20 30 18Q38 20 40 30L40 42" stroke="#ccc" stroke-width="2" fill="none"/></svg>
           {% endif %}
         </div>
-        <div class="adh-prod-body">
-          <div class="adh-prod-brand">{{ product.vendor }}</div>
-          <div class="adh-prod-name">{{ product.title }}</div>
-          <div class="adh-prod-stars">★★★★☆</div>
+        <div class="product-card-grid__body">
+          <div class="product-card-grid__product-brand">{{ product.vendor }}</div>
+          <div class="product-card-grid__product-name">{{ product.title }}</div>
+          <div class="product-card-grid__product-rating">★★★★☆</div>
           <div>
-            <span class="adh-prod-price">{{ product.price | money }}</span>
+            <span class="product-card-grid__product-price">{{ product.price | money }}</span>
             {% if product.compare_at_price > product.price %}
-              <span class="adh-prod-compare">{{ product.compare_at_price | money }}</span>
+              <span class="product-card-grid__product-compare">{{ product.compare_at_price | money }}</span>
             {% endif %}
           </div>
-          <div class="adh-prod-add">Ajouter au panier</div>
+          <div class="product-card-grid__add-btn">Ajouter au panier</div>
         </div>
       </a>
       {% endfor %}
     </div>
-    <div style="text-align:center;margin-top:20px">
-      <a href="/collections/all" style="display:inline-block;border:1px solid #132530;color:#132530;padding:9px 28px;border-radius:2px;font-weight:700;font-size:.82rem;text-decoration:none">Voir toutes les pièces &rarr;</a>
+    <div class="section__btn">
+      <a href="/collections/all" class="btn btn--outline-dk">Voir toutes les pièces &rarr;</a>
     </div>
   </div>
 </section>
 
 <!-- 9. PARTNER BRANDS -->
-<section class="adh-partners-sec">
-  <div class="adh-w">
-    <div class="adh-partners-lbl">Offres exceptionnelles sur les pièces des plus grands fabricants</div>
-    <div class="adh-partners-row">
-      <a class="adh-partner" href="/search?type=product&q=Bosch">BOSCH</a>
-      <a class="adh-partner" href="/search?type=product&q=Brembo">BREMBO</a>
-      <a class="adh-partner" href="/search?type=product&q=Gates">GATES</a>
-      <a class="adh-partner" href="/search?type=product&q=Valeo">VALEO</a>
-      <a class="adh-partner" href="/search?type=product&q=SKF">SKF</a>
-      <a class="adh-partner" href="/search?type=product&q=LuK">LUK</a>
-      <a class="adh-partner" href="/search?type=product&q=Sachs">SACHS</a>
-      <a class="adh-partner" href="/search?type=product&q=Bilstein">BILSTEIN</a>
-      <a class="adh-partner" href="/search?type=product&q=TRW">TRW</a>
-      <a class="adh-partner" href="/search?type=product&q=Castrol">CASTROL</a>
-    </div>
+<section class="section section--grey section-div" id="brand">
+  <div class="wrap">
+    <h2 class="section__title">Offres exceptionnelles sur les pièces des plus grands fabricants</h2>
+    <ul class="row row-gap row-cols-3 row-cols-md-5 row-cols-lg-9">
+      <li class="col"><a href="/search?type=product&q=RIDEX" class="brand-box-item" data-brand-id="100015"><img src="https://cdn.autodoc.de/brands/thumbs/100015.png?m=0" alt="RIDEX" loading="lazy"></a></li>
+      <li class="col"><a href="/search?type=product&q=Bosch" class="brand-box-item" data-brand-id="30"><img src="https://cdn.autodoc.de/brands/thumbs/30.png?m=0" alt="BOSCH" loading="lazy"></a></li>
+      <li class="col"><a href="/search?type=product&q=Valeo" class="brand-box-item" data-brand-id="21"><img src="https://cdn.autodoc.de/brands/thumbs/21.png?m=0" alt="VALEO" loading="lazy"></a></li>
+      <li class="col"><a href="/search?type=product&q=LuK" class="brand-box-item" data-brand-id="6"><img src="https://cdn.autodoc.de/brands/thumbs/6.png?m=0" alt="LUK" loading="lazy"></a></li>
+      <li class="col"><a href="/search?type=product&q=Febi+Bilstein" class="brand-box-item" data-brand-id="101"><img src="https://cdn.autodoc.de/brands/thumbs/101.png?m=0" alt="FEBI BILSTEIN" loading="lazy"></a></li>
+      <li class="col"><a href="/search?type=product&q=SKF" class="brand-box-item" data-brand-id="50"><img src="https://cdn.autodoc.de/brands/thumbs/50.png?m=0" alt="SKF" loading="lazy"></a></li>
+      <li class="col"><a href="/search?type=product&q=Brembo" class="brand-box-item" data-brand-id="65"><img src="https://cdn.autodoc.de/brands/thumbs/65.png?m=0" alt="BREMBO" loading="lazy"></a></li>
+      <li class="col"><a href="/search?type=product&q=Gates" class="brand-box-item" data-brand-id="33"><img src="https://cdn.autodoc.de/brands/thumbs/33.png?m=0" alt="GATES" loading="lazy"></a></li>
+      <li class="col"><a href="/search?type=product&q=Sachs" class="brand-box-item" data-brand-id="32"><img src="https://cdn.autodoc.de/brands/thumbs/32.png?m=0" alt="SACHS" loading="lazy"></a></li>
+    </ul>
   </div>
 </section>
 
-<!-- 10. APP / CTA BANNER -->
-<div class="adh-app">
-  <div class="adh-w">
-    <div class="adh-app-inner">
-      <div class="adh-app-text">
-        <div class="adh-app-ttl">Réparer votre voiture n'a jamais été aussi simple</div>
-        <div class="adh-app-sub">Guides détaillés et tutoriels vidéo gratuits pour réparer soi-même sa voiture</div>
+<!-- 10. CTA BANNER -->
+<div class="cta-banner">
+  <div class="wrap">
+    <div class="cta-banner__inner">
+      <div>
+        <div class="cta-banner__title">Réparer votre voiture n'a jamais été aussi simple</div>
+        <div class="cta-banner__sub">Guides détaillés et tutoriels pour réparer soi-même — Catalogue de +500 références</div>
       </div>
-      <div class="adh-app-btns">
-        <a class="adh-app-btn" href="/collections/all">Voir le catalogue &rarr;</a>
-        <a class="adh-app-btn" href="/pages/contact">Nous contacter</a>
+      <div class="cta-banner__btns">
+        <a class="btn btn--outline-wh" href="/collections/all">Voir le catalogue &rarr;</a>
+        <a class="btn btn--outline-wh" href="/pages/contact">Nous contacter</a>
       </div>
     </div>
   </div>
 </div>
 
 <!-- 11. NEWSLETTER -->
-<div class="adh-nl">
-  <div class="adh-w">
-    <div class="adh-nl-inner">
-      <div class="adh-nl-text">Abonnez-vous et recevez nos offres exclusives</div>
-      <form class="adh-nl-form" action="/contact#contact_form" method="post">
+<div class="newsletter">
+  <div class="wrap">
+    <div class="newsletter__inner">
+      <div class="newsletter__text">Abonnez-vous et recevez nos offres exclusives</div>
+      <form class="newsletter__form" action="/contact#contact_form" method="post">
         <input type="hidden" name="form_type" value="customer">
         <input type="hidden" name="contact[tags]" value="newsletter">
-        <input class="adh-nl-input" type="email" name="contact[email]" placeholder="Votre adresse e-mail">
-        <button class="adh-nl-submit" type="submit">S'ABONNER</button>
+        <input class="newsletter__input" type="email" name="contact[email]" placeholder="Votre adresse e-mail">
+        <button class="newsletter__btn" type="submit">S'ABONNER</button>
       </form>
     </div>
   </div>
 </div>
 
-</div><!-- /.adh -->
+</div><!-- /.pdz -->
 
 <script>
 (function(){
-window.adhTab=function(tab,btn){
-  document.querySelectorAll('.adh-vs-tab').forEach(function(t){t.classList.remove('on');});
-  btn.classList.add('on');
-  document.getElementById('adh-vs-m').style.display=tab==='m'?'block':'none';
-  document.getElementById('adh-vs-i').style.display=tab==='i'?'block':'none';
-};
-document.addEventListener('DOMContentLoaded',function(){
-  var VDB=window.PDZ&&window.PDZ.VDB?window.PDZ.VDB:{};
-  var sBr=document.getElementById('adh-brand');
-  var sMo=document.getElementById('adh-model');
-  var sEn=document.getElementById('adh-engine');
-  if(!sBr)return;
-  sBr.innerHTML='<option value="">Choisissez une marque</option>';
-  Object.keys(VDB).sort().forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=m;sBr.appendChild(o);});
-  sBr.onchange=function(){
-    var mk=this.value;
-    sMo.innerHTML='<option value="">Choisissez un modèle</option>';
-    sEn.innerHTML='<option value="">Motorisation</option>';
-    sMo.disabled=!mk;sEn.disabled=true;
-    if(mk&&VDB[mk])Object.keys(VDB[mk]).sort().forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=m;sMo.appendChild(o);});
+  window.pdzTab=function(tab,btn){
+    document.querySelectorAll('.car-selector__tab').forEach(function(t){t.classList.remove('active')});
+    btn.classList.add('active');
+    document.getElementById('pdz-vs-m').style.display=tab==='m'?'block':'none';
+    document.getElementById('pdz-vs-i').style.display=tab==='i'?'block':'none';
   };
-  sMo.onchange=function(){
-    var mk=sBr.value,md=this.value;
-    sEn.innerHTML='<option value="">Motorisation</option>';
-    sEn.disabled=!md;
-    if(mk&&md&&VDB[mk]&&VDB[mk][md])VDB[mk][md].forEach(function(e){var o=document.createElement('option');o.value=e;o.textContent=e;sEn.appendChild(o);});
+  document.addEventListener('DOMContentLoaded',function(){
+    var VDB=window.PDZ&&window.PDZ.VDB?window.PDZ.VDB:{};
+    var sBr=document.getElementById('pdz-brand');
+    var sMo=document.getElementById('pdz-model');
+    var sEn=document.getElementById('pdz-engine');
+    if(!sBr)return;
+    sBr.innerHTML='<option value="">Choisissez une marque</option>';
+    Object.keys(VDB).sort().forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=m;sBr.appendChild(o)});
+    sBr.onchange=function(){
+      var mk=this.value;
+      sMo.innerHTML='<option value="">Choisissez un modèle</option>';
+      sEn.innerHTML='<option value="">Motorisation</option>';
+      sMo.disabled=!mk;sEn.disabled=true;
+      if(mk&&VDB[mk])Object.keys(VDB[mk]).sort().forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=m;sMo.appendChild(o)});
+    };
+    sMo.onchange=function(){
+      var mk=sBr.value,md=this.value;
+      sEn.innerHTML='<option value="">Motorisation</option>';
+      sEn.disabled=!md;
+      if(mk&&md&&VDB[mk]&&VDB[mk][md])VDB[mk][md].forEach(function(e){var o=document.createElement('option');o.value=e;o.textContent=e;sEn.appendChild(o)});
+    };
+    var sv=window.PDZ&&window.PDZ.getVehicle?window.PDZ.getVehicle():null;
+    if(sv&&sv.make){
+      sBr.value=sv.make;sBr.dispatchEvent(new Event('change'));
+      setTimeout(function(){if(sv.model){sMo.value=sv.model;sMo.dispatchEvent(new Event('change'));setTimeout(function(){if(sv.engine)sEn.value=sv.engine},20)}},20);
+    }
+  });
+  window.pdzSearch=function(){
+    var mk=document.getElementById('pdz-brand').value;
+    var md=document.getElementById('pdz-model').value;
+    var en=document.getElementById('pdz-engine').value;
+    if(!mk){alert('Veuillez choisir une marque');return}
+    if(window.PDZ&&window.PDZ.setVehicle)window.PDZ.setVehicle({make:mk,model:md,engine:en,label:mk+(md?' '+md:'')+(en?' — '+en:'')});
+    window.location.href='/collections/all';
   };
-  var sv=window.PDZ&&window.PDZ.getVehicle?window.PDZ.getVehicle():null;
-  if(sv&&sv.make){
-    sBr.value=sv.make;sBr.dispatchEvent(new Event('change'));
-    setTimeout(function(){if(sv.model){sMo.value=sv.model;sMo.dispatchEvent(new Event('change'));setTimeout(function(){if(sv.engine)sEn.value=sv.engine;},20);}},20);
-  }
-});
-window.adhSearch=function(){
-  var mk=document.getElementById('adh-brand').value;
-  var md=document.getElementById('adh-model').value;
-  var en=document.getElementById('adh-engine').value;
-  if(!mk){alert('Veuillez choisir une marque');return;}
-  if(window.PDZ&&window.PDZ.setVehicle)window.PDZ.setVehicle({make:mk,model:md,engine:en,label:mk+(md?' '+md:'')+(en?' — '+en:'')});
-  window.location.href='/collections/all';
-};
-window.adhImmatSearch=function(){
-  var v=document.getElementById('adh-immat-val').value.trim();
-  if(!v)return;
-  window.location.href='/search?type=product&q='+encodeURIComponent(v);
-};
+  window.pdzImmatSearch=function(){
+    var v=document.getElementById('pdz-immat-val').value.trim();
+    if(!v)return;
+    window.location.href='/search?type=product&q='+encodeURIComponent(v);
+  };
 })();
 </script>
 
