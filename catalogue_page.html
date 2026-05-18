@@ -1,45 +1,44 @@
-<!-- Page Shopify : Catalogue de pièces détachées -->
-<!-- URL : /pages/catalogue -->
-<!-- ID Shopify : gid://shopify/Page/161962197335 -->
-<!-- Interface style Autodoc exact : sélecteur véhicule bleu marine, bande 24 catégories populaires, grille 4×10 de 38 catégories, sidebar A-Z, section produits -->
-
-<!--
-STRUCTURE :
-1. VS Section (fond bleu marine) — sélecteur marque/modèle/motorisation + immat
-2. Popular strip (24 catégories horizontales scrollables)
-3. Sidebar A-Z + Grille 38 catégories (4 colonnes)
-4. Section produits (fetch /products.json)
--->
-
+<!-- AutoPièces DZ — Catalogue — Style Autodoc professionnel, sans emojis, TecDoc intégré -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap">
 <style>
 .page-content{max-width:none!important;padding:0!important;margin:0!important;background:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important}
 .page-content>h1:first-of-type{display:none!important}
 #adoc{font-family:'Roboto',Arial,sans-serif;background:#f4f5f6;color:#1a1a1a;min-height:100vh}
+/* Vehicle banner */
+#pdz-vbar{background:#1b3e5f;color:#fff;padding:7px 20px;display:flex;align-items:center;gap:14px;font-size:.8rem;flex-wrap:wrap}
+#pdz-vbar .pvb-label{color:#93b3cc;font-size:.72rem}
+#pdz-vbar strong{color:#fff}
+#pdz-vbar a.pvb-search{background:#ff6700;color:#fff;padding:4px 12px;border-radius:3px;text-decoration:none;font-weight:700;font-size:.75rem}
+#pdz-vbar a.pvb-change{color:#ff9944;cursor:pointer;font-size:.72rem;text-decoration:underline;margin-left:auto}
+/* Vehicle selector */
 #vs{background:linear-gradient(180deg,#1b3e5f,#0d2235);padding:28px 0;color:#fff}
 .vs-inner{max-width:1200px;margin:0 auto;padding:0 24px}
 #vs h1{font-size:1.5rem;font-weight:700;margin:0 0 4px;color:#fff}
 .vs-sub{color:#93aec4;font-size:.85rem;margin:0 0 16px}
 .vs-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:2px solid rgba(255,255,255,.15)}
-.vs-tab{padding:8px 18px;background:transparent;border:none;color:#93aec4;font-size:.85rem;cursor:pointer;font-weight:600;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s}
+.vs-tab{padding:8px 18px;background:transparent;border:none;color:#93aec4;font-size:.85rem;cursor:pointer;font-weight:600;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .15s;display:flex;align-items:center;gap:7px}
 .vs-tab.active{color:#ff6b00;border-bottom-color:#ff6b00}
 .vs-form{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .vs-sel{flex:1;min-width:170px;padding:11px 14px;border:none;border-radius:4px;font-size:.88rem;background:#fff;color:#1a1a1a;outline:none}
-.vs-btn{padding:11px 26px;background:#ff6b00;color:#fff;border:none;border-radius:4px;font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap}
+.vs-btn{padding:11px 26px;background:#ff6b00;color:#fff;border:none;border-radius:4px;font-size:.88rem;font-weight:700;cursor:pointer;white-space:nowrap;display:flex;align-items:center;gap:6px}
 .vs-btn:hover{background:#e05e00}
 .vs-immat-row{display:flex;align-items:center;gap:8px}
-.vs-flag{width:32px;height:20px;background:linear-gradient(to bottom,#002395 33%,#fff 33%,#fff 66%,#ed2939 66%);border-radius:2px;flex-shrink:0}
+.vs-flag{width:32px;height:20px;background:linear-gradient(to bottom,#006233 33%,#fff 33%,#fff 66%,#d21034 66%);border-radius:2px;flex-shrink:0}
 .vs-immat-row input{padding:10px 16px;border:none;border-radius:4px;font-size:.95rem;font-family:monospace;font-weight:700;letter-spacing:2px;text-transform:uppercase;width:200px}
 .vs-link{color:#93aec4;font-size:.78rem;margin-top:10px;display:block;text-decoration:none}
 .vs-link:hover{color:#ff9944}
+/* Popular strip */
 #pop-strip{background:#fff;border-bottom:3px solid #f4f5f6}
 .ps-inner{max-width:1200px;margin:0 auto;padding:14px 24px}
 #pop-strip h3{font-size:.7rem;font-weight:700;color:#777;text-transform:uppercase;letter-spacing:.5px;margin:0 0 10px}
 .ps-scroll{display:flex;overflow-x:auto;gap:6px;padding-bottom:6px;scrollbar-width:none}
 .ps-scroll::-webkit-scrollbar{display:none}
 .ps-item{display:flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;color:#1a1a1a;flex-shrink:0;width:88px;padding:7px 4px;border-radius:6px;transition:all .15s;border:1px solid transparent}
-.ps-item:hover{background:#fff3e8;border-color:#ff6b00;text-decoration:none}
-.ps-icon{width:58px;height:44px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;background:#f4f5f6;border-radius:5px}
+.ps-item:hover{background:#fff3e8;border-color:#ff6b00}
+.ps-icon{width:58px;height:44px;display:flex;align-items:center;justify-content:center;background:#f4f5f6;border-radius:5px}
 .ps-name{font-size:.64rem;font-weight:600;text-align:center;line-height:1.2;color:#333}
+/* Category main */
 #cat-main{max-width:1200px;margin:20px auto;padding:0 24px;display:flex;gap:18px;align-items:flex-start}
 #cat-sb{width:215px;flex-shrink:0;background:#fff;border:1px solid #e0e0e0;border-radius:4px;overflow:hidden}
 .sb-head{background:#1b3e5f;color:#fff;padding:12px 14px;font-size:.8rem;font-weight:700;line-height:1.4}
@@ -54,15 +53,17 @@ STRUCTURE :
 .sbg h4{font-size:.82rem;font-weight:800;color:#ff6b00;padding:5px 10px 2px;margin:0;background:#fff8f3}
 .sbg ul{list-style:none;margin:0;padding:0}
 .sbg li a{display:block;padding:3px 12px;font-size:.75rem;color:#333;text-decoration:none;border-left:3px solid transparent;transition:all .1s}
-.sbg li a:hover{background:#fff8f3;border-left-color:#ff6b00;color:#ff6b00;text-decoration:none}
+.sbg li a:hover{background:#fff8f3;border-left-color:#ff6b00;color:#ff6b00}
 .sbih{display:none}
+/* Category grid */
 #cat-grid38{flex:1}
 .cg-head{font-size:.95rem;font-weight:700;color:#1b3e5f;margin:0 0 12px;padding-bottom:7px;border-bottom:2px solid #ff6b00;display:inline-block}
 .cg38{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .cg38-tile{background:#fff;border:1px solid #e8e8e8;border-radius:5px;overflow:hidden;text-decoration:none;color:#1a1a1a;transition:all .2s;display:block}
 .cg38-tile:hover{box-shadow:0 4px 16px rgba(255,107,0,.18);border-color:#ff6b00;text-decoration:none;transform:translateY(-2px)}
-.cg38-img{height:105px;display:flex;align-items:center;justify-content:center;font-size:2.8rem}
+.cg38-img{height:105px;display:flex;align-items:center;justify-content:center}
 .cg38-name{padding:7px 8px;font-size:.7rem;font-weight:600;text-align:center;color:#333;line-height:1.3;border-top:1px solid #f0f0f0;background:#fafafa;min-height:38px;display:flex;align-items:center;justify-content:center}
+/* Products */
 #prods-sect{max-width:1200px;margin:0 auto 28px;padding:0 24px}
 .prods-head{font-size:1rem;font-weight:700;color:#1b3e5f;margin:0 0 14px;padding-bottom:7px;border-bottom:2px solid #ff6b00;display:inline-block}
 #prods-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:12px}
@@ -70,37 +71,49 @@ STRUCTURE :
 .pc:hover{box-shadow:0 4px 14px rgba(0,0,0,.1);text-decoration:none}
 .pc-img{height:130px;display:flex;align-items:center;justify-content:center;background:#f8f8f8;overflow:hidden}
 .pc-img img{max-width:100%;max-height:100%;object-fit:contain}
-.pc-img .ni{font-size:2.4rem}
 .pc-body{padding:10px;flex:1;display:flex;flex-direction:column;gap:5px}
 .pc-title{font-size:.75rem;font-weight:600;color:#1a1a1a;line-height:1.3;flex:1}
 .pc-price{font-size:1rem;font-weight:700;color:#1b3e5f}
 .pc-btn{display:block;text-align:center;padding:7px;background:#ff6b00;color:#fff;border-radius:4px;font-size:.75rem;font-weight:700;text-decoration:none;margin-top:5px}
-.pc-btn:hover{background:#e05e00;text-decoration:none;color:#fff}
+.pc-btn:hover{background:#e05e00;color:#fff}
 @media(max-width:900px){#cat-main{flex-direction:column}#cat-sb{width:100%}.cg38{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:600px){.cg38{grid-template-columns:repeat(2,1fr)}#prods-grid{grid-template-columns:repeat(2,1fr)}#vs h1{font-size:1.1rem}.vs-form{flex-direction:column}.vs-sel{width:100%}}
 </style>
 
 <div id="adoc">
+
 <section id="vs"><div class="vs-inner">
   <h1>Catalogue de pièces de rechange</h1>
   <p class="vs-sub">Veuillez sélectionner le véhicule correspondant, afin de vérifier qu'il vous convient bien</p>
   <div class="vs-tabs">
-    <button class="vs-tab active" onclick="vsTab('m',this)">&#128664; Choisir le modèle</button>
-    <button class="vs-tab" onclick="vsTab('i',this)">&#128278; N° d'immatriculation</button>
+    <button class="vs-tab active" onclick="vsTab('m',this)">
+      <svg width="16" height="16" viewBox="0 0 40 40" fill="none"><path d="M5 28 L9 28 Q11 20 18 18 L22 18 Q29 20 31 28 L35 28 L35 32 L5 32Z" stroke="#93aec4" stroke-width="2" fill="none"/><path d="M13 18 Q15 10 20 8 Q25 10 27 18" stroke="#93aec4" stroke-width="1.8" fill="none"/><circle cx="12" cy="30" r="3" stroke="#93aec4" stroke-width="1.8" fill="none"/><circle cx="28" cy="30" r="3" stroke="#93aec4" stroke-width="1.8" fill="none"/></svg>
+      Choisir le modèle
+    </button>
+    <button class="vs-tab" onclick="vsTab('i',this)">
+      <svg width="16" height="16" viewBox="0 0 40 40" fill="none"><rect x="6" y="10" width="28" height="20" rx="3" stroke="#93aec4" stroke-width="2" fill="none"/><text x="20" y="24" text-anchor="middle" font-size="9" font-weight="700" fill="#93aec4" font-family="monospace">AB·123·CD</text></svg>
+      N° d'immatriculation
+    </button>
   </div>
   <div id="vs-m">
     <div class="vs-form">
       <select class="vs-sel" id="vsMake" onchange="vsModels()"><option value="">Choisissez une marque</option></select>
       <select class="vs-sel" id="vsMod" onchange="vsEngines()" disabled><option value="">Choisissez un modèle</option></select>
       <select class="vs-sel" id="vsEng" disabled><option value="">Choisissez une motorisation</option></select>
-      <button class="vs-btn" onclick="vsGo()">&#128269; Rechercher</button>
+      <button class="vs-btn" onclick="vsGo()">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="#fff" stroke-width="2"/><path d="M14 14 L18 18" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        Rechercher
+      </button>
     </div>
   </div>
   <div id="vs-i" style="display:none">
     <div class="vs-immat-row">
       <div class="vs-flag"></div>
       <input id="immatIn" placeholder="AB-123-CD" />
-      <button class="vs-btn" onclick="immatGo()">&#128269; Rechercher</button>
+      <button class="vs-btn" onclick="immatGo()">
+        <svg width="14" height="14" viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="#fff" stroke-width="2"/><path d="M14 14 L18 18" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+        Rechercher
+      </button>
     </div>
   </div>
   <a class="vs-link" href="/pages/recherche-pieces">VOUS NE TROUVEZ PAS VOTRE VOITURE DANS LE CATALOGUE ? Recherche avancée →</a>
@@ -108,41 +121,16 @@ STRUCTURE :
 
 <section id="pop-strip"><div class="ps-inner">
   <h3>CHOISISSEZ LA CATÉGORIE DE PIÈCES DÉTACHÉES ET OBTENEZ LE MEILLEUR PRIX !</h3>
-  <div class="ps-scroll">
-    <a class="ps-item" href="/search?type=product&q=disque+frein"><div class="ps-icon">🔴</div><div class="ps-name">Disque de frein</div></a>
-    <a class="ps-item" href="/search?type=product&q=kit+embrayage"><div class="ps-icon">🔄</div><div class="ps-name">Kit d'embrayage</div></a>
-    <a class="ps-item" href="/search?type=product&q=amortisseur"><div class="ps-icon">🌀</div><div class="ps-name">Amortisseur</div></a>
-    <a class="ps-item" href="/search?type=product&q=plaquettes+frein"><div class="ps-icon">🟥</div><div class="ps-name">Plaquette de frein</div></a>
-    <a class="ps-item" href="/search?type=product&q=kit+distribution"><div class="ps-icon">🔗</div><div class="ps-name">Kit de distribution</div></a>
-    <a class="ps-item" href="/search?type=product&q=huile+moteur"><div class="ps-icon">🛢️</div><div class="ps-name">Huile moteur</div></a>
-    <a class="ps-item" href="/search?type=product&q=bras+suspension"><div class="ps-icon">🔩</div><div class="ps-name">Bras de suspension</div></a>
-    <a class="ps-item" href="/search?type=product&q=kit+distribution+pompe+eau"><div class="ps-icon">⚙️</div><div class="ps-name">Kit distrib. + pompe à eau</div></a>
-    <a class="ps-item" href="/search?type=product&q=phare+avant"><div class="ps-icon">💡</div><div class="ps-name">Phare avant</div></a>
-    <a class="ps-item" href="/search?type=product&q=batterie+voiture"><div class="ps-icon">🔋</div><div class="ps-name">Batterie</div></a>
-    <a class="ps-item" href="/search?type=product&q=filtre+carburant"><div class="ps-icon">⛽</div><div class="ps-name">Filtre à carburant</div></a>
-    <a class="ps-item" href="/search?type=product&q=courroie+alternateur"><div class="ps-icon">〰️</div><div class="ps-name">Courroie alternateur</div></a>
-    <a class="ps-item" href="/search?type=product&q=retroviseur"><div class="ps-icon">🪞</div><div class="ps-name">Rétroviseur</div></a>
-    <a class="ps-item" href="/search?type=product&q=alternateur"><div class="ps-icon">⚡</div><div class="ps-name">Alternateur</div></a>
-    <a class="ps-item" href="/search?type=product&q=coupelle+amortisseur"><div class="ps-icon">🟡</div><div class="ps-name">Coupelle amortisseur</div></a>
-    <a class="ps-item" href="/search?type=product&q=cardan"><div class="ps-icon">↔️</div><div class="ps-name">Cardan</div></a>
-    <a class="ps-item" href="/search?type=product&q=moyeu+roue"><div class="ps-icon">⭕</div><div class="ps-name">Moyeu de roue</div></a>
-    <a class="ps-item" href="/search?type=product&q=filtre+air"><div class="ps-icon">🔵</div><div class="ps-name">Filtre à air</div></a>
-    <a class="ps-item" href="/search?type=product&q=filtre+huile"><div class="ps-icon">🟢</div><div class="ps-name">Filtre à huile</div></a>
-    <a class="ps-item" href="/search?type=product&q=sonde+lambda"><div class="ps-icon">📡</div><div class="ps-name">Sonde lambda</div></a>
-    <a class="ps-item" href="/search?type=product&q=roulement+roue"><div class="ps-icon">🔘</div><div class="ps-name">Roulement de roue</div></a>
-    <a class="ps-item" href="/search?type=product&q=injecteur"><div class="ps-icon">💧</div><div class="ps-name">Injecteur</div></a>
-    <a class="ps-item" href="/search?type=product&q=feu+arriere"><div class="ps-icon">🔴</div><div class="ps-name">Feu arrière</div></a>
-    <a class="ps-item" href="/search?type=product&q=pompe+eau"><div class="ps-icon">💧</div><div class="ps-name">Pompe à eau</div></a>
-  </div>
+  <div class="ps-scroll" id="ps-scroll"></div>
 </div></section>
 
 <div id="cat-main">
 <aside id="cat-sb">
-  <div class="sb-head">Autodoc catalogue<br>pièces d'origine</div>
+  <div class="sb-head">AutoPièces DZ<br>catalogue pièces d'origine</div>
   <div class="sb-rqp">Recherche rapide par catégorie</div>
-  <div class="sb-search-wrap"><input type="text" id="sbIn" placeholder="Saisissez la catégorie (ex. frein, filtre)" oninput="sbFilter(this.value)"></div>
+  <div class="sb-search-wrap"><input type="text" id="sbIn" placeholder="Ex: frein, filtre, amortisseur" oninput="sbFilter(this.value)"></div>
   <div class="sb-ltrs">
-    <button onclick="sbL('',this)" class="sba">✕</button>
+    <button onclick="sbL('',this)" class="sba">X</button>
     <button onclick="sbL('A',this)">A</button><button onclick="sbL('B',this)">B</button><button onclick="sbL('C',this)">C</button><button onclick="sbL('D',this)">D</button><button onclick="sbL('E',this)">E</button><button onclick="sbL('F',this)">F</button><button onclick="sbL('G',this)">G</button><button onclick="sbL('H',this)">H</button><button onclick="sbL('I',this)">I</button><button onclick="sbL('J',this)">J</button><button onclick="sbL('K',this)">K</button><button onclick="sbL('L',this)">L</button><button onclick="sbL('M',this)">M</button><button onclick="sbL('N',this)">N</button><button onclick="sbL('O',this)">O</button><button onclick="sbL('P',this)">P</button><button onclick="sbL('R',this)">R</button><button onclick="sbL('S',this)">S</button><button onclick="sbL('T',this)">T</button><button onclick="sbL('V',this)">V</button>
   </div>
   <div id="sb-list"></div>
@@ -150,46 +138,7 @@ STRUCTURE :
 
 <div id="cat-grid38">
   <div class="cg-head">Catégories de pièces auto</div>
-  <div class="cg38">
-    <a class="cg38-tile" href="/search?type=product&q=pneus+jantes"><div class="cg38-img" style="background:#e3f2fd">🛞</div><div class="cg38-name">Pneus, jantes et accessoires</div></a>
-    <a class="cg38-tile" href="/collections/huiles-amp-lubrifiants"><div class="cg38-img" style="background:#fff8e1">🛢️</div><div class="cg38-name">Huiles et fluides</div></a>
-    <a class="cg38-tile" href="/collections/freinage"><div class="cg38-img" style="background:#ffebee">🔴</div><div class="cg38-name">Frein</div></a>
-    <a class="cg38-tile" href="/collections/filtration"><div class="cg38-img" style="background:#e8f5e9">🔵</div><div class="cg38-name">Filtre</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=moteur+joint+culasse"><div class="cg38-img" style="background:#f3e5f5">⚙️</div><div class="cg38-name">Moteur</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=essuie-glace+balai"><div class="cg38-img" style="background:#e0f7fa">🌧️</div><div class="cg38-name">Système d'essuie-glaces</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=bougie+allumage+prechauffage"><div class="cg38-img" style="background:#fffde7">⚡</div><div class="cg38-name">Allumage et préchauffage</div></a>
-    <a class="cg38-tile" href="/collections/suspension-amp-direction"><div class="cg38-img" style="background:#fff3e0">🔩</div><div class="cg38-name">Suspension</div></a>
-    <a class="cg38-tile" href="/collections/electrique"><div class="cg38-img" style="background:#e8eaf6">🔌</div><div class="cg38-name">Electricité</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=amortisseur"><div class="cg38-img" style="background:#e0f2f1">🌀</div><div class="cg38-name">Amortissement</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=egr+vanne+recirculation"><div class="cg38-img" style="background:#e8f5e9">♻️</div><div class="cg38-name">Recirculation des gaz d'échappement</div></a>
-    <a class="cg38-tile" href="/collections/moteur-amp-transmission"><div class="cg38-img" style="background:#fbe9e7">🔗</div><div class="cg38-name">Courroies, chaînes, galets</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=turbo+suralimentation"><div class="cg38-img" style="background:#e3f2fd">💨</div><div class="cg38-name">Composants pour la suralimentation</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=radiateur+refroidissement+thermostat"><div class="cg38-img" style="background:#e0f7fa">❄️</div><div class="cg38-name">Refroidissement moteur</div></a>
-    <a class="cg38-tile" href="/collections/carrosserie"><div class="cg38-img" style="background:#fce4ec">🚗</div><div class="cg38-name">Carrosserie</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=chauffage+ventilation+soufflante"><div class="cg38-img" style="background:#fff3e0">🌬️</div><div class="cg38-name">Chauffage et ventilation</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=joint+etancheite"><div class="cg38-img" style="background:#f3e5f5">🔧</div><div class="cg38-name">Joints et bagues d'étanchéité</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=echappement+pot+catalyseur"><div class="cg38-img" style="background:#e8eaf6">💨</div><div class="cg38-name">Échappement</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=interieur+siege+tableau+bord"><div class="cg38-img" style="background:#fbe9e7">🪑</div><div class="cg38-name">Intérieur</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=injecteur+pompe+carburant"><div class="cg38-img" style="background:#fffde7">⛽</div><div class="cg38-name">Système d'alimentation</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=direction+cremaillere+rotule"><div class="cg38-img" style="background:#e8f5e9">🎯</div><div class="cg38-name">Direction</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=embrayage+disque+butee"><div class="cg38-img" style="background:#ffebee">🔄</div><div class="cg38-name">Embrayage</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=cardan+transmission"><div class="cg38-img" style="background:#e0f2f1">↔️</div><div class="cg38-name">Cardan de transmission et joint homocinétique</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=suspension+pneumatique"><div class="cg38-img" style="background:#e3f2fd">🎈</div><div class="cg38-name">Suspension pneumatique</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=attelage+remorque"><div class="cg38-img" style="background:#fff8e1">🚛</div><div class="cg38-name">Dispositif d'attelage / accessoires</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=boite+vitesse"><div class="cg38-img" style="background:#f3e5f5">⚙️</div><div class="cg38-name">Boîte de vitesse</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=climatisation+compresseur+condenseur"><div class="cg38-img" style="background:#e0f7fa">❄️</div><div class="cg38-name">Climatisation</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=roulement+moyeu+roue"><div class="cg38-img" style="background:#e8eaf6">⭕</div><div class="cg38-name">Roulements</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=arbre+transmission+differentiel"><div class="cg38-img" style="background:#fbe9e7">🔩</div><div class="cg38-name">Arbres de transmission et différentiels</div></a>
-    <a class="cg38-tile" href="/collections/electrique"><div class="cg38-img" style="background:#e8f5e9">📡</div><div class="cg38-name">Capteurs, relais, unités de commande</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=accessoire+voiture"><div class="cg38-img" style="background:#fff3e0">🎁</div><div class="cg38-name">Accessoires voiture</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=kit+reparation"><div class="cg38-img" style="background:#e3f2fd">🧰</div><div class="cg38-name">Kits de réparation</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=outillage"><div class="cg38-img" style="background:#ffebee">🔧</div><div class="cg38-name">Outillage &amp; équipement</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=tuyau+conduite+durite"><div class="cg38-img" style="background:#e0f2f1">〰️</div><div class="cg38-name">Tuyaux et conduites</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=nettoyage+entretien"><div class="cg38-img" style="background:#e8eaf6">🧹</div><div class="cg38-name">Produits de nettoyage et d'entretien</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=eclairage+feux+phare"><div class="cg38-img" style="background:#fffde7">💡</div><div class="cg38-name">Éclairage</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=tuning+sport+performance"><div class="cg38-img" style="background:#fce4ec">🏎️</div><div class="cg38-name">Tuning</div></a>
-    <a class="cg38-tile" href="/search?type=product&q=fixation+vis+boulon"><div class="cg38-img" style="background:#f3e5f5">🔩</div><div class="cg38-name">Fixations</div></a>
-  </div>
+  <div class="cg38" id="cg38"></div>
 </div>
 </div>
 
@@ -200,17 +149,173 @@ STRUCTURE :
 </div>
 
 <script>
-var AZ={A:["3e feu de stop","Actuateur de ralenti","Actuateur turbo","Additif carburant","Aile","Ajusteur frein à tambour","Allumeur et composants","Alternateur","Amortisseur","Amortisseur de direction","Amortisseur pneumatique","Anneau d'étanchéité","Arbre à cames","Arbre de transmission","Axe de piston"],B:["Balai d'essuie-glace","Barre de direction","Barre stabilisatrice","Batterie","Biellette de barre stabilisatrice","Bobine d'allumage","Boîte de vitesse","Boîtier de direction","Boîtier papillon","Bouchon de radiateur","Bougie d'allumage","Bougie de préchauffage","Boulon / écrou de roue","Butée de suspension","Butée d'embrayage"],C:["Câble d'accélérateur","Câble d'embrayage","Câble de frein à main","Calculateur moteur (ECU)","Capteur ABS","Capteur d'arbre à cames","Capteur de débit d'air","Capteur de pression","Capteur de température","Capteur de vilebrequin","Capteur d'oxygène (sonde lambda)","Carburateur","Carter d'huile","Carter de distribution","Catalyseur","Chaîne de distribution","Charnière de capot","Climatiseur (compresseur)","Collecteur d'admission","Collecteur d'échappement","Condenseur de climatisation","Courroie accessoire","Courroie de distribution","Coussinet de bielle","Crémaillère de direction","Culasse","Cylindre de frein"],D:["Débitmètre d'air (MAF)","Démarreur","Déshydrateur clim","Détendeur de climatisation","Différentiel","Disque de frein avant","Disque de frein arrière","Durite de radiateur"],E:["Echangeur de chaleur (intercooler)","Embrayage (kit complet)","Enjoliveur de roue","Essuie-glace (moteur)","Etrier de frein"],F:["Filtre à air","Filtre à carburant","Filtre à huile","Filtre d'habitacle","Filtre déshydrateur","Flexible de frein","Fusée d'essieu"],G:["Galet enrouleur","Galet tendeur","Garniture de tambour","Gicleur de lave-glace","Glace de rétroviseur","Groupe moto-ventilateur"],H:["Huile de boîte","Huile moteur","Liquide de frein DOT4","Liquide de refroidissement"],I:["Injecteur de carburant","Intercooler","Interrupteur"],J:["Jante acier","Jante aluminium","Joint d'arbre","Joint de cardan","Joint de culasse","Joint de porte","Joint spi"],K:["Kit courroie de distribution","Kit d'embrayage","Kit de distribution + pompe à eau","Kit filtres entretien","Kit joints moteur"],L:["Lève-vitre (moteur)","Liquide de direction assistée","Liquide de refroidissement / antigel"],M:["Maître-cylindre de frein","Moteur d'essuie-glace","Moteur de lève-vitre","Moyeu de roue"],N:["Noix de cardan","Niveaux huile"],O:["Optique de phare avant","Optique de phare arrière","Outillage spécial"],P:["Palier d'arbre à cames","Pare-chocs avant","Pare-chocs arrière","Phare / projecteur","Plaquettes de frein avant","Plaquettes de frein arrière","Pompe à carburant","Pompe à eau","Pompe à huile","Pompe de direction assistée","Pompe de lave-glace","Pot catalytique","Pot d'échappement","Poulie de vilebrequin"],R:["Radiateur","Radiateur de chauffage","Récepteur d'embrayage","Régulateur d'alternateur","Relais","Renfort de pare-chocs","Ressort de suspension avant","Ressort de suspension arrière","Rétroviseur extérieur gauche","Rétroviseur extérieur droit","Rotule de direction","Rotule de triangle","Roulement de roue avant","Roulement de roue arrière"],S:["Segment de piston","Serrure de porte","Servofrein","Silencieux","Silent-bloc","Sonde lambda","Sonde de température","Soufflet de cardan","Soufflet de direction","Soupape d'admission","Stabilisateur"],T:["Tambour de frein","Tendeur de courroie","Thermostat","Triangle de suspension avant","Triangle de suspension arrière","Turbocompresseur","Tuyau d'échappement","Tuyau de refroidissement"],V:["Vanne EGR","Vanne wastegate","Vase d'expansion","Ventilateur de radiateur","Volant bimasse","Volant moteur"]};
+/* ===== TECDOC VEHICLE MEMORY ===== */
+var PDZ_KEY='pdz_vehicle';
+var VDB={"Alfa Romeo":{"147":["1.6i 16V 105ch","1.9 JTD 120ch"],"156":["1.8 16V 144ch","2.0 JTS 165ch","1.9 JTD 150ch"],"159":["1.8i 16V 140ch","2.0 JTDM 136ch"],"Giulietta":["1.4 TB 120ch","1.6 JTDm 105ch","2.0 JTDm 150ch"],"MiTo":["1.3 JTDm 90ch","1.4 TB 135ch"]},"Audi":{"A1":["1.0 TFSI 95ch","1.2 TFSI 86ch","1.4 TFSI 125ch","1.6 TDI 105ch"],"A3":["1.2 TFSI 105ch","1.4 TFSI 125ch","1.6 TDI 105ch","2.0 TDI 150ch","1.8 TFSI 180ch","2.0 TFSI 200ch"],"A4":["1.4 TFSI 150ch","1.8 TFSI 170ch","2.0 TFSI 190ch","1.9 TDI 115ch","2.0 TDI 150ch","3.0 TDI 218ch"],"A6":["1.8 TFSI 190ch","2.0 TFSI 252ch","2.0 TDI 190ch","3.0 TDI 272ch"],"Q3":["1.4 TFSI 150ch","2.0 TFSI 180ch","2.0 TDI 140ch"],"Q5":["2.0 TFSI 220ch","2.0 TDI 190ch","3.0 TDI 245ch"],"TT":["1.8 TFSI 180ch","2.0 TFSI 230ch"]},"BMW":{"Série 1":["116i 102ch","116i 136ch","118i 136ch","118i 150ch","118d 136ch","120d 163ch","123d 204ch","125i 218ch"],"Série 2":["216d 116ch","218i 136ch","220d 150ch","225i 224ch"],"Série 3":["316i 102ch","316d 116ch","318i 136ch","318d 143ch","320i 150ch","320d 163ch","320d 190ch","325i 218ch","328i 245ch","330d 258ch","335i 306ch"],"Série 4":["418d 136ch","420i 184ch","420d 163ch","425d 218ch","430i 252ch"],"Série 5":["518d 143ch","520d 163ch","520d 190ch","523i 177ch","525d 204ch","530d 245ch","535d 313ch"],"X1":["sDrive18i 136ch","sDrive20i 192ch","xDrive18d 143ch","xDrive20d 163ch"],"X3":["xDrive20i 184ch","xDrive20d 163ch","xDrive20d 190ch","xDrive30d 258ch"],"X5":["xDrive30d 258ch","xDrive35d 313ch","xDrive40e 245ch"]},"Chevrolet":{"Aveo":["1.2 70ch","1.2 86ch","1.4 100ch","1.3 VCDI 95ch"],"Cruze":["1.4 Turbo 140ch","1.6 113ch","1.8 141ch","2.0 VCDI 150ch"],"Spark":["1.0 65ch","1.0 68ch"],"Malibu":["1.4 Turbo 140ch","2.0 VCDI 163ch"]},"Citroën":{"Berlingo":["1.2 PureTech 82ch","1.2 PureTech 110ch","1.6 BlueHDI 75ch","1.6 BlueHDI 100ch","1.9 D 70ch"],"C1":["1.0 VTi 72ch","1.2 PureTech 82ch","1.4 HDI 54ch"],"C2":["1.1 60ch","1.4 75ch","1.6 16V 110ch","1.4 HDI 70ch"],"C3":["1.0 68ch","1.1 60ch","1.2 82ch","1.4 73ch","1.6 120ch","1.4 HDI 70ch","1.6 HDI 92ch","1.6 HDI 110ch"],"C4":["1.2 PureTech 130ch","1.6 120ch","1.6 THP 150ch","1.6 BlueHDI 120ch","2.0 HDI 138ch","2.0 HDI 150ch"],"C5":["1.6 THP 155ch","2.0 145ch","3.0 V6 215ch","1.6 HDI 110ch","2.0 HDI 140ch","2.2 HDI 200ch"],"C-Elysée":["1.2 PureTech 82ch","1.6 115ch","1.6 BlueHDI 92ch"],"Jumpy":["1.6 HDI 90ch","2.0 HDI 120ch","2.0 BlueHDI 120ch"],"Xsara":["1.4 75ch","1.6 16V 110ch","1.8 115ch","2.0 HDI 90ch","2.0 HDI 110ch"],"Xsara Picasso":["1.6 95ch","1.8 115ch","2.0 HDI 90ch","2.0 HDI 110ch"]},"Dacia":{"Dokker":["1.2 TCe 115ch","1.5 dCi 90ch","1.5 dCi 110ch"],"Duster":["1.2 TCe 125ch","1.6 115ch","1.6 SCe 115ch","1.5 dCi 90ch","1.5 dCi 110ch","2.0 4x4 140ch"],"Lodgy":["1.2 TCe 115ch","1.5 dCi 90ch","1.5 dCi 110ch"],"Logan":["1.2 54ch","1.2 75ch","1.4 75ch","1.6 90ch","1.5 dCi 65ch","1.5 dCi 70ch","1.5 dCi 90ch"],"Logan MCV":["1.2 16V 75ch","1.6 MPI 85ch","1.5 dCi 90ch"],"Sandero":["0.9 TCe 90ch","1.0 SCe 73ch","1.2 75ch","1.4 75ch","1.5 dCi 75ch","1.5 dCi 90ch"],"Sandero Stepway":["0.9 TCe 90ch","1.5 dCi 90ch"]},"Fiat":{"500":["1.2 69ch","0.9 TwinAir 85ch","1.3 Multijet 75ch","1.3 Multijet 95ch"],"Bravo":["1.4 90ch","1.4 T-Jet 140ch","1.6 Multijet 120ch","2.0 Multijet 165ch"],"Doblo":["1.4 77ch","1.6 Multijet 105ch","2.0 Multijet 135ch"],"Linea":["1.3 Multijet 90ch","1.4 77ch","1.6 Multijet 105ch"],"Punto":["1.2 60ch","1.2 65ch","1.4 77ch","1.3 Multijet 70ch","1.3 Multijet 90ch"],"Grande Punto":["1.4 77ch","1.4 T-Jet 120ch","1.3 Multijet 75ch","1.9 D Multijet 120ch"],"Tipo":["1.4 95ch","1.6 110ch","1.6 Multijet 120ch","2.0 Multijet 150ch"]},"Ford":{"B-Max":["1.0 EcoBoost 100ch","1.4 90ch","1.5 TDCi 75ch","1.6 TDCi 95ch"],"EcoSport":["1.0 EcoBoost 125ch","1.5 TDCi 95ch","2.0 Duratec 143ch"],"Fiesta":["1.0 EcoBoost 65ch","1.0 EcoBoost 100ch","1.0 EcoBoost 125ch","1.25 82ch","1.4 97ch","1.6 120ch","1.4 TDCi 68ch","1.5 TDCi 75ch","1.6 TDCi 90ch"],"Focus":["1.0 EcoBoost 100ch","1.0 EcoBoost 125ch","1.5 EcoBoost 150ch","1.6 115ch","2.0 150ch","1.5 TDCi 95ch","1.6 TDCi 95ch","1.8 TDCi 115ch","2.0 TDCi 140ch"],"Mondeo":["1.5 EcoBoost 160ch","2.0 EcoBoost 240ch","1.5 TDCi 120ch","2.0 TDCi 150ch","2.0 TDCi 210ch"]},"Honda":{"Accord":["2.0 155ch","2.4 201ch","2.2 i-CTDi 140ch","2.2 i-DTEC 150ch"],"Civic":["1.4 83ch","1.4 100ch","1.6 125ch","1.8 140ch","2.0 Type R 200ch","2.2 i-CTDi 140ch"],"CR-V":["1.5 VTEC 173ch","2.0 150ch","2.4 185ch","1.6 i-DTEC 120ch","2.2 i-DTEC 140ch"],"HR-V":["1.5 130ch","1.6 i-DTEC 120ch"],"Jazz":["1.2 90ch","1.3 102ch","1.4 100ch","1.5 i-VTEC 116ch"]},"Hyundai":{"Accent":["1.4 97ch","1.6 124ch","1.4 CRDi 90ch","1.5 CRDi 82ch","1.6 CRDi 110ch"],"i10":["1.0 66ch","1.0 67ch","1.2 85ch","1.0 CRDi 75ch"],"i20":["1.2 75ch","1.2 84ch","1.4 100ch","1.4 CRDi 75ch","1.6 CRDi 110ch"],"i30":["1.0 T-GDi 120ch","1.4 100ch","1.4 T-GDi 140ch","1.6 135ch","1.6 CRDi 90ch","1.6 CRDi 110ch","1.6 CRDi 128ch"],"i40":["1.6 GDi 135ch","2.0 GDi 177ch","1.6 CRDi 115ch","2.0 CRDi 136ch"],"ix35":["1.6 GDi 135ch","2.0 GDi 163ch","1.7 CRDi 115ch","2.0 CRDi 136ch"],"Tucson":["1.6 GDi 132ch","1.6 T-GDi 177ch","2.0 156ch","1.7 CRDi 115ch","2.0 CRDi 185ch"]},"Jeep":{"Cherokee":["2.0 272ch","2.4 177ch","2.0 Multijet 140ch","2.0 Multijet 170ch"],"Compass":["1.3 Turbo 150ch","1.4 Multiair 140ch","2.0 Multijet 140ch"],"Grand Cherokee":["3.0 CRD 190ch","3.0 CRD 241ch","3.6 V6 286ch","5.7 HEMI 352ch"],"Renegade":["1.0 T3 120ch","1.3 Turbo 150ch","1.6 Multijet 120ch","2.0 Multijet 140ch"]},"Kia":{"Ceed":["1.0 T-GDi 100ch","1.0 T-GDi 120ch","1.2 CVVT 85ch","1.4 CVVT 100ch","1.6 CVVT 125ch","1.4 CRDi 90ch","1.6 CRDi 110ch","1.6 CRDi 136ch"],"Picanto":["1.0 66ch","1.0 67ch","1.0 T-GDi 100ch","1.2 CVVT 85ch","1.1 CRDi 75ch"],"Rio":["1.0 T-GDi 100ch","1.0 T-GDi 120ch","1.2 CVVT 84ch","1.4 CVVT 100ch","1.1 CRDi 75ch","1.4 CRDi 90ch"],"Sorento":["2.0 150ch","2.4 188ch","2.2 CRDi 197ch","3.3 V6 270ch"],"Sportage":["1.6 GDi 135ch","1.6 T-GDi 177ch","2.0 CVVT 163ch","1.7 CRDi 115ch","2.0 CRDi 136ch","2.0 CRDi 185ch"]},"Lada":{"Granta":["1.6 87ch","1.6 98ch"],"Largus":["1.6 8V 84ch","1.6 16V 102ch","1.5 dCi 90ch"],"Niva":["1.7i 82ch","1.7i 4x4 83ch"],"Priora":["1.6 8V 82ch","1.6 16V 98ch"],"Vesta":["1.6 106ch","1.8 122ch","1.5 dCi 90ch"]},"Mazda":{"2":["1.3 86ch","1.5 103ch","1.4 MZR-CD 68ch"],"3":["1.5 100ch","1.6 105ch","2.0 150ch","1.5 SKYACTIV-D 105ch","2.2 SKYACTIV-D 150ch"],"6":["2.0 145ch","2.5 192ch","2.0 SKYACTIV-D 150ch","2.2 SKYACTIV-D 175ch"],"CX-3":["1.5 SKYACTIV 120ch","2.0 SKYACTIV 121ch","1.5 SKYACTIV-D 105ch"],"CX-5":["2.0 SKYACTIV 165ch","2.5 192ch","2.2 SKYACTIV-D 150ch","2.2 SKYACTIV-D 175ch"]},"Mercedes":{"Classe A":["A 160 102ch","A 180 122ch","A 180 d 109ch","A 200 163ch","A 200 d 150ch","A 250 224ch"],"Classe B":["B 160 102ch","B 180 122ch","B 200 136ch","B 180 CDI 109ch","B 200 CDI 136ch"],"Classe C":["C 180 156ch","C 200 184ch","C 220 CDI 170ch","C 220 d 170ch","C 250 211ch","C 300 245ch"],"Classe E":["E 200 184ch","E 220 CDI 170ch","E 220 d 194ch","E 250 211ch","E 300 245ch","E 350 292ch"],"Classe GLA":["GLA 180 122ch","GLA 200 156ch","GLA 220 d 170ch","GLA 250 211ch"],"Vito":["109 CDI 88ch","111 CDI 114ch","116 CDI 163ch"]},"Mitsubishi":{"ASX":["1.6 117ch","2.0 150ch","1.6 DI-D 116ch","1.8 DI-D 115ch","2.2 DI-D 150ch"],"Colt":["1.1 75ch","1.3 95ch","1.5 107ch","1.1 DI-D 75ch","1.5 DI-D 95ch"],"L200":["2.5 DI-D 136ch","2.5 DI-D 178ch","2.4 MIVEC 181ch","2.4 DI-D 181ch"],"Outlander":["2.0 150ch","2.4 167ch","2.2 DI-D 150ch","2.2 DI-D 177ch"],"Space Star":["1.0 71ch","1.2 71ch","1.2 80ch"]},"Nissan":{"Juke":["1.0 DIG-T 117ch","1.2 DIG-T 115ch","1.5 dCi 110ch","1.6 117ch","1.6 DIG-T 190ch"],"Micra":["0.9 IG-T 90ch","1.0 65ch","1.0 IG-T 100ch","1.2 80ch","1.2 DIG-S 98ch","1.5 dCi 65ch","1.5 dCi 90ch"],"Note":["1.2 80ch","1.2 DIG-S 98ch","1.5 dCi 86ch","1.6 110ch"],"Qashqai":["1.2 DIG-T 115ch","1.3 DIG-T 140ch","1.3 DIG-T 160ch","1.5 dCi 110ch","1.6 dCi 130ch","2.0 141ch","2.0 dCi 150ch"],"X-Trail":["1.3 DIG-T 157ch","1.6 dCi 130ch","2.0 141ch","2.0 dCi 150ch","2.0 dCi 175ch"]},"Opel":{"Astra":["1.0 Turbo 105ch","1.2 Turbo 130ch","1.4 100ch","1.4 Turbo 125ch","1.6 115ch","1.6 Turbo 200ch","1.3 CDTI 75ch","1.7 CDTI 110ch","2.0 CDTI 165ch"],"Corsa":["1.0 Turbo 90ch","1.0 Turbo 115ch","1.2 70ch","1.4 90ch","1.3 CDTI 75ch","1.5 D 102ch"],"Grandland X":["1.2 Turbo 130ch","1.6 CDTi 120ch","2.0 CDTi 177ch"],"Insignia":["1.5 Turbo 140ch","2.0 Turbo 260ch","2.0 CDTi 110ch","2.0 CDTi 170ch"],"Mokka":["1.4 Turbo 140ch","1.6 115ch","1.6 CDTI 136ch","1.7 CDTI 130ch"],"Zafira":["1.4 Turbo 140ch","1.6 115ch","2.0 Turbo 200ch","1.7 CDTI 110ch","2.0 CDTi 130ch"]},"Peugeot":{"106":["1.0 50ch","1.1 60ch","1.4 75ch","1.6 16V 88ch","1.5 D 54ch"],"206":["1.1 60ch","1.4 75ch","1.6 109ch","2.0 136ch","2.0 GTi 180ch","1.4 HDI 70ch","1.6 HDI 109ch","2.0 HDI 90ch","2.0 HDI 110ch"],"207":["1.4 VTi 95ch","1.6 VTi 120ch","1.6 THP 150ch","1.6 THP 175ch","1.4 HDI 70ch","1.6 HDI 90ch","1.6 HDI 110ch"],"208":["1.0 68ch","1.2 PureTech 82ch","1.2 PureTech 110ch","1.2 PureTech 130ch","1.6 VTi 120ch","1.6 THP 200ch","1.4 HDI 68ch","1.6 BlueHDI 100ch","1.6 BlueHDI 120ch"],"301":["1.2 PureTech 82ch","1.6 VTi 115ch","1.6 BlueHDI 92ch","1.6 BlueHDI 100ch"],"307":["1.4 75ch","1.6 110ch","2.0 140ch","2.0 GTi 177ch","1.4 HDI 70ch","1.6 HDI 90ch","1.6 HDI 110ch","2.0 HDI 90ch","2.0 HDI 136ch"],"308":["1.0 PureTech 68ch","1.2 PureTech 82ch","1.2 PureTech 110ch","1.2 PureTech 130ch","1.6 120ch","1.6 THP 155ch","1.6 THP 205ch","1.5 BlueHDI 100ch","1.5 BlueHDI 130ch","2.0 BlueHDI 150ch","2.0 BlueHDI 180ch"],"3008":["1.2 PureTech 130ch","1.6 THP 165ch","1.6 BlueHDI 120ch","2.0 BlueHDI 150ch","2.0 BlueHDI 180ch"],"5008":["1.2 PureTech 130ch","1.6 THP 165ch","1.5 BlueHDI 130ch","2.0 BlueHDI 150ch","2.0 BlueHDI 180ch"],"Partner":["1.2 PureTech 110ch","1.6 115ch","1.6 BlueHDI 75ch","1.6 BlueHDI 100ch","1.6 BlueHDI 120ch"]},"Renault":{"Captur":["0.9 TCe 90ch","1.2 TCe 120ch","1.3 TCe 130ch","1.3 TCe 150ch","1.5 dCi 90ch","1.5 dCi 110ch"],"Clio":["0.9 TCe 75ch","0.9 TCe 90ch","1.0 SCe 75ch","1.2 16V 75ch","1.4 16V 98ch","1.6 16V 112ch","1.2 TCe 120ch","1.5 dCi 68ch","1.5 dCi 75ch","1.5 dCi 90ch","1.5 dCi 110ch"],"Fluence":["1.5 dCi 110ch","1.6 110ch","2.0 140ch"],"Kadjar":["1.2 TCe 130ch","1.3 TCe 140ch","1.5 dCi 110ch","1.6 dCi 130ch"],"Kangoo":["1.2 TCe 115ch","1.6 105ch","1.5 dCi 75ch","1.5 dCi 90ch","1.5 dCi 110ch","1.9 D 65ch"],"Logan":["0.9 TCe 90ch","1.0 SCe 73ch","1.2 16V 75ch","1.4 MPI 75ch","1.6 MPI 87ch","1.6 MPI 102ch","1.5 dCi 65ch","1.5 dCi 75ch","1.5 dCi 90ch"],"Megane":["1.2 TCe 100ch","1.2 TCe 130ch","1.3 TCe 140ch","1.4 16V 98ch","1.6 115ch","2.0 140ch","2.0 RS 250ch","1.5 dCi 90ch","1.5 dCi 110ch","1.6 dCi 130ch"],"Scenic":["1.2 TCe 115ch","1.3 TCe 140ch","1.5 dCi 110ch","1.6 dCi 130ch"],"Symbol":["0.9 TCe 90ch","1.2 16V 73ch","1.2 75ch","1.5 dCi 75ch","1.5 dCi 90ch"],"Talisman":["1.3 TCe 140ch","1.6 TCe 150ch","1.5 dCi 110ch","1.6 dCi 130ch","2.0 dCi 200ch"]},"Seat":{"Arona":["1.0 TSI 95ch","1.0 TSI 115ch","1.5 TSI 150ch","1.6 TDI 95ch"],"Ateca":["1.0 TSI 115ch","1.5 TSI 150ch","2.0 TDI 150ch","2.0 TDI 190ch"],"Ibiza":["1.0 MPI 75ch","1.0 TSI 95ch","1.0 TSI 115ch","1.2 70ch","1.4 85ch","1.6 105ch","1.6 TDI 80ch","1.6 TDI 95ch"],"Leon":["1.0 TSI 115ch","1.2 TSI 86ch","1.4 TSI 125ch","1.4 TSI 150ch","1.6 102ch","1.8 TSI 180ch","2.0 TSI 300ch","1.6 TDI 110ch","2.0 TDI 150ch","2.0 TDI 184ch"],"Tarraco":["1.5 TSI 150ch","2.0 TSI 245ch","2.0 TDI 150ch","2.0 TDI 190ch"]},"Skoda":{"Fabia":["1.0 MPI 75ch","1.0 TSI 95ch","1.0 TSI 110ch","1.2 TSI 90ch","1.4 TSI 150ch","1.6 TDI 90ch"],"Karoq":["1.0 TSI 115ch","1.5 TSI 150ch","2.0 TSI 190ch","1.6 TDI 116ch","2.0 TDI 150ch"],"Kodiaq":["1.4 TSI 125ch","1.5 TSI 150ch","2.0 TSI 180ch","2.0 TDI 150ch","2.0 TDI 190ch"],"Octavia":["1.0 TSI 115ch","1.2 TSI 86ch","1.4 TSI 125ch","1.5 TSI 150ch","1.8 TSI 180ch","1.6 TDI 116ch","2.0 TDI 150ch","2.0 TDI 184ch"],"Rapid":["1.0 TSI 95ch","1.2 TSI 86ch","1.4 TSI 125ch","1.6 TDI 105ch"],"Superb":["1.4 TSI 150ch","1.8 TSI 180ch","2.0 TSI 280ch","1.6 TDI 120ch","2.0 TDI 150ch","2.0 TDI 190ch"]},"Suzuki":{"Alto":["1.0 68ch"],"Jimny":["1.3 4x4 85ch","1.5 102ch"],"Swift":["1.0 Boosterjet 111ch","1.2 90ch","1.3 VVT 94ch","1.6 Sport 136ch","1.3 DDiS 75ch"],"Vitara":["1.0 BoosterJet 111ch","1.4 BoosterJet 140ch","1.6 DDiS 120ch"]},"Toyota":{"Auris":["1.2T 116ch","1.6 132ch","1.8 Hybrid 136ch","1.4 D-4D 90ch","2.0 D-4D 143ch"],"Aygo":["1.0 VVT-i 68ch","1.0 VVT-i 72ch"],"C-HR":["1.2T 116ch","1.8 Hybrid 122ch","2.0 Hybrid 184ch"],"Corolla":["1.3 101ch","1.6 132ch","1.8 Hybrid 122ch","1.4 D-4D 90ch","2.0 D-4D 126ch"],"RAV4":["2.0 VVT-i 152ch","2.5 Hybrid 218ch","2.0 D-4D 124ch","2.0 D-4D 143ch"],"Yaris":["1.0 VVT-i 72ch","1.3 VVT-i 99ch","1.5 Hybrid 100ch","1.4 D-4D 90ch"]},"Volkswagen":{"Golf":["1.0 TSI 85ch","1.0 TSI 115ch","1.2 TSI 86ch","1.4 TSI 125ch","1.4 TSI 150ch","1.5 TSI 130ch","1.5 TSI 150ch","1.6 102ch","1.8 TSI 180ch","2.0 TSI GTi 245ch","2.0 TDI 150ch","2.0 TDI 184ch","1.6 TDI 105ch","1.6 TDI 115ch"],"Passat":["1.4 TSI 150ch","1.8 TSI 180ch","2.0 TSI 220ch","1.6 TDI 120ch","2.0 TDI 150ch","2.0 TDI 190ch"],"Polo":["1.0 MPI 65ch","1.0 MPI 75ch","1.0 TSI 95ch","1.0 TSI 115ch","1.2 60ch","1.4 85ch","1.2 TSI 90ch","1.6 TDI 90ch","1.6 TDI 110ch"],"T-Cross":["1.0 TSI 95ch","1.0 TSI 115ch","1.5 TSI 150ch","1.6 TDI 95ch"],"T-Roc":["1.0 TSI 115ch","1.5 TSI 150ch","2.0 TSI 190ch","1.6 TDI 115ch","2.0 TDI 150ch"],"Tiguan":["1.4 TSI 125ch","1.5 TSI 150ch","2.0 TSI 180ch","2.0 TSI 220ch","1.6 TDI 115ch","2.0 TDI 150ch","2.0 TDI 190ch"],"Up":["1.0 60ch","1.0 65ch","1.0 75ch","1.0 TSI 90ch"]},"Volvo":{"S40":["1.6 100ch","1.8 122ch","2.0 136ch","1.6D 109ch","2.0D 136ch"],"S60":["1.5 T3 152ch","2.0 T5 254ch","2.0 D4 190ch"],"V40":["1.5 T3 152ch","2.0 T5 254ch","2.0 D4 190ch"],"V50":["1.6 100ch","1.8 122ch","2.0 136ch","1.6D 109ch","2.0D 136ch"],"XC40":["1.5 T3 163ch","2.0 T4 190ch","2.0 T5 252ch","2.0 D4 190ch"]}};
+
+/* ===== VEHICLE MEMORY (TecDoc) ===== */
+function pdzGetV(){try{return JSON.parse(localStorage.getItem(PDZ_KEY));}catch(e){return null;}}
+function pdzSetV(v){localStorage.setItem(PDZ_KEY,JSON.stringify(v));}
+window.PDZ={setVehicle:pdzSetV,getVehicle:pdzGetV,clearVehicle:function(){localStorage.removeItem(PDZ_KEY);location.reload();}};
+
+function injectVehicleBanner(v){
+  if(document.getElementById('pdz-vbar'))return;
+  var bar=document.createElement('div');
+  bar.id='pdz-vbar';
+  bar.style.cssText='background:#1b3e5f;color:#fff;padding:7px 20px;display:flex;align-items:center;gap:14px;font-family:Roboto,Arial,sans-serif;font-size:.8rem;flex-wrap:wrap;';
+  var surl='/pages/recherche-pieces?marque='+encodeURIComponent(v.make||'')+'&modele='+encodeURIComponent(v.model||'')+'&motorisation='+encodeURIComponent(v.engine||'');
+  bar.innerHTML='<svg width="18" height="18" viewBox="0 0 40 40" fill="none"><path d="M5 28 L9 28 Q11 20 18 18 L22 18 Q29 20 31 28 L35 28 L35 32 L5 32Z" stroke="#ff6700" stroke-width="2.2" fill="none"/><path d="M13 18 Q15 10 20 8 Q25 10 27 18" stroke="#ff6700" stroke-width="1.8" fill="none"/><circle cx="12" cy="30" r="3" stroke="#ff6700" stroke-width="2" fill="none"/><circle cx="28" cy="30" r="3" stroke="#ff6700" stroke-width="2" fill="none"/></svg><span style="color:#93b3cc;font-size:.72rem">MON VEHICULE</span><strong>'+v.label+'</strong><a href="'+surl+'" style="background:#ff6700;color:#fff;padding:4px 12px;border-radius:3px;text-decoration:none;font-weight:700;font-size:.75rem;">Chercher des pieces</a><a onclick="window.PDZ.clearVehicle()" style="color:#ff9944;cursor:pointer;font-size:.72rem;text-decoration:underline;margin-left:auto;">Changer de vehicule</a>';
+  var wrap=document.getElementById('adoc');
+  if(wrap)wrap.insertBefore(bar,wrap.firstChild);
+  else document.body.insertBefore(bar,document.body.firstChild);
+}
+
+/* Pre-fill selectors if vehicle remembered */
+(function(){
+  var v=pdzGetV();
+  if(v){injectVehicleBanner(v);}
+})();
+
+/* ===== VEHICLE SELECTOR ===== */
+var makeEl=document.getElementById('vsMake');
+Object.keys(VDB).sort().forEach(function(m){makeEl.innerHTML+='<option value="'+m+'">'+m+'</option>';});
+
+/* Pre-select if remembered */
+(function(){
+  var v=pdzGetV();
+  if(!v)return;
+  makeEl.value=v.make||'';
+  if(v.make&&VDB[v.make]){
+    vsModels();
+    var mEl=document.getElementById('vsMod');
+    mEl.value=v.model||'';
+    if(v.model&&VDB[v.make][v.model]){
+      vsEngines();
+      document.getElementById('vsEng').value=v.engine||'';
+    }
+  }
+})();
+
+function vsModels(){
+  var mk=document.getElementById('vsMake').value,mEl=document.getElementById('vsMod'),eEl=document.getElementById('vsEng');
+  mEl.innerHTML='<option value="">Choisissez un modele</option>';
+  eEl.innerHTML='<option value="">Choisissez une motorisation</option>';
+  mEl.disabled=!mk;eEl.disabled=true;
+  if(!mk)return;
+  Object.keys(VDB[mk]).sort().forEach(function(m){mEl.innerHTML+='<option value="'+m+'">'+m+'</option>';});
+}
+function vsEngines(){
+  var mk=document.getElementById('vsMake').value,md=document.getElementById('vsMod').value,eEl=document.getElementById('vsEng');
+  eEl.innerHTML='<option value="">Choisissez une motorisation</option>';
+  eEl.disabled=!md;
+  if(!mk||!md||!VDB[mk]||!VDB[mk][md])return;
+  VDB[mk][md].forEach(function(e){eEl.innerHTML+='<option value="'+e+'">'+e+'</option>';});
+}
+function vsGo(){
+  var mk=document.getElementById('vsMake').value,md=document.getElementById('vsMod').value,eg=document.getElementById('vsEng').value;
+  if(!mk){alert('Veuillez selectionner une marque');return;}
+  var label=mk+(md?' '+md:'')+(eg?' — '+eg:'');
+  pdzSetV({make:mk,model:md,engine:eg,label:label});
+  window.location='/pages/recherche-pieces?marque='+encodeURIComponent(mk)+'&modele='+encodeURIComponent(md)+'&motorisation='+encodeURIComponent(eg);
+}
+function immatGo(){var v=document.getElementById('immatIn').value.trim();if(!v){alert('Entrez un numero d\'immatriculation');return;}window.location='/pages/recherche-pieces?immat='+encodeURIComponent(v);}
+function vsTab(t,btn){document.querySelectorAll('.vs-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.getElementById('vs-m').style.display=t==='m'?'':'none';document.getElementById('vs-i').style.display=t==='i'?'':'none';}
+
+/* ===== POPULAR STRIP (SVG icons) ===== */
+var PS_ITEMS=[
+  {q:'disque+frein',n:'Disque de frein',svg:'<circle cx="20" cy="20" r="13" stroke="#cc0000" stroke-width="2.5" fill="none"/><circle cx="20" cy="20" r="5" stroke="#cc0000" stroke-width="2" fill="none"/><path d="M20 7 L20 10 M20 30 L20 33 M7 20 L10 20 M30 20 L33 20" stroke="#cc0000" stroke-width="2" stroke-linecap="round"/>',bg:'#ffebee'},
+  {q:'kit+embrayage',n:"Kit d'embrayage",svg:'<circle cx="20" cy="20" r="12" stroke="#555" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="4" stroke="#555" stroke-width="2" fill="none"/><circle cx="20" cy="11" r="2" fill="#555"/><circle cx="27" cy="24" r="2" fill="#555"/><circle cx="13" cy="24" r="2" fill="#555"/>',bg:'#f5f5f5'},
+  {q:'amortisseur',n:'Amortisseur',svg:'<rect x="17" y="5" width="6" height="18" rx="3" stroke="#1565c0" stroke-width="2" fill="none"/><path d="M15 23 Q20 28 25 23" stroke="#1565c0" stroke-width="2" fill="none"/><line x1="20" y1="28" x2="20" y2="35" stroke="#1565c0" stroke-width="3" stroke-linecap="round"/>',bg:'#e3f2fd'},
+  {q:'plaquettes+frein',n:'Plaquette de frein',svg:'<rect x="10" y="12" width="20" height="16" rx="2" stroke="#b71c1c" stroke-width="2" fill="none"/><rect x="13" y="15" width="14" height="10" rx="1" fill="#ffcdd2"/><line x1="10" y1="22" x2="30" y2="22" stroke="#b71c1c" stroke-width="1.5"/>',bg:'#ffebee'},
+  {q:'kit+distribution',n:'Kit distribution',svg:'<circle cx="14" cy="14" r="6" stroke="#e65100" stroke-width="2" fill="none"/><circle cx="26" cy="26" r="6" stroke="#e65100" stroke-width="2" fill="none"/><path d="M19 16 Q22 20 21 21" stroke="#e65100" stroke-width="2" fill="none"/><circle cx="14" cy="14" r="2" fill="#e65100"/><circle cx="26" cy="26" r="2" fill="#e65100"/>',bg:'#fff3e0'},
+  {q:'huile+moteur',n:'Huile moteur',svg:'<path d="M14 8 L14 28 Q14 32 20 32 Q26 32 26 28 L26 14 L20 8Z" stroke="#f57f17" stroke-width="2" fill="none"/><path d="M26 14 L30 14 Q32 14 32 18 Q32 22 28 22 L26 22" stroke="#f57f17" stroke-width="2" fill="none"/><path d="M17 22 Q20 26 23 22" stroke="#f57f17" stroke-width="1.5" fill="none"/>',bg:'#fff8e1'},
+  {q:'bras+suspension',n:'Bras de suspension',svg:'<path d="M8 28 L30 14" stroke="#37474f" stroke-width="3" stroke-linecap="round"/><circle cx="8" cy="28" r="4" stroke="#37474f" stroke-width="2" fill="none"/><circle cx="30" cy="14" r="3" stroke="#37474f" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="2.5" stroke="#37474f" stroke-width="2" fill="none"/>',bg:'#eceff1'},
+  {q:'kit+distribution+pompe+eau',n:'Kit distrib. + pompe',svg:'<circle cx="14" cy="20" r="7" stroke="#1b5e20" stroke-width="2" fill="none"/><path d="M21 20 L30 20" stroke="#1b5e20" stroke-width="2"/><path d="M26 16 L30 20 L26 24" stroke="#1b5e20" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 16 L14 20 M14 20 L19 16 M14 20 L14 27" stroke="#1b5e20" stroke-width="1.5" stroke-linecap="round"/>',bg:'#e8f5e9'},
+  {q:'phare+avant',n:'Phare avant',svg:'<path d="M8 14 Q8 8 20 8 L30 14 L30 26 L20 32 Q8 32 8 26Z" stroke="#f9a825" stroke-width="2" fill="none"/><circle cx="18" cy="20" r="5" stroke="#f9a825" stroke-width="1.5" fill="none"/><path d="M23 14 L32 10 M23 20 L34 20 M23 26 L32 30" stroke="#f9a825" stroke-width="1.5" stroke-linecap="round"/>',bg:'#fffde7'},
+  {q:'batterie+voiture',n:'Batterie',svg:'<rect x="8" y="14" width="24" height="16" rx="2" stroke="#1a237e" stroke-width="2" fill="none"/><line x1="12" y1="10" x2="12" y2="14" stroke="#1a237e" stroke-width="3" stroke-linecap="round"/><line x1="28" y1="10" x2="28" y2="14" stroke="#1a237e" stroke-width="3" stroke-linecap="round"/><path d="M14 22 L17 19 L17 25 L20 22" stroke="#e53935" stroke-width="1.5" fill="none"/><path d="M24 20 L24 24 M22 22 L26 22" stroke="#1a237e" stroke-width="1.5" stroke-linecap="round"/>',bg:'#e8eaf6'},
+  {q:'filtre+carburant',n:'Filtre carburant',svg:'<rect x="14" y="8" width="12" height="24" rx="4" stroke="#6a1b9a" stroke-width="2" fill="none"/><line x1="14" y1="16" x2="26" y2="16" stroke="#6a1b9a" stroke-width="1.5"/><line x1="14" y1="20" x2="26" y2="20" stroke="#6a1b9a" stroke-width="1.5"/><line x1="14" y1="24" x2="26" y2="24" stroke="#6a1b9a" stroke-width="1.5"/>',bg:'#f3e5f5'},
+  {q:'courroie+alternateur',n:'Courroie alternateur',svg:'<path d="M10 14 Q10 8 16 8 Q22 8 22 14 L22 26 Q22 32 16 32 Q10 32 10 26Z" stroke="#bf360c" stroke-width="2" fill="none"/><path d="M22 14 L30 14 Q30 8 24 8" stroke="#bf360c" stroke-width="2" fill="none"/><path d="M22 26 L30 26 Q30 32 24 32" stroke="#bf360c" stroke-width="2" fill="none"/>',bg:'#fbe9e7'},
+  {q:'retroviseur',n:'Retroviseur',svg:'<path d="M10 14 Q10 8 20 8 Q30 8 30 14 L30 24 Q30 28 20 28 L10 28Z" stroke="#00695c" stroke-width="2" fill="none"/><line x1="20" y1="28" x2="20" y2="34" stroke="#00695c" stroke-width="2.5" stroke-linecap="round"/>',bg:'#e0f2f1'},
+  {q:'alternateur',n:'Alternateur',svg:'<circle cx="20" cy="20" r="12" stroke="#283593" stroke-width="2" fill="none"/><path d="M16 14 L16 26 M20 14 L20 26 M24 14 L24 26" stroke="#283593" stroke-width="1.5" stroke-linecap="round"/><circle cx="20" cy="20" r="4" stroke="#283593" stroke-width="2" fill="none"/>',bg:'#e8eaf6'},
+  {q:'coupelle+amortisseur',n:'Coupelle amortisseur',svg:'<ellipse cx="20" cy="16" rx="10" ry="6" stroke="#f9a825" stroke-width="2" fill="none"/><line x1="20" y1="16" x2="20" y2="32" stroke="#f9a825" stroke-width="3" stroke-linecap="round"/><path d="M14 28 Q20 32 26 28" stroke="#f9a825" stroke-width="1.5" fill="none"/>',bg:'#fff8e1'},
+  {q:'cardan',n:'Cardan',svg:'<line x1="6" y1="20" x2="16" y2="20" stroke="#37474f" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="20" r="5" stroke="#37474f" stroke-width="2" fill="none"/><line x1="24" y1="20" x2="34" y2="20" stroke="#37474f" stroke-width="3" stroke-linecap="round"/><path d="M16 16 L24 24 M16 24 L24 16" stroke="#37474f" stroke-width="1.5"/>',bg:'#eceff1'},
+  {q:'moyeu+roue',n:'Moyeu de roue',svg:'<circle cx="20" cy="20" r="13" stroke="#4a148c" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="4" stroke="#4a148c" stroke-width="2.5" fill="none"/><path d="M20 7 L20 16 M20 24 L20 33 M7 20 L16 20 M24 20 L33 20 M11 11 L17 17 M23 23 L29 29 M29 11 L23 17 M17 23 L11 29" stroke="#4a148c" stroke-width="1.5" stroke-linecap="round"/>',bg:'#f3e5f5'},
+  {q:'filtre+air',n:'Filtre a air',svg:'<rect x="8" y="12" width="24" height="16" rx="8" stroke="#1565c0" stroke-width="2" fill="none"/><path d="M12 16 L28 16 M12 20 L28 20 M12 24 L28 24" stroke="#1565c0" stroke-width="1.5" stroke-linecap="round"/>',bg:'#e3f2fd'},
+  {q:'filtre+huile',n:'Filtre a huile',svg:'<path d="M14 8 L14 32 Q14 35 20 35 Q26 35 26 32 L26 8Z" stroke="#2e7d32" stroke-width="2" fill="none"/><line x1="14" y1="14" x2="26" y2="14" stroke="#2e7d32" stroke-width="1.5"/><line x1="14" y1="20" x2="26" y2="20" stroke="#2e7d32" stroke-width="1.5"/><line x1="14" y1="26" x2="26" y2="26" stroke="#2e7d32" stroke-width="1.5"/>',bg:'#e8f5e9'},
+  {q:'sonde+lambda',n:'Sonde lambda',svg:'<line x1="20" y1="6" x2="20" y2="22" stroke="#0277bd" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="26" r="5" stroke="#0277bd" stroke-width="2" fill="none"/><path d="M16 30 L12 34 M24 30 L28 34" stroke="#0277bd" stroke-width="1.5" stroke-linecap="round"/>',bg:'#e1f5fe'},
+  {q:'roulement+roue',n:'Roulement de roue',svg:'<circle cx="20" cy="20" r="12" stroke="#4e342e" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="5" stroke="#4e342e" stroke-width="3" fill="none"/><circle cx="20" cy="8" r="2" fill="#4e342e"/><circle cx="20" cy="32" r="2" fill="#4e342e"/><circle cx="8" cy="20" r="2" fill="#4e342e"/><circle cx="32" cy="20" r="2" fill="#4e342e"/>',bg:'#efebe9'},
+  {q:'injecteur',n:'Injecteur',svg:'<rect x="16" y="6" width="8" height="18" rx="2" stroke="#00838f" stroke-width="2" fill="none"/><path d="M20 24 L20 32" stroke="#00838f" stroke-width="2.5" stroke-linecap="round"/><path d="M16 28 Q20 34 24 28" stroke="#00838f" stroke-width="1.5" fill="none"/>',bg:'#e0f7fa'},
+  {q:'feu+arriere',n:'Feu arriere',svg:'<path d="M10 12 L30 12 L30 28 L10 28Z" stroke="#c62828" stroke-width="2" fill="none"/><line x1="20" y1="12" x2="20" y2="28" stroke="#c62828" stroke-width="1.5"/><rect x="11" y="13" width="8" height="14" rx="1" fill="#ffcdd2"/><rect x="21" y="13" width="8" height="7" rx="1" fill="#ffe0b2"/>',bg:'#ffebee'},
+  {q:'pompe+eau',n:'Pompe a eau',svg:'<circle cx="20" cy="20" r="10" stroke="#1565c0" stroke-width="2" fill="none"/><path d="M15 16 L20 20 L15 24" stroke="#1565c0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 20 L26 20" stroke="#1565c0" stroke-width="2" stroke-linecap="round"/><path d="M20 10 L20 6 M30 20 L34 20" stroke="#1565c0" stroke-width="2" stroke-linecap="round"/>',bg:'#e3f2fd'}
+];
+
+var psEl=document.getElementById('ps-scroll');
+PS_ITEMS.forEach(function(it){
+  psEl.innerHTML+='<a class="ps-item" href="/search?type=product&q='+it.q+'"><div class="ps-icon" style="background:'+it.bg+'"><svg width="28" height="28" viewBox="0 0 40 40" fill="none">'+it.svg+'</svg></div><div class="ps-name">'+it.n+'</div></a>';
+});
+
+/* ===== 38 CATEGORY TILES (SVG) ===== */
+var CAT38=[
+  {n:'Pneus, jantes et accessoires',href:'/search?type=product&q=pneus+jantes',bg:'#e3f2fd',svg:'<circle cx="20" cy="20" r="13" stroke="#1565c0" stroke-width="2.5" fill="none"/><circle cx="20" cy="20" r="5" stroke="#1565c0" stroke-width="2" fill="none"/><path d="M20 7 L20 15 M20 25 L20 33 M7 20 L15 20 M25 20 L33 20" stroke="#1565c0" stroke-width="2" stroke-linecap="round"/>'},
+  {n:'Huiles et fluides',href:'/collections/huiles-amp-lubrifiants',bg:'#fff8e1',svg:'<path d="M14 8 L14 28 Q14 34 20 34 Q26 34 26 28 L26 14 L20 8Z" stroke="#f57f17" stroke-width="2.2" fill="none"/><path d="M26 14 L30 14 Q33 14 33 18 Q33 22 29 22 L26 22" stroke="#f57f17" stroke-width="2" fill="none"/><path d="M17 24 Q20 28 23 24" stroke="#f57f17" stroke-width="1.8" fill="none"/>'},
+  {n:'Frein',href:'/collections/freinage',bg:'#ffebee',svg:'<circle cx="20" cy="20" r="12" stroke="#c62828" stroke-width="2.5" fill="none"/><circle cx="20" cy="20" r="5" stroke="#c62828" stroke-width="2" fill="none"/><path d="M20 8 L20 12 M20 28 L20 32 M8 20 L12 20 M28 20 L32 20 M12 12 L15 15 M25 25 L28 28 M28 12 L25 15 M15 25 L12 28" stroke="#c62828" stroke-width="2" stroke-linecap="round"/>'},
+  {n:'Filtre',href:'/collections/filtration',bg:'#e8f5e9',svg:'<rect x="10" y="8" width="20" height="24" rx="4" stroke="#2e7d32" stroke-width="2.2" fill="none"/><line x1="10" y1="14" x2="30" y2="14" stroke="#2e7d32" stroke-width="1.8"/><line x1="10" y1="20" x2="30" y2="20" stroke="#2e7d32" stroke-width="1.8"/><line x1="10" y1="26" x2="30" y2="26" stroke="#2e7d32" stroke-width="1.8"/>'},
+  {n:'Moteur',href:'/search?type=product&q=moteur+joint+culasse',bg:'#f3e5f5',svg:'<rect x="8" y="14" width="24" height="16" rx="2" stroke="#6a1b9a" stroke-width="2" fill="none"/><path d="M14 14 L14 9 M20 14 L20 9 M26 14 L26 9" stroke="#6a1b9a" stroke-width="2.5" stroke-linecap="round"/><circle cx="14" cy="22" r="3" stroke="#6a1b9a" stroke-width="1.8" fill="none"/><circle cx="26" cy="22" r="3" stroke="#6a1b9a" stroke-width="1.8" fill="none"/>'},
+  {n:"Systeme d'essuie-glaces",href:'/search?type=product&q=essuie-glace+balai',bg:'#e0f7fa',svg:'<path d="M8 30 Q20 10 32 30" stroke="#00838f" stroke-width="2.5" fill="none"/><path d="M8 30 Q16 12 28 20" stroke="#00838f" stroke-width="1.5" fill="none" stroke-dasharray="2,2"/><line x1="8" y1="30" x2="8" y2="34" stroke="#00838f" stroke-width="2.5" stroke-linecap="round"/>'},
+  {n:'Allumage et prechauffage',href:'/search?type=product&q=bougie+allumage+prechauffage',bg:'#fffde7',svg:'<rect x="16" y="6" width="8" height="14" rx="3" stroke="#f9a825" stroke-width="2" fill="none"/><path d="M20 20 L20 26" stroke="#f9a825" stroke-width="2.5" stroke-linecap="round"/><path d="M17 26 L23 26" stroke="#f9a825" stroke-width="2.5" stroke-linecap="round"/><path d="M22 13 L18 17 L21 17 L17 23" stroke="#f9a825" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>'},
+  {n:'Suspension',href:'/collections/suspension-amp-direction',bg:'#fff3e0',svg:'<path d="M16 8 L16 14 L24 18 L24 24 L16 28 L16 32" stroke="#e65100" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 10 L20 10 M12 30 L20 30" stroke="#e65100" stroke-width="2.5" stroke-linecap="round"/>'},
+  {n:'Electricite',href:'/collections/electrique',bg:'#e8eaf6',svg:'<path d="M24 8 L16 20 L22 20 L16 32" stroke="#283593" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'},
+  {n:'Amortissement',href:'/search?type=product&q=amortisseur',bg:'#e0f2f1',svg:'<rect x="17" y="5" width="6" height="14" rx="3" stroke="#00695c" stroke-width="2" fill="none"/><path d="M13 19 L27 19 L27 25 L13 25Z" stroke="#00695c" stroke-width="2" fill="none"/><line x1="20" y1="25" x2="20" y2="35" stroke="#00695c" stroke-width="3" stroke-linecap="round"/>'},
+  {n:"Recirculation des gaz d'echappement",href:'/search?type=product&q=egr+vanne+recirculation',bg:'#e8f5e9',svg:'<path d="M10 20 Q10 10 20 10 Q30 10 30 20" stroke="#1b5e20" stroke-width="2" fill="none"/><path d="M10 20 Q10 30 20 30 Q30 30 30 20" stroke="#1b5e20" stroke-width="2" fill="none" stroke-dasharray="3,2"/><path d="M28 14 L32 10 L32 18" stroke="#1b5e20" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'},
+  {n:'Courroies, chaines, galets',href:'/collections/moteur-amp-transmission',bg:'#fbe9e7',svg:'<path d="M10 14 L30 14 L30 26 L10 26Z" stroke="#bf360c" stroke-width="2" fill="none" stroke-linejoin="round"/><circle cx="14" cy="20" r="3" stroke="#bf360c" stroke-width="1.8" fill="none"/><circle cx="26" cy="20" r="3" stroke="#bf360c" stroke-width="1.8" fill="none"/><path d="M14 14 L14 10 M26 14 L26 10 M14 26 L14 30 M26 26 L26 30" stroke="#bf360c" stroke-width="2" stroke-linecap="round"/>'},
+  {n:'Composants pour la suralimentation',href:'/search?type=product&q=turbo+suralimentation',bg:'#e3f2fd',svg:'<circle cx="20" cy="20" r="10" stroke="#1565c0" stroke-width="2" fill="none"/><circle cx="20" cy="20" r="4" stroke="#1565c0" stroke-width="2" fill="none"/><path d="M20 10 L20 6 M20 30 L20 34 M10 20 L6 20 M30 20 L34 20" stroke="#1565c0" stroke-width="2" stroke-linecap="round"/><path d="M16 12 Q14 10 10 12 Q12 16 16 16" stroke="#1565c0" stroke-width="1.5" fill="none"/>'},
+  {n:'Refroidissement moteur',href:'/search?type=product&q=radiateur+refroidissement+thermostat',bg:'#e0f7fa',svg:'<rect x="8" y="10" width="24" height="20" rx="2" stroke="#006064" stroke-width="2" fill="none"/><path d="M14 10 L14 6 M20 10 L20 6 M26 10 L26 6 M14 30 L14 34 M20 30 L20 34 M26 30 L26 34" stroke="#006064" stroke-width="2" stroke-linecap="round"/><path d="M8 16 L32 16 M8 22 L32 22" stroke="#006064" stroke-width="1.5"/>'},
+  {n:'Carrosserie',href:'/collections/carrosserie',bg:'#fce4ec',svg:'<path d="M6 22 L10 14 Q14 8 20 8 Q26 8 30 14 L34 22 L34 28 L6 28Z" stroke="#880e4f" stroke-width="2" fill="none"/><path d="M10 14 L30 14" stroke="#880e4f" stroke-width="1.5"/><circle cx="11" cy="28" r="3" stroke="#880e4f" stroke-width="1.8" fill="none"/><circle cx="29" cy="28" r="3" stroke="#880e4f" stroke-width="1.8" fill="none"/>'},
+  {n:'Chauffage et ventilation',href:'/search?type=product&q=chauffage+ventilation+soufflante',bg:'#fff3e0',svg:'<circle cx="20" cy="20" r="8" stroke="#e65100" stroke-width="2" fill="none"/><path d="M20 12 L20 8 M20 28 L20 32 M12 20 L8 20 M28 20 L32 20" stroke="#e65100" stroke-width="2" stroke-linecap="round"/><path d="M15 15 L12 12 M25 25 L28 28 M25 15 L28 12 M15 25 L12 28" stroke="#e65100" stroke-width="1.8" stroke-linecap="round"/>'},
+  {n:"Joints et bagues d'etancheite",href:'/search?type=product&q=joint+etancheite',bg:'#f3e5f5',svg:'<circle cx="20" cy="20" r="12" stroke="#4a148c" stroke-width="2.5" fill="none"/><circle cx="20" cy="20" r="7" stroke="#4a148c" stroke-width="1.5" fill="none" stroke-dasharray="3,2"/><circle cx="20" cy="20" r="2.5" fill="#4a148c"/>'},
+  {n:'Echappement',href:'/search?type=product&q=echappement+pot+catalyseur',bg:'#e8eaf6',svg:'<path d="M6 22 Q12 18 20 20 Q28 22 34 18" stroke="#37474f" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="34" cy="18" r="4" stroke="#37474f" stroke-width="2" fill="none"/><path d="M8 26 Q12 22 18 24" stroke="#37474f" stroke-width="2" fill="none" stroke-linecap="round"/>'},
+  {n:'Interieur',href:'/search?type=product&q=interieur+siege+tableau+bord',bg:'#fbe9e7',svg:'<path d="M8 28 L8 18 Q8 14 12 14 L16 14 Q18 10 20 10 Q22 10 24 14 L28 14 Q32 14 32 18 L32 28" stroke="#bf360c" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><line x1="8" y1="22" x2="32" y2="22" stroke="#bf360c" stroke-width="1.5"/>'},
+  {n:"Systeme d'alimentation",href:'/search?type=product&q=injecteur+pompe+carburant',bg:'#fffde7',svg:'<rect x="12" y="8" width="16" height="22" rx="3" stroke="#f9a825" stroke-width="2" fill="none"/><path d="M28 14 L32 14 L32 22 L28 22" stroke="#f9a825" stroke-width="2" fill="none"/><path d="M18 14 L22 14 M18 20 L22 20" stroke="#f9a825" stroke-width="1.5" stroke-linecap="round"/><path d="M20 30 L20 34" stroke="#f9a825" stroke-width="2.5" stroke-linecap="round"/>'},
+  {n:'Direction',href:'/search?type=product&q=direction+cremaillere+rotule',bg:'#e8f5e9',svg:'<circle cx="20" cy="18" r="10" stroke="#1b5e20" stroke-width="2.5" fill="none"/><circle cx="20" cy="18" r="3" stroke="#1b5e20" stroke-width="2" fill="none"/><path d="M10 18 L6 18 M30 18 L34 18 M20 8 L20 4" stroke="#1b5e20" stroke-width="2" stroke-linecap="round"/><line x1="20" y1="28" x2="20" y2="34" stroke="#1b5e20" stroke-width="3" stroke-linecap="round"/>'},
+  {n:'Embrayage',href:'/search?type=product&q=embrayage+disque+butee',bg:'#ffebee',svg:'<circle cx="20" cy="20" r="11" stroke="#c62828" stroke-width="2.2" fill="none"/><circle cx="20" cy="20" r="4" stroke="#c62828" stroke-width="2" fill="none"/><circle cx="20" cy="9" r="2" fill="#c62828"/><circle cx="28" cy="25" r="2" fill="#c62828"/><circle cx="12" cy="25" r="2" fill="#c62828"/>'},
+  {n:'Cardan de transmission et joint homocinetique',href:'/search?type=product&q=cardan+transmission',bg:'#e0f2f1',svg:'<line x1="6" y1="20" x2="16" y2="20" stroke="#004d40" stroke-width="3" stroke-linecap="round"/><circle cx="20" cy="20" r="5" stroke="#004d40" stroke-width="2.2" fill="none"/><line x1="24" y1="20" x2="34" y2="20" stroke="#004d40" stroke-width="3" stroke-linecap="round"/><path d="M16 16 L24 24 M16 24 L24 16" stroke="#004d40" stroke-width="1.8"/>'},
+  {n:'Suspension pneumatique',href:'/search?type=product&q=suspension+pneumatique',bg:'#e3f2fd',svg:'<rect x="14" y="10" width="12" height="20" rx="6" stroke="#1565c0" stroke-width="2.2" fill="none"/><path d="M12 16 L8 16 Q6 18 6 20 Q6 22 8 22 L12 22" stroke="#1565c0" stroke-width="1.8" fill="none"/><path d="M28 16 L32 16 Q34 18 34 20 Q34 22 32 22 L28 22" stroke="#1565c0" stroke-width="1.8" fill="none"/>'},
+  {n:'Dispositif d\'attelage / accessoires',href:'/search?type=product&q=attelage+remorque',bg:'#fff8e1',svg:'<path d="M6 22 L28 22" stroke="#f57f17" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="22" r="4" stroke="#f57f17" stroke-width="2" fill="none"/><path d="M28 16 Q32 16 32 18" stroke="#f57f17" stroke-width="2" fill="none"/><path d="M10 22 L10 26 L24 26 L24 22" stroke="#f57f17" stroke-width="1.8" fill="none"/>'},
+  {n:'Boite de vitesse',href:'/search?type=product&q=boite+vitesse',bg:'#f3e5f5',svg:'<rect x="8" y="12" width="24" height="16" rx="3" stroke="#6a1b9a" stroke-width="2" fill="none"/><circle cx="14" cy="20" r="3" stroke="#6a1b9a" stroke-width="1.8" fill="none"/><circle cx="20" cy="20" r="3" stroke="#6a1b9a" stroke-width="1.8" fill="none"/><circle cx="26" cy="20" r="3" stroke="#6a1b9a" stroke-width="1.8" fill="none"/><path d="M14 12 L14 8 M20 12 L20 8 M26 12 L26 8" stroke="#6a1b9a" stroke-width="2" stroke-linecap="round"/>'},
+  {n:'Climatisation',href:'/search?type=product&q=climatisation+compresseur+condenseur',bg:'#e0f7fa',svg:'<rect x="8" y="12" width="24" height="16" rx="2" stroke="#006064" stroke-width="2" fill="none"/><path d="M20 10 L20 8 M20 30 L20 32" stroke="#006064" stroke-width="2" stroke-linecap="round"/><path d="M14 15 L26 25 M14 25 L26 15" stroke="#006064" stroke-width="1.5" stroke-linecap="round"/><path d="M16 12 Q20 18 24 12" stroke="#006064" stroke-width="1.5" fill="none"/>'},
+  {n:'Roulements',href:'/search?type=product&q=roulement+moyeu+roue',bg:'#e8eaf6',svg:'<circle cx="20" cy="20" r="12" stroke="#283593" stroke-width="2.2" fill="none"/><circle cx="20" cy="20" r="5" stroke="#283593" stroke-width="3" fill="none"/><circle cx="20" cy="8" r="2.5" fill="#283593"/><circle cx="20" cy="32" r="2.5" fill="#283593"/><circle cx="8" cy="20" r="2.5" fill="#283593"/><circle cx="32" cy="20" r="2.5" fill="#283593"/>'},
+  {n:'Arbres de transmission et differentiels',href:'/search?type=product&q=arbre+transmission+differentiel',bg:'#fbe9e7',svg:'<line x1="6" y1="20" x2="34" y2="20" stroke="#bf360c" stroke-width="3" stroke-linecap="round"/><circle cx="12" cy="20" r="5" stroke="#bf360c" stroke-width="2" fill="none"/><circle cx="28" cy="20" r="5" stroke="#bf360c" stroke-width="2" fill="none"/><line x1="12" y1="15" x2="12" y2="25" stroke="#bf360c" stroke-width="1.5"/><line x1="28" y1="15" x2="28" y2="25" stroke="#bf360c" stroke-width="1.5"/>'},
+  {n:'Capteurs, relais, unites de commande',href:'/collections/electrique',bg:'#e8f5e9',svg:'<rect x="10" y="12" width="20" height="16" rx="2" stroke="#1b5e20" stroke-width="2" fill="none"/><circle cx="16" cy="20" r="2" fill="#1b5e20"/><circle cx="24" cy="20" r="2" fill="#1b5e20"/><line x1="14" y1="12" x2="14" y2="8" stroke="#1b5e20" stroke-width="1.8" stroke-linecap="round"/><line x1="20" y1="12" x2="20" y2="8" stroke="#1b5e20" stroke-width="1.8" stroke-linecap="round"/><line x1="26" y1="12" x2="26" y2="8" stroke="#1b5e20" stroke-width="1.8" stroke-linecap="round"/>'},
+  {n:'Accessoires voiture',href:'/search?type=product&q=accessoire+voiture',bg:'#fff3e0',svg:'<path d="M6 24 L10 16 Q14 10 20 10 Q26 10 30 16 L34 24 L34 28 L6 28Z" stroke="#e65100" stroke-width="2" fill="none"/><line x1="10" y1="16" x2="30" y2="16" stroke="#e65100" stroke-width="1.5"/><path d="M6 24 L34 24" stroke="#e65100" stroke-width="1.5"/>'},
+  {n:'Kits de reparation',href:'/search?type=product&q=kit+reparation',bg:'#e3f2fd',svg:'<rect x="8" y="16" width="24" height="18" rx="2" stroke="#1565c0" stroke-width="2" fill="none"/><path d="M14 16 L14 12 Q14 8 20 8 Q26 8 26 12 L26 16" stroke="#1565c0" stroke-width="2" fill="none"/><path d="M14 22 L26 22 M14 28 L22 28" stroke="#1565c0" stroke-width="1.5" stroke-linecap="round"/><path d="M24 26 L26 24 L28 26" stroke="#1565c0" stroke-width="1.5" fill="none" stroke-linecap="round"/>'},
+  {n:'Outillage et equipement',href:'/search?type=product&q=outillage',bg:'#ffebee',svg:'<path d="M10 30 L24 16" stroke="#b71c1c" stroke-width="3" stroke-linecap="round"/><path d="M24 16 Q28 10 32 10 Q32 14 26 18" stroke="#b71c1c" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="14" cy="26" r="4" stroke="#b71c1c" stroke-width="2" fill="none"/>'},
+  {n:'Tuyaux et conduites',href:'/search?type=product&q=tuyau+conduite+durite',bg:'#e0f2f1',svg:'<path d="M8 26 Q8 14 16 14 L24 14 Q32 14 32 22" stroke="#004d40" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="32" cy="26" r="5" stroke="#004d40" stroke-width="2" fill="none"/><path d="M8 22 L12 22 M8 26 L12 26" stroke="#004d40" stroke-width="2" stroke-linecap="round"/>'},
+  {n:"Produits de nettoyage et d'entretien",href:'/search?type=product&q=nettoyage+entretien',bg:'#e8eaf6',svg:'<path d="M16 8 L16 22 Q16 28 20 28 Q24 28 24 22 L24 8Z" stroke="#283593" stroke-width="2" fill="none"/><path d="M18 8 L22 8" stroke="#283593" stroke-width="2.5" stroke-linecap="round"/><path d="M20 8 L20 5" stroke="#283593" stroke-width="2" stroke-linecap="round"/><path d="M24 18 Q30 16 32 22 Q30 26 24 24" stroke="#283593" stroke-width="1.8" fill="none"/>'},
+  {n:'Eclairage',href:'/search?type=product&q=eclairage+feux+phare',bg:'#fffde7',svg:'<circle cx="20" cy="18" r="8" stroke="#f9a825" stroke-width="2" fill="none"/><path d="M20 6 L20 4 M20 30 L20 32 M8 18 L6 18 M32 18 L34 18 M12 10 L10 8 M30 10 L32 8 M12 26 L10 28 M30 26 L32 28" stroke="#f9a825" stroke-width="2" stroke-linecap="round"/><line x1="17" y1="32" x2="23" y2="32" stroke="#f9a825" stroke-width="2.5" stroke-linecap="round"/>'},
+  {n:'Tuning',href:'/search?type=product&q=tuning+sport+performance',bg:'#fce4ec',svg:'<path d="M6 28 L10 20 Q14 12 22 10 Q30 8 34 14 Q32 22 26 24 Q20 26 16 22 Q12 26 6 28Z" stroke="#ad1457" stroke-width="2" fill="none"/><circle cx="24" cy="16" r="3" stroke="#ad1457" stroke-width="1.8" fill="none"/>'},
+  {n:'Fixations',href:'/search?type=product&q=fixation+vis+boulon',bg:'#f3e5f5',svg:'<line x1="20" y1="8" x2="20" y2="28" stroke="#4a148c" stroke-width="3" stroke-linecap="round"/><path d="M14 12 L26 12" stroke="#4a148c" stroke-width="2.5" stroke-linecap="round"/><path d="M16 28 L24 28" stroke="#4a148c" stroke-width="2.5" stroke-linecap="round"/><path d="M18 30 Q18 34 20 34 Q22 34 22 30" stroke="#4a148c" stroke-width="2" fill="none"/>'}
+];
+
+var cg=document.getElementById('cg38');
+CAT38.forEach(function(c){
+  cg.innerHTML+='<a class="cg38-tile" href="'+c.href+'"><div class="cg38-img" style="background:'+c.bg+'"><svg width="52" height="52" viewBox="0 0 40 40" fill="none">'+c.svg+'</svg></div><div class="cg38-name">'+c.n+'</div></a>';
+});
+
+/* ===== A-Z SIDEBAR ===== */
+var AZ={A:["3e feu de stop","Actuateur de ralenti","Actuateur turbo","Additif carburant","Aile","Ajusteur frein a tambour","Allumeur et composants","Alternateur","Amortisseur","Amortisseur de direction","Amortisseur pneumatique","Anneau d'etancheite","Arbre a cames","Arbre de transmission","Axe de piston"],B:["Balai d'essuie-glace","Barre de direction","Barre stabilisatrice","Batterie","Biellette de barre stabilisatrice","Bobine d'allumage","Boite de vitesse","Boitier de direction","Boitier papillon","Bouchon de radiateur","Bougie d'allumage","Bougie de prechauffage","Boulon de roue","Butee de suspension","Butee d'embrayage"],C:["Cable d'accelerateur","Cable d'embrayage","Cable de frein a main","Calculateur moteur (ECU)","Capteur ABS","Capteur d'arbre a cames","Capteur de debit d'air","Capteur de pression","Capteur de temperature","Capteur de vilebrequin","Capteur d'oxygene (sonde lambda)","Carburateur","Carter d'huile","Carter de distribution","Catalyseur","Chaine de distribution","Charniere de capot","Climatiseur (compresseur)","Collecteur d'admission","Collecteur d'echappement","Condenseur de climatisation","Courroie accessoire","Courroie de distribution","Coussinet de bielle","Cremaillere de direction","Culasse","Cylindre de frein"],D:["Debitmetre d'air (MAF)","Demarreur","Deshydrateur clim","Detendeur de climatisation","Differentiel","Disque de frein avant","Disque de frein arriere","Durite de radiateur"],E:["Echangeur de chaleur (intercooler)","Embrayage (kit complet)","Enjoliveur de roue","Essuie-glace (moteur)","Etrier de frein"],F:["Filtre a air","Filtre a carburant","Filtre a huile","Filtre d'habitacle","Filtre deshydrateur","Flexible de frein","Fusee d'essieu"],G:["Galet enrouleur","Galet tendeur","Garniture de tambour","Gicleur de lave-glace","Glace de retroviseur","Groupe moto-ventilateur"],H:["Huile de boite","Huile moteur","Liquide de frein DOT4","Liquide de refroidissement"],I:["Injecteur de carburant","Intercooler","Interrupteur"],J:["Jante acier","Jante aluminium","Joint d'arbre","Joint de cardan","Joint de culasse","Joint de porte","Joint spi"],K:["Kit courroie de distribution","Kit d'embrayage","Kit de distribution + pompe a eau","Kit filtres entretien","Kit joints moteur"],L:["Leve-vitre (moteur)","Liquide de direction assistee","Liquide de refroidissement / antigel"],M:["Maitre-cylindre de frein","Moteur d'essuie-glace","Moteur de leve-vitre","Moyeu de roue"],N:["Noix de cardan","Niveaux huile"],O:["Optique de phare avant","Optique de phare arriere","Outillage special"],P:["Palier d'arbre a cames","Pare-chocs avant","Pare-chocs arriere","Phare / projecteur","Plaquettes de frein avant","Plaquettes de frein arriere","Pompe a carburant","Pompe a eau","Pompe a huile","Pompe de direction assistee","Pompe de lave-glace","Pot catalytique","Pot d'echappement","Poulie de vilebrequin"],R:["Radiateur","Radiateur de chauffage","Recepteur d'embrayage","Regulateur d'alternateur","Relais","Renfort de pare-chocs","Ressort de suspension avant","Ressort de suspension arriere","Retroviseur exterieur gauche","Retroviseur exterieur droit","Rotule de direction","Rotule de triangle","Roulement de roue avant","Roulement de roue arriere"],S:["Segment de piston","Serrure de porte","Servofrein","Silencieux","Silent-bloc","Sonde lambda","Sonde de temperature","Soufflet de cardan","Soufflet de direction","Soupape d'admission","Stabilisateur"],T:["Tambour de frein","Tendeur de courroie","Thermostat","Triangle de suspension avant","Triangle de suspension arriere","Turbocompresseur","Tuyau d'echappement","Tuyau de refroidissement"],V:["Vanne EGR","Vanne wastegate","Vase d'expansion","Ventilateur de radiateur","Volant bimasse","Volant moteur"]};
 function buildSb(){var h='';for(var l in AZ){h+='<div class="sbg" data-l="'+l+'"><h4>'+l+'</h4><ul>';AZ[l].forEach(function(x){h+='<li><a href="/search?type=product&q='+encodeURIComponent(x.replace(/[()\'\/]/g,''))+'">'+x+'</a></li>';});h+='</ul></div>';}document.getElementById('sb-list').innerHTML=h;}
 buildSb();
 function sbFilter(q){q=q.toLowerCase().trim();document.querySelectorAll('.sbg').forEach(function(g){var v=false;g.querySelectorAll('li').forEach(function(li){var m=!q||li.textContent.toLowerCase().includes(q);li.classList.toggle('sbih',!m);if(m)v=true;});g.style.display=v?'':'none';});document.querySelectorAll('.sb-ltrs button').forEach(function(b){b.classList.remove('sba');});document.querySelector('.sb-ltrs button').classList.add('sba');}
 function sbL(l,btn){document.querySelectorAll('.sb-ltrs button').forEach(function(b){b.classList.remove('sba');});btn.classList.add('sba');document.getElementById('sbIn').value='';document.querySelectorAll('.sbg').forEach(function(g){var s=!l||g.dataset.l===l;g.style.display=s?'':'none';g.querySelectorAll('li').forEach(function(li){li.classList.remove('sbih');});});}
-function vsTab(t,btn){document.querySelectorAll('.vs-tab').forEach(function(b){b.classList.remove('active');});btn.classList.add('active');document.getElementById('vs-m').style.display=t==='m'?'':'none';document.getElementById('vs-i').style.display=t==='i'?'':'none';}
-var VDB={"Alfa Romeo":{"147":["1.6i 16V","1.9 JTD"],"156":["1.8 16V","2.0 JTS","1.9 JTD"],"Giulietta":["1.4 TB","1.6 JTDm"]},"Audi":{"A3":["1.4 TFSI","1.6 TDI","2.0 TDI"],"A4":["1.8 TFSI","2.0 TDI","1.9 TDI"],"A6":["2.0 TDI","2.4","3.0 TDI"],"Q5":["2.0 TDI","3.0 TDI"]},"BMW":{"Série 1":["116i","118d","118i","120d"],"Série 3":["316i","318d","320d","320i","325i"],"Série 5":["520d","523i","525d"],"X3":["2.0d","xDrive20d"]},"Citroën":{"Berlingo":["1.4","1.6 HDI","1.9 D"],"C3":["1.1","1.2 PureTech","1.4","1.6 HDI"],"C4":["1.4","1.6","1.6 HDI","2.0"],"C5":["1.8","2.0 HDI","1.6 HDI"],"Xsara":["1.4","1.6","1.8","2.0 HDI"]},"Dacia":{"Duster":["1.2 TCe","1.5 dCi","1.6 SCe"],"Logan":["1.2","1.4","1.6","1.5 dCi"],"Sandero":["0.9 TCe","1.2","1.5 dCi"]},"Fiat":{"500":["1.2","1.3 Multijet","0.9 TwinAir"],"Punto":["1.2","1.4","1.3 Multijet"],"Bravo":["1.4 T-Jet","1.6 Multijet"]},"Ford":{"Fiesta":["1.0 EcoBoost","1.25","1.6 TDCi"],"Focus":["1.0 EcoBoost","1.6","1.8 TDCi","2.0"],"Mondeo":["2.0 TDCi","1.6 TDCi","2.0"]},"Honda":{"Civic":["1.4","1.6","1.8","2.2 CTDi"],"CR-V":["2.0","2.2 i-DTEC"],"Jazz":["1.2","1.3"]},"Hyundai":{"Accent":["1.4","1.6","1.5 CRDi"],"i20":["1.2","1.4","1.1 CRDi"],"i30":["1.4","1.6","1.6 CRDi"],"Tucson":["1.6","2.0","1.7 CRDi"]},"Kia":{"Ceed":["1.4","1.6","1.6 CRDi"],"Picanto":["1.0","1.2"],"Rio":["1.2","1.4","1.1 CRDi"],"Sportage":["1.6","2.0","1.7 CRDi"]},"Lada":{"Niva":["1.7i","1.7i 4x4"],"Priora":["1.6"],"Vesta":["1.6"]},"Mercedes":{"Classe A":["A 160","A 180","A 200","A 180 CDI"],"Classe C":["C 180","C 200","C 220 CDI","C 250"],"Classe E":["E 200","E 220 CDI","E 250"]},"Nissan":{"Micra":["1.0","1.2","1.4"],"Qashqai":["1.6","2.0","1.5 dCi"],"Note":["1.4","1.6"]},"Opel":{"Astra":["1.4","1.6","1.4 Turbo","1.7 CDTI"],"Corsa":["1.0","1.2","1.4","1.3 CDTI"],"Zafira":["1.6","1.8","2.0 CDTI"]},"Peugeot":{"206":["1.1","1.4","1.6","2.0","1.4 HDI","1.6 HDI","2.0 HDI"],"207":["1.4","1.6","1.4 HDI","1.6 HDI"],"307":["1.4","1.6","2.0","1.6 HDI","2.0 HDI"],"308":["1.2 PureTech","1.6","1.6 BlueHDI","2.0 HDI"],"Partner":["1.4","1.6","1.6 HDI"]},"Renault":{"Clio":["1.2","1.4","1.6","1.5 dCi","1.2 TCe"],"Kangoo":["1.2","1.6","1.5 dCi"],"Logan":["1.2","1.4","1.6","1.5 dCi"],"Mégane":["1.4","1.6","2.0","1.5 dCi"],"Symbol":["1.2","1.4","1.5 dCi"]},"Seat":{"Ibiza":["1.2","1.4","1.6 TDI","1.2 TSI"],"Leon":["1.4 TSI","1.6","1.6 TDI","2.0 TDI"]},"Skoda":{"Fabia":["1.2","1.4","1.6 TDI","1.2 TSI"],"Octavia":["1.4 TSI","1.6 TDI","2.0 TDI"]},"Toyota":{"Corolla":["1.3","1.6","1.8","2.0 D-4D"],"Yaris":["1.0","1.33","1.4 D-4D"]},"Volkswagen":{"Golf":["1.2 TSI","1.4 TSI","1.6 TDI","2.0 TDI","1.8 TSI"],"Passat":["1.4 TSI","1.6 TDI","2.0 TDI"],"Polo":["1.0","1.2","1.4","1.2 TSI","1.4 TDI"]},"Volvo":{"S40":["1.6","1.8","2.0","1.6D"],"V50":["1.6","1.8","2.0","1.6 D"]}};
-var makeEl=document.getElementById('vsMake');Object.keys(VDB).sort().forEach(function(m){makeEl.innerHTML+='<option value="'+m+'">'+m+'</option>';});
-function vsModels(){var mk=document.getElementById('vsMake').value,mEl=document.getElementById('vsMod'),eEl=document.getElementById('vsEng');mEl.innerHTML='<option value="">Choisissez un modèle</option>';eEl.innerHTML='<option value="">Choisissez une motorisation</option>';mEl.disabled=!mk;eEl.disabled=true;if(!mk)return;Object.keys(VDB[mk]).sort().forEach(function(m){mEl.innerHTML+='<option value="'+m+'">'+m+'</option>';});}
-function vsEngines(){var mk=document.getElementById('vsMake').value,md=document.getElementById('vsMod').value,eEl=document.getElementById('vsEng');eEl.innerHTML='<option value="">Choisissez une motorisation</option>';eEl.disabled=!md;if(!mk||!md||!VDB[mk]||!VDB[mk][md])return;VDB[mk][md].forEach(function(e){eEl.innerHTML+='<option value="'+e+'">'+e+'</option>';});}
-function vsGo(){var mk=document.getElementById('vsMake').value,md=document.getElementById('vsMod').value,eg=document.getElementById('vsEng').value;if(!mk){alert('Veuillez sélectionner une marque');return;}window.location='/pages/recherche-pieces?marque='+encodeURIComponent(mk)+'&modele='+encodeURIComponent(md)+'&motorisation='+encodeURIComponent(eg);}
-function immatGo(){var v=document.getElementById('immatIn').value.trim();if(!v){alert('Entrez un numéro d\'immatriculation');return;}window.location='/pages/recherche-pieces?immat='+encodeURIComponent(v);}
-fetch('/products.json?limit=12&sort_by=created-descending').then(function(r){return r.json();}).then(function(d){var ps=d.products||[];var h='';ps.slice(0,12).forEach(function(p){var img=p.images&&p.images.length?'<img src="'+p.images[0].src+'" alt="">':'<div class="ni">🔧</div>';var price=p.variants&&p.variants.length?parseInt(p.variants[0].price||0).toLocaleString('fr-DZ')+' DZD':'&mdash;';h+='<a class="pc" href="/products/'+p.handle+'"><div class="pc-img">'+img+'</div><div class="pc-body"><div class="pc-title">'+p.title+'</div><div class="pc-price">'+price+'</div><div class="pc-btn">Voir le produit</div></div></a>';});document.getElementById('prods-grid').innerHTML=h||'<p style="color:#999">Aucun produit</p>';}).catch(function(){document.getElementById('prods-grid').innerHTML='';});
+
+/* ===== PRODUCTS FETCH ===== */
+fetch('/products.json?limit=12&sort_by=created-descending').then(function(r){return r.json();}).then(function(d){
+  var ps=d.products||[];var h='';
+  ps.slice(0,12).forEach(function(p){
+    var img=p.images&&p.images.length?'<img src="'+p.images[0].src+'" alt="">':'<svg width="48" height="48" viewBox="0 0 40 40" fill="none"><path d="M5 28 L9 28 Q11 20 18 18 L22 18 Q29 20 31 28 L35 28 L35 32 L5 32Z" stroke="#ccc" stroke-width="2" fill="none"/><path d="M13 18 Q15 10 20 8 Q25 10 27 18" stroke="#ccc" stroke-width="1.8" fill="none"/><circle cx="12" cy="30" r="3" stroke="#ccc" stroke-width="1.8" fill="none"/><circle cx="28" cy="30" r="3" stroke="#ccc" stroke-width="1.8" fill="none"/></svg>';
+    var price=p.variants&&p.variants.length?parseInt(p.variants[0].price||0).toLocaleString('fr-DZ')+' DZD':'&mdash;';
+    h+='<a class="pc" href="/products/'+p.handle+'"><div class="pc-img">'+img+'</div><div class="pc-body"><div class="pc-title">'+p.title+'</div><div class="pc-price">'+price+'</div><div class="pc-btn">Voir le produit</div></div></a>';
+  });
+  document.getElementById('prods-grid').innerHTML=h||'<p style="color:#999">Aucun produit disponible</p>';
+}).catch(function(){document.getElementById('prods-grid').innerHTML='';});
 </script>
