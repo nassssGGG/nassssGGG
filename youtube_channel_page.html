@@ -1,0 +1,497 @@
+<!-- Page Shopify : Chaîne YouTube AutoPièces DZ -->
+<!-- URL : /pages/chaine-youtube -->
+<!-- Sections : info chaîne, vidéo vedette, grille tutos, CTA abonnement -->
+
+<style>
+.page-content{max-width:none!important;padding:0!important;margin:0!important;background:transparent!important;border:none!important;border-radius:0!important;box-shadow:none!important}
+.page-content>h1:first-of-type{display:none!important}
+#yt{font-family:'Roboto',Arial,sans-serif;background:#f4f5f6;color:#1a1a1a;min-height:100vh}
+
+/* ─── Channel Hero ─── */
+#yt-hero{background:linear-gradient(160deg,#1b3e5f 0%,#0d2235 55%,#0a1a2b 100%);padding:36px 0 32px;position:relative;overflow:hidden}
+#yt-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none}
+.yt-hero-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:28px;position:relative}
+.yt-channel-avatar{width:88px;height:88px;border-radius:50%;background:#ff6b00;display:flex;align-items:center;justify-content:center;flex-shrink:0;border:3px solid rgba(255,255,255,.2);font-size:2.2rem;font-weight:900;color:#fff;letter-spacing:-1px;box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.yt-channel-info{flex:1;min-width:0}
+.yt-channel-info h1{font-size:1.6rem;font-weight:800;color:#fff;margin:0 0 4px;letter-spacing:-.3px}
+.yt-channel-info p{color:#93aec4;font-size:.85rem;margin:0 0 14px;line-height:1.5}
+.yt-channel-meta{display:flex;flex-wrap:wrap;gap:18px;margin-bottom:16px}
+.yt-meta-item{display:flex;align-items:center;gap:6px;color:#b8cfe0;font-size:.8rem}
+.yt-meta-item svg{flex-shrink:0;opacity:.7}
+.yt-subscribe-btn{display:inline-flex;align-items:center;gap:8px;background:#ff0000;color:#fff;border:none;border-radius:24px;padding:11px 24px;font-size:.88rem;font-weight:700;cursor:pointer;text-decoration:none;transition:all .2s;box-shadow:0 2px 12px rgba(255,0,0,.35)}
+.yt-subscribe-btn:hover{background:#cc0000;text-decoration:none;color:#fff;transform:translateY(-1px);box-shadow:0 4px 18px rgba(255,0,0,.4)}
+.yt-subscribe-btn svg{flex-shrink:0}
+.yt-yt-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);border-radius:4px;padding:4px 10px;color:#93aec4;font-size:.72rem;font-weight:600;margin-left:12px;vertical-align:middle}
+
+/* ─── Section wrappers ─── */
+.yt-section{max-width:1200px;margin:0 auto;padding:28px 24px 0}
+.yt-section-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #ff6b00}
+.yt-section-head h2{font-size:1rem;font-weight:800;color:#1b3e5f;margin:0;display:flex;align-items:center;gap:8px}
+.yt-section-head h2 span.yt-dot{display:inline-block;width:8px;height:8px;background:#ff6b00;border-radius:50%;flex-shrink:0}
+.yt-see-all{font-size:.78rem;color:#ff6b00;text-decoration:none;font-weight:600}
+.yt-see-all:hover{color:#e05e00;text-decoration:underline}
+
+/* ─── Featured video ─── */
+#yt-featured{background:#fff;border-bottom:3px solid #f4f5f6}
+.yt-featured-inner{max-width:1200px;margin:0 auto;padding:28px 24px;display:grid;grid-template-columns:1fr 380px;gap:24px;align-items:start}
+.yt-embed-wrap{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:8px;box-shadow:0 6px 28px rgba(0,0,0,.18);background:#000}
+.yt-embed-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:none;border-radius:8px}
+.yt-featured-info{display:flex;flex-direction:column;gap:12px}
+.yt-featured-info h3{font-size:1.05rem;font-weight:800;color:#1b3e5f;margin:0;line-height:1.4}
+.yt-featured-info p{font-size:.82rem;color:#555;line-height:1.6;margin:0}
+.yt-featured-badge{display:inline-flex;align-items:center;gap:5px;background:#fff3e8;border:1px solid #ffd4a8;color:#ff6b00;font-size:.7rem;font-weight:700;border-radius:20px;padding:4px 10px;align-self:flex-start}
+.yt-featured-meta{display:flex;gap:14px}
+.yt-featured-meta span{font-size:.75rem;color:#888;display:flex;align-items:center;gap:4px}
+.yt-watch-btn{display:inline-flex;align-items:center;gap:8px;background:#1b3e5f;color:#fff;border-radius:5px;padding:11px 22px;font-size:.85rem;font-weight:700;text-decoration:none;transition:all .2s;align-self:flex-start;margin-top:4px}
+.yt-watch-btn:hover{background:#ff6b00;text-decoration:none;color:#fff}
+
+/* ─── Videos grid ─── */
+.yt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:4px}
+.yt-card{background:#fff;border:1px solid #e8e8e8;border-radius:6px;overflow:hidden;text-decoration:none;color:#1a1a1a;transition:all .2s;display:flex;flex-direction:column}
+.yt-card:hover{box-shadow:0 4px 18px rgba(255,107,0,.18);border-color:#ff6b00;transform:translateY(-2px);text-decoration:none;color:#1a1a1a}
+.yt-thumb{position:relative;padding-bottom:56.25%;background:#0d2235;overflow:hidden}
+.yt-thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.yt-card:hover .yt-thumb img{transform:scale(1.04)}
+.yt-play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.15);transition:background .2s}
+.yt-card:hover .yt-play-overlay{background:rgba(0,0,0,.3)}
+.yt-play-btn{width:44px;height:44px;background:rgba(255,0,0,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.yt-card:hover .yt-play-btn{transform:scale(1.12)}
+.yt-play-btn svg{margin-left:3px}
+.yt-duration{position:absolute;bottom:6px;right:6px;background:rgba(0,0,0,.8);color:#fff;font-size:.65rem;font-weight:700;padding:2px 5px;border-radius:3px}
+.yt-cat-tag{position:absolute;top:6px;left:6px;background:#ff6b00;color:#fff;font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:3px;text-transform:uppercase;letter-spacing:.3px}
+.yt-card-body{padding:10px 12px 12px;flex:1;display:flex;flex-direction:column;gap:6px}
+.yt-card-title{font-size:.78rem;font-weight:700;color:#1b3e5f;line-height:1.4;flex:1}
+.yt-card-meta{display:flex;justify-content:space-between;align-items:center}
+.yt-card-meta span{font-size:.67rem;color:#999}
+.yt-card-views{display:flex;align-items:center;gap:3px;font-size:.67rem;color:#888}
+
+/* ─── Playlists ─── */
+.yt-playlists{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:4px}
+.yt-playlist{background:#fff;border:1px solid #e8e8e8;border-radius:6px;overflow:hidden;text-decoration:none;color:#1a1a1a;transition:all .2s;display:flex;align-items:center;gap:0}
+.yt-playlist:hover{box-shadow:0 3px 14px rgba(0,0,0,.1);border-color:#1b3e5f;text-decoration:none;color:#1a1a1a}
+.yt-pl-icon{width:72px;height:72px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.9rem;background:linear-gradient(135deg,#1b3e5f,#0d2235)}
+.yt-pl-info{padding:12px 14px;flex:1;min-width:0}
+.yt-pl-info h4{font-size:.8rem;font-weight:700;color:#1b3e5f;margin:0 0 3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.yt-pl-info p{font-size:.7rem;color:#888;margin:0}
+.yt-pl-count{font-size:.68rem;color:#ff6b00;font-weight:700;margin-top:4px;display:block}
+.yt-pl-arr{padding-right:14px;color:#ccc;font-size:1.1rem;transition:color .2s}
+.yt-playlist:hover .yt-pl-arr{color:#ff6b00}
+
+/* ─── Subscribe CTA ─── */
+#yt-cta{background:linear-gradient(135deg,#1b3e5f 0%,#0d2235 100%);margin:28px 0 0;padding:44px 24px}
+.yt-cta-inner{max-width:700px;margin:0 auto;text-align:center}
+#yt-cta .yt-yt-icon{font-size:3.2rem;margin-bottom:12px;filter:drop-shadow(0 2px 8px rgba(255,0,0,.4))}
+#yt-cta h2{font-size:1.4rem;font-weight:800;color:#fff;margin:0 0 8px}
+#yt-cta p{color:#93aec4;font-size:.88rem;line-height:1.6;margin:0 0 24px}
+.yt-cta-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.yt-cta-sub{display:inline-flex;align-items:center;gap:8px;background:#ff0000;color:#fff;border-radius:24px;padding:13px 28px;font-size:.92rem;font-weight:700;text-decoration:none;transition:all .2s;box-shadow:0 3px 14px rgba(255,0,0,.35)}
+.yt-cta-sub:hover{background:#cc0000;text-decoration:none;color:#fff;transform:translateY(-2px);box-shadow:0 6px 22px rgba(255,0,0,.4)}
+.yt-cta-bell{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:24px;padding:13px 24px;font-size:.88rem;font-weight:600;text-decoration:none;transition:all .2s}
+.yt-cta-bell:hover{background:rgba(255,255,255,.2);text-decoration:none;color:#fff}
+.yt-stats-row{display:flex;justify-content:center;gap:36px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1)}
+.yt-stat{text-align:center}
+.yt-stat strong{display:block;font-size:1.5rem;font-weight:800;color:#fff}
+.yt-stat span{font-size:.72rem;color:#93aec4;text-transform:uppercase;letter-spacing:.5px}
+
+/* ─── Separator space ─── */
+.yt-spacer{height:28px}
+
+/* ─── Responsive ─── */
+@media(max-width:1000px){.yt-featured-inner{grid-template-columns:1fr}.yt-featured-info h3{font-size:.95rem}.yt-grid{grid-template-columns:repeat(3,1fr)}.yt-playlists{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.yt-grid{grid-template-columns:repeat(2,1fr)}.yt-playlists{grid-template-columns:1fr}.yt-hero-inner{flex-direction:column;text-align:center;align-items:center}.yt-channel-meta{justify-content:center}.yt-channel-avatar{width:72px;height:72px;font-size:1.7rem}.yt-channel-info h1{font-size:1.25rem}.yt-stats-row{gap:20px}}
+@media(max-width:480px){.yt-grid{grid-template-columns:1fr}}
+</style>
+
+<div id="yt">
+
+  <!-- ═══ HERO CHAÎNE ═══ -->
+  <section id="yt-hero">
+    <div class="yt-hero-inner">
+      <div class="yt-channel-avatar">AP</div>
+      <div class="yt-channel-info">
+        <h1>AutoPièces DZ
+          <span class="yt-yt-badge">
+            <svg width="14" height="10" viewBox="0 0 14 10" fill="#ff0000"><path d="M13.7 1.56A1.76 1.76 0 0 0 12.46.3C11.37 0 7 0 7 0S2.63 0 1.54.3A1.76 1.76 0 0 0 .3 1.56 18.4 18.4 0 0 0 0 5a18.4 18.4 0 0 0 .3 3.44A1.76 1.76 0 0 0 1.54 9.7C2.63 10 7 10 7 10s4.37 0 5.46-.3a1.76 1.76 0 0 0 1.24-1.26A18.4 18.4 0 0 0 14 5a18.4 18.4 0 0 0-.3-3.44z"/><polygon fill="#fff" points="5.6,7.1 9.24,5 5.6,2.9"/></svg>
+            YouTube
+          </span>
+        </h1>
+        <p>Tutoriels d'entretien auto, tutos de montage de pièces, conseils mécaniques — pour les véhicules les plus répandus en Algérie.</p>
+        <div class="yt-channel-meta">
+          <span class="yt-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <strong style="color:#fff">12 400</strong>&nbsp;abonnés
+          </span>
+          <span class="yt-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+            <strong style="color:#fff">87</strong>&nbsp;vidéos
+          </span>
+          <span class="yt-meta-item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <strong style="color:#fff">340 000</strong>&nbsp;vues totales
+          </span>
+        </div>
+        <a href="https://www.youtube.com/@AutoPiecesDZ" target="_blank" rel="noopener" class="yt-subscribe-btn">
+          <svg width="18" height="13" viewBox="0 0 18 13" fill="currentColor"><path d="M17.6 2.02A2.26 2.26 0 0 0 16.02.43C14.63 0 9 0 9 0S3.37 0 1.98.43A2.26 2.26 0 0 0 .4 2.02 23.76 23.76 0 0 0 0 6.5a23.76 23.76 0 0 0 .4 4.48A2.26 2.26 0 0 0 1.98 12.57C3.37 13 9 13 9 13s5.63 0 7.02-.43a2.26 2.26 0 0 0 1.58-1.59A23.76 23.76 0 0 0 18 6.5a23.76 23.76 0 0 0-.4-4.48z"/><polygon fill="#ff0000" points="7.2,9.3 11.88,6.5 7.2,3.7"/></svg>
+          S'abonner
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ VIDÉO VEDETTE ═══ -->
+  <div id="yt-featured">
+    <div class="yt-featured-inner">
+      <div class="yt-embed-wrap">
+        <!-- Remplacer VIDEO_ID_VEDETTE par l'ID YouTube réel de la vidéo vedette -->
+        <iframe
+          src="https://www.youtube.com/embed/VIDEO_ID_VEDETTE?rel=0&modestbranding=1&color=white"
+          title="Vidéo vedette — AutoPièces DZ"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          loading="lazy">
+        </iframe>
+      </div>
+      <div class="yt-featured-info">
+        <span class="yt-featured-badge">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="#ff6b00"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          Vidéo vedette
+        </span>
+        <h3>Comment changer les plaquettes de frein — Renault Clio / Dacia Logan</h3>
+        <p>Dans ce tutoriel complet, on vous montre étape par étape comment remplacer les plaquettes de frein avant sur les modèles les plus répandus en Algérie. Outillage nécessaire, démontage de l'étrier, mise en place des nouvelles plaquettes et rodage.</p>
+        <div class="yt-featured-meta">
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            28 400 vues
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            12 min 34 s
+          </span>
+          <span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3H14z"/><path d="M7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/></svg>
+            1 240 j'aime
+          </span>
+        </div>
+        <a href="https://www.youtube.com/watch?v=VIDEO_ID_VEDETTE" target="_blank" rel="noopener" class="yt-watch-btn">
+          <svg width="16" height="12" viewBox="0 0 18 13" fill="currentColor"><path d="M17.6 2.02A2.26 2.26 0 0 0 16.02.43C14.63 0 9 0 9 0S3.37 0 1.98.43A2.26 2.26 0 0 0 .4 2.02 23.76 23.76 0 0 0 0 6.5a23.76 23.76 0 0 0 .4 4.48A2.26 2.26 0 0 0 1.98 12.57C3.37 13 9 13 9 13s5.63 0 7.02-.43a2.26 2.26 0 0 0 1.58-1.59A23.76 23.76 0 0 0 18 6.5a23.76 23.76 0 0 0-.4-4.48z"/><polygon fill="#ff0000" points="7.2,9.3 11.88,6.5 7.2,3.7"/></svg>
+          Regarder sur YouTube
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DERNIÈRES VIDÉOS ═══ -->
+  <div class="yt-section">
+    <div class="yt-section-head">
+      <h2><span class="yt-dot"></span>Dernières vidéos</h2>
+      <a href="https://www.youtube.com/@AutoPiecesDZ/videos" target="_blank" rel="noopener" class="yt-see-all">Voir toutes les vidéos →</a>
+    </div>
+    <div class="yt-grid" id="yt-latest-grid">
+
+      <!-- Carte 1 -->
+      <a href="https://www.youtube.com/watch?v=VID_1" target="_blank" rel="noopener" class="yt-card">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/VID_1/hqdefault.jpg" alt="Filtre huile — K9K 1.5 dCi" loading="lazy">
+          <div class="yt-play-overlay">
+            <div class="yt-play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <span class="yt-duration">8:12</span>
+          <span class="yt-cat-tag">Filtration</span>
+        </div>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Changer le filtre à huile — Renault K9K 1.5 dCi (Logan, Clio, Megane)</div>
+          <div class="yt-card-meta">
+            <span class="yt-card-views">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              14 200 vues
+            </span>
+            <span>il y a 3 j</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Carte 2 -->
+      <a href="https://www.youtube.com/watch?v=VID_2" target="_blank" rel="noopener" class="yt-card">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/VID_2/hqdefault.jpg" alt="Kit distribution VW TDI" loading="lazy">
+          <div class="yt-play-overlay">
+            <div class="yt-play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <span class="yt-duration">22:45</span>
+          <span class="yt-cat-tag">Distribution</span>
+        </div>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Remplacement kit distribution — VW Golf / Polo 1.9 TDI (pas à pas)</div>
+          <div class="yt-card-meta">
+            <span class="yt-card-views">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              31 800 vues
+            </span>
+            <span>il y a 1 sem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Carte 3 -->
+      <a href="https://www.youtube.com/watch?v=VID_3" target="_blank" rel="noopener" class="yt-card">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/VID_3/hqdefault.jpg" alt="Amortisseurs Dacia Sandero" loading="lazy">
+          <div class="yt-play-overlay">
+            <div class="yt-play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <span class="yt-duration">16:20</span>
+          <span class="yt-cat-tag">Suspension</span>
+        </div>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Changer les amortisseurs avant — Dacia Sandero / Logan sans pont</div>
+          <div class="yt-card-meta">
+            <span class="yt-card-views">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              9 750 vues
+            </span>
+            <span>il y a 2 sem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Carte 4 -->
+      <a href="https://www.youtube.com/watch?v=VID_4" target="_blank" rel="noopener" class="yt-card">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/VID_4/hqdefault.jpg" alt="Bougies NGK Peugeot" loading="lazy">
+          <div class="yt-play-overlay">
+            <div class="yt-play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <span class="yt-duration">6:54</span>
+          <span class="yt-cat-tag">Électrique</span>
+        </div>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Changer les bougies d'allumage — Peugeot 206 / 207 / 307 TU5</div>
+          <div class="yt-card-meta">
+            <span class="yt-card-views">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              7 300 vues
+            </span>
+            <span>il y a 3 sem</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Carte 5 -->
+      <a href="https://www.youtube.com/watch?v=VID_5" target="_blank" rel="noopener" class="yt-card">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/VID_5/hqdefault.jpg" alt="Disques de frein Zimmermann" loading="lazy">
+          <div class="yt-play-overlay">
+            <div class="yt-play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <span class="yt-duration">14:07</span>
+          <span class="yt-cat-tag">Freinage</span>
+        </div>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Remplacement disques + plaquettes — Peugeot 307 / 308 / Citroën C4</div>
+          <div class="yt-card-meta">
+            <span class="yt-card-views">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              22 600 vues
+            </span>
+            <span>il y a 1 mois</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Carte 6 -->
+      <a href="https://www.youtube.com/watch?v=VID_6" target="_blank" rel="noopener" class="yt-card">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/VID_6/hqdefault.jpg" alt="Vidange huile moteur" loading="lazy">
+          <div class="yt-play-overlay">
+            <div class="yt-play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <span class="yt-duration">10:33</span>
+          <span class="yt-cat-tag">Huiles</span>
+        </div>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Vidange complète — choisir la bonne huile pour votre moteur en Algérie</div>
+          <div class="yt-card-meta">
+            <span class="yt-card-views">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              18 900 vues
+            </span>
+            <span>il y a 1 mois</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Carte 7 -->
+      <a href="https://www.youtube.com/watch?v=VID_7" target="_blank" rel="noopener" class="yt-card">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/VID_7/hqdefault.jpg" alt="Embrayage Renault" loading="lazy">
+          <div class="yt-play-overlay">
+            <div class="yt-play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <span class="yt-duration">38:15</span>
+          <span class="yt-cat-tag">Moteur</span>
+        </div>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Changer le kit embrayage LuK — Renault Clio III / Dacia Logan 1.6</div>
+          <div class="yt-card-meta">
+            <span class="yt-card-views">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              41 200 vues
+            </span>
+            <span>il y a 2 mois</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Carte 8 -->
+      <a href="https://www.youtube.com/watch?v=VID_8" target="_blank" rel="noopener" class="yt-card">
+        <div class="yt-thumb">
+          <img src="https://img.youtube.com/vi/VID_8/hqdefault.jpg" alt="Capteur vilebrequin" loading="lazy">
+          <div class="yt-play-overlay">
+            <div class="yt-play-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+          </div>
+          <span class="yt-duration">11:48</span>
+          <span class="yt-cat-tag">Électrique</span>
+        </div>
+        <div class="yt-card-body">
+          <div class="yt-card-title">Capteur vilebrequin défaillant — symptômes, diagnostic et remplacement</div>
+          <div class="yt-card-meta">
+            <span class="yt-card-views">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              6 100 vues
+            </span>
+            <span>il y a 2 mois</span>
+          </div>
+        </div>
+      </a>
+
+    </div><!-- /yt-grid -->
+  </div><!-- /yt-section -->
+
+  <div class="yt-spacer"></div>
+
+  <!-- ═══ PLAYLISTS PAR CATÉGORIE ═══ -->
+  <div class="yt-section">
+    <div class="yt-section-head">
+      <h2><span class="yt-dot"></span>Playlists par catégorie</h2>
+      <a href="https://www.youtube.com/@AutoPiecesDZ/playlists" target="_blank" rel="noopener" class="yt-see-all">Toutes les playlists →</a>
+    </div>
+    <div class="yt-playlists">
+
+      <a href="https://www.youtube.com/@AutoPiecesDZ/playlists" target="_blank" rel="noopener" class="yt-playlist">
+        <div class="yt-pl-icon">🔧</div>
+        <div class="yt-pl-info">
+          <h4>Freinage &amp; Sécurité</h4>
+          <p>Plaquettes, disques, étriers, ABS</p>
+          <span class="yt-pl-count">14 vidéos</span>
+        </div>
+        <span class="yt-pl-arr">›</span>
+      </a>
+
+      <a href="https://www.youtube.com/@AutoPiecesDZ/playlists" target="_blank" rel="noopener" class="yt-playlist">
+        <div class="yt-pl-icon">⚙️</div>
+        <div class="yt-pl-info">
+          <h4>Distribution &amp; Courroies</h4>
+          <p>Kits distribution, courroie accessoires</p>
+          <span class="yt-pl-count">11 vidéos</span>
+        </div>
+        <span class="yt-pl-arr">›</span>
+      </a>
+
+      <a href="https://www.youtube.com/@AutoPiecesDZ/playlists" target="_blank" rel="noopener" class="yt-playlist">
+        <div class="yt-pl-icon">🛢️</div>
+        <div class="yt-pl-info">
+          <h4>Vidange &amp; Filtration</h4>
+          <p>Huiles, filtres huile/air/carburant/habitacle</p>
+          <span class="yt-pl-count">18 vidéos</span>
+        </div>
+        <span class="yt-pl-arr">›</span>
+      </a>
+
+      <a href="https://www.youtube.com/@AutoPiecesDZ/playlists" target="_blank" rel="noopener" class="yt-playlist">
+        <div class="yt-pl-icon">🔩</div>
+        <div class="yt-pl-info">
+          <h4>Suspension &amp; Direction</h4>
+          <p>Amortisseurs, rotules, triangles, direction</p>
+          <span class="yt-pl-count">9 vidéos</span>
+        </div>
+        <span class="yt-pl-arr">›</span>
+      </a>
+
+      <a href="https://www.youtube.com/@AutoPiecesDZ/playlists" target="_blank" rel="noopener" class="yt-playlist">
+        <div class="yt-pl-icon">⚡</div>
+        <div class="yt-pl-info">
+          <h4>Électrique &amp; Allumage</h4>
+          <p>Bougies, capteurs, alternateur, démarreur</p>
+          <span class="yt-pl-count">12 vidéos</span>
+        </div>
+        <span class="yt-pl-arr">›</span>
+      </a>
+
+      <a href="https://www.youtube.com/@AutoPiecesDZ/playlists" target="_blank" rel="noopener" class="yt-playlist">
+        <div class="yt-pl-icon">🏎️</div>
+        <div class="yt-pl-info">
+          <h4>Moteur &amp; Embrayage</h4>
+          <p>Kits embrayage, joints, thermostat, pompe à eau</p>
+          <span class="yt-pl-count">8 vidéos</span>
+        </div>
+        <span class="yt-pl-arr">›</span>
+      </a>
+
+    </div>
+  </div>
+
+  <div class="yt-spacer"></div>
+
+  <!-- ═══ CTA ABONNEMENT ═══ -->
+  <section id="yt-cta">
+    <div class="yt-cta-inner">
+      <div class="yt-yt-icon">▶️</div>
+      <h2>Abonnez-vous à notre chaîne YouTube</h2>
+      <p>Rejoignez notre communauté de mécaniciens algériens. Nouveaux tutos chaque semaine — entretien, diagnostic, montage de pièces pour les véhicules les plus courants en Algérie.</p>
+      <div class="yt-cta-actions">
+        <a href="https://www.youtube.com/@AutoPiecesDZ?sub_confirmation=1" target="_blank" rel="noopener" class="yt-cta-sub">
+          <svg width="18" height="13" viewBox="0 0 18 13" fill="currentColor"><path d="M17.6 2.02A2.26 2.26 0 0 0 16.02.43C14.63 0 9 0 9 0S3.37 0 1.98.43A2.26 2.26 0 0 0 .4 2.02 23.76 23.76 0 0 0 0 6.5a23.76 23.76 0 0 0 .4 4.48A2.26 2.26 0 0 0 1.98 12.57C3.37 13 9 13 9 13s5.63 0 7.02-.43a2.26 2.26 0 0 0 1.58-1.59A23.76 23.76 0 0 0 18 6.5a23.76 23.76 0 0 0-.4-4.48z"/><polygon fill="#ff0000" points="7.2,9.3 11.88,6.5 7.2,3.7"/></svg>
+          S'abonner — c'est gratuit
+        </a>
+        <a href="https://www.youtube.com/@AutoPiecesDZ/videos" target="_blank" rel="noopener" class="yt-cta-bell">
+          🔔 Activer les notifications
+        </a>
+      </div>
+      <div class="yt-stats-row">
+        <div class="yt-stat">
+          <strong>12 400</strong>
+          <span>Abonnés</span>
+        </div>
+        <div class="yt-stat">
+          <strong>87</strong>
+          <span>Vidéos</span>
+        </div>
+        <div class="yt-stat">
+          <strong>340 K</strong>
+          <span>Vues</span>
+        </div>
+        <div class="yt-stat">
+          <strong>1 / sem</strong>
+          <span>Fréquence</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /#yt -->
