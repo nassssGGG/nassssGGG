@@ -1,0 +1,589 @@
+<style>
+.adh *{box-sizing:border-box}
+.adh{font-family:'Inter',Arial,sans-serif;background:#fff}
+/* Vehicle Selector Hero */
+.adh-vs{background:#132530;padding:28px 0 24px}
+.adh-wrap{max-width:1270px;margin:0 auto;padding:0 15px}
+.adh-vs-title{color:#fff;font-size:1rem;font-weight:600;margin-bottom:14px}
+.adh-vs-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid rgba(255,255,255,.15)}
+.adh-vs-tab{background:none;border:none;color:rgba(255,255,255,.65);padding:8px 18px 10px;font-size:.85rem;cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;margin-bottom:-1px}
+.adh-vs-tab.on{color:#fff;border-bottom-color:#f85a00}
+.adh-vs-form{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end}
+.adh-vs-step{flex:1;min-width:160px}
+.adh-vs-num{color:#f85a00;font-size:.72rem;font-weight:700;margin-bottom:4px}
+.adh-vs-sel{width:100%;padding:10px 12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:3px;font-size:.85rem;font-family:inherit;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23fff'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+.adh-vs-sel option{color:#132530;background:#fff}
+.adh-vs-btn{background:#f85a00;color:#fff;border:none;padding:10px 28px;border-radius:3px;font-weight:700;font-size:.9rem;cursor:pointer;font-family:inherit;white-space:nowrap;align-self:flex-end}
+.adh-vs-btn:hover{background:#d94e00}
+.adh-vs-nf{color:rgba(255,255,255,.55);font-size:.75rem;align-self:flex-end;text-decoration:underline;cursor:pointer;white-space:nowrap}
+.adh-immat{display:none;gap:8px;align-items:center}
+.adh-immat-in{flex:1;padding:10px 12px;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:3px;font-size:.85rem;font-family:inherit}
+.adh-immat-in::placeholder{color:rgba(255,255,255,.45)}
+/* Popular quick links */
+.adh-pop{background:#fff;border-bottom:1px solid #e8e8e8;overflow-x:auto;scrollbar-width:none}
+.adh-pop::-webkit-scrollbar{display:none}
+.adh-pop-inner{display:flex;gap:0;padding:0 8px;min-width:max-content}
+.adh-pop-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;padding:10px 12px;min-width:80px;text-align:center;border-right:1px solid #f0f0f0}
+.adh-pop-item:hover{background:#fff8f5}
+.adh-pop-icon{width:36px;height:36px;margin-bottom:4px}
+.adh-pop-lbl{font-size:.65rem;color:#132530;line-height:1.2;max-width:70px}
+/* Categories section */
+.adh-cats-sec{padding:28px 0}
+.adh-cats-hd{font-size:1rem;font-weight:700;color:#132530;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between}
+.adh-cats-hd a{font-size:.78rem;color:#f85a00;text-decoration:none;font-weight:400}
+.adh-cat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+@media(max-width:900px){.adh-cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.adh-cat-grid{grid-template-columns:repeat(2,1fr)}}
+.adh-cat-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e8e8e8;border-radius:4px;text-decoration:none;color:#132530;transition:border-color .15s,background .15s;font-size:.78rem;line-height:1.3}
+.adh-cat-item:hover{border-color:#f85a00;background:#fff8f5}
+.adh-cat-icon{width:36px;height:36px;flex-shrink:0;color:#f85a00}
+/* A-Z section */
+.adh-az-sec{padding:20px 0;border-top:1px solid #e8e8e8}
+.adh-az-hd{font-size:.95rem;font-weight:700;color:#132530;margin-bottom:12px;cursor:pointer;display:flex;align-items:center;gap:8px;user-select:none}
+.adh-az-toggle{font-size:.7rem;color:#f85a00;border:1px solid #f85a00;border-radius:2px;padding:1px 6px}
+.adh-az-letters{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+.adh-az-lbtn{background:#f5f5f5;border:1px solid #ddd;padding:3px 8px;border-radius:2px;font-size:.75rem;cursor:pointer;font-family:inherit;color:#132530}
+.adh-az-lbtn.on{background:#f85a00;color:#fff;border-color:#f85a00}
+.adh-az-body{display:none}
+.adh-az-body.open{display:block}
+.adh-az-grp{margin-bottom:10px}
+.adh-az-grp-title{font-size:.8rem;font-weight:700;color:#132530;margin-bottom:4px}
+.adh-az-list{display:flex;flex-wrap:wrap;gap:6px}
+.adh-az-list a{font-size:.75rem;color:#333;text-decoration:none;padding:2px 0}
+.adh-az-list a:hover{color:#f85a00}
+/* Products section */
+.adh-prods-sec{background:#f5f5f5;padding:28px 0}
+.adh-prods-hd{font-size:1rem;font-weight:700;color:#132530;margin-bottom:16px}
+.adh-prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(185px,1fr));gap:10px}
+.adh-prod{background:#fff;border:1px solid #e8e8e8;border-radius:4px;text-decoration:none;display:block;overflow:hidden;transition:box-shadow .15s}
+.adh-prod:hover{box-shadow:0 2px 10px rgba(0,0,0,.1)}
+.adh-prod-img{height:130px;display:flex;align-items:center;justify-content:center;background:#fafafa;overflow:hidden;border-bottom:1px solid #e8e8e8}
+.adh-prod-img img{max-height:120px;max-width:100%;object-fit:contain}
+.adh-prod-body{padding:10px 12px}
+.adh-prod-brand{font-size:.68rem;color:#888;text-transform:uppercase;margin-bottom:2px}
+.adh-prod-title{font-size:.8rem;font-weight:500;color:#132530;margin-bottom:6px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.adh-prod-price{font-size:.95rem;font-weight:700;color:#f85a00}
+.adh-prod-compare{font-size:.72rem;color:#999;text-decoration:line-through;margin-left:4px}
+.adh-prod-btn{display:block;background:#f85a00;color:#fff;text-align:center;padding:7px;font-size:.78rem;font-weight:700;margin-top:8px;border-radius:2px;text-decoration:none}
+.adh-prod-btn:hover{background:#d94e00}
+/* Brands */
+.adh-brands-sec{padding:24px 0;border-top:1px solid #e8e8e8}
+.adh-brands-hd{font-size:.95rem;font-weight:700;color:#132530;margin-bottom:14px}
+.adh-brands-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+@media(max-width:600px){.adh-brands-grid{grid-template-columns:repeat(3,1fr)}}
+.adh-brand-item{border:1px solid #e8e8e8;border-radius:3px;padding:10px 8px;text-align:center;text-decoration:none;color:#132530;font-size:.78rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:6px;transition:border-color .15s}
+.adh-brand-item:hover{border-color:#f85a00;color:#f85a00}
+/* Trust */
+.adh-trust{background:#132530;padding:20px 0}
+.adh-trust-inner{display:flex;gap:0;flex-wrap:wrap;justify-content:space-around}
+.adh-trust-item{display:flex;align-items:center;gap:12px;padding:10px 20px;color:#fff}
+.adh-trust-icon{width:36px;height:36px;flex-shrink:0;color:#f85a00}
+.adh-trust-title{font-size:.82rem;font-weight:700;color:#fff;margin-bottom:2px}
+.adh-trust-sub{font-size:.72rem;color:rgba(255,255,255,.65)}
+/* Newsletter */
+.adh-nl{background:#f85a00;padding:20px 0}
+.adh-nl-inner{display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center}
+.adh-nl-text{color:#fff;font-weight:700;font-size:.9rem}
+.adh-nl-form{display:flex;gap:0}
+.adh-nl-input{padding:9px 14px;border:none;border-radius:3px 0 0 3px;font-size:.85rem;font-family:inherit;width:260px}
+.adh-nl-submit{background:#132530;color:#fff;border:none;padding:9px 18px;border-radius:0 3px 3px 0;font-weight:700;font-size:.82rem;cursor:pointer;font-family:inherit}
+.adh-nl-submit:hover{background:#0a1820}
+</style>
+
+<!-- ===== 1. VEHICLE SELECTOR HERO ===== -->
+<div class="adh">
+<section class="adh-vs">
+  <div class="adh-wrap">
+    <div class="adh-vs-title">Sélectionnez votre modèle de voiture pour rechercher des pièces détachées</div>
+    <div class="adh-vs-tabs">
+      <button class="adh-vs-tab on" onclick="adhTab('m',this)">Par marque / modèle</button>
+      <button class="adh-vs-tab" onclick="adhTab('i',this)">Par immatriculation</button>
+    </div>
+    <div id="adh-vs-m">
+      <div class="adh-vs-form">
+        <div class="adh-vs-step"><div class="adh-vs-num">1</div><select class="adh-vs-sel" id="adh-brand"><option value="">Choisissez une marque</option></select></div>
+        <div class="adh-vs-step"><div class="adh-vs-num">2</div><select class="adh-vs-sel" id="adh-model" disabled><option value="">Choisissez un modèle</option></select></div>
+        <div class="adh-vs-step"><div class="adh-vs-num">3</div><select class="adh-vs-sel" id="adh-engine" disabled><option value="">Choisissez une motorisation</option></select></div>
+        <button class="adh-vs-btn" onclick="adhSearch()">RECHERCHER</button>
+        <a class="adh-vs-nf" href="/collections/all">Vous ne trouvez pas votre voiture ?</a>
+      </div>
+    </div>
+    <div id="adh-vs-i" style="display:none">
+      <div class="adh-immat" style="display:flex">
+        <input class="adh-immat-in" id="adh-immat-val" type="text" placeholder="Ex: 123456-201-16 (numéro immatriculation)">
+        <button class="adh-vs-btn" onclick="adhImmatSearch()">RECHERCHER</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 2. POPULAR QUICK LINKS ===== -->
+<div class="adh-pop">
+  <div class="adh-pop-inner">
+    <a class="adh-pop-item" href="/search?type=product&q=disque+frein">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="20" r="6"/><line x1="20" y1="6" x2="20" y2="10"/><line x1="20" y1="30" x2="20" y2="34"/><line x1="6" y1="20" x2="10" y2="20"/><line x1="30" y1="20" x2="34" y2="20"/></svg>
+      <span class="adh-pop-lbl">Disque de frein</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=kit+embrayage">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><circle cx="20" cy="20" r="13"/><circle cx="20" cy="20" r="7"/><circle cx="20" cy="20" r="2" fill="#f85a00"/></svg>
+      <span class="adh-pop-lbl">Kit d'embrayage</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=bras+suspension">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><path d="M6 30 L20 10 L34 30"/><circle cx="6" cy="30" r="3"/><circle cx="34" cy="30" r="3"/><circle cx="20" cy="10" r="3"/></svg>
+      <span class="adh-pop-lbl">Bras de suspension</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=plaquettes+frein">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><rect x="10" y="14" width="20" height="12" rx="2"/><rect x="13" y="14" width="14" height="8" rx="1" fill="#f85a00" opacity=".2" stroke="#f85a00"/></svg>
+      <span class="adh-pop-lbl">Plaquettes de frein</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=kit+distribution">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><circle cx="12" cy="12" r="6"/><circle cx="28" cy="12" r="6"/><circle cx="20" cy="28" r="6"/><path d="M18 12 L22 12"/><path d="M14 16 L18 24"/><path d="M26 16 L22 24"/></svg>
+      <span class="adh-pop-lbl">Kit distribution + pompe</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=filtre+air">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><path d="M8 12 L32 12 L28 20 L24 20 L24 30 L16 30 L16 20 L12 20 Z"/></svg>
+      <span class="adh-pop-lbl">Filtre à air</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=amortisseur">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><line x1="20" y1="4" x2="20" y2="10"/><path d="M14 10 Q20 14 26 10 Q20 18 14 14 Q20 22 26 18 Q20 26 14 22"/><line x1="20" y1="26" x2="20" y2="36"/><circle cx="20" cy="36" r="2" fill="#f85a00"/></svg>
+      <span class="adh-pop-lbl">Amortisseur</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=filtre+huile">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><rect x="12" y="8" width="16" height="24" rx="3"/><path d="M16 8 L16 32"/><path d="M20 8 L20 32"/><path d="M24 8 L24 32"/></svg>
+      <span class="adh-pop-lbl">Filtre à huile</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=phare">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><path d="M8 14 L26 8 L32 20 L26 32 L8 26 Z"/><circle cx="22" cy="20" r="5"/><line x1="34" y1="20" x2="38" y2="20"/><line x1="34" y1="16" x2="38" y2="14"/><line x1="34" y1="24" x2="38" y2="26"/></svg>
+      <span class="adh-pop-lbl">Phare avant</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=alternateur">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><circle cx="20" cy="20" r="13"/><path d="M20 10 L23 17 L30 17 L24 22 L26 30 L20 25 L14 30 L16 22 L10 17 L17 17 Z" fill="#f85a00" opacity=".15" stroke="#f85a00"/></svg>
+      <span class="adh-pop-lbl">Alternateur</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=batterie">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><rect x="8" y="14" width="24" height="16" rx="2"/><line x1="14" y1="14" x2="14" y2="10"/><line x1="26" y1="14" x2="26" y2="10"/><line x1="20" y1="19" x2="20" y2="25"/><line x1="17" y1="22" x2="23" y2="22"/></svg>
+      <span class="adh-pop-lbl">Batterie</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=courroie">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><circle cx="12" cy="20" r="7"/><circle cx="28" cy="20" r="5"/><path d="M12 13 L28 15"/><path d="M12 27 L28 25"/></svg>
+      <span class="adh-pop-lbl">Courroie</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=rotule">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><line x1="8" y1="20" x2="32" y2="20"/><circle cx="20" cy="20" r="6"/><line x1="20" y1="8" x2="20" y2="14"/></svg>
+      <span class="adh-pop-lbl">Rotule</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=roulement">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><circle cx="20" cy="20" r="13"/><circle cx="20" cy="20" r="8"/><circle cx="20" cy="9" r="2.5" fill="#f85a00"/><circle cx="20" cy="31" r="2.5" fill="#f85a00"/><circle cx="9" cy="20" r="2.5" fill="#f85a00"/><circle cx="31" cy="20" r="2.5" fill="#f85a00"/></svg>
+      <span class="adh-pop-lbl">Roulement</span>
+    </a>
+    <a class="adh-pop-item" href="/search?type=product&q=sonde+lambda">
+      <svg class="adh-pop-icon" viewBox="0 0 40 40" fill="none" stroke="#f85a00" stroke-width="1.8"><path d="M20 6 L20 20"/><circle cx="20" cy="26" r="6"/><path d="M14 32 Q20 38 26 32"/></svg>
+      <span class="adh-pop-lbl">Sonde lambda</span>
+    </a>
+  </div>
+</div>
+
+<!-- ===== 3. CATEGORIES GRID ===== -->
+<section class="adh-cats-sec">
+  <div class="adh-wrap">
+    <div class="adh-cats-hd">
+      CHOISISSEZ LA CATÉGORIE DE PIÈCES DÉTACHÉES
+      <a href="/collections/all">Tout voir &rarr;</a>
+    </div>
+    <div class="adh-cat-grid">
+      <a class="adh-cat-item" href="/search?type=product&q=frein">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="13"/><circle cx="20" cy="20" r="6"/><line x1="20" y1="7" x2="20" y2="11"/><line x1="20" y1="29" x2="20" y2="33"/><line x1="7" y1="20" x2="11" y2="20"/><line x1="29" y1="20" x2="33" y2="20"/></svg>
+        <span>Frein</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=filtre">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 11 L33 11 L28 19 L24 19 L24 31 L16 31 L16 19 L12 19 Z"/></svg>
+        <span>Filtre</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=suspension">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 8 Q20 12 26 8 Q20 16 14 12 Q20 20 26 16 Q20 24 14 20 Q20 28 26 24"/><line x1="14" y1="24" x2="14" y2="34"/><line x1="26" y1="24" x2="26" y2="34"/><line x1="10" y1="34" x2="30" y2="34"/></svg>
+        <span>Suspension</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=allumage+bougie">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 5 L13 22 L19 22 L14 35 L27 18 L21 18 Z"/></svg>
+        <span>Allumage &amp; préchauffage</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=amortisseur">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="20" y1="4" x2="20" y2="10"/><path d="M14 10 Q20 14 26 10 Q20 18 14 14 Q20 22 26 18 Q20 26 14 22"/><line x1="20" y1="26" x2="20" y2="36"/></svg>
+        <span>Amortissement</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=moteur">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="10" y="14" width="20" height="14" rx="2"/><path d="M14 14 L14 10 L18 10"/><path d="M22 10 L26 10 L26 14"/><path d="M30 18 L36 18"/><path d="M4 22 L10 22"/><rect x="16" y="28" width="8" height="5"/></svg>
+        <span>Moteur</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=electrique+alternateur">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 5 L14 22 L20 22 L18 35 L26 18 L20 18 Z"/></svg>
+        <span>Électricité</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=courroie+distribution+chaine">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="20" r="7"/><circle cx="28" cy="20" r="5"/><path d="M12 13 L28 15"/><path d="M12 27 L28 25"/></svg>
+        <span>Courroies, chaînes, galets</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=carrosserie+pare-choc">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 24 L8 16 Q12 10 20 10 Q28 10 32 16 L36 24 L36 30 L4 30 Z"/><circle cx="10" cy="30" r="4"/><circle cx="30" cy="30" r="4"/></svg>
+        <span>Carrosserie</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=refroidissement+radiateur">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 10 L32 10 L32 30 L8 30 Z"/><line x1="14" y1="10" x2="14" y2="30"/><line x1="20" y1="10" x2="20" y2="30"/><line x1="26" y1="10" x2="26" y2="30"/><path d="M8 17 L32 17"/><path d="M8 23 L32 23"/></svg>
+        <span>Refroidissement moteur</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=chauffage+ventilation">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="5"/><path d="M20 5 L20 11"/><path d="M20 29 L20 35"/><path d="M5 20 L11 20"/><path d="M29 20 L35 20"/><path d="M9 9 L13 13"/><path d="M27 27 L31 31"/><path d="M9 31 L13 27"/><path d="M27 13 L31 9"/></svg>
+        <span>Chauffage &amp; ventilation</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=alimentation+carburant+injection">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 8 L24 18 L30 18 C30 28 24 34 20 36 C16 34 10 28 10 18 L16 18 Z"/></svg>
+        <span>Système d'alimentation</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=direction+cremaillere">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="12"/><circle cx="20" cy="20" r="3"/><line x1="20" y1="8" x2="20" y2="13"/><line x1="20" y1="27" x2="20" y2="32"/><line x1="8" y1="20" x2="13" y2="20"/><line x1="27" y1="20" x2="32" y2="20"/></svg>
+        <span>Direction</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=embrayage">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="12"/><circle cx="20" cy="20" r="5"/><circle cx="20" cy="20" r="2" fill="currentColor"/></svg>
+        <span>Embrayage</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=cardan+transmission">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="4" y1="20" x2="14" y2="20"/><circle cx="17" cy="20" r="4"/><line x1="23" y1="20" x2="36" y2="20"/><circle cx="17" cy="20" r="8" stroke-dasharray="4 4"/></svg>
+        <span>Cardan de transmission</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=boite+vitesse">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="14" cy="14" r="5"/><circle cx="26" cy="14" r="5"/><circle cx="20" cy="26" r="5"/><line x1="14" y1="19" x2="17" y2="23"/><line x1="26" y1="19" x2="23" y2="23"/><line x1="19" y1="14" x2="21" y2="14"/></svg>
+        <span>Boîte de vitesse</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=climatisation">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="20" y1="6" x2="20" y2="34"/><line x1="6" y1="20" x2="34" y2="20"/><line x1="10" y1="10" x2="30" y2="30"/><line x1="30" y1="10" x2="10" y2="30"/><circle cx="20" cy="20" r="4"/></svg>
+        <span>Climatisation</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=roulement+moyeu">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="12"/><circle cx="20" cy="20" r="7"/><circle cx="20" cy="9" r="2.5" fill="currentColor" stroke="none"/><circle cx="20" cy="31" r="2.5" fill="currentColor" stroke="none"/><circle cx="9" cy="20" r="2.5" fill="currentColor" stroke="none"/><circle cx="31" cy="20" r="2.5" fill="currentColor" stroke="none"/></svg>
+        <span>Roulements</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=arbre+transmission">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="5" y1="20" x2="35" y2="20"/><rect x="5" y="16" width="6" height="8" rx="1"/><rect x="29" y="16" width="6" height="8" rx="1"/><circle cx="20" cy="20" r="5"/></svg>
+        <span>Arbres de transmission</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=capteur+sonde">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="12" y="12" width="16" height="16" rx="2"/><circle cx="20" cy="20" r="4"/><line x1="20" y1="5" x2="20" y2="12"/><line x1="20" y1="28" x2="20" y2="35"/><line x1="5" y1="20" x2="12" y2="20"/><line x1="28" y1="20" x2="35" y2="20"/></svg>
+        <span>Capteurs, relais</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=huile+moteur">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6 L25 18 L32 18 C32 30 26 36 20 36 C14 34 8 28 8 18 L15 18 Z"/></svg>
+        <span>Huiles &amp; fluides</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=essuie-glace+balai">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 32 Q20 8 34 14"/><path d="M8 32 L34 14"/><circle cx="8" cy="32" r="3"/></svg>
+        <span>Système d'essuie-glaces</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=echappement">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 22 L24 22 Q30 22 30 28 L30 32"/><path d="M30 32 L34 32"/><rect x="6" y="18" width="6" height="8" rx="1"/></svg>
+        <span>Échappement</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=joint+etancheite">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="13"/><circle cx="20" cy="20" r="9"/><circle cx="20" cy="20" r="5"/></svg>
+        <span>Joints &amp; étanchéité</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=eclairage+feux">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="18" r="8"/><path d="M20 26 L20 34"/><path d="M16 34 L24 34"/><line x1="20" y1="6" x2="20" y2="3"/><line x1="30" y1="10" x2="33" y2="8"/><line x1="10" y1="10" x2="7" y2="8"/><line x1="34" y1="18" x2="37" y2="18"/><line x1="3" y1="18" x2="6" y2="18"/></svg>
+        <span>Éclairage</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=pneu+jante">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="14"/><circle cx="20" cy="20" r="8"/><circle cx="20" cy="20" r="3" fill="currentColor" stroke="none"/><line x1="20" y1="12" x2="20" y2="17"/><line x1="20" y1="23" x2="20" y2="28"/><line x1="12" y1="20" x2="17" y2="20"/><line x1="23" y1="20" x2="28" y2="20"/></svg>
+        <span>Pneus, jantes &amp; accessoires</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=turbo+suralimentation">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="8"/><path d="M20 12 Q24 8 30 10 L28 14"/><path d="M28 20 Q34 18 36 24 L32 24"/><path d="M20 28 Q16 34 10 32 L12 28"/><path d="M12 20 Q6 22 6 16 L10 16"/></svg>
+        <span>Suralimentation / Turbo</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=egr+recyclage+gaz">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 20 Q8 10 20 10 Q32 10 32 20"/><path d="M28 16 L32 20 L28 24"/><path d="M32 20 Q32 30 20 30 Q8 30 8 20"/><path d="M12 24 L8 20 L12 16"/></svg>
+        <span>Recirculation gaz (EGR)</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=interieur+habitacle">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 28 L8 20 Q10 12 20 10 Q30 12 32 20 L32 28"/><path d="M8 28 L32 28"/><path d="M14 28 L14 22 L26 22 L26 28"/></svg>
+        <span>Intérieur</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=tuyau+durite">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 14 Q6 20 12 20 L28 20 Q34 20 34 26"/><rect x="2" y="10" width="8" height="8" rx="1"/><rect x="30" y="22" width="8" height="8" rx="1"/></svg>
+        <span>Tuyaux &amp; conduites</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=outillage">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M28 8 C34 10 36 18 30 22 L16 36 Q12 38 10 34 Q8 30 12 28 L26 14"/><path d="M32 8 L34 10 L30 14 L28 12 Z"/><circle cx="13" cy="31" r="2" fill="currentColor" stroke="none"/></svg>
+        <span>Outillage &amp; équipement</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=kit+reparation">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="16" width="24" height="18" rx="2"/><path d="M14 16 L14 11 Q14 8 20 8 Q26 8 26 11 L26 16"/><line x1="8" y1="22" x2="32" y2="22"/></svg>
+        <span>Kits de réparation</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=entretien+nettoyage">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6 L22 6 L24 14 L16 14 Z"/><rect x="14" y="14" width="12" height="18" rx="2"/><path d="M20 14 L20 32"/><path d="M24 20 L32 16"/><circle cx="32" cy="16" r="2" fill="currentColor" stroke="none"/></svg>
+        <span>Produits d'entretien</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=suspension+pneumatique">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="13" y="10" width="14" height="20" rx="7"/><line x1="13" y1="20" x2="9" y2="20"/><line x1="27" y1="20" x2="31" y2="20"/><line x1="20" y1="30" x2="20" y2="36"/><line x1="14" y1="36" x2="26" y2="36"/></svg>
+        <span>Suspension pneumatique</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=attelage+remorque">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="6" y1="22" x2="26" y2="22"/><circle cx="30" cy="22" r="4"/><path d="M6 18 L6 26"/></svg>
+        <span>Dispositif d'attelage</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=accessoire+voiture">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="8" y="12" width="24" height="16" rx="3"/><circle cx="14" cy="28" r="4"/><circle cx="26" cy="28" r="4"/><path d="M8 18 L32 18"/></svg>
+        <span>Accessoires voiture</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=fixation+vis+boulon">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 6 L20 34"/><path d="M14 8 L26 8"/><path d="M12 14 L28 14"/><path d="M12 20 L28 20"/><path d="M14 26 L26 26"/><path d="M16 32 L24 32"/></svg>
+        <span>Fixations</span>
+      </a>
+      <a class="adh-cat-item" href="/search?type=product&q=tuning">
+        <svg class="adh-cat-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="13"/><path d="M20 10 L22 16 L20 10 L18 16 Z" fill="currentColor" stroke="none"/><line x1="20" y1="7" x2="20" y2="10"/><path d="M10 20 Q14 14 20 14 Q26 14 30 20 L20 20 Z"/></svg>
+        <span>Tuning</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 4. A-Z SECTION ===== -->
+<section class="adh-az-sec">
+  <div class="adh-wrap">
+    <div class="adh-az-hd" onclick="adhAZToggle()">
+      <span>Recherche rapide par catégorie A-Z</span>
+      <span class="adh-az-toggle" id="adh-az-btn">▼ Afficher</span>
+    </div>
+    <div class="adh-az-body" id="adh-az-body">
+      <div class="adh-az-letters">
+        <button class="adh-az-lbtn on" onclick="adhAZFilter('',this)">Tout</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('A',this)">A</button><button class="adh-az-lbtn" onclick="adhAZFilter('B',this)">B</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('C',this)">C</button><button class="adh-az-lbtn" onclick="adhAZFilter('D',this)">D</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('E',this)">E</button><button class="adh-az-lbtn" onclick="adhAZFilter('F',this)">F</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('G',this)">G</button><button class="adh-az-lbtn" onclick="adhAZFilter('H',this)">H</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('I',this)">I</button><button class="adh-az-lbtn" onclick="adhAZFilter('J',this)">J</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('K',this)">K</button><button class="adh-az-lbtn" onclick="adhAZFilter('L',this)">L</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('M',this)">M</button><button class="adh-az-lbtn" onclick="adhAZFilter('N',this)">N</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('O',this)">O</button><button class="adh-az-lbtn" onclick="adhAZFilter('P',this)">P</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('R',this)">R</button><button class="adh-az-lbtn" onclick="adhAZFilter('S',this)">S</button>
+        <button class="adh-az-lbtn" onclick="adhAZFilter('T',this)">T</button><button class="adh-az-lbtn" onclick="adhAZFilter('V',this)">V</button>
+      </div>
+      <div id="adh-az-content">
+        {% assign az_items = "Accumulateur de pression|Actuateur de ralenti|Additif carburant|Additifs huile moteur|Aile|Alternateur|Amortisseur|Amortisseur de direction|Arbre de transmission|Axe de roue|Balai d'essuie-glace|Batterie|Bobine d'allumage|Bougie de préchauffage|Bougies d'allumage|Bras de suspension|Cache culbuteurs|Calculateur moteur|Capteur ABS|Capteur de position|Capteur vilebrequin|Cardan|Carter d'huile|Charnière de capot|Clapet EGR|Compresseur climatisation|Compteur kilométrique|Condenseur climatisation|Corps de papillon|Courroie accessoires|Courroie de distribution|Coussin gonflable|Cremaillère de direction|Démarreur|Disque de frein|Durite radiateur|Échangeur thermique|Électrovanne|Embrayage|Essuie-glace|Etrier de frein|Filtre à air|Filtre à carburant|Filtre à huile|Filtre d'habitacle|Fixations|Flexible de frein|Feu arrière|Feu avant|Galets tendeurs|Gicleur|Glace de rétroviseur|Huile moteur|Huile transmission|Injecteur|Intercooler|Jeu de joints|Joint cardan|Joint culasse|Joint d'étanchéité|Kit courroie|Kit de frein|Kit distribution|Kit embrayage|Levier de vitesse|Liquide de frein|Liquide refroidissement|Manomètre|Masse d'équilibrage|Mâchoire de frein|Moyeu de roue|Optique phare|Palier de boîte|Pare-chocs|Pare-poussière|Plaquettes de frein|Pompe à carburant|Pompe à eau|Pompe de direction|Radiateur chauffage|Radiateur d'eau|Rétroviseur|Rotule|Roulement|Sonde de température|Sonde lambda|Soufflet de cardan|Suspension pneumatique|Tendeur de courroie|Thermostat|Tirette de capot|Traverse|Tube d'échappement|Vase d'expansion|Vérin de capot|Vis de roue|Volant moteur" | split: "|" %}
+        {% assign current_letter = "" %}
+        {% for item in az_items %}
+          {% assign first = item | slice: 0 %}
+          {% if first != current_letter %}
+            {% if current_letter != "" %}</div></div>{% endif %}
+            {% assign current_letter = first %}
+            <div class="adh-az-grp" data-letter="{{ first }}">
+            <div class="adh-az-grp-title">{{ first }}</div>
+            <div class="adh-az-list">
+          {% endif %}
+          <a href="/search?type=product&q={{ item | url_encode }}">{{ item }}</a>
+        {% endfor %}
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 5. FEATURED PRODUCTS ===== -->
+<section class="adh-prods-sec">
+  <div class="adh-wrap">
+    <div class="adh-prods-hd">NOUVEAUX PRODUITS &amp; BEST-SELLERS</div>
+    <div class="adh-prod-grid">
+      {% for product in collections.all.products limit: 12 %}
+      <a class="adh-prod" href="{{ product.url }}">
+        <div class="adh-prod-img">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 300 }}" alt="{{ product.title }}" loading="lazy">
+          {% else %}
+            <svg width="60" height="60" viewBox="0 0 60 60" fill="none"><rect width="60" height="60" rx="4" fill="#f0f0f0"/><path d="M20 40 L20 30 Q22 20 30 18 Q38 20 40 30 L40 40" stroke="#ccc" stroke-width="2" fill="none"/></svg>
+          {% endif %}
+        </div>
+        <div class="adh-prod-body">
+          <div class="adh-prod-brand">{{ product.vendor }}</div>
+          <div class="adh-prod-title">{{ product.title }}</div>
+          <div>
+            <span class="adh-prod-price">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span class="adh-prod-compare">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+          <div class="adh-prod-btn">Ajouter au panier</div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <div style="text-align:center;margin-top:24px"><a href="/collections/all" style="display:inline-block;background:#132530;color:#fff;padding:10px 28px;border-radius:3px;font-weight:700;font-size:.85rem;text-decoration:none">Voir toutes les pièces &rarr;</a></div>
+  </div>
+</section>
+
+<!-- ===== 6. BRANDS ===== -->
+<section class="adh-brands-sec">
+  <div class="adh-wrap">
+    <div class="adh-brands-hd">PIÈCES AUTO POUR LES MARQUES LES PLUS DEMANDÉES</div>
+    <div class="adh-brands-grid">
+      <a class="adh-brand-item" href="/search?type=product&q=Renault">RENAULT</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Peugeot">PEUGEOT</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Volkswagen">VOLKSWAGEN</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Citroen">CITROËN</a>
+      <a class="adh-brand-item" href="/search?type=product&q=BMW">BMW</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Mercedes">MERCEDES-BENZ</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Audi">AUDI</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Ford">FORD</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Opel">OPEL</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Fiat">FIAT</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Toyota">TOYOTA</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Nissan">NISSAN</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Seat">SEAT</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Dacia">DACIA</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Hyundai">HYUNDAI</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Kia">KIA</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Honda">HONDA</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Skoda">ŠKODA</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Mazda">MAZDA</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Mitsubishi">MITSUBISHI</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Suzuki">SUZUKI</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Lada">LADA</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Chevrolet">CHEVROLET</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Jeep">JEEP</a>
+      <a class="adh-brand-item" href="/search?type=product&q=Land+Rover">LAND ROVER</a>
+    </div>
+    <div style="text-align:center;margin-top:16px"><a href="/collections/all" style="color:#f85a00;font-size:.82rem;text-decoration:none;font-weight:600">Plus de constructeurs automobiles &rarr;</a></div>
+  </div>
+</section>
+
+<!-- ===== 7. TRUST BAR ===== -->
+<div class="adh-trust">
+  <div class="adh-wrap">
+    <div class="adh-trust-inner">
+      <div class="adh-trust-item">
+        <svg class="adh-trust-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 4 L36 10 L36 22 C36 30 28 36 20 38 C12 36 4 30 4 22 L4 10 Z"/><path d="M14 20 L18 24 L26 16" stroke="#fff" stroke-width="2"/></svg>
+        <div><div class="adh-trust-title">Pièces de qualité garanties</div><div class="adh-trust-sub">Marques certifiées OEM &amp; équipementiers</div></div>
+      </div>
+      <div class="adh-trust-item">
+        <svg class="adh-trust-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="8" width="36" height="26" rx="3"/><path d="M2 16 L38 16"/><circle cx="10" cy="26" r="3"/><line x1="18" y1="26" x2="30" y2="26"/></svg>
+        <div><div class="adh-trust-title">Paiement à la livraison</div><div class="adh-trust-sub">Cash on delivery — partout en Algérie</div></div>
+      </div>
+      <div class="adh-trust-item">
+        <svg class="adh-trust-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="6" width="26" height="22"/><polygon points="28 12 38 12 38 28 28 28"/><circle cx="10" cy="32" r="4"/><circle cx="32" cy="32" r="4"/><path d="M2 22 L8 22"/></svg>
+        <div><div class="adh-trust-title">Livraison 48 wilayas</div><div class="adh-trust-sub">Expédition sous 48–72h ouvrées</div></div>
+      </div>
+      <div class="adh-trust-item">
+        <svg class="adh-trust-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="20" cy="20" r="14"/><path d="M20 10 L20 20 L28 24"/></svg>
+        <div><div class="adh-trust-title">Garantie 1 an</div><div class="adh-trust-sub">Retours acceptés sous 30 jours</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 8. NEWSLETTER ===== -->
+<div class="adh-nl">
+  <div class="adh-wrap">
+    <div class="adh-nl-inner">
+      <div class="adh-nl-text">Abonnez-vous et recevez nos offres exclusives</div>
+      <form class="adh-nl-form" action="/contact#contact_form" method="post">
+        <input type="hidden" name="form_type" value="customer">
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input class="adh-nl-input" type="email" name="contact[email]" placeholder="Votre adresse e-mail">
+        <button class="adh-nl-submit" type="submit">S'ABONNER</button>
+      </form>
+    </div>
+  </div>
+</div>
+</div><!-- /.adh -->
+
+<script>
+(function(){
+/* Tab switching */
+window.adhTab=function(tab,btn){
+  document.querySelectorAll('.adh-vs-tab').forEach(function(t){t.classList.remove('on');});
+  btn.classList.add('on');
+  document.getElementById('adh-vs-m').style.display=tab==='m'?'block':'none';
+  document.getElementById('adh-vs-i').style.display=tab==='i'?'block':'none';
+};
+
+/* VDB dropdowns */
+document.addEventListener('DOMContentLoaded',function(){
+  var VDB=window.PDZ&&window.PDZ.VDB?window.PDZ.VDB:{};
+  var sBr=document.getElementById('adh-brand');
+  var sMo=document.getElementById('adh-model');
+  var sEn=document.getElementById('adh-engine');
+  if(!sBr)return;
+  sBr.innerHTML='<option value="">Choisissez une marque</option>';
+  Object.keys(VDB).sort().forEach(function(m){
+    var o=document.createElement('option');o.value=m;o.textContent=m;sBr.appendChild(o);
+  });
+  sBr.onchange=function(){
+    var mk=this.value;
+    sMo.innerHTML='<option value="">Choisissez un modèle</option>';
+    sEn.innerHTML='<option value="">Choisissez une motorisation</option>';
+    sMo.disabled=!mk;sEn.disabled=true;
+    if(mk&&VDB[mk]){
+      Object.keys(VDB[mk]).sort().forEach(function(m){
+        var o=document.createElement('option');o.value=m;o.textContent=m;sMo.appendChild(o);
+      });
+    }
+  };
+  sMo.onchange=function(){
+    var mk=sBr.value,md=this.value;
+    sEn.innerHTML='<option value="">Choisissez une motorisation</option>';
+    sEn.disabled=!md;
+    if(mk&&md&&VDB[mk]&&VDB[mk][md]){
+      VDB[mk][md].forEach(function(e){
+        var o=document.createElement('option');o.value=e;o.textContent=e;sEn.appendChild(o);
+      });
+    }
+  };
+  /* Restore saved vehicle */
+  var sv=window.PDZ&&window.PDZ.getVehicle?window.PDZ.getVehicle():null;
+  if(sv&&sv.make){
+    sBr.value=sv.make;sBr.dispatchEvent(new Event('change'));
+    setTimeout(function(){
+      if(sv.model){sMo.value=sv.model;sMo.dispatchEvent(new Event('change'));
+        setTimeout(function(){if(sv.engine)sEn.value=sv.engine;},20);}
+    },20);
+  }
+});
+
+/* Search action */
+window.adhSearch=function(){
+  var mk=document.getElementById('adh-brand').value;
+  var md=document.getElementById('adh-model').value;
+  var en=document.getElementById('adh-engine').value;
+  if(!mk){alert('Veuillez choisir une marque');return;}
+  if(window.PDZ&&window.PDZ.setVehicle){
+    window.PDZ.setVehicle({make:mk,model:md,engine:en,label:mk+(md?' '+md:'')+(en?' — '+en:'')});
+  }
+  window.location.href='/collections/all';
+};
+
+/* Immat search */
+window.adhImmatSearch=function(){
+  var v=document.getElementById('adh-immat-val').value.trim();
+  if(!v)return;
+  window.location.href='/search?type=product&q='+encodeURIComponent(v);
+};
+
+/* A-Z toggle */
+window.adhAZToggle=function(){
+  var body=document.getElementById('adh-az-body');
+  var btn=document.getElementById('adh-az-btn');
+  var open=body.classList.toggle('open');
+  btn.textContent=open?'▲ Masquer':'▼ Afficher';
+};
+
+/* A-Z letter filter */
+window.adhAZFilter=function(letter,btn){
+  document.querySelectorAll('.adh-az-lbtn').forEach(function(b){b.classList.remove('on');});
+  btn.classList.add('on');
+  document.querySelectorAll('.adh-az-grp').forEach(function(g){
+    g.style.display=(!letter||g.dataset.letter===letter)?'block':'none';
+  });
+};
+})();
+</script>
+
+{% schema %}{"name":"Page d'accueil Autodoc","settings":[{"type":"header","content":"Apparence"}]}{% endschema %}
