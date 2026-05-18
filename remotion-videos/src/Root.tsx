@@ -2,6 +2,7 @@ import React from "react";
 import { Composition } from "remotion";
 import { PromoVideo, promoVideoSchema } from "./compositions/PromoVideo";
 import { ProductSpotlight, productSpotlightSchema } from "./compositions/ProductSpotlight";
+import { CountryRanking } from "./compositions/CountryRanking";
 
 export const Root: React.FC = () => {
   return (
@@ -40,6 +41,17 @@ export const Root: React.FC = () => {
           brand: "Brembo",
           category: "Freinage",
         }}
+      />
+
+      {/* 30-second country population ranking — 1920×1080 */}
+      <Composition
+        id="CountryRanking"
+        component={CountryRanking}
+        durationInFrames={900}
+        fps={30}
+        width={1920}
+        height={1080}
+        defaultProps={{}}
       />
     </>
   );

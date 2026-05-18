@@ -6,7 +6,8 @@
     "start": "npx remotion studio",
     "build": "npx remotion render",
     "render": "npx remotion render src/index.ts PromoVideo out/promo.mp4",
-    "render:all": "npx remotion render src/index.ts PromoVideo out/promo.mp4 && npx remotion render src/index.ts ProductSpotlight out/spotlight.mp4",
+    "render:ranking": "npx remotion render src/index.ts CountryRanking out/country-ranking.mp4",
+    "render:all": "npx remotion render src/index.ts PromoVideo out/promo.mp4 && npx remotion render src/index.ts ProductSpotlight out/spotlight.mp4 && npx remotion render src/index.ts CountryRanking out/country-ranking.mp4",
     "upgrade": "npx remotion upgrade"
   },
   "dependencies": {
