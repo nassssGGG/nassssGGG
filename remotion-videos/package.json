@@ -1,13 +1,10 @@
 {
-  "name": "autopiecesdz-remotion-videos",
+  "name": "country-ranking-video",
   "version": "1.0.0",
-  "description": "Remotion video generation for AutoPièces DZ",
+  "description": "Top 10 most populated countries — animated bar chart (Remotion)",
   "scripts": {
     "start": "npx remotion studio",
-    "build": "npx remotion render",
-    "render": "npx remotion render src/index.ts PromoVideo out/promo.mp4",
-    "render:ranking": "npx remotion render src/index.ts CountryRanking out/country-ranking.mp4",
-    "render:all": "npx remotion render src/index.ts PromoVideo out/promo.mp4 && npx remotion render src/index.ts ProductSpotlight out/spotlight.mp4 && npx remotion render src/index.ts CountryRanking out/country-ranking.mp4",
+    "render": "npx remotion render src/index.ts CountryRanking out/country-ranking.mp4",
     "upgrade": "npx remotion upgrade"
   },
   "dependencies": {

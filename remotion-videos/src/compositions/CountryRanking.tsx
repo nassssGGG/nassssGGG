@@ -8,7 +8,7 @@ import {
   useVideoConfig,
 } from "remotion";
 
-// ── 2026 UN population estimates ────────────────────────────────────────
+// ─── 2026 population data (UN World Population Prospects 2025) ──────────────
 type Country = { name: string; flag: string; pop: number };
 
 const COUNTRIES: Country[] = [
@@ -24,57 +24,76 @@ const COUNTRIES: Country[] = [
   { name: "Ethiopia",      flag: "🇪🇹", pop:   132_059_000 },
 ];
 
-const MAX_POP = COUNTRIES[0].pop;
+const MAX_POP = COUNTRIES[0].pop; // India
 
-// ── Palette ──────────────────────────────────────────────────────────────
-const BG     = "#0a0a0a";
-const ORANGE = "#e85d26";
-const WHITE  = "#ffffff";
-const GRAY   = "#555555";
-const DARK   = "#191919";
-const GOLD   = "#ffd700";
+// ─── Design tokens ───────────────────────────────────────────────────────────
+const C_BG     = "#0a0a0a";
+const C_BAR    = "#e85d26";
+const C_WHITE  = "#ffffff";
+const C_DIM    = "#555555";
+const C_TRACK  = "#1c1c1c";
+const C_GRID   = "#272727";
+const C_GOLD   = "#ffd700";
 
-// ── Layout constants (1920 × 1080) ───────────────────────────────────────
-const PAD      = 54;   // horizontal padding each side
-const RANK_W   = 50;
-const FLAG_W   = 54;
-const NAME_GAP = 14;
-const NAME_W   = 210;
-const POP_W    = 198;
-const LABEL_W  = RANK_W + FLAG_W + NAME_GAP + NAME_W; // 328 px
-// BAR_W = 1920 - PAD*2 - LABEL_W - POP_W  = 1920 - 108 - 328 - 198 = 1286 px
-const BAR_W    = 1920 - PAD * 2 - LABEL_W - POP_W;
-const HEADER_H = 108;
-const FOOTER_H = 52;
-const BAR_H    = 52;
+// ─── Layout (1920 × 1080) ────────────────────────────────────────────────────
+//
+//  ┌─────────────────────────────────────────── 1920 ──────────────────────────┐
+//  │  HEADER (108 px)                                                           │
+//  │  ┌──── row 0 ────────────────────────────────────────────────────────────┐ │
+//  │  │ #1  🇮🇳  India          ████████████████████████████████  1.463 B    │ │
+//  │  └───────────────────────────────────────────────────────────────────────┘ │
+//  │  … × 10 rows …                                                             │
+//  │  FOOTER (50 px)                                                            │
+//  └────────────────────────────────────────────────────────────────────────────┘
+//
+const H_PAD   = 54;     // left + right screen padding
+const RANK_W  = 50;     // "#1" label
+const FLAG_W  = 54;     // flag emoji
+const GAP     = 14;     // flag → name gap
+const NAME_W  = 210;    // country name
+const POP_W   = 196;    // population counter (right of bar)
+const LABEL_W = RANK_W + FLAG_W + GAP + NAME_W; // 328 px
 
-// ── Timing (30 fps, 900 frames = 30 s) ──────────────────────────────────
-const TITLE_END  = 90;   // title card lives 0-90 (3 s)
-const FIRST_BAR  = 106;  // first bar appears at 3.5 s
-const STAGGER    = 9;    // 0.3 s between each country
-const BUILD_END  = 720;  // all bars reach 100 % at 24 s
-// Finale: 720-900 (6 s) — hold with gold shimmer & source reveal
+// BAR_W = 1920 − (2 × 54) − 328 − 196 = 1288 px
+const BAR_W   = 1920 - H_PAD * 2 - LABEL_W - POP_W;
+const BAR_H   = 52;
+const HDR_H   = 108;
+const FTR_H   = 50;
 
-// ── Helpers ──────────────────────────────────────────────────────────────
-function fmtPop(n: number, finalPop: number): string {
-  // Keep format stable throughout the count-up (avoid B↔M flip)
-  if (finalPop >= 1e9) return (n / 1e9).toFixed(3) + " B";
-  return Math.round(n / 1e6) + " M";
+// ─── Timing ───────────────────────────────────────────────────────────────────
+//  0  – 90   Title card             (3 s)
+//  90 – 106  Crossfade              (0.5 s)
+//  106–187   Countries slide in     (0.3 s stagger × 10)
+//  106–720   Bars grow              (all finish together at 24 s)
+//  720–900   Finale: hold + shimmer (6 s)
+const TITLE_END = 90;
+const FIRST_BAR = 106;
+const STAGGER   = 9;    // frames (= 0.3 s at 30 fps)
+const BUILD_END = 720;
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+function fmtPop(current: number, final: number): string {
+  // Lock the unit (B or M) to the final value so it never flips mid-count
+  if (final >= 1e9) return (current / 1e9).toFixed(3) + " B";
+  return Math.round(current / 1e6) + " M";
 }
 
-// ── TitleCard ────────────────────────────────────────────────────────────
+// ─── TitleCard ────────────────────────────────────────────────────────────────
 const TitleCard: React.FC<{ frame: number; fps: number }> = ({ frame, fps }) => {
-  const opacity = interpolate(frame, [0, 14, 72, 90], [0, 1, 1, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
+  // Fade in → hold → fade out
+  const opacity = interpolate(
+    frame,
+    [0, 14, 72, 90],
+    [0, 1, 1, 0],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
 
-  const sp = spring({ frame, fps, config: { damping: 14, stiffness: 70 } });
-  const y  = interpolate(sp, [0, 1], [72, 0]);
-  const sc = interpolate(sp, [0, 1], [0.87, 1]);
-  const lineW = interpolate(sp, [0, 1], [0, 88]);
+  const sp  = spring({ frame, fps, config: { damping: 14, stiffness: 68 } });
+  const y   = interpolate(sp, [0, 1], [70, 0]);
+  const sc  = interpolate(sp, [0, 1], [0.87, 1]);
+  const lw  = interpolate(sp, [0, 1], [0, 90]);   // accent line width
 
-  const subOpacity = interpolate(frame, [22, 50], [0, 1], {
+  const sub = interpolate(frame, [22, 52], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
@@ -82,52 +101,55 @@ const TitleCard: React.FC<{ frame: number; fps: number }> = ({ frame, fps }) => 
   return (
     <AbsoluteFill
       style={{
-        background: BG,
+        background: C_BG,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
         opacity,
+        pointerEvents: "none",
       }}
     >
-      {/* Top accent */}
-      <div style={{ width: lineW, height: 5, background: ORANGE, borderRadius: 3, marginBottom: 30 }} />
+      {/* Animated accent bar */}
+      <div style={{ width: lw, height: 5, background: C_BAR, borderRadius: 3, marginBottom: 30 }} />
 
+      {/* Main title */}
       <h1
         style={{
-          color: WHITE,
+          color: C_WHITE,
           fontSize: 100,
           fontWeight: 900,
-          fontFamily: "'Arial Black', Arial, sans-serif",
+          fontFamily: "'Arial Black', 'Arial Bold', Arial, sans-serif",
           textAlign: "center",
-          lineHeight: 1.08,
+          lineHeight: 1.1,
           margin: 0,
           letterSpacing: -2,
           transform: `translateY(${y}px) scale(${sc})`,
-          textShadow: `0 0 120px rgba(232,93,38,0.3)`,
+          textShadow: `0 0 140px rgba(232,93,38,0.28)`,
         }}
       >
         World's Most
         <br />
-        <span style={{ color: ORANGE }}>Populated</span> Countries
+        <span style={{ color: C_BAR }}>Populated</span> Countries
       </h1>
 
+      {/* Subtitle */}
       <p
         style={{
-          color: GRAY,
+          color: C_DIM,
           fontSize: 30,
           fontFamily: "Arial, sans-serif",
-          margin: "30px 0 0",
-          opacity: subOpacity,
-          letterSpacing: 5,
+          margin: "32px 0 0",
+          letterSpacing: 6,
           textTransform: "uppercase",
+          opacity: sub,
         }}
       >
         2026 Estimates · United Nations
       </p>
 
-      {/* Progress dots */}
-      <div style={{ display: "flex", gap: 10, marginTop: 46, opacity: subOpacity }}>
+      {/* Dot indicators — one per country */}
+      <div style={{ display: "flex", gap: 10, marginTop: 46, opacity: sub }}>
         {COUNTRIES.map((_, i) => (
           <div
             key={i}
@@ -135,7 +157,7 @@ const TitleCard: React.FC<{ frame: number; fps: number }> = ({ frame, fps }) => 
               width: i === 0 ? 26 : 8,
               height: 8,
               borderRadius: 4,
-              background: i === 0 ? ORANGE : "#2a2a2a",
+              background: i === 0 ? C_BAR : "#2b2b2b",
             }}
           />
         ))}
@@ -144,7 +166,7 @@ const TitleCard: React.FC<{ frame: number; fps: number }> = ({ frame, fps }) => 
   );
 };
 
-// ── Chart header ─────────────────────────────────────────────────────────
+// ─── Chart header (replaces Hello-World title once chart fades in) ────────────
 const ChartHeader: React.FC<{ frame: number }> = ({ frame }) => {
   const opacity = interpolate(frame, [TITLE_END, TITLE_END + 16], [0, 1], {
     extrapolateLeft: "clamp",
@@ -155,18 +177,18 @@ const ChartHeader: React.FC<{ frame: number }> = ({ frame }) => {
       style={{
         position: "absolute",
         top: 0, left: 0, right: 0,
-        height: HEADER_H,
+        height: HDR_H,
         display: "flex",
         alignItems: "center",
-        padding: `0 ${PAD}px`,
+        padding: `0 ${H_PAD}px`,
+        background: "linear-gradient(180deg, #0d0d0d 65%, transparent 100%)",
         opacity,
-        background: `linear-gradient(180deg, #0d0d0d 65%, transparent 100%)`,
         zIndex: 10,
       }}
     >
       <h2
         style={{
-          color: WHITE,
+          color: C_WHITE,
           fontSize: 40,
           fontWeight: 900,
           fontFamily: "'Arial Black', Arial, sans-serif",
@@ -174,17 +196,15 @@ const ChartHeader: React.FC<{ frame: number }> = ({ frame }) => {
           letterSpacing: -0.5,
         }}
       >
-        World's Most{" "}
-        <span style={{ color: ORANGE }}>Populated</span> Countries
+        World's Most <span style={{ color: C_BAR }}>Populated</span> Countries
       </h2>
       <span
         style={{
           marginLeft: "auto",
-          color: GRAY,
+          color: C_DIM,
           fontSize: 22,
           fontFamily: "Arial, sans-serif",
           letterSpacing: 4,
-          textTransform: "uppercase",
         }}
       >
         2026
@@ -193,8 +213,8 @@ const ChartHeader: React.FC<{ frame: number }> = ({ frame }) => {
   );
 };
 
-// ── Milestone grid lines ──────────────────────────────────────────────────
-const MILESTONES = [250e6, 500e6, 750e6, 1e9, 1.25e9];
+// ─── Vertical milestone grid lines ───────────────────────────────────────────
+const MILESTONES: number[] = [250e6, 500e6, 750e6, 1e9, 1.25e9];
 
 const GridLines: React.FC<{ frame: number }> = ({ frame }) => {
   const opacity = interpolate(frame, [FIRST_BAR, FIRST_BAR + 22], [0, 1], {
@@ -204,28 +224,30 @@ const GridLines: React.FC<{ frame: number }> = ({ frame }) => {
   return (
     <>
       {MILESTONES.map((m) => {
-        const x = PAD + LABEL_W + (m / MAX_POP) * BAR_W;
-        const label = m >= 1e9 ? (m / 1e9).toFixed(2) + "B" : Math.round(m / 1e6) + "M";
+        const x     = H_PAD + LABEL_W + (m / MAX_POP) * BAR_W;
+        const label = m >= 1e9
+          ? (m / 1e9).toFixed(2) + "B"
+          : Math.round(m / 1e6) + "M";
         return (
           <div
             key={m}
             style={{
               position: "absolute",
-              top: HEADER_H + 18,
-              bottom: FOOTER_H,
+              top: HDR_H + 16,
+              bottom: FTR_H,
               left: x,
               width: 1,
-              background: "#262626",
+              background: C_GRID,
               opacity,
             }}
           >
             <div
               style={{
                 position: "absolute",
-                top: -22,
+                top: -20,
                 left: "50%",
                 transform: "translateX(-50%)",
-                color: "#3a3a3a",
+                color: "#383838",
                 fontSize: 15,
                 fontFamily: "Arial, sans-serif",
                 whiteSpace: "nowrap",
@@ -240,7 +262,7 @@ const GridLines: React.FC<{ frame: number }> = ({ frame }) => {
   );
 };
 
-// ── Single bar row ────────────────────────────────────────────────────────
+// ─── Single animated bar row ──────────────────────────────────────────────────
 const BarRow: React.FC<{
   country: Country;
   rank: number;
@@ -250,17 +272,13 @@ const BarRow: React.FC<{
 }> = ({ country, rank, index, frame, fps }) => {
   const appearFrame = FIRST_BAR + index * STAGGER;
 
-  // Slide-up entrance
-  const rowSp = spring({
-    frame: Math.max(0, frame - appearFrame),
-    fps,
-    config: { damping: 20, stiffness: 110 },
-  });
+  // Row slide-up entrance
+  const rowSp     = spring({ frame: Math.max(0, frame - appearFrame), fps, config: { damping: 20, stiffness: 110 } });
   const rowOpacity = frame < appearFrame ? 0 : Math.min(1, rowSp);
   const rowY       = frame < appearFrame ? 30 : interpolate(rowSp, [0, 1], [30, 0]);
 
-  // Bar growth — eased, all bars finish simultaneously at BUILD_END
-  const barProgress =
+  // Bar growth — eased, ALL bars reach 100% simultaneously at BUILD_END
+  const barProg =
     frame < appearFrame
       ? 0
       : interpolate(frame, [appearFrame, BUILD_END], [0, 1], {
@@ -269,25 +287,22 @@ const BarRow: React.FC<{
           easing: Easing.out(Easing.quad),
         });
 
-  const bw         = Math.max(0, (country.pop / MAX_POP) * BAR_W * barProgress);
-  const displayPop = Math.round(country.pop * barProgress);
-
+  const barPx      = Math.max(0, (country.pop / MAX_POP) * BAR_W * barProg);
+  const displayPop = Math.round(country.pop * barProg);
   const isFinale   = frame >= BUILD_END;
   const isTop3     = rank <= 3;
   const isFirst    = rank === 1;
 
-  // Gold shimmer sweep across India's bar at finale start
-  const shimmerX = isFinale && isFirst
-    ? interpolate(frame - BUILD_END, [0, 55], [-120, bw + 120], {
+  // Gold shimmer that sweeps once across India's bar at finale start
+  const shimmerLeft = isFinale && isFirst
+    ? interpolate(frame - BUILD_END, [0, 55], [-120, barPx + 120], {
         extrapolateLeft: "clamp",
         extrapolateRight: "clamp",
       })
     : -9999;
 
-  // Gentle glow pulse in finale
-  const glowAlpha = isFinale
-    ? 0.10 + 0.06 * Math.sin((frame - BUILD_END) * 0.10)
-    : 0;
+  // Subtle breathing glow on all bars during finale
+  const glowA = isFinale ? 0.10 + 0.06 * Math.sin((frame - BUILD_END) * 0.10) : 0;
 
   return (
     <div
@@ -295,8 +310,8 @@ const BarRow: React.FC<{
         display: "flex",
         alignItems: "center",
         flex: 1,
-        paddingLeft: PAD,
-        paddingRight: PAD,
+        paddingLeft: H_PAD,
+        paddingRight: H_PAD,
         opacity: rowOpacity,
         transform: `translateY(${rowY}px)`,
       }}
@@ -305,76 +320,85 @@ const BarRow: React.FC<{
       <div
         style={{
           width: RANK_W,
-          color: isTop3 ? ORANGE : GRAY,
+          flexShrink: 0,
+          paddingRight: 10,
+          color: isTop3 ? C_BAR : C_DIM,
           fontSize: isTop3 ? 32 : 26,
           fontWeight: 900,
           fontFamily: "'Arial Black', Arial, sans-serif",
           textAlign: "right",
-          paddingRight: 10,
-          flexShrink: 0,
-          textShadow: isFinale && isFirst ? `0 0 18px ${GOLD}90` : undefined,
+          textShadow: isFinale && isFirst ? `0 0 18px ${C_GOLD}90` : undefined,
         }}
       >
         #{rank}
       </div>
 
       {/* Flag */}
-      <div style={{ width: FLAG_W, fontSize: 38, textAlign: "center", flexShrink: 0, lineHeight: 1 }}>
+      <div
+        style={{
+          width: FLAG_W,
+          flexShrink: 0,
+          fontSize: 38,
+          textAlign: "center",
+          lineHeight: 1,
+        }}
+      >
         {country.flag}
       </div>
 
-      {/* Name */}
+      {/* Country name */}
       <div
         style={{
           width: NAME_W,
-          marginLeft: NAME_GAP,
-          color: WHITE,
+          marginLeft: GAP,
+          flexShrink: 0,
+          color: C_WHITE,
           fontSize: 26,
           fontWeight: 700,
           fontFamily: "Arial, sans-serif",
-          flexShrink: 0,
+          letterSpacing: -0.2,
           whiteSpace: "nowrap",
           overflow: "hidden",
           textOverflow: "ellipsis",
-          letterSpacing: -0.2,
         }}
       >
         {country.name}
       </div>
 
-      {/* Bar track + fill */}
+      {/* Bar track */}
       <div
         style={{
           flex: 1,
           height: BAR_H,
-          background: DARK,
+          background: C_TRACK,
           borderRadius: 5,
           position: "relative",
           overflow: "hidden",
         }}
       >
-        {/* Fill */}
+        {/* Filled bar */}
         <div
           style={{
             position: "absolute",
             inset: 0,
-            width: bw,
-            background: isFinale && isFirst
-              ? `linear-gradient(90deg, ${ORANGE} 55%, #ff9044 100%)`
-              : ORANGE,
+            width: barPx,
+            background:
+              isFinale && isFirst
+                ? `linear-gradient(90deg, ${C_BAR} 55%, #ff9044 100%)`
+                : C_BAR,
             borderRadius: 5,
-            boxShadow: `0 0 ${10 + glowAlpha * 35}px rgba(232,93,38,${glowAlpha})`,
+            boxShadow: `0 0 ${10 + glowA * 35}px rgba(232,93,38,${glowA.toFixed(3)})`,
           }}
         />
 
-        {/* Growing-tip highlight (white cursor at bar end) */}
+        {/* Growing-tip cursor (white flash at advancing edge) */}
         {frame > appearFrame && frame < BUILD_END && (
           <div
             style={{
               position: "absolute",
               top: 4,
               bottom: 4,
-              left: Math.max(0, bw - 7),
+              left: Math.max(0, barPx - 7),
               width: 7,
               background: "rgba(255,255,255,0.5)",
               borderRadius: 3,
@@ -388,9 +412,10 @@ const BarRow: React.FC<{
             position: "absolute",
             top: 0,
             bottom: 0,
-            left: shimmerX,
+            left: shimmerLeft,
             width: 120,
-            background: `linear-gradient(90deg, transparent, rgba(255,215,0,0.45), transparent)`,
+            background:
+              "linear-gradient(90deg, transparent, rgba(255,215,0,0.45), transparent)",
             pointerEvents: "none",
           }}
         />
@@ -400,13 +425,13 @@ const BarRow: React.FC<{
       <div
         style={{
           width: POP_W,
-          color: isTop3 ? WHITE : "#999",
+          paddingLeft: 14,
+          flexShrink: 0,
+          color: isTop3 ? C_WHITE : "#999999",
           fontSize: 25,
           fontWeight: 700,
           fontFamily: "Arial, sans-serif",
           textAlign: "right",
-          flexShrink: 0,
-          paddingLeft: 14,
           letterSpacing: -0.3,
           opacity: frame >= appearFrame ? 1 : 0,
         }}
@@ -417,7 +442,7 @@ const BarRow: React.FC<{
   );
 };
 
-// ── Source / footer ───────────────────────────────────────────────────────
+// ─── Source footer ────────────────────────────────────────────────────────────
 const Footer: React.FC<{ frame: number }> = ({ frame }) => {
   const opacity = interpolate(frame, [BUILD_END, BUILD_END + 28], [0, 1], {
     extrapolateLeft: "clamp",
@@ -428,59 +453,39 @@ const Footer: React.FC<{ frame: number }> = ({ frame }) => {
       style={{
         position: "absolute",
         bottom: 0, left: 0, right: 0,
-        height: FOOTER_H,
+        height: FTR_H,
         display: "flex",
         alignItems: "center",
-        padding: `0 ${PAD}px`,
+        padding: `0 ${H_PAD}px`,
+        borderTop: "1px solid #1e1e1e",
         opacity,
-        borderTop: "1px solid #1a1a1a",
       }}
     >
-      <span style={{ color: "#444", fontSize: 18, fontFamily: "Arial, sans-serif" }}>
+      <span style={{ color: "#444444", fontSize: 18, fontFamily: "Arial, sans-serif" }}>
         Source: United Nations, World Population Prospects 2025 · Estimates for 2026
-      </span>
-      <span
-        style={{
-          marginLeft: "auto",
-          color: ORANGE,
-          fontSize: 18,
-          fontWeight: 900,
-          fontFamily: "'Arial Black', Arial, sans-serif",
-          letterSpacing: 1,
-        }}
-      >
-        autopiecesdz.com
       </span>
     </div>
   );
 };
 
-// ── Vignette overlay ─────────────────────────────────────────────────────
-const Vignette: React.FC = () => (
-  <AbsoluteFill
-    style={{
-      background:
-        "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%)",
-      pointerEvents: "none",
-    }}
-  />
-);
-
-// ── Main composition ──────────────────────────────────────────────────────
+// ─── Main composition ─────────────────────────────────────────────────────────
 export const CountryRanking: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const frame       = useCurrentFrame();
+  const { fps }     = useVideoConfig();
 
+  // Chart fades in as title card fades out
   const chartOpacity = interpolate(frame, [TITLE_END, TITLE_END + 16], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
   return (
-    <AbsoluteFill style={{ background: BG, fontFamily: "Arial, sans-serif" }}>
-      {/* ── Chart (fades in after title) ── */}
+    <AbsoluteFill style={{ background: C_BG, fontFamily: "Arial, sans-serif" }}>
+
+      {/* ── Bar chart (slides in after title) ── */}
       <AbsoluteFill style={{ opacity: chartOpacity }}>
-        {/* Scanline texture */}
+
+        {/* Subtle scanline texture */}
         <AbsoluteFill
           style={{
             backgroundImage:
@@ -489,14 +494,22 @@ export const CountryRanking: React.FC = () => {
           }}
         />
 
+        {/* Vignette */}
+        <AbsoluteFill
+          style={{
+            background: "radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.45) 100%)",
+            pointerEvents: "none",
+          }}
+        />
+
         <GridLines frame={frame} />
 
-        {/* All 10 rows in a flex column */}
+        {/* 10 bar rows filling the space between header and footer */}
         <div
           style={{
             position: "absolute",
-            top: HEADER_H,
-            bottom: FOOTER_H,
+            top: HDR_H,
+            bottom: FTR_H,
             left: 0,
             right: 0,
             display: "flex",
@@ -517,11 +530,11 @@ export const CountryRanking: React.FC = () => {
 
         <ChartHeader frame={frame} />
         <Footer frame={frame} />
-        <Vignette />
       </AbsoluteFill>
 
-      {/* ── Title card on top (renders last = highest z-index) ── */}
+      {/* ── Title card — rendered last so it sits on top ── */}
       <TitleCard frame={frame} fps={fps} />
+
     </AbsoluteFill>
   );
 };
