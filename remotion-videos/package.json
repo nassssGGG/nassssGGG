@@ -1,0 +1,27 @@
+{
+  "name": "autopiecesdz-remotion-videos",
+  "version": "1.0.0",
+  "description": "Remotion video generation for AutoPièces DZ",
+  "scripts": {
+    "start": "npx remotion studio",
+    "build": "npx remotion render",
+    "render": "npx remotion render src/index.ts PromoVideo out/promo.mp4",
+    "render:all": "npx remotion render src/index.ts PromoVideo out/promo.mp4 && npx remotion render src/index.ts ProductSpotlight out/spotlight.mp4",
+    "upgrade": "npx remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "4.0.290",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "4.0.290"
+  },
+  "devDependencies": {
+    "@types/node": "^25.8.0",
+    "@types/react": "18.3.1",
+    "@types/react-dom": "18.3.1",
+    "typescript": "^5.8.3"
+  },
+  "remotion": {
+    "entryPoint": "src/index.ts"
+  }
+}
