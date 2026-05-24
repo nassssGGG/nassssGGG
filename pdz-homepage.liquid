@@ -96,11 +96,17 @@
 
 /* TOP-PARTS (categories) */
 .top-parts-item{height:100%}
-.top-parts-item__content{display:flex;flex-direction:column;align-items:center;background:#fff;border:1px solid #e2e8ed;border-radius:4px;padding:14px 8px 12px;color:#132530;height:100%;transition:border-color .15s,box-shadow .15s}
+.top-parts-item__content{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8ed;border-radius:4px;padding:22px 10px;color:#132530;height:100%;min-height:96px;transition:border-color .15s,box-shadow .15s;cursor:pointer;text-align:center;width:100%;font-family:'Inter',Arial,sans-serif}
 .top-parts-item__content:hover{border-color:#f85a00;box-shadow:0 2px 10px rgba(248,90,0,.1)}
-.top-parts-item__img{width:80px;height:80px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
-.top-parts-item__img img{width:80px;height:80px;object-fit:contain}
-.top-parts-item__name{font-size:.72rem;font-weight:600;text-align:center;line-height:1.3;color:#132530}
+.top-parts-item__content.is-active{border-color:#f85a00;background:#fff8f5;box-shadow:0 2px 10px rgba(248,90,0,.12)}
+.top-parts-item__name{font-size:.78rem;font-weight:600;text-align:center;line-height:1.3;color:#132530}
+/* ACCORDION PANEL — sub-categories */
+.subcat-panel{display:none;background:#fff;border:1px solid #e2e8ed;border-top:3px solid #f85a00;border-radius:4px;margin-top:14px;padding:18px 22px 22px}
+.subcat-panel.is-open{display:block}
+.subcat-panel__title{font-family:'Montserrat',Arial,sans-serif;font-size:.9rem;font-weight:700;text-transform:uppercase;color:#132530;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid #eef1f4;letter-spacing:.02em}
+.subcat-panel__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px 18px}
+.subcat-panel__link{display:block;padding:6px 0;font-size:.78rem;color:#3a4a55;line-height:1.4;border-bottom:1px solid #f3f5f7;transition:color .12s}
+.subcat-panel__link:hover{color:#f85a00}
 
 /* ESSENTIALS */
 .essentials-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
@@ -313,119 +319,29 @@
 <section class="section section-div">
   <div class="wrap">
     <h1 class="section__title">Trouvez des pièces détachées dans le catalogue AutoPièces DZ</h1>
-    <div class="row row-gap row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=pneu+jante" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/tyres_wheels.png" alt="Pneus et jantes" loading="lazy"></span>
-            <span class="top-parts-item__name">Pneus et jantes</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=frein+plaquette+disque" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10106.png" alt="Frein" loading="lazy"></span>
-            <span class="top-parts-item__name">Frein</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=moteur+joint+culasse" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10102.png" alt="Moteur" loading="lazy"></span>
-            <span class="top-parts-item__name">Moteur</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=courroie+distribution+chaine+galet" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10116.png" alt="Courroies, chaînes, galets" loading="lazy"></span>
-            <span class="top-parts-item__name">Courroies, chaînes, galets</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=embrayage+kit" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10150.png" alt="Embrayage" loading="lazy"></span>
-            <span class="top-parts-item__name">Embrayage</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=filtre+huile+air+habitacle" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10105.png" alt="Filtre" loading="lazy"></span>
-            <span class="top-parts-item__name">Filtre</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=amortisseur" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10111.png" alt="Amortissement" loading="lazy"></span>
-            <span class="top-parts-item__name">Amortissement</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=suspension+rotule+silent-bloc" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10113.png" alt="Suspension" loading="lazy"></span>
-            <span class="top-parts-item__name">Suspension</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=carrosserie+pare-chocs+retroviseur" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10101.png" alt="Carrosserie" loading="lazy"></span>
-            <span class="top-parts-item__name">Carrosserie</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=electrique+alternateur+demarreur+bobine" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10110.png" alt="Électricité" loading="lazy"></span>
-            <span class="top-parts-item__name">Électricité</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/search?type=product&q=huile+moteur+liquide+fluide" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/10435.png" alt="Huiles &amp; fluides" loading="lazy"></span>
-            <span class="top-parts-item__name">Huiles &amp; fluides</span>
-          </a>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="top-parts-item">
-          <a href="/collections/all" class="top-parts-item__content">
-            <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/150x150/other.png" alt="Autres catégories" loading="lazy"></span>
-            <span class="top-parts-item__name">Autres catégories</span>
-          </a>
-        </div>
-      </div>
-
+    <div class="row row-gap row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6" id="pdz-cats-grid">
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="pneus"><span class="top-parts-item__name">Pneus et jantes</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="frein"><span class="top-parts-item__name">Frein</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="moteur"><span class="top-parts-item__name">Moteur</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="courroies"><span class="top-parts-item__name">Courroies, chaînes, galets</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="embrayage"><span class="top-parts-item__name">Embrayage</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="filtre"><span class="top-parts-item__name">Filtre</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="amortissement"><span class="top-parts-item__name">Amortissement</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="suspension"><span class="top-parts-item__name">Suspension</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="carrosserie"><span class="top-parts-item__name">Carrosserie</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="electricite"><span class="top-parts-item__name">Électricité</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="huiles"><span class="top-parts-item__name">Huiles &amp; fluides</span></button></div></div>
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="autres"><span class="top-parts-item__name">Autres catégories</span></button></div></div>
     </div>
+
+    <!-- Accordion panel -->
+    <div class="subcat-panel" id="pdz-subcat-panel" aria-live="polite">
+      <div class="subcat-panel__title" id="pdz-subcat-title"></div>
+      <div class="subcat-panel__grid" id="pdz-subcat-grid"></div>
+    </div>
+
     <div class="section__btn">
-      <a href="/collections/all" class="btn btn--outline-dk">Plus de pièces détachées</a>
+      <a href="/pages/catalogue" class="btn btn--outline-dk">Plus de pièces détachées</a>
     </div>
   </div>
 </section>
@@ -654,6 +570,72 @@
     if(!v)return;
     window.location.href='/search?type=product&q='+encodeURIComponent(v);
   };
+})();
+
+/* ============================================================
+   ACCORDION SOUS-CATÉGORIES — fonctionne sur toutes les pages
+   ============================================================ */
+(function(){
+  if(window.PDZ_SUBCATS_LOADED)return;window.PDZ_SUBCATS_LOADED=true;
+
+  var SUBCATS = {
+    "pneus":{label:"Pneus, jantes et accessoires", items:["Pneus","Jantes","Boulon de roue et écrou de roue","Antivols de roue","Capteur de pression pneu (TPMS)","Enjoliveurs","Élargisseur de voie","Cric","Pâte de montage","Cale de roue","Manomètre de pression des pneus","Chaîne neige","Kit de réparation de pneu","Clé démonte-roue","Gonfleur pneu","Housses de roue","Adhésifs à base de caoutchouc","Nettoyant pour intérieur de voiture"]},
+    "huiles":{label:"Huiles et fluides", items:["Huile moteur","Huile boîte de vitesse","Huile direction assistée","Huile hydraulique","Huile pour boîte de vitesse automatique","Liquide de frein","Liquide de refroidissement","Liquide d'échappement diesel","Eau distillée","Additifs huile de moteur","Additif carburant","Additif huile hydraulique","Additifs & traitements pour transmission"]},
+    "frein":{label:"Frein", items:["Disque de frein","Plaquette de frein","Mâchoires de frein","Tambour de frein","Étrier de frein","Flexible de frein","Maître-cylindre","Mastervac","Cylindre de roue","Frein à main","Mâchoires de frein à main","Réservoir de liquide de frein","Kit disque et plaquette de frein","Kit de frein arrière","Kit freins à tambours","Ajusteur frein à tambour","Disque de frein sport","Disque de freins de haute performance","Plaquette de frein sport","Pompe à vide de frein","Tuyau de frein","Piston d'étrier de frein","Support d'étrier de frein","Kit de réparation d'étrier de frein","Jeu de douilles de guidage d'étrier de frein","Kit réparation étanchéité cylindre de roue","Protection de disque de frein","Peinture étrier de frein","Nettoyant frein","Frein filet"]},
+    "filtre":{label:"Filtre", items:["Filtre à air","Filtre à huile","Filtre à carburant","Filtre d'habitacle","Filtre à particules (FAP)","Filtre hydraulique de direction","Filtre à air secondaire","Filtre à air sport","Kit de filtres"]},
+    "moteur":{label:"Moteur", items:["Culasse","Piston","Segment de piston","Coussinet de vilebrequin","Coussinet de bielle","Bielle","Arbre à came","Soupape d'admission","Soupape d'échappement","Guide de soupape / joint / réglage","Culbuteur","Carter d'huile","Pompe à huile","Pompe à eau","Pompe à eau additionnelle","Volant moteur","Joint de culasse","Pochette de joints moteur","Vis de culasse","Pignon de vilebrequin","Jauge d'huile","Bouchon d'huile moteur","Bouchon de vidange","Reniflard d'huile","Tuyau d'huile","Support moteur","Ventilateur moteur","Collecteur d'admission","Durite d'admission d'air","Carter de protection sous moteur","Circuit électrique du moteur","Faisceau moteur","Cale de blocage de soupape"]},
+    "suspension":{label:"Suspension", items:["Bras de suspension","Rotule de suspension","Silent bloc de triangle","Silent bloc de barre stabilisatrice","Biellette de barre stabilisatrice","Rotule axiale","Rotule de direction","Pivot de fusée","Fusée","Ressort d'amortisseur","Kit de suspension amortisseur et ressort","Kit de réparation de bras de suspension","Kit d'assemblage bras de liaison","Kit réparation suspension de roue","Suspension sport","Train arrière","Silent bloc d'essieu","Patin de ressort","Lame de ressort"]},
+    "electricite":{label:"Electricité", items:["Alternateur","Composant alternateur","Régulateur d'alternateur","Poulie d'alternateur","Palier de transmission alternateur","Démarreur","Pièces de démarreur","Charbon de démarreur","Embrayage à roue libre démarreur","Batterie","Boîte à fusible","Fusible","Relais multifonction","Relais de klaxon","Relais correcteur d'assiette","Centrale clignotant","Jeu de câbles","Contacteur de feux stop","Contacteur de feu de recul","Contacteur de porte","Contacteur tournant","Appareil de commande système d'éclairage","Appareil de commande verrouillage central","Calculateur boîte de vitesse automatique","Interrupteur feu antibrouillard","Bouton de lève-vitre","Bouton de réglage de rétroviseur","Bouton warning","Klaxon","Commodo de phare"]},
+    "amortissement":{label:"Amortissement", items:["Amortisseur","Coupelle d'amortisseur","Support amortisseur","Kit de protection d'amortisseur et butée élastique de suspension","Outil pour amortisseur et ressort","Outils pour suspension"]},
+    "courroies":{label:"Courroies, chaînes, galets", items:["Courroie de distribution","Courroie d'alternateur","Courroie trapézoïdale","Kit de distribution","Kit de distribution + pompe à eau","Kit chaîne de distribution","Chaîne de distribution","Tendeur de chaine de distribution","Galet tendeur de courroie de distribution","Galet tendeur de courroie d'accessoire","Poulie renvoi / transmission courroie trapézoïdale à nervures","Poulie tendeur de courroie d'accessoire","Kit de courroie d'accessoire","Chaîne de pompe à huile","Outils pour courroie / chaîne","Vis de poulie de vilebrequin","Poulie damper","Poulies de vilebrequin"]},
+    "carrosserie":{label:"Carrosserie", items:["Capot","Aile","Pare-brise","Lunette arrière","Vitre latérale","Porte arrière","Portière avant et composants","Panneau latéral","Pare-boue","Poignée de porte","Serrure de porte","Serrure de hayon","Barillet de porte","Baguette de porte","Bas de caisse","Plancher de carrosserie","Calandre","Grille de pare-choc","Bandeau pare-choc","Cache crochet de remorquage","Cache antibrouillard","Support pare-choc","Lame avant","Élargisseur d'aile","Joint de pare brise","Joint de porte","Clips de fixation","Vérin de capot","Vérin de coffre","Catadioptre","Logo","Éclairage de plaque d'immatriculation","Support de plaque d'immatriculation"]},
+    "embrayage":{label:"Embrayage", items:["Kit d'embrayage","Disque d'embrayage","Mécanisme d'embrayage","Butée d'embrayage","Butée d'embrayage hydraulique","Câble d'embrayage","Fourchette d'embrayage","Capteur d'embrayage","Outils pour embrayage"]},
+    "autres":{label:"Autres catégories", items:["Système d'essuie-glaces","Allumage et préchauffage","Refroidissement moteur","Chauffage et ventilation","Joints et bagues d'étanchéité","Échappement","Intérieur","Système d'alimentation","Direction","Cardan de transmission et joint homocinétique","Dispositif d'attelage / accessoires","Boîte de vitesse","Climatisation","Roulements","Arbres de transmission et différentiels","Capteurs, relais, unités de commande","Accessoires voiture","Kits de réparation","Outillage & équipement","Tuyaux et conduites","Produits de nettoyage et d'entretien","Éclairage","Tuning","Fixations","Recirculation des gaz d'échappement","Composants pour la suralimentation","Suspension pneumatique"]}
+  };
+  window.PDZ_SUBCATS = SUBCATS;
+
+  function slugify(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'+').replace(/^\+|\+$/g,'');}
+
+  function renderInto(panel,titleEl,gridEl,key){
+    var data=SUBCATS[key];if(!data){panel.classList.remove('is-open');return;}
+    titleEl.textContent=data.label;
+    gridEl.innerHTML='';
+    data.items.forEach(function(name){
+      var a=document.createElement('a');
+      a.className='subcat-panel__link';
+      a.href='/search?type=product&q='+slugify(name);
+      a.textContent=name;
+      gridEl.appendChild(a);
+    });
+    panel.classList.add('is-open');
+  }
+
+  function bindGrid(gridSel,panelSel,titleSel,subgridSel){
+    var grid=document.querySelector(gridSel);
+    var panel=document.querySelector(panelSel);
+    if(!grid||!panel)return;
+    var titleEl=panel.querySelector(titleSel)||document.querySelector(titleSel);
+    var gridEl=panel.querySelector(subgridSel)||document.querySelector(subgridSel);
+    grid.addEventListener('click',function(e){
+      var btn=e.target.closest('[data-cat]');
+      if(!btn)return;
+      e.preventDefault();
+      var key=btn.getAttribute('data-cat');
+      var wasActive=btn.classList.contains('is-active');
+      grid.querySelectorAll('.is-active').forEach(function(el){el.classList.remove('is-active');});
+      if(wasActive){panel.classList.remove('is-open');return;}
+      btn.classList.add('is-active');
+      renderInto(panel,titleEl,gridEl,key);
+      var rect=panel.getBoundingClientRect();
+      if(rect.top<0||rect.top>window.innerHeight-100){panel.scrollIntoView({behavior:'smooth',block:'nearest'});}
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded',function(){
+    bindGrid('#pdz-cats-grid','#pdz-subcat-panel','#pdz-subcat-title','#pdz-subcat-grid');
+    // Auto-bind on any other page where a generic grid exists
+    bindGrid('[data-pdz-cats-grid]','[data-pdz-subcat-panel]','[data-pdz-subcat-title]','[data-pdz-subcat-grid]');
+  });
 })();
 </script>
 
