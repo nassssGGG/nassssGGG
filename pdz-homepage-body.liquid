@@ -1,0 +1,877 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* RESET / BASE */
+.adoc *,.adoc *::before,.adoc *::after{box-sizing:border-box;margin:0;padding:0}
+.adoc{font-family:'Roboto',Arial,sans-serif;color:#1a1a1a;background:#fff;font-size:14px;line-height:1.4}
+.adoc a{text-decoration:none;color:inherit}
+.adoc ul{list-style:none}
+.adoc img{display:block;max-width:100%;height:auto}
+.adoc button{font-family:inherit;cursor:pointer;border:none;background:none}
+
+.wrap{max-width:1270px;margin:0 auto;padding:0 15px}
+.section{padding:30px 0}
+.t-center{text-align:center}
+.t-uppercase{text-transform:uppercase}
+.section__title{font-weight:700;font-size:1.15rem;color:#1a1a1a;margin-bottom:24px;letter-spacing:.02em;line-height:1.35}
+.section__btn{text-align:center;margin-top:24px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 26px;border-radius:3px;font-weight:700;font-size:.82rem;cursor:pointer;text-decoration:none;transition:all .15s}
+.btn--orange{background:#FF6900;color:#fff}
+.btn--orange:hover{background:#e35d00;color:#fff}
+.btn--outline-dk{border:1px solid #1a1a1a;color:#1a1a1a;background:transparent}
+.btn--outline-dk:hover{background:#1a1a1a;color:#fff}
+.btn--outline-wh{border:1px solid rgba(255,255,255,.55);color:#fff;background:transparent}
+.btn--outline-wh:hover{background:rgba(255,255,255,.2);color:#fff}
+.btn--lg{padding:12px 30px;font-size:.88rem}
+
+/* GRID */
+.row{display:flex;flex-wrap:wrap;margin:0 -8px}
+.col{padding:0 8px;flex:1}
+.row-gap{row-gap:16px}
+.row-cols-2>.col{flex:0 0 50%;max-width:50%}
+.row-cols-3>.col{flex:0 0 33.333%;max-width:33.333%}
+@media(min-width:768px){
+  .row-cols-md-3>.col{flex:0 0 33.333%;max-width:33.333%}
+  .row-cols-md-4>.col{flex:0 0 25%;max-width:25%}
+  .row-cols-md-5>.col{flex:0 0 20%;max-width:20%}
+}
+@media(min-width:992px){
+  .row-cols-lg-4>.col{flex:0 0 25%;max-width:25%}
+  .row-cols-lg-6>.col{flex:0 0 16.666%;max-width:16.666%}
+}
+@media(min-width:1200px){
+  .row-cols-xl-6>.col{flex:0 0 16.666%;max-width:16.666%}
+}
+
+/* ===== CROSS-PRODUCTS BAR (SHOP | CLUB) ===== */
+.header-cross-products{background:#0d0d0d;color:#fff}
+.header-cross-products__list{display:flex;gap:0}
+.header-cross-products__link{display:inline-block;padding:8px 22px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.7);cursor:pointer;transition:color .15s}
+.header-cross-products__link.active{color:#fff;background:#1a1a1a}
+.header-cross-products__link:hover{color:#fff}
+
+/* ===== HEADER TOP ===== */
+.adoc-header{background:#fff;border-bottom:1px solid #e8ecf0;padding:14px 0}
+.adoc-header__top{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.adoc-plus{display:flex;align-items:center;gap:10px;padding:8px 14px;border:1px solid #FF6900;border-radius:4px;color:#FF6900;font-weight:700;font-size:.78rem;cursor:pointer;transition:background .15s}
+.adoc-plus:hover{background:#fff5ec}
+.adoc-plus__logo{width:24px;height:24px;background:#FF6900;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.7rem}
+.adoc-header__logo{flex:0 0 auto;margin:0 auto}
+.adoc-header__logo img{max-height:36px;width:auto}
+.adoc-header__right{display:flex;align-items:center;gap:18px;margin-left:auto}
+.adoc-header__icon-item{display:flex;align-items:center;gap:8px;cursor:pointer;color:#1a1a1a}
+.adoc-header__icon{width:30px;height:30px;display:flex;align-items:center;justify-content:center;color:#1a1a1a;position:relative}
+.adoc-header__icon-text{font-size:.72rem;line-height:1.2}
+.adoc-header__icon-text strong{display:block;font-weight:700;font-size:.74rem}
+.adoc-header__badge{position:absolute;top:-4px;right:-4px;background:#FF6900;color:#fff;font-size:.6rem;padding:1px 5px;border-radius:8px;min-width:16px;text-align:center;font-weight:700}
+
+/* ===== HEADER PANEL (search + nav) ===== */
+.adoc-header__panel{background:#fff;padding:14px 0;border-bottom:1px solid #e8ecf0}
+.adoc-header__panel-inner{display:flex;align-items:center;gap:14px;max-width:1270px;margin:0 auto;padding:0 15px}
+.adoc-header__veh-link{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.85rem;color:#1a1a1a;white-space:nowrap}
+.adoc-header__search{flex:1;display:flex;align-items:stretch;border:1.5px solid #FF6900;border-radius:4px;overflow:hidden;background:#fff}
+.adoc-header__search input{flex:1;padding:10px 14px;border:none;font-size:.82rem;outline:none;font-family:inherit}
+.adoc-header__search-btn{background:#FF6900;color:#fff;border:none;padding:0 22px;font-weight:700;font-size:.78rem;text-transform:uppercase;display:flex;align-items:center;gap:6px;cursor:pointer}
+.adoc-header__search-btn:hover{background:#e35d00}
+.adoc-header__cart{display:flex;align-items:center;gap:10px;padding:6px 14px;background:#FF6900;color:#fff;border-radius:4px;font-weight:700;cursor:pointer;white-space:nowrap}
+.adoc-header__cart-amount{font-size:1rem}
+.adoc-header__cart-amount sup{font-size:.6rem}
+.adoc-nav{background:#fff;border-bottom:1px solid #e8ecf0;padding:8px 0}
+.adoc-nav__list{display:flex;gap:0;max-width:1270px;margin:0 auto;padding:0 15px;flex-wrap:wrap}
+.adoc-nav__item{display:flex;align-items:center;gap:6px;padding:8px 14px;font-size:.78rem;font-weight:500;color:#1a1a1a;cursor:pointer;transition:color .15s}
+.adoc-nav__item:hover{color:#FF6900}
+.adoc-nav__item svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6}
+
+/* ===== HERO ===== */
+.main-block{padding:30px 0}
+.main-hero-row{display:flex;gap:18px;flex-wrap:wrap}
+.search-car-box{flex:0 0 41.666%;background:#fff;border:1px solid #e8ecf0;border-radius:6px;padding:24px}
+.search-car-box__title{font-weight:700;font-size:1rem;margin-bottom:16px;line-height:1.4;color:#1a1a1a}
+.number-search{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid #eef1f4}
+.number-search__title{font-size:.82rem;font-weight:600;margin-bottom:10px;color:#1a1a1a}
+.number-search__wrap{display:flex;gap:10px}
+.number-search__input{flex:1;display:flex;align-items:center;border:2px solid #1b4f9c;border-radius:4px;overflow:hidden}
+.number-search__input-icon{background:#1b4f9c;color:#fff;padding:8px 10px;font-weight:800;font-size:.78rem}
+.number-search__input input{flex:1;padding:10px 12px;border:none;outline:none;font-size:.9rem;text-transform:uppercase;font-weight:600;font-family:inherit}
+.number-search__btn{background:#FF6900;color:#fff;border:none;padding:10px 22px;font-weight:700;font-size:.78rem;text-transform:uppercase;cursor:pointer;border-radius:0;white-space:nowrap}
+.number-search__btn:hover{background:#e35d00}
+.car-selector__title{font-size:.82rem;font-weight:600;margin-bottom:10px;color:#1a1a1a}
+.car-selector__form{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:end}
+.car-selector__select{padding:10px 12px;border:1px solid #c5cdd4;border-radius:4px;font-size:.82rem;background:#fff;font-family:inherit;width:100%;color:#1a1a1a;cursor:pointer}
+.car-selector__select:disabled{opacity:.5;cursor:default}
+.car-selector__btn{background:#FF6900;color:#fff;border:none;padding:11px 22px;font-weight:700;font-size:.78rem;text-transform:uppercase;cursor:pointer;border-radius:4px;white-space:nowrap;height:42px}
+.car-selector__btn:hover{background:#e35d00}
+.search-car-box__not-found{margin-top:14px;font-size:.74rem;color:#1b4f9c;text-decoration:underline;cursor:pointer;font-weight:600;text-transform:uppercase}
+
+.promo-banner{flex:1;min-height:330px;border-radius:6px;overflow:hidden;position:relative;background:linear-gradient(135deg,#1b4f9c,#0d2c5e)}
+.promo-banner__inner{position:absolute;inset:0;padding:30px;display:flex;flex-direction:column;justify-content:center;color:#fff;z-index:2}
+.promo-banner__badge{display:inline-block;background:#FF6900;color:#fff;font-size:.62rem;font-weight:700;padding:4px 10px;border-radius:2px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:12px;align-self:flex-start}
+.promo-banner__title{font-size:1.7rem;font-weight:800;text-transform:uppercase;line-height:1.15;margin-bottom:8px;max-width:60%}
+.promo-banner__title span{color:#4ade80}
+.promo-banner__sub{font-size:.85rem;opacity:.88;margin-bottom:18px;max-width:60%}
+.promo-banner::after{content:'';position:absolute;right:-80px;top:50%;transform:translateY(-50%);width:340px;height:340px;border-radius:50%;background:rgba(255,105,0,.12)}
+
+@media(max-width:991px){
+  .main-hero-row{flex-direction:column}
+  .search-car-box,.promo-banner{flex:none;width:100%}
+  .promo-banner{min-height:200px}
+  .promo-banner__title{max-width:none}
+}
+
+/* ===== CATEGORIES ===== */
+.top-parts-item{height:100%;position:relative}
+.top-parts-item__content{display:flex;flex-direction:column;align-items:center;background:#fff;border:1px solid #e2e8ed;border-radius:6px;padding:18px 10px 14px;color:#1a1a1a;height:100%;min-height:140px;transition:border-color .15s,box-shadow .15s;text-align:center;cursor:pointer;width:100%}
+.top-parts-item__content:hover{border-color:#FF6900;box-shadow:0 4px 16px rgba(255,105,0,.12)}
+.top-parts-item__img{width:88px;height:88px;display:flex;align-items:center;justify-content:center;margin-bottom:10px}
+.top-parts-item__img img{max-width:88px;max-height:88px;object-fit:contain}
+.top-parts-item__name{font-size:.78rem;font-weight:600;text-align:center;line-height:1.3;color:#1a1a1a}
+
+/* SUBCATEGORY ACCORDION PANEL (under grid) */
+.top-parts-item__content.is-active{border-color:#FF6900;background:#fff8f3;box-shadow:0 4px 16px rgba(255,105,0,.18)}
+.subcat-panel{display:none;background:#fff;border:1px solid #e2e8ed;border-top:3px solid #FF6900;border-radius:6px;margin-top:18px;padding:22px 26px}
+.subcat-panel.is-open{display:block}
+.subcat-panel__title{font-size:.95rem;font-weight:700;text-transform:uppercase;color:#1a1a1a;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid #eef1f4;letter-spacing:.02em}
+.subcat-panel__close{float:right;background:none;border:none;font-size:1.2rem;color:#888;cursor:pointer;line-height:1}
+.subcat-panel__close:hover{color:#1a1a1a}
+.subcat-panel__grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px 22px}
+.subcat-panel__item{display:flex;align-items:center;gap:10px;padding:6px;border-radius:4px;color:#3a4a55;font-size:.78rem;transition:background .12s,color .12s;cursor:pointer}
+.subcat-panel__item:hover{background:#fff5ec;color:#FF6900}
+.subcat-panel__item img{width:36px;height:36px;object-fit:contain;flex-shrink:0}
+.subcat-panel__item span{flex:1;line-height:1.3}
+
+/* ===== ESSENTIALS (3 big cards) ===== */
+.essentials-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:767px){.essentials-row{grid-template-columns:1fr}}
+
+/* ===== MAKERS ===== */
+.maker-box-item{display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8ed;border-radius:6px;padding:14px 12px;height:80px;width:100%;transition:border-color .15s,box-shadow .15s}
+.maker-box-item:hover{border-color:#FF6900;box-shadow:0 4px 12px rgba(0,0,0,.06)}
+.maker-box-item img{max-width:100%;max-height:42px;object-fit:contain;filter:grayscale(20%);transition:filter .15s}
+.maker-box-item:hover img{filter:none}
+
+/* ===== TRUST BAR ===== */
+.autoparts-features{background:#f6f8fa;padding:18px 0;border-top:1px solid #e8ecf0;border-bottom:1px solid #e8ecf0}
+.autoparts-features__wrap{display:flex;justify-content:space-around;flex-wrap:wrap;max-width:1270px;margin:0 auto;padding:0 15px;gap:16px}
+.autoparts-features__item{display:flex;align-items:center;gap:12px;flex:1 1 220px;padding:8px}
+.autoparts-features__icon{width:42px;height:42px;flex-shrink:0;color:#FF6900;display:flex;align-items:center;justify-content:center}
+.autoparts-features__icon svg{width:42px;height:42px;fill:none;stroke:currentColor;stroke-width:1.5}
+.autoparts-features__title{font-size:.85rem;font-weight:700;color:#1a1a1a;line-height:1.3}
+
+/* ===== PRODUCT GRID ===== */
+.product-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.product-card-grid__item{background:#fff;border:1px solid #e2e8ed;border-radius:6px;text-decoration:none;display:flex;flex-direction:column;overflow:hidden;transition:box-shadow .15s,border-color .15s}
+.product-card-grid__item:hover{box-shadow:0 4px 16px rgba(0,0,0,.08);border-color:#FF6900}
+.product-card-grid__img{height:160px;display:flex;align-items:center;justify-content:center;background:#fafafa;border-bottom:1px solid #f0f0f0;padding:14px}
+.product-card-grid__img img{max-height:130px;max-width:100%;object-fit:contain}
+.product-card-grid__body{padding:12px 14px 14px;flex:1;display:flex;flex-direction:column}
+.product-card-grid__brand{font-size:.68rem;color:#777;text-transform:uppercase;font-weight:600;letter-spacing:.03em;margin-bottom:4px}
+.product-card-grid__name{font-size:.82rem;font-weight:500;color:#1a1a1a;margin-bottom:8px;line-height:1.35;flex:1;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.product-card-grid__rating{color:#FF6900;font-size:.74rem;margin-bottom:6px}
+.product-card-grid__price{font-size:1.1rem;font-weight:800;color:#1a1a1a}
+.product-card-grid__price sup{font-size:.65rem;vertical-align:super}
+.product-card-grid__compare{font-size:.74rem;color:#999;text-decoration:line-through;margin-left:6px;font-weight:400}
+.product-card-grid__btn{display:flex;align-items:center;justify-content:center;gap:6px;background:#FF6900;color:#fff;text-align:center;padding:9px;font-size:.78rem;font-weight:700;margin-top:10px;border-radius:4px;text-transform:uppercase;cursor:pointer;border:none}
+.product-card-grid__btn:hover{background:#e35d00;color:#fff}
+
+/* ===== BRAND BOX ===== */
+.brand-box-item{display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e2e8ed;border-radius:4px;padding:12px 8px;height:66px;width:100%;transition:border-color .15s;text-decoration:none}
+.brand-box-item:hover{border-color:#FF6900}
+.brand-box-item img{max-width:100%;max-height:40px;object-fit:contain}
+
+/* ===== VIDEOS + ARTICLES ===== */
+.video-slider__item{background:#fff;border:1px solid #e2e8ed;border-radius:6px;overflow:hidden}
+.video-slider__item iframe{width:100%;height:280px;display:block;border:0}
+.video-slider__item-date{padding:10px 14px 4px;font-size:.74rem;color:#888}
+.video-slider__item-title{padding:0 14px 14px;font-size:.92rem;font-weight:600;color:#1a1a1a;line-height:1.35}
+.guide-articles__item{display:flex;gap:12px;background:#fff;border:1px solid #e2e8ed;border-radius:6px;padding:12px;margin-bottom:12px}
+.guide-articles__item-img{flex:0 0 110px;border-radius:4px;overflow:hidden}
+.guide-articles__item-img img{width:100%;height:100%;object-fit:cover}
+.guide-articles__item-content{flex:1;display:flex;flex-direction:column}
+.guide-articles__item-date{font-size:.72rem;color:#888;margin-bottom:4px}
+.guide-articles__item-title{font-size:.86rem;font-weight:700;color:#1a1a1a;margin-bottom:6px;line-height:1.3}
+.guide-articles__item-text{font-size:.76rem;color:#555;line-height:1.45;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ===== SEO TEXT BLOCK ===== */
+.text-info-box{padding:40px 0;background:#f6f8fa;border-top:1px solid #e8ecf0}
+.text-info-box p{font-size:.84rem;color:#333;line-height:1.65;margin-bottom:12px}
+
+/* ===== FOOTER ===== */
+.adoc-footer{background:#1a1a1a;color:#cfd5dd;padding:40px 0 0}
+.adoc-footer__cols{display:grid;grid-template-columns:repeat(4,1fr);gap:30px;padding:20px 0 36px}
+@media(max-width:991px){.adoc-footer__cols{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:575px){.adoc-footer__cols{grid-template-columns:1fr}}
+.adoc-footer__col h3{font-size:.92rem;font-weight:700;color:#fff;margin-bottom:14px;text-transform:uppercase;letter-spacing:.04em}
+.adoc-footer__col ul li{margin-bottom:8px}
+.adoc-footer__col a{font-size:.8rem;color:#cfd5dd;transition:color .15s}
+.adoc-footer__col a:hover{color:#FF6900}
+
+.adoc-footer__sub{background:#0d0d0d;padding:28px 0;border-top:1px solid #2a2a2a}
+.adoc-footer__sub-inner{display:flex;gap:30px;align-items:center;flex-wrap:wrap;justify-content:space-between}
+.subscribe-box{flex:1;min-width:280px}
+.subscribe-box__title{color:#fff;font-size:.95rem;font-weight:700;margin-bottom:10px}
+.subscribe-box__form{display:flex;gap:0}
+.subscribe-box__form input{flex:1;padding:11px 14px;border:1px solid #2a2a2a;border-radius:3px 0 0 3px;font-size:.82rem;outline:none;background:#fff;font-family:inherit}
+.subscribe-box__form button{background:#FF6900;color:#fff;border:none;padding:11px 22px;font-weight:700;font-size:.8rem;text-transform:uppercase;border-radius:0 3px 3px 0;cursor:pointer}
+.subscribe-box__form button:hover{background:#e35d00}
+
+.adoc-footer__pay{padding:18px 0;border-top:1px solid #2a2a2a;background:#0d0d0d}
+.adoc-footer__pay-icons{display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:center}
+.adoc-footer__pay-icons img{height:24px;width:auto;filter:brightness(0) invert(1);opacity:.7}
+
+.adoc-footer__bottom{padding:18px 0;background:#0d0d0d;border-top:1px solid #2a2a2a;text-align:center;font-size:.74rem;color:#888}
+.adoc-footer__bottom a{color:#FF6900}
+
+/* utilities */
+.mb-2{margin-bottom:16px}.mb-3{margin-bottom:24px}.mb-4{margin-bottom:32px}
+.mt-2{margin-top:16px}.mt-3{margin-top:24px}
+
+@media(max-width:767px){
+  .section__title{font-size:.95rem}
+  .promo-banner__title{font-size:1.2rem}
+  .product-card-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+
+<div class="adoc">
+
+<!-- ========== 0. CROSS-PRODUCTS BAR (SHOP | CLUB) ========== -->
+<div class="header-cross-products">
+  <div class="wrap">
+    <ul class="header-cross-products__list">
+      <li><span class="header-cross-products__link active">SHOP</span></li>
+      <li><span class="header-cross-products__link">CLUB</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== 1. HEADER TOP ========== -->
+<header class="adoc-header">
+  <div class="wrap">
+    <div class="adoc-header__top">
+      <div class="adoc-plus" role="link" tabindex="0">
+        <span class="adoc-plus__logo">+</span>
+        <span>Testez le compte premium</span>
+      </div>
+      <div class="adoc-header__logo">
+        <a href="/"><img src="https://scdn.autodoc.de/static/logo/logo-light.svg" alt="AutoPièces DZ" style="filter:invert(1) brightness(.1)"></a>
+      </div>
+      <div class="adoc-header__right">
+        <div class="adoc-header__icon-item">
+          <div class="adoc-header__icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#1a1a1a" stroke-width="1.6"><path d="M3 19V11l3-6h14l3 6v8M3 19h20M3 19v3M23 19v3"/><circle cx="8" cy="19" r="2"/><circle cx="18" cy="19" r="2"/></svg>
+            <span class="adoc-header__badge">0</span>
+          </div>
+          <div class="adoc-header__icon-text"><strong>Mon Garage</strong>Ajouter un véhicule</div>
+        </div>
+        <div class="adoc-header__icon-item">
+          <div class="adoc-header__icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#1a1a1a" stroke-width="1.6"><rect x="3" y="6" width="9" height="14"/><rect x="14" y="6" width="9" height="14"/><path d="M3 13h9M14 13h9"/></svg>
+          </div>
+        </div>
+        <div class="adoc-header__icon-item" onclick="alert('Connexion')">
+          <div class="adoc-header__icon">
+            <svg width="26" height="26" viewBox="0 0 26 26" fill="none" stroke="#1a1a1a" stroke-width="1.6"><circle cx="13" cy="9" r="4"/><path d="M5 22c0-4 4-7 8-7s8 3 8 7"/></svg>
+          </div>
+          <div class="adoc-header__icon-text"><strong>Mon AutoPièces</strong>Se connecter</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ========== 2. HEADER PANEL (vehicle + search + cart) ========== -->
+<div class="adoc-header__panel">
+  <div class="adoc-header__panel-inner">
+    <a href="/collections/all" class="adoc-header__veh-link">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="1.6"><path d="M3 17V10l2-5h14l2 5v7M3 17h18M3 17v2M21 17v2"/><circle cx="7" cy="17" r="1.5"/><circle cx="17" cy="17" r="1.5"/></svg>
+      Voiture de tourisme
+    </a>
+    <form class="adoc-header__search" onsubmit="event.preventDefault();var q=this.querySelector('input').value;if(q)location.href='/search?q='+encodeURIComponent(q);">
+      <input type="text" name="q" placeholder="Entrez le numéro ou le nom de la pièce" autocomplete="off">
+      <button type="submit" class="adoc-header__search-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="7" cy="7" r="5"/><path d="M11 11l3.5 3.5"/></svg>
+        Rechercher
+      </button>
+    </form>
+    <a href="/cart" class="adoc-header__cart">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 4h3l2 11h11l2-8H7"/><circle cx="9" cy="19" r="1.5"/><circle cx="18" cy="19" r="1.5"/></svg>
+      <span>article(s)</span>
+      <span class="adoc-header__cart-amount">0,<sup>00</sup> DA</span>
+    </a>
+  </div>
+</div>
+
+<!-- ========== 3. NAV (popular categories) ========== -->
+<nav class="adoc-nav">
+  <div class="adoc-nav__list">
+    <a class="adoc-nav__item" href="/search?q=pneus"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>Pneus</a>
+    <a class="adoc-nav__item" href="/search?q=jantes"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3v9M12 12l8 5M12 12l-8 5"/></svg>Jantes</a>
+    <a class="adoc-nav__item" href="/search?q=outillage"><svg viewBox="0 0 24 24"><path d="M14 6l4 4-9 9-4-4z"/><path d="M14 6l3-3 4 4-3 3"/></svg>Outillage</a>
+    <a class="adoc-nav__item" href="/search?q=accessoires"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="1"/><path d="M8 6V4h8v2"/></svg>Accessoires auto</a>
+    <a class="adoc-nav__item" href="/search?q=huile+moteur"><svg viewBox="0 0 24 24"><path d="M9 4h6v3l3 3v10H6V10l3-3z"/></svg>Huile moteur</a>
+    <a class="adoc-nav__item" href="/search?q=filtre"><svg viewBox="0 0 24 24"><path d="M5 6h14l-3 6h-8z"/><path d="M9 12v8h6v-8"/></svg>Filtre</a>
+    <a class="adoc-nav__item" href="/search?q=frein"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><path d="M3 12h2M19 12h2"/></svg>Frein</a>
+  </div>
+</nav>
+
+<!-- ========== 4. HERO (selector + promo banner) ========== -->
+<section class="main-block">
+  <div class="wrap">
+    <div class="main-hero-row">
+
+      <!-- LEFT: Selector -->
+      <div class="search-car-box">
+        <p class="search-car-box__title">Sélectionnez votre modèle de voiture pour rechercher des pièces détachées</p>
+
+        <div class="number-search">
+          <div class="number-search__title">Saisie du numéro d'immatriculation</div>
+          <div class="number-search__wrap">
+            <div class="number-search__input">
+              <span class="number-search__input-icon">DZ</span>
+              <input type="text" id="adoc-immat" placeholder="123456-201-16" maxlength="16">
+            </div>
+            <button class="number-search__btn" onclick="adocImmatSearch()">Rechercher</button>
+          </div>
+        </div>
+
+        <div class="car-selector__title">— OU —</div>
+        <form class="car-selector__form" onsubmit="event.preventDefault();adocSearch()">
+          <select class="car-selector__select" id="adoc-brand"><option value="">Choisissez une marque</option></select>
+          <select class="car-selector__select" id="adoc-model" disabled><option value="">Choisissez un modèle</option></select>
+          <select class="car-selector__select" id="adoc-engine" disabled><option value="">Motorisation</option></select>
+          <button class="car-selector__btn" type="submit">Rechercher</button>
+        </form>
+
+        <div class="search-car-box__not-found">VOUS NE TROUVEZ PAS VOTRE VOITURE ?</div>
+      </div>
+
+      <!-- RIGHT: Promo banner -->
+      <div class="promo-banner">
+        <div class="promo-banner__inner">
+          <span class="promo-banner__badge">AutoPièces DZ</span>
+          <h2 class="promo-banner__title">Livraison<br><span>48 WILAYAS</span></h2>
+          <p class="promo-banner__sub">Paiement à la livraison · Pièces certifiées OEM · Garantie 1 an</p>
+          <a href="/collections/all" class="btn btn--orange">Voir le catalogue →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== 5. CATEGORIES (with subcategory accordion) ========== -->
+<section class="section">
+  <div class="wrap">
+    <h1 class="section__title t-center t-uppercase">Trouvez des pièces détachées dans le catalogue AutoPièces DZ</h1>
+    <div class="row row-gap row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6" id="adoc-cats-grid">
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="pneus">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/tyres_wheels.png" alt="Pneus et jantes" loading="lazy"></span>
+        <span class="top-parts-item__name">Pneus et jantes</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="frein">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10106.png" alt="Frein" loading="lazy"></span>
+        <span class="top-parts-item__name">Frein</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="moteur">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10102.png" alt="Moteur" loading="lazy"></span>
+        <span class="top-parts-item__name">Moteur</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="courroies">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10116.png" alt="Courroies, chaînes, galets" loading="lazy"></span>
+        <span class="top-parts-item__name">Courroies, chaînes, galets</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="embrayage">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10150.png" alt="Embrayage" loading="lazy"></span>
+        <span class="top-parts-item__name">Embrayage</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="filtre">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10105.png" alt="Filtre" loading="lazy"></span>
+        <span class="top-parts-item__name">Filtre</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="amortissement">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10111.png" alt="Amortissement" loading="lazy"></span>
+        <span class="top-parts-item__name">Amortissement</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="suspension">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10113.png" alt="Suspension" loading="lazy"></span>
+        <span class="top-parts-item__name">Suspension</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="carrosserie">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10101.png" alt="Carrosserie" loading="lazy"></span>
+        <span class="top-parts-item__name">Carrosserie</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="electricite">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10110.png" alt="Électricité" loading="lazy"></span>
+        <span class="top-parts-item__name">Electricité</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="huiles">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/10435.png" alt="Huiles et fluides" loading="lazy"></span>
+        <span class="top-parts-item__name">Huiles et fluides</span>
+      </button></div></div>
+
+      <div class="col"><div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="autres">
+        <span class="top-parts-item__img"><img src="https://scdn.autodoc.de/catalog/categories/600x600/other.png" alt="Autres catégories" loading="lazy"></span>
+        <span class="top-parts-item__name">Autres catégories</span>
+      </button></div></div>
+
+    </div>
+
+    <!-- Accordion panel -->
+    <div class="subcat-panel" id="adoc-subcat-panel">
+      <button class="subcat-panel__close" onclick="adocCloseSubcat()" aria-label="Fermer">×</button>
+      <div class="subcat-panel__title" id="adoc-subcat-title"></div>
+      <div class="subcat-panel__grid" id="adoc-subcat-grid"></div>
+    </div>
+
+    <div class="section__btn">
+      <a href="/collections/all" class="btn btn--outline-dk">Plus de pièces détachées →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 6. ESSENTIALS (3 big cards with same accordion) ========== -->
+<section class="section" style="background:#f6f8fa">
+  <div class="wrap">
+    <h2 class="section__title t-center t-uppercase">Essentiels pour la voiture : accessoires, produits de nettoyage et outils</h2>
+    <div class="essentials-row" id="adoc-essentials-grid">
+
+      <div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="accessoires" style="min-height:180px">
+        <span class="top-parts-item__img" style="width:120px;height:120px"><img src="https://scdn.autodoc.de/catalog/categories/300x300/33000.png" alt="Accessoires voiture" loading="lazy" style="max-width:120px;max-height:120px"></span>
+        <span class="top-parts-item__name" style="font-size:.9rem">Accessoires voiture</span>
+      </button></div>
+
+      <div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="nettoyage" style="min-height:180px">
+        <span class="top-parts-item__img" style="width:120px;height:120px"><img src="https://scdn.autodoc.de/catalog/categories/300x300/30000.png" alt="Produits de nettoyage" loading="lazy" style="max-width:120px;max-height:120px"></span>
+        <span class="top-parts-item__name" style="font-size:.9rem">Produits de nettoyage et d'entretien</span>
+      </button></div>
+
+      <div class="top-parts-item"><button type="button" class="top-parts-item__content" data-cat="outillage" style="min-height:180px">
+        <span class="top-parts-item__img" style="width:120px;height:120px"><img src="https://scdn.autodoc.de/catalog/categories/300x300/36000.png" alt="Outillage & équipement" loading="lazy" style="max-width:120px;max-height:120px"></span>
+        <span class="top-parts-item__name" style="font-size:.9rem">Outillage &amp; équipement</span>
+      </button></div>
+
+    </div>
+    <!-- Second accordion panel for essentials -->
+    <div class="subcat-panel" id="adoc-subcat-panel-2">
+      <button class="subcat-panel__close" onclick="adocCloseSubcat2()" aria-label="Fermer">×</button>
+      <div class="subcat-panel__title" id="adoc-subcat-title-2"></div>
+      <div class="subcat-panel__grid" id="adoc-subcat-grid-2"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 7. CAR BRANDS (makers) ========== -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="section__title t-center t-uppercase">Pièces auto pour marques de voiture les plus demandées</h2>
+    <ul class="row row-gap row-cols-2 row-cols-md-4 row-cols-lg-6">
+      <li class="col"><a href="/search?q=Renault" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/93.svg" alt="RENAULT" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Peugeot" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/88.svg" alt="PEUGEOT" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Volkswagen" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/121.svg" alt="VW" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Citroen" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/21.svg" alt="CITROËN" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=BMW" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/16.svg" alt="BMW" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Mercedes" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/74.svg" alt="MERCEDES-BENZ" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Audi" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/5.svg" alt="AUDI" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Ford" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/36.svg" alt="FORD" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Opel" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/84.svg" alt="OPEL" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Fiat" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/35.svg" alt="FIAT" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Toyota" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/111.svg" alt="TOYOTA" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Nissan" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/80.svg" alt="NISSAN" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Seat" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/104.svg" alt="SEAT" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Dacia" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/139.svg" alt="DACIA" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Hyundai" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/183.svg" alt="HYUNDAI" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Mini" class="maker-box-item"><img src="https://scdn.autodoc.de/makers/1523.svg" alt="MINI" loading="lazy"></a></li>
+    </ul>
+    <div class="section__btn">
+      <a href="/collections/all" class="btn btn--outline-dk">Plus de constructeurs automobiles →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 8. TRUST BAR ========== -->
+<div class="autoparts-features">
+  <div class="autoparts-features__wrap">
+    <div class="autoparts-features__item">
+      <div class="autoparts-features__icon"><svg viewBox="0 0 42 42"><path d="M21 4l16 7v10c0 8-7 16-16 18-9-2-16-10-16-18V11z"/><path d="M14 21l5 5 10-10"/></svg></div>
+      <div class="autoparts-features__title">Commande Sécurisée 200 jours</div>
+    </div>
+    <div class="autoparts-features__item">
+      <div class="autoparts-features__icon"><svg viewBox="0 0 42 42"><rect x="3" y="9" width="36" height="24" rx="2"/><path d="M3 16h36"/><circle cx="11" cy="26" r="2"/><path d="M19 26h12"/></svg></div>
+      <div class="autoparts-features__title">Paiements sécurisés</div>
+    </div>
+    <div class="autoparts-features__item">
+      <div class="autoparts-features__icon"><svg viewBox="0 0 42 42"><rect x="13" y="4" width="16" height="34" rx="2"/><path d="M13 11h16M13 31h16"/><circle cx="21" cy="34.5" r="1"/></svg></div>
+      <div class="autoparts-features__title">Application AutoPièces DZ</div>
+    </div>
+    <div class="autoparts-features__item">
+      <div class="autoparts-features__icon"><svg viewBox="0 0 42 42"><rect x="4" y="10" width="34" height="22" rx="3"/><polygon points="17,15 17,27 27,21" fill="currentColor"/></svg></div>
+      <div class="autoparts-features__title">Vidéos de réparation de voiture</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== 9. BEST SELLERS ========== -->
+<section class="section">
+  <div class="wrap">
+    <h2 class="section__title t-center t-uppercase">Les best-sellers : pièces à prix avantageux</h2>
+    <div class="product-card-grid">
+      {% for product in collections.all.products limit: 10 %}
+      <a class="product-card-grid__item" href="{{ product.url }}">
+        <div class="product-card-grid__img">
+          {% if product.featured_image %}
+            <img src="{{ product.featured_image | image_url: width: 400 }}" alt="{{ product.title | escape }}" loading="lazy">
+          {% else %}
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none"><rect width="80" height="80" rx="4" fill="#f0f0f0"/><path d="M26 56V40q3-13 14-15 11 2 14 15v16" stroke="#ccc" stroke-width="2"/></svg>
+          {% endif %}
+        </div>
+        <div class="product-card-grid__body">
+          <div class="product-card-grid__brand">{{ product.vendor }}</div>
+          <div class="product-card-grid__name">{{ product.title }}</div>
+          <div class="product-card-grid__rating">★★★★☆</div>
+          <div>
+            <span class="product-card-grid__price">{{ product.price | money }}</span>
+            {% if product.compare_at_price > product.price %}
+              <span class="product-card-grid__compare">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+          </div>
+          <button class="product-card-grid__btn">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h2l1.5 7h7l1.5-5H5"/><circle cx="6" cy="12" r="1"/><circle cx="11" cy="12" r="1"/></svg>
+            Acheter
+          </button>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+    <div class="section__btn">
+      <a href="/collections/all" class="btn btn--outline-dk">Voir toutes les pièces →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== 10. PARTNER BRANDS ========== -->
+<section class="section" style="background:#f6f8fa">
+  <div class="wrap">
+    <h2 class="section__title t-center t-uppercase">Offres exceptionnelles sur les pièces des plus grands fabricants</h2>
+    <ul class="row row-gap row-cols-3 row-cols-md-5 row-cols-lg-6">
+      <li class="col"><a href="/search?q=RIDEX" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/100015.png?m=0" alt="RIDEX" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Bosch" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/30.png?m=0" alt="BOSCH" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Valeo" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/21.png?m=0" alt="VALEO" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=LuK" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/6.png?m=0" alt="LUK" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Febi" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/101.png?m=0" alt="FEBI BILSTEIN" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=SKF" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/50.png?m=0" alt="SKF" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Brembo" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/65.png?m=0" alt="BREMBO" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Gates" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/33.png?m=0" alt="GATES" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Sachs" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/32.png?m=0" alt="SACHS" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Mahle" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/100366.png?m=0" alt="MAHLE" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=NGK" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/100277.png?m=0" alt="NGK" loading="lazy"></a></li>
+      <li class="col"><a href="/search?q=Hella" class="brand-box-item"><img src="https://cdn.autodoc.de/brands/thumbs/100290.png?m=0" alt="HELLA" loading="lazy"></a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== 11. SEO TEXT BLOCK ========== -->
+<section class="text-info-box">
+  <div class="wrap">
+    <h2 class="section__title t-center t-uppercase">Pièces détachées et accessoires auto en ligne — Tout pour la voiture</h2>
+    <p>Bienvenue sur AutoPièces DZ ! Rejoignez la plus grande communauté algérienne de passionnés d'automobile et de mécaniciens professionnels qui font confiance à notre boutique en ligne pour leurs pièces détachées.</p>
+    <p>Notre objectif est simple : rendre l'entretien des voitures aussi facile que possible. Nous offrons une large gamme de pièces détachées à des prix adaptés à tous les budgets, livrées dans toute l'Algérie avec paiement à la livraison.</p>
+    <p>Vous avez besoin d'aide pour trouver la bonne pièce ou vérifier sa compatibilité avec votre véhicule ? Nos mécaniciens experts du service client sont toujours prêts à vous aider. Acheter des pièces détachées de qualité pour n'importe quel modèle de véhicule est facile, nous pouvons vous aider à trouver ce dont vous avez besoin en quelques clics seulement !</p>
+  </div>
+</section>
+
+<!-- ========== 12. FOOTER ========== -->
+<footer class="adoc-footer">
+  <div class="wrap">
+    <div class="adoc-footer__cols">
+      <div class="adoc-footer__col">
+        <h3>À propos d'AutoPièces DZ</h3>
+        <ul>
+          <li><a href="/pages/a-propos">Qui sommes-nous ?</a></li>
+          <li><a href="/pages/mentions-legales">Mentions légales</a></li>
+          <li><a href="/pages/presse">Presse</a></li>
+        </ul>
+      </div>
+      <div class="adoc-footer__col">
+        <h3>Aide et soutien</h3>
+        <ul>
+          <li><a href="/pages/faq">FAQ</a></li>
+          <li><a href="/pages/cgv">CGV</a></li>
+          <li><a href="/pages/politique-de-retour">Politique de retour</a></li>
+          <li><a href="/pages/politique-de-confidentialite">Politique de confidentialité</a></li>
+        </ul>
+      </div>
+      <div class="adoc-footer__col">
+        <h3>Service clients</h3>
+        <ul>
+          <li><a href="/pages/contact">Nous contacter</a></li>
+          <li><a href="/pages/livraison">Livraison</a></li>
+          <li><a href="/pages/paiement">Paiement</a></li>
+          <li><a href="/pages/retour">Retours et assistance</a></li>
+        </ul>
+      </div>
+      <div class="adoc-footer__col">
+        <h3>Produits haut de gamme</h3>
+        <ul>
+          <li><a href="/search?q=eclairage">Éclairage</a></li>
+          <li><a href="/search?q=amortisseur">Amortisseur</a></li>
+          <li><a href="/search?q=embrayage">Kit d'embrayage</a></li>
+          <li><a href="/search?q=roulement">Roulement de roue</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="adoc-footer__sub">
+    <div class="wrap">
+      <div class="adoc-footer__sub-inner">
+        <div class="subscribe-box">
+          <div class="subscribe-box__title">Abonnez-vous et recevez 200 DA de réduction sur votre prochain achat !</div>
+          <form class="subscribe-box__form" action="/contact#contact_form" method="post">
+            <input type="hidden" name="form_type" value="customer">
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input type="email" name="contact[email]" placeholder="Adresse e-mail" required>
+            <button type="submit">S'abonner</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="adoc-footer__pay">
+    <div class="wrap">
+      <div class="adoc-footer__pay-icons">
+        <img src="https://scdn.autodoc.de/static/payment/bw/mastercard.svg" alt="Mastercard">
+        <img src="https://scdn.autodoc.de/static/payment/bw/visa.svg" alt="Visa">
+        <img src="https://scdn.autodoc.de/static/payment/bw/paypal.svg" alt="PayPal">
+        <img src="https://scdn.autodoc.de/static/payment/bw/american_express.svg" alt="American Express">
+      </div>
+    </div>
+  </div>
+
+  <div class="adoc-footer__bottom">
+    <div class="wrap">
+      © {{ 'now' | date: "%Y" }} AutoPièces DZ — Pièces détachées automobile en Algérie · Livraison 48 wilayas · <a href="/pages/contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.adoc -->
+
+<script>
+(function(){
+  /* ============ Vehicle DB (minimal) ============ */
+  var VDB={
+    "Renault":{"Symbol":["1.4 75CV"],"Clio":["1.2 75CV","1.5 dCi"],"Megane":["1.5 dCi","1.6 16V"],"Sandero":["1.4 75CV","1.6 84CV"]},
+    "Peugeot":{"206":["1.4 HDi","1.4 75CV"],"208":["1.2 PureTech","1.4 HDi"],"307":["1.6 HDi","2.0 16V"],"308":["1.6 HDi","1.6 THP"]},
+    "Volkswagen":{"Golf IV":["1.4 16V","1.9 TDI"],"Golf V":["1.6","2.0 TDI"],"Polo":["1.2","1.4 TDI"],"Passat":["1.9 TDI","2.0 TDI"]},
+    "Citroen":{"C3":["1.4 HDi","1.4 75CV"],"C4":["1.6 HDi","2.0 16V"],"Berlingo":["1.6 HDi","1.9 D"]},
+    "BMW":{"Serie 3 E46":["318i","320d"],"Serie 5 E60":["520d","530i"]},
+    "Mercedes":{"Classe A W168":["A140","A170 CDI"],"Classe C W203":["C200","C220 CDI"]},
+    "Audi":{"A3 8L":["1.6","1.9 TDI"],"A4 B6":["1.9 TDI","2.0 TDI"]},
+    "Toyota":{"Corolla E12":["1.4 D-4D","1.6 VVTi"],"Yaris":["1.0","1.3 VVTi"]},
+    "Hyundai":{"i10":["1.0","1.1"],"i20":["1.2","1.4 CRDi"]}
+  };
+
+  /* ============ Vehicle selector ============ */
+  document.addEventListener('DOMContentLoaded',function(){
+    var sBr=document.getElementById('adoc-brand');
+    var sMo=document.getElementById('adoc-model');
+    var sEn=document.getElementById('adoc-engine');
+    if(!sBr)return;
+    Object.keys(VDB).sort().forEach(function(b){var o=document.createElement('option');o.value=b;o.textContent=b;sBr.appendChild(o)});
+    sBr.onchange=function(){
+      var mk=this.value;
+      sMo.innerHTML='<option value="">Choisissez un modèle</option>';
+      sEn.innerHTML='<option value="">Motorisation</option>';
+      sMo.disabled=!mk;sEn.disabled=true;
+      if(mk&&VDB[mk])Object.keys(VDB[mk]).sort().forEach(function(m){var o=document.createElement('option');o.value=m;o.textContent=m;sMo.appendChild(o)});
+    };
+    sMo.onchange=function(){
+      var mk=sBr.value,md=this.value;
+      sEn.innerHTML='<option value="">Motorisation</option>';
+      sEn.disabled=!md;
+      if(mk&&md&&VDB[mk][md])VDB[mk][md].forEach(function(e){var o=document.createElement('option');o.value=e;o.textContent=e;sEn.appendChild(o)});
+    };
+  });
+
+  window.adocSearch=function(){
+    var b=document.getElementById('adoc-brand').value;
+    if(!b){alert('Veuillez choisir une marque');return}
+    location.href='/collections/all';
+  };
+  window.adocImmatSearch=function(){
+    var v=document.getElementById('adoc-immat').value.trim();
+    if(!v)return;
+    location.href='/search?q='+encodeURIComponent(v);
+  };
+
+  /* ============ ACCORDION SUBCATEGORIES ============ */
+  var SUBCATS={
+    "pneus":{label:"Pneus, jantes et accessoires",items:[
+      {n:"Pneus",img:"23208.png"},{n:"Jantes",img:"90000.png"},{n:"Boulon de roue et écrou de roue"},{n:"Antivols de roue"},
+      {n:"Capteur de pression pneu (TPMS)"},{n:"Enjoliveurs",img:"33055.png"},{n:"Élargisseur de voie"},{n:"Cric",img:"33044.png"},
+      {n:"Pâte de montage"},{n:"Cale de roue"},{n:"Manomètre de pression des pneus"},{n:"Chaîne neige",img:"33051.png"},
+      {n:"Kit de réparation de pneu"},{n:"Clé démonte-roue"},{n:"Gonfleur pneu"},{n:"Housses de roue"},
+      {n:"Adhésifs à base de caoutchouc"},{n:"Nettoyant pour intérieur de voiture"}
+    ]},
+    "frein":{label:"Frein",items:[
+      {n:"Disque de frein",img:"10132.png"},{n:"Plaquette de frein",img:"10130.png"},{n:"Mâchoires de frein"},
+      {n:"Tambour de frein"},{n:"Étrier de frein",img:"10907.png"},{n:"Flexible de frein"},{n:"Maître-cylindre"},
+      {n:"Mastervac"},{n:"Cylindre de roue"},{n:"Frein à main"},{n:"Kit disque et plaquette de frein"},
+      {n:"Kit de frein arrière",img:"74824.png"},{n:"Kit freins à tambours"},{n:"Disque de frein sport"},
+      {n:"Plaquette de frein sport"},{n:"Tuyau de frein"},{n:"Kit de réparation d'étrier de frein"},
+      {n:"Nettoyant frein"},{n:"Frein filet"}
+    ]},
+    "moteur":{label:"Moteur",items:[
+      {n:"Culasse"},{n:"Piston"},{n:"Bielle"},{n:"Arbre à came"},{n:"Pompe à huile"},
+      {n:"Pompe à eau",img:"10191.png"},{n:"Volant moteur",img:"10157.png"},{n:"Joint de culasse",img:"10325.png"},
+      {n:"Vis de culasse"},{n:"Pignon de vilebrequin"},{n:"Jauge d'huile"},{n:"Bouchon d'huile moteur"},
+      {n:"Bouchon de vidange"},{n:"Support moteur",img:"10638.png"},{n:"Collecteur d'admission"},
+      {n:"Carter de protection sous moteur"}
+    ]},
+    "courroies":{label:"Courroies, chaînes, galets",items:[
+      {n:"Courroie de distribution",img:"10504.png"},{n:"Courroie d'alternateur",img:"10531.png"},{n:"Courroie trapézoïdale"},
+      {n:"Kit de distribution",img:"10505.png"},{n:"Kit de distribution + pompe à eau",img:"10553.png"},
+      {n:"Kit chaîne de distribution",img:"15065.png"},{n:"Chaîne de distribution",img:"10511.png"},
+      {n:"Galet tendeur de courroie de distribution"},{n:"Kit de courroie d'accessoire"},
+      {n:"Outils pour courroie / chaîne"}
+    ]},
+    "embrayage":{label:"Embrayage",items:[
+      {n:"Kit d'embrayage",img:"10151.png"},{n:"Disque d'embrayage"},{n:"Mécanisme d'embrayage"},
+      {n:"Butée d'embrayage"},{n:"Câble d'embrayage"},{n:"Fourchette d'embrayage"},
+      {n:"Outils pour embrayage"}
+    ]},
+    "filtre":{label:"Filtre",items:[
+      {n:"Filtre à air",img:"10360.png"},{n:"Filtre à huile",img:"10359.png"},{n:"Filtre à carburant",img:"10361.png"},
+      {n:"Filtre d'habitacle",img:"10363.png"},{n:"Filtre à particules (FAP)"},{n:"Filtre hydraulique de direction"},
+      {n:"Filtre à air sport"},{n:"Kit de filtres",img:"13001.png"}
+    ]},
+    "amortissement":{label:"Amortissement",items:[
+      {n:"Amortisseur",img:"10221.png"},{n:"Coupelle d'amortisseur",img:"10471.png"},{n:"Support amortisseur"},
+      {n:"Kit de protection d'amortisseur"},{n:"Outil pour amortisseur et ressort"},{n:"Outils pour suspension"}
+    ]},
+    "suspension":{label:"Suspension",items:[
+      {n:"Bras de suspension",img:"10671.png"},{n:"Rotule de suspension"},{n:"Silent bloc de triangle"},
+      {n:"Biellette de barre stabilisatrice",img:"10677.png"},{n:"Rotule axiale"},{n:"Rotule de direction"},
+      {n:"Pivot de fusée"},{n:"Ressort d'amortisseur"},{n:"Kit de suspension amortisseur et ressort"},
+      {n:"Moyeu de roue",img:"10678.png"},{n:"Suspension sport"},{n:"Train arrière"}
+    ]},
+    "carrosserie":{label:"Carrosserie",items:[
+      {n:"Capot"},{n:"Aile"},{n:"Pare-brise"},{n:"Lunette arrière"},{n:"Portière avant"},
+      {n:"Poignée de porte"},{n:"Serrure de porte"},{n:"Calandre"},{n:"Pare-choc"},
+      {n:"Rétroviseur",img:"10666.png"},{n:"Phare avant",img:"10533.png"},{n:"Feu arrière",img:"10554.png"},
+      {n:"Joint de porte"},{n:"Vérin de capot"},{n:"Vérin de coffre"}
+    ]},
+    "electricite":{label:"Electricité",items:[
+      {n:"Alternateur",img:"10450.png"},{n:"Démarreur",img:"10459.png"},{n:"Batterie",img:"10142.png"},
+      {n:"Boîte à fusible"},{n:"Fusible"},{n:"Relais multifonction"},{n:"Centrale clignotant"},
+      {n:"Contacteur de feux stop"},{n:"Klaxon"},{n:"Bougie d'allumage"},{n:"Bobine d'allumage"},
+      {n:"Bougie de préchauffage"}
+    ]},
+    "huiles":{label:"Huiles et fluides",items:[
+      {n:"Huile moteur",img:"12094.png"},{n:"Huile boîte de vitesse"},{n:"Huile direction assistée"},
+      {n:"Huile hydraulique"},{n:"Huile pour boîte de vitesse automatique"},{n:"Liquide de frein"},
+      {n:"Liquide de refroidissement"},{n:"Liquide d'échappement diesel"},{n:"Eau distillée"},
+      {n:"Additifs huile de moteur"},{n:"Additif carburant"}
+    ]},
+    "autres":{label:"Autres catégories",items:[
+      {n:"Sonde lambda (NOx)",img:"10148.png"},{n:"Vanne EGR",img:"10651.png"},{n:"Catalyseur",img:"10147.png"},
+      {n:"Filtre à particules (FAP)",img:"10418.png"},{n:"Bougie d'allumage",img:"10251.png"},
+      {n:"Bougie de préchauffage",img:"10252.png"},{n:"Bobine d'allumage",img:"10250.png"},
+      {n:"Cardan",img:"10162.png"},{n:"Roulement de roue",img:"10679.png"},
+      {n:"Injecteur",img:"12899.png"},{n:"Compresseur de climatisation",img:"10454.png"},
+      {n:"Essuie-glace",img:"10233.png"},{n:"Radiateur",img:"10203.png"},
+      {n:"Rotule de direction",img:"10703.png"},{n:"Lève-vitre",img:"12791.png"},
+      {n:"Attelage",img:"10707.png"}
+    ]},
+    "accessoires":{label:"Accessoires voiture",items:[
+      {n:"Tapis en caoutchouc",img:"33001.png"},{n:"Chargeur de batterie",img:"33038.png"},
+      {n:"Pommeau de vitesse",img:"35320.png"},{n:"Enjoliveurs",img:"33055.png"},
+      {n:"Cric",img:"33044.png"},{n:"Booster de batterie",img:"34504.png"},
+      {n:"Chaîne neige",img:"33051.png"},{n:"Housses de siège auto",img:"33005.png"}
+    ]},
+    "nettoyage":{label:"Produits de nettoyage et d'entretien",items:[
+      {n:"Nettoyant frein",img:"30037.png"},{n:"Nettoyant pour FAP",img:"30707.png"},
+      {n:"Additifs huile de moteur",img:"30052.png"},{n:"Pâte à joints moteur",img:"30003.png"},
+      {n:"Nettoyant pour injecteur",img:"30036.png"},{n:"Produits d'étanchéité tout usage",img:"30007.png"},
+      {n:"Peinture voiture",img:"30046.png"},{n:"Nettoyant moteur",img:"30680.png"}
+    ]},
+    "outillage":{label:"Outillage & équipement",items:[
+      {n:"Jeu de douilles",img:"36044.png"},{n:"Clé dynamométrique",img:"36126.png"},
+      {n:"Jeu de clé à douille",img:"36048.png"},{n:"Chandelles pour voiture",img:"36154.png"},
+      {n:"Clés à choc pneumatique",img:"36003.png"},{n:"Clé pour filtre à huile",img:"36101.png"},
+      {n:"Armoires à outils",img:"36018.png"},{n:"Arrache rotule",img:"36061.png"}
+    ]}
+  };
+  window.PDZ_SUBCATS=SUBCATS;
+
+  function slugify(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'+').replace(/^\+|\+$/g,'');}
+  function imgUrl(f){return 'https://scdn.autodoc.de/catalog/categories/100x100/'+f;}
+
+  function openSubcat(panelId,titleId,gridId,key){
+    var panel=document.getElementById(panelId);
+    var title=document.getElementById(titleId);
+    var grid=document.getElementById(gridId);
+    var data=SUBCATS[key];if(!data)return;
+    title.textContent=data.label;
+    grid.innerHTML='';
+    data.items.forEach(function(it){
+      var a=document.createElement('a');
+      a.className='subcat-panel__item';
+      a.href='/search?q='+slugify(it.n);
+      var html='';
+      if(it.img)html+='<img src="'+imgUrl(it.img)+'" alt="" loading="lazy">';
+      else html+='<svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#ccc" stroke-width="1.5"><rect x="4" y="4" width="28" height="28" rx="3"/></svg>';
+      html+='<span>'+it.n+'</span>';
+      a.innerHTML=html;
+      grid.appendChild(a);
+    });
+    panel.classList.add('is-open');
+    var rect=panel.getBoundingClientRect();
+    if(rect.top<0||rect.top>window.innerHeight-100)panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+
+  function bindAccordion(gridSel,panelId,titleId,gridId){
+    var grid=document.querySelector(gridSel);if(!grid)return;
+    var panel=document.getElementById(panelId);
+    grid.addEventListener('click',function(e){
+      var btn=e.target.closest('[data-cat]');if(!btn)return;
+      e.preventDefault();
+      var key=btn.getAttribute('data-cat');
+      var wasActive=btn.classList.contains('is-active');
+      grid.querySelectorAll('.is-active').forEach(function(el){el.classList.remove('is-active');});
+      if(wasActive){panel.classList.remove('is-open');return;}
+      btn.classList.add('is-active');
+      openSubcat(panelId,titleId,gridId,key);
+    });
+  }
+
+  window.adocCloseSubcat=function(){
+    document.getElementById('adoc-subcat-panel').classList.remove('is-open');
+    document.querySelectorAll('#adoc-cats-grid .is-active').forEach(function(e){e.classList.remove('is-active')});
+  };
+  window.adocCloseSubcat2=function(){
+    document.getElementById('adoc-subcat-panel-2').classList.remove('is-open');
+    document.querySelectorAll('#adoc-essentials-grid .is-active').forEach(function(e){e.classList.remove('is-active')});
+  };
+
+  document.addEventListener('DOMContentLoaded',function(){
+    bindAccordion('#adoc-cats-grid','adoc-subcat-panel','adoc-subcat-title','adoc-subcat-grid');
+    bindAccordion('#adoc-essentials-grid','adoc-subcat-panel-2','adoc-subcat-title-2','adoc-subcat-grid-2');
+  });
+})();
+</script>
