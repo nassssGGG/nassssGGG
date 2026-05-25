@@ -24,10 +24,16 @@
     Si aucun bloc n'est défini pour un handle, l'icône AutoDoc CDN est utilisée par défaut.
   {%- endcomment -%}
   <script>
+    /* Map d'images uploadées par l'admin.
+       - Clé "freinage" → image de la catégorie principale "Freinage"
+       - Clé "freinage-disque-plaquette" → image de la sous-catégorie "Disque & Plaquette" de Freinage
+       Les deux types de blocs (cat_image et subcat_image) alimentent la même map. */
     window.PDZ_CAT_IMG = window.PDZ_CAT_IMG || {};
     {%- for block in section.blocks -%}
       {%- if block.type == 'cat_image' and block.settings.handle != blank and block.settings.image != blank -%}
         window.PDZ_CAT_IMG[{{ block.settings.handle | strip | downcase | json }}] = {{ block.settings.image | image_url: width: 200 | json }};
+      {%- elsif block.type == 'subcat_image' and block.settings.subcat_id != blank and block.settings.image != blank -%}
+        window.PDZ_CAT_IMG[{{ block.settings.subcat_id | strip | downcase | json }}] = {{ block.settings.image | image_url: width: 100 | json }};
       {%- endif -%}
     {%- endfor -%}
   </script>
@@ -138,7 +144,8 @@ body.template-page .easysearch-fitment-header{display:none!important}
 @keyframes pdzFade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 .pdz-cat__tooltip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 24px}
 .pdz-cat__tooltip-group{min-width:0}
-.pdz-cat__tooltip-subtitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--pdz-primary);padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid var(--pdz-border)}
+.pdz-cat__tooltip-subtitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--pdz-primary);padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid var(--pdz-border);display:flex;align-items:center;gap:8px}
+.pdz-cat__subcat-img{width:24px;height:24px;object-fit:contain;flex-shrink:0;border-radius:4px;background:var(--pdz-surface-2);padding:2px}
 .pdz-cat__tooltip-list{list-style:none;margin:0;padding:0}
 .pdz-cat__tooltip-list a{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 6px;font-size:13px;color:var(--pdz-ink-2);text-decoration:none;border-radius:6px;line-height:1.3;transition:background var(--pdz-trans),color var(--pdz-trans),padding var(--pdz-trans)}
 .pdz-cat__tooltip-list a::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pdz-primary);opacity:.5;flex-shrink:0;transition:opacity var(--pdz-trans),transform var(--pdz-trans)}
@@ -314,6 +321,9 @@ body.template-page .easysearch-fitment-header{display:none!important}
   ];
 
   function norm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  /* Slug stable pour identifier une sous-catégorie (cat.h + '-' + slug(g.t))
+     Doit correspondre exactement à ce que l'admin saisit dans le champ "ID sous-catégorie". */
+  function slug(s) { return norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); }
   function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
   /* Renvoie l'image personnalisée (uploadée par l'admin) si disponible pour ce handle,
      sinon fallback sur l'icône AutoDoc CDN par ID. */
@@ -343,11 +353,16 @@ body.template-page .easysearch-fitment-header{display:none!important}
       cat.g.forEach(function (g) { total += g.i.length; });
       var L = fallbackLetter(cat.n);
       var groups = cat.g.map(function (g) {
+        var subId = cat.h + '-' + slug(g.t);
+        var subImg = (window.PDZ_CAT_IMG || {})[subId];
+        var subImgHtml = subImg
+          ? '<img class="pdz-cat__subcat-img" src="' + escAttr(subImg) + '" alt="" loading="lazy" decoding="async">'
+          : '';
         var items = g.i.map(function (it) {
           return '<li><a href="' + linkCol(cat.h) + '" data-name="' + escAttr(norm(it)) + '">' + it + '</a></li>';
         }).join('');
-        return '<div class="pdz-cat__tooltip-group" data-grp="' + escAttr(norm(g.t)) + '">' +
-          '<div class="pdz-cat__tooltip-subtitle">' + g.t + '</div>' +
+        return '<div class="pdz-cat__tooltip-group" data-grp="' + escAttr(norm(g.t)) + '" data-subid="' + escAttr(subId) + '">' +
+          '<div class="pdz-cat__tooltip-subtitle">' + subImgHtml + '<span>' + g.t + '</span></div>' +
           '<ul class="pdz-cat__tooltip-list">' + items + '</ul></div>';
       }).join('');
       return '<div class="pdz-cat__card" data-idx="' + idx + '" data-name="' + escAttr(norm(cat.n)) + '">' +
@@ -423,7 +438,7 @@ body.template-page .easysearch-fitment-header{display:none!important}
     {
       "type": "cat_image",
       "name": "Image de catégorie",
-      "limit": 50,
+      "limit": 30,
       "settings": [
         {
           "type": "text",
@@ -435,6 +450,28 @@ body.template-page .easysearch-fitment-header{display:none!important}
           "type": "image_picker",
           "id": "image",
           "label": "Image (PNG transparent recommandé, 200×200)"
+        }
+      ]
+    },
+    {
+      "type": "subcat_image",
+      "name": "Image de sous-catégorie",
+      "limit": 60,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Format de l'ID : <code>handle-categorie</code> + tiret + nom de la sous-catégorie (minuscules, accents retirés, espaces et '&' remplacés par des tirets)."
+        },
+        {
+          "type": "text",
+          "id": "subcat_id",
+          "label": "ID de la sous-catégorie",
+          "info": "Freinage → freinage-disque-plaquette, freinage-etrier-hydraulique, freinage-composants. Filtre → filtration-filtres-essentiels, filtration-filtres-techniques. Moteur → moteur-amp-transmission-distribution, -lubrification, -bloc-moteur. Suspension → suspension-amp-direction-bras-triangles, -roulements, -amortissement. Direction → direction-commande, -assistance. Embrayage → embrayage-transmission-embrayage, -commande, -cardan-arbres. Distribution → distribution-courroie-courroies, -galets-tendeurs. Démarrage → demarrage-alternateur-charge, -composants. Carburant → carburant-injection-carburant, -reservoir, -admission. Turbo → turbo-admission-turbo, -peripheriques, -egr. Climatisation → climatisation-compresseur, -circuit. Éclairage → eclairage-phares, -signalisation, -ampoules. Échappement → echappement-lignes, -depollution, -fixation. Essuie-glaces → essuie-glaces-balais-balais-bras, -lavage. Batterie → batterie-allumage-allumage, -batterie. Refroidissement → refroidissement-echangeurs, -circuit. Carrosserie → carrosserie-exterieur, -portes-vitres. Pneus → pneus-et-jantes-pneus-jantes, -outils-roue. Huiles → huiles-amp-lubrifiants-moteur, -transmission, -freinage-refroidissement. Outillage → outillage-diagnostic, -mecanique. Entretien → entretien-nettoyage-interieur, -exterieur. Accessoires → frontpage-confort, -pratique."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (PNG transparent recommandé, 100×100)"
         }
       ]
     }
