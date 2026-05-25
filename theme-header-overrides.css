@@ -1,0 +1,23 @@
+/* === Override: barre de recherche header longue + masquage YMM banner === */
+
+/* Élargit la barre de recherche du header */
+.site-header .container.header__inner,
+.header__inner{max-width:1480px}
+.search-bar{flex:1 1 auto!important;max-width:none!important;min-width:0;height:48px!important}
+.search-bar__input{font-size:14px;height:48px;padding:0 20px}
+.search-bar__btn{padding:0 32px;font-size:14px;letter-spacing:.4px}
+.header__vtype{height:48px}
+
+/* Le conteneur du header peut être plus large pour donner de la place à la barre */
+.site-header .container{max-width:1480px}
+
+/* Masque définitivement le bandeau de compatibilité véhicule (EasySearch YMM) */
+[class*="easysearch-fitment"],
+[class*="easysearch-vehicle-info"],
+[class*="easysearch-embed-widgets"],
+.easysearch-fitment-header,
+.easysearch-vehicle-banner,
+.es-fitment-header,
+.es-vehicle-info,
+shopify-app-block[data-block-handle*="easysearch-embed-widgets"],
+div[data-shopify-app-handle*="easysearch-ymm"][data-block-type*="widgets"]{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important}
