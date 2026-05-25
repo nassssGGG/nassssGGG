@@ -14,6 +14,23 @@
 -%}
 
 <section class="pdz-cat color-{{ section.settings.color_scheme }} gradient" data-section-id="{{ section.id }}">
+  {%- comment -%}
+    Images de catégories personnalisées par l'utilisateur.
+    Pour ajouter ou modifier une image :
+      Admin Shopify → Boutique en ligne → Thèmes → Personnaliser
+      → page "Toutes les pièces" → section "Catalogue de pièces"
+      → "Ajouter un bloc" → "Image de catégorie"
+      → choisir le handle de la catégorie (ex: freinage) et uploader l'image.
+    Si aucun bloc n'est défini pour un handle, l'icône AutoDoc CDN est utilisée par défaut.
+  {%- endcomment -%}
+  <script>
+    window.PDZ_CAT_IMG = window.PDZ_CAT_IMG || {};
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'cat_image' and block.settings.handle != blank and block.settings.image != blank -%}
+        window.PDZ_CAT_IMG[{{ block.settings.handle | strip | downcase | json }}] = {{ block.settings.image | image_url: width: 200 | json }};
+      {%- endif -%}
+    {%- endfor -%}
+  </script>
   <div class="pdz-cat__hero">
     <div class="pdz-cat__container">
       <nav class="pdz-cat__crumbs" aria-label="Fil d'Ariane">
@@ -298,7 +315,13 @@ body.template-page .easysearch-fitment-header{display:none!important}
 
   function norm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
   function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
-  function imgUrl(id) { return CDN + id + '.png'; }
+  /* Renvoie l'image personnalisée (uploadée par l'admin) si disponible pour ce handle,
+     sinon fallback sur l'icône AutoDoc CDN par ID. */
+  function imgUrl(id, handle) {
+    var map = window.PDZ_CAT_IMG || {};
+    if (handle && map[handle]) return map[handle];
+    return CDN + id + '.png';
+  }
   function fallbackLetter(name) { var L = (name || '?').charAt(0).toUpperCase(); return /[A-Z]/.test(L) ? L : '?'; }
 
   function renderTop(host) {
@@ -307,7 +330,7 @@ body.template-page .easysearch-fitment-header{display:none!important}
       var href = linkCol(c.h);
       var L = fallbackLetter(c.n);
       return '<a class="pdz-cat__top-card" href="' + href + '" data-name="' + escAttr(norm(c.n)) + '">' +
-        '<div class="pdz-cat__top-img"><img src="' + imgUrl(c.id) + '" alt="' + escAttr(c.n) + '" loading="lazy" decoding="async" ' +
+        '<div class="pdz-cat__top-img"><img src="' + imgUrl(c.id, c.h) + '" alt="' + escAttr(c.n) + '" loading="lazy" decoding="async" ' +
         'onerror="this.parentNode.innerHTML=&quot;<div class=\\&quot;pdz-cat__top-fb\\&quot;>' + L + '</div>&quot;"></div>' +
         '<div class="pdz-cat__top-name">' + c.n + '</div></a>';
     }).join('');
@@ -329,7 +352,7 @@ body.template-page .easysearch-fitment-header{display:none!important}
       }).join('');
       return '<div class="pdz-cat__card" data-idx="' + idx + '" data-name="' + escAttr(norm(cat.n)) + '">' +
         '<button type="button" class="pdz-cat__card-head" aria-expanded="false">' +
-        '<span class="pdz-cat__card-img"><img src="' + imgUrl(cat.id) + '" alt="' + escAttr(cat.n) + '" loading="lazy" decoding="async" ' +
+        '<span class="pdz-cat__card-img"><img src="' + imgUrl(cat.id, cat.h) + '" alt="' + escAttr(cat.n) + '" loading="lazy" decoding="async" ' +
         'onerror="this.parentNode.innerHTML=&quot;<div class=\\&quot;pdz-cat__card-fb\\&quot;>' + L + '</div>&quot;"></span>' +
         '<span class="pdz-cat__card-info"><span class="pdz-cat__card-name">' + cat.n + '</span>' +
         '<span class="pdz-cat__card-meta">' + total + ' sous-catégories</span></span>' +
@@ -395,6 +418,26 @@ body.template-page .easysearch-fitment-header{display:none!important}
     { "type": "header", "content": "Titres des sections" },
     { "type": "text", "id": "top_title", "label": "Titre — Top pièces", "default": "Les pièces les plus demandées" },
     { "type": "text", "id": "catalog_title", "label": "Titre — Catalogue", "default": "Toutes les catégories" }
+  ],
+  "blocks": [
+    {
+      "type": "cat_image",
+      "name": "Image de catégorie",
+      "limit": 50,
+      "settings": [
+        {
+          "type": "text",
+          "id": "handle",
+          "label": "Handle de la catégorie",
+          "info": "Exemples : freinage, filtration, suspension-amp-direction, huiles-amp-lubrifiants, moteur-amp-transmission, carrosserie, eclairage, climatisation, batterie-allumage, refroidissement, echappement, distribution-courroie, demarrage-alternateur, carburant-injection, turbo-admission, essuie-glaces-balais, direction, embrayage-transmission, outillage, entretien-nettoyage, entretien-accessoires, frontpage, pneus-et-jantes."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image (PNG transparent recommandé, 200×200)"
+        }
+      ]
+    }
   ],
   "presets": [ { "name": "Catalogue de pièces" } ]
 }
