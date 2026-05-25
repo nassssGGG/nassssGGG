@@ -163,7 +163,11 @@ body.template-page .easysearch-fitment-header{display:none!important}
     nettoyage: 'entretien-nettoyage', accessoires: 'frontpage',
     entretien: 'entretien-accessoires'
   };
-  function linkCol(handle, q) { var u = COLL + handle; if (q) u += '?q=' + encodeURIComponent(q); return u; }
+  /* Liens 100% collections internes. On NE passe PAS de ?q= car certaines apps Shopify
+     (EasySearch, etc.) interceptent ce paramètre et affichent une page de filtres
+     à la place de la collection. Les sous-items mènent au même collection que la
+     catégorie parente — l'utilisateur peut affiner via les filtres natifs Shopify. */
+  function linkCol(handle) { return COLL + handle; }
 
   var TOP = [
     { n: "Disque de frein",        id: 10132, h: H.freinage,     q: 'disque' },
@@ -300,7 +304,7 @@ body.template-page .easysearch-fitment-header{display:none!important}
   function renderTop(host) {
     if (!host) return;
     host.innerHTML = TOP.map(function (c) {
-      var href = linkCol(c.h, c.q);
+      var href = linkCol(c.h);
       var L = fallbackLetter(c.n);
       return '<a class="pdz-cat__top-card" href="' + href + '" data-name="' + escAttr(norm(c.n)) + '">' +
         '<div class="pdz-cat__top-img"><img src="' + imgUrl(c.id) + '" alt="' + escAttr(c.n) + '" loading="lazy" decoding="async" ' +
@@ -317,7 +321,7 @@ body.template-page .easysearch-fitment-header{display:none!important}
       var L = fallbackLetter(cat.n);
       var groups = cat.g.map(function (g) {
         var items = g.i.map(function (it) {
-          return '<li><a href="' + linkCol(cat.h, it) + '" data-name="' + escAttr(norm(it)) + '">' + it + '</a></li>';
+          return '<li><a href="' + linkCol(cat.h) + '" data-name="' + escAttr(norm(it)) + '">' + it + '</a></li>';
         }).join('');
         return '<div class="pdz-cat__tooltip-group" data-grp="' + escAttr(norm(g.t)) + '">' +
           '<div class="pdz-cat__tooltip-subtitle">' + g.t + '</div>' +
