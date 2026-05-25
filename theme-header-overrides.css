@@ -11,13 +11,39 @@
 /* Le conteneur du header peut être plus large pour donner de la place à la barre */
 .site-header .container{max-width:1480px}
 
-/* Masque définitivement le bandeau de compatibilité véhicule (EasySearch YMM) */
-[class*="easysearch-fitment"],
-[class*="easysearch-vehicle-info"],
-[class*="easysearch-embed-widgets"],
-.easysearch-fitment-header,
-.easysearch-vehicle-banner,
-.es-fitment-header,
-.es-vehicle-info,
-shopify-app-block[data-block-handle*="easysearch-embed-widgets"],
-div[data-shopify-app-handle*="easysearch-ymm"][data-block-type*="widgets"]{display:none!important;visibility:hidden!important;height:0!important;overflow:hidden!important}
+/* === MASQUAGE DÉFINITIF DE TOUS LES ÉLÉMENTS EASYSEARCH YMM ===
+   Le sélecteur de véhicule + la barre de recherche du header suffisent.
+   On masque TOUT ce que l'app EasySearch injecte sur la page. */
+[class*="easysearch" i],
+[id*="easysearch" i],
+[class*="ymm" i],
+[id*="ymm" i],
+[class*="es-garage" i],
+[class*="es-fitment" i],
+[class*="es-vehicle" i],
+[data-easysearch],
+[data-ymm],
+.fitment-header,
+.vehicle-banner,
+.garage-widget,
+shopify-app-block[data-block-handle*="easysearch"],
+div[data-shopify-app-handle*="easysearch"],
+/* Bandeau visible : "Vous voyez les pièces compatibles avec..." */
+*:has(> [class*="fitment"]),
+*:has(> a[href*="changer"][href*="vehicule"]){
+  display:none!important;
+  visibility:hidden!important;
+  width:0!important;
+  height:0!important;
+  max-height:0!important;
+  overflow:hidden!important;
+  position:absolute!important;
+  left:-9999px!important;
+  top:-9999px!important;
+  pointer-events:none!important;
+  opacity:0!important;
+}
+
+/* Filet de sécurité : tout bandeau injecté entre header et main contenant le texte */
+.shopify-section[id*="easysearch"],
+.shopify-section[id*="ymm"]{display:none!important}
