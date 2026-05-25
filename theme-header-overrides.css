@@ -1,46 +1,62 @@
-/* === Override: tout doit tenir dans le header sans chevauchement, sans changer le design === */
+/* === Header : tout tient, rien ne se chevauche, placeholder entièrement visible === */
 
-/* Conteneur élargi pour donner de la place */
+/* Conteneur élargi, flex strict */
 .site-header .container.header__inner,
 .header__inner{
   max-width:1480px;
-  display:flex;
-  flex-wrap:nowrap;
+  display:flex!important;
+  flex-wrap:nowrap!important;
   align-items:center;
   gap:12px;
   overflow:visible;
 }
 .site-header .container{max-width:1480px}
 
-/* Tous les enfants directs du header doivent pouvoir rétrécir (pas dépasser) */
-.header__inner > *{
-  min-width:0;
-  flex-shrink:1;
-}
-
-/* Logo : taille fixe, ne se compresse pas */
+/* Logo : taille fixe */
 .header__inner > .logo{flex:0 0 auto}
 
-/* Sélecteur de type véhicule : taille fixe */
+/* Sélecteur véhicule : taille fixe */
 .header__vtype{flex:0 0 auto;height:48px}
 
-/* Barre de recherche : prend l'espace restant mais peut rétrécir */
+/* Barre de recherche : occupe TOUT l'espace dispo entre les blocs fixes */
 .search-bar{
-  flex:1 1 280px!important;
-  min-width:240px;
+  flex:1 1 auto!important;
+  min-width:420px;
   max-width:none!important;
   height:48px!important;
   position:relative;
   z-index:1;
+  display:flex;
+  align-items:stretch;
 }
-.search-bar__input{font-size:14px;height:48px;padding:0 16px;min-width:0;width:100%}
-.search-bar__btn{padding:0 24px;font-size:14px;letter-spacing:.4px;flex-shrink:0;white-space:nowrap}
+.search-bar__input{
+  font-size:14px;
+  height:48px;
+  padding:0 16px;
+  min-width:0;
+  width:100%;
+  flex:1 1 auto;
+}
+.search-bar__input::placeholder{
+  opacity:1;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  overflow:hidden;
+}
+.search-bar__btn{
+  padding:0 28px;
+  font-size:14px;
+  letter-spacing:.4px;
+  flex:0 0 auto;
+  white-space:nowrap;
+}
 
-/* Bloc actions à droite : taille fixe */
+/* Actions à droite : taille fixe */
 .header__actions{flex:0 0 auto;display:flex;align-items:center;gap:8px}
 
-/* ===== Widget Mon Garage / EasySearch : on le garde visible mais on le remet dans le flux normal ===== */
-/* Empêche tout overlay : pas de position absolute/fixed qui chevauche la search bar */
+/* ===== MASQUAGE du widget Mon Garage / EasySearch =====
+   Le sélecteur "Voiture de tourisme" du header fait déjà cette fonction.
+   On ne masque PAS le header, juste les éléments injectés par l'app. */
 [class*="easysearch" i],
 [id*="easysearch" i],
 [class*="ymm" i],
@@ -50,39 +66,38 @@
 [class*="es-vehicle" i],
 [class*="garage-widget" i],
 [class*="my-garage" i],
+[class*="mygarage" i],
 [data-easysearch],
 [data-ymm],
-[data-garage]{
-  position:static!important;
-  top:auto!important;
-  right:auto!important;
-  bottom:auto!important;
-  left:auto!important;
-  transform:none!important;
-  margin:0!important;
-  z-index:auto!important;
-  flex:0 0 auto;
-  max-width:200px;
-}
-
-/* Si le widget se retrouve injecté DANS la search-bar, on le sort visuellement */
-.search-bar [class*="easysearch" i],
-.search-bar [class*="garage" i],
-.search-bar [class*="ymm" i],
-.search-bar [data-easysearch],
-.search-bar [data-garage],
-.search-bar [data-ymm]{
-  position:absolute!important;
-  right:-9999px!important;
-  visibility:hidden!important;
-}
-
-/* Bandeau de compatibilité véhicule "Vous voyez les pièces compatibles..." : on cache uniquement celui-là */
+[data-garage],
+[data-fitment],
 .fitment-header,
-.vehicle-banner{display:none!important}
+.vehicle-banner,
+.garage-widget,
+shopify-app-block[data-block-handle*="easysearch"],
+shopify-app-block[data-block-handle*="ymm"],
+shopify-app-block[data-block-handle*="garage"]{
+  display:none!important;
+  visibility:hidden!important;
+  width:0!important;
+  height:0!important;
+  position:absolute!important;
+  left:-9999px!important;
+  pointer-events:none!important;
+  opacity:0!important;
+}
 
-/* Sécurité responsive : sur petit écran, on autorise le wrap */
+.shopify-section[id*="easysearch"],
+.shopify-section[id*="ymm"],
+.shopify-section[id*="garage"]{display:none!important}
+
+/* Filet ultime : tout enfant de .search-bar qui n'est pas notre input ni notre bouton est parasite */
+form.search-bar > *:not(.search-bar__input):not(.search-bar__btn):not(input[type="hidden"]):not(label){
+  display:none!important;
+}
+
+/* Sécurité responsive : autoriser le wrap si l'écran est trop petit */
 @media (max-width:1100px){
-  .header__inner{flex-wrap:wrap;row-gap:8px}
-  .search-bar{flex:1 1 100%;order:5}
+  .header__inner{flex-wrap:wrap!important;row-gap:8px}
+  .search-bar{flex:1 1 100%!important;order:5;min-width:0}
 }
