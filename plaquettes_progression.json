@@ -1136,5 +1136,15 @@
       "brand": "BREMBO"
     }
   ],
-  "next_autodoc_ids_to_process": "indices 176-379 dans plaquettes_de_frein.json"
+  "next_autodoc_ids_to_process": "indices 176-379 dans plaquettes_de_frein.json",
+  "enrichment_status": {
+    "indices_0_135": "enrichment_complete: true (previous batches)",
+    "indices_136_175": {
+      "enrichment_complete": true,
+      "metafields_set": 40,
+      "compare_at_price_set": 28,
+      "images_uploaded": 3,
+      "notes": "Rattrapage 2026-05-25 : 40 produits enrichis (metafields custom + compareAtPrice via taux 277 + 3 images manquantes ré-uploadées pour indices 136, 143, 144)."
+    }
+  }
 }
