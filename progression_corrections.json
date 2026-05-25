@@ -1,0 +1,9 @@
+{
+  "audit_before": {"total":398,"missing_tag_plaquette":9,"missing_tag_marque":9,"missing_tag_essieu":224,"missing_image":39,"missing_compat":232,"low_compat":89},
+  "audit_after": {"total":398,"missing_tag_plaquette":0,"missing_tag_marque":0,"missing_tag_essieu":214,"missing_image":9,"missing_compat":226,"low_compat":0},
+  "tag_metafield_updates": 166,
+  "image_adds": 30,
+  "compat_websearch_enrichments": 6,
+  "images_no_source_url": 9,
+  "compat_no_data": 226
+}

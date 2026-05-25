@@ -1,0 +1,2416 @@
+{
+  "session_date": "2026-05-25",
+  "exchange_rate_eur_to_dzd": 277,
+  "total_in_source": 380,
+  "products_created": 380,
+  "products_remaining": 0,
+  "collections_created": [
+    {
+      "id": "gid://shopify/Collection/684131844439",
+      "title": "Plaquettes de frein",
+      "type": "smart",
+      "tag": "plaquette"
+    },
+    {
+      "id": "gid://shopify/Collection/684131909975",
+      "title": "Plaquettes essieu avant",
+      "type": "smart",
+      "tag": "essieu-avant-plaquette"
+    },
+    {
+      "id": "gid://shopify/Collection/684131942743",
+      "title": "Plaquettes essieu arrière",
+      "type": "smart",
+      "tag": "essieu-arriere-plaquette"
+    },
+    {
+      "id": "gid://shopify/Collection/684131975511",
+      "title": "Plaquettes BREMBO",
+      "type": "smart",
+      "tag": "marque-brembo"
+    },
+    {
+      "id": "gid://shopify/Collection/684132008279",
+      "title": "Plaquettes BOSCH",
+      "type": "smart",
+      "tag": "marque-bosch"
+    },
+    {
+      "id": "gid://shopify/Collection/684135186775",
+      "title": "Plaquettes FERODO",
+      "type": "smart",
+      "tag": "marque-ferodo"
+    },
+    {
+      "id": "gid://shopify/Collection/684135219543",
+      "title": "Plaquettes FEBI BILSTEIN",
+      "type": "smart",
+      "tag": "marque-febi-bilstein"
+    },
+    {
+      "id": "gid://shopify/Collection/684135252311",
+      "title": "Plaquettes VALEO",
+      "type": "smart",
+      "tag": "marque-valeo"
+    },
+    {
+      "id": "gid://shopify/Collection/684135285079",
+      "title": "Plaquettes RIDEX",
+      "type": "smart",
+      "tag": "marque-ridex"
+    },
+    {
+      "id": "gid://shopify/Collection/684135317847",
+      "title": "Plaquettes RIDEX PLUS",
+      "type": "smart",
+      "tag": "marque-ridex-plus"
+    },
+    {
+      "id": "gid://shopify/Collection/684137742679",
+      "title": "Plaquettes TRW",
+      "type": "smart",
+      "tag": "marque-trw"
+    },
+    {
+      "id": "gid://shopify/Collection/684137775447",
+      "title": "Plaquettes DELPHI",
+      "type": "smart",
+      "tag": "marque-delphi"
+    },
+    {
+      "id": "gid://shopify/Collection/684138824023",
+      "title": "Plaquettes JURID",
+      "type": "smart",
+      "tag": "marque-jurid"
+    },
+    {
+      "id": "gid://shopify/Collection/684144427351",
+      "title": "Plaquettes goCORE",
+      "type": "smart",
+      "tag": "marque-gocore"
+    }
+  ],
+  "products_done": [
+    {
+      "index": 0,
+      "id": "10890220601687",
+      "ref": "P 68 047",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 1,
+      "id": "10890221191511",
+      "ref": "P 85 081",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 2,
+      "id": "10890242392407",
+      "ref": "P 59 038",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 3,
+      "id": "10890242982231",
+      "ref": "P 61 110",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 4,
+      "id": "10890245013847",
+      "ref": "FDB4869",
+      "brand": "FERODO"
+    },
+    {
+      "index": 5,
+      "id": "10890245308759",
+      "ref": "0 986 494 304",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 6,
+      "id": "10890245800279",
+      "ref": "0 986 494 199",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 7,
+      "id": "10890246127959",
+      "ref": "301891",
+      "brand": "VALEO"
+    },
+    {
+      "index": 8,
+      "id": "10890248061271",
+      "ref": "0 986 494 332",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 9,
+      "id": "10890248421719",
+      "ref": "0 986 494 372",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 10,
+      "id": "10890248683863",
+      "ref": "0 986 494 582",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 11,
+      "id": "10890249109847",
+      "ref": "402B0050P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 12,
+      "id": "10890330898775",
+      "ref": "FDB4003",
+      "brand": "FERODO"
+    },
+    {
+      "index": 13,
+      "id": "10890330964311",
+      "ref": "0 986 495 254",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 14,
+      "id": "10890331062615",
+      "ref": "402B0062P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 15,
+      "id": "10890331226455",
+      "ref": "0 986 494 715",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 16,
+      "id": "10890331324759",
+      "ref": "16908",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 17,
+      "id": "10890331455831",
+      "ref": "0 986 494 561",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 18,
+      "id": "10890331586903",
+      "ref": "0 986 494 463",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 19,
+      "id": "10890331717975",
+      "ref": "0 986 494 031",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 20,
+      "id": "10890331816279",
+      "ref": "0 986 494 092",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 21,
+      "id": "10890331980119",
+      "ref": "0 986 424 455",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 22,
+      "id": "10890334536023",
+      "ref": "0 986 494 583",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 23,
+      "id": "10890334634327",
+      "ref": "0 986 494 819",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 24,
+      "id": "10890334765399",
+      "ref": "16575",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 25,
+      "id": "10890334863703",
+      "ref": "0 986 494 600",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 26,
+      "id": "10890334994775",
+      "ref": "GCD020718",
+      "brand": "goCORE"
+    },
+    {
+      "index": 27,
+      "id": "10890335093079",
+      "ref": "402B1126",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 28,
+      "id": "10890335191383",
+      "ref": "0 986 494 696",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 29,
+      "id": "10890335322455",
+      "ref": "0 986 494 527",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 30,
+      "id": "10890335453527",
+      "ref": "FVR5119",
+      "brand": "FERODO"
+    },
+    {
+      "index": 31,
+      "id": "10890335682903",
+      "ref": "0 986 424 789",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 32,
+      "id": "10890335846743",
+      "ref": "402B0008P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 33,
+      "id": "10890335945047",
+      "ref": "0 986 494 054",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 34,
+      "id": "10890336108887",
+      "ref": "0 986 494 657",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 35,
+      "id": "10890336305495",
+      "ref": "0 986 424 785",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 36,
+      "id": "10890336502103",
+      "ref": "16084",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 37,
+      "id": "10890336731479",
+      "ref": "P 06 039",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 38,
+      "id": "10890336928087",
+      "ref": "P 06 032",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 39,
+      "id": "10890337124695",
+      "ref": "302214",
+      "brand": "VALEO"
+    },
+    {
+      "index": 40,
+      "id": "10890337517911",
+      "ref": "0 986 424 124",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 41,
+      "id": "10890337616215",
+      "ref": "FVR1644",
+      "brand": "FERODO"
+    },
+    {
+      "index": 42,
+      "id": "10890337714519",
+      "ref": "0 986 494 936",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 43,
+      "id": "10890337845591",
+      "ref": "FVR1771",
+      "brand": "FERODO"
+    },
+    {
+      "index": 44,
+      "id": "10890338009431",
+      "ref": "16863",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 45,
+      "id": "10890338140503",
+      "ref": "16967",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 46,
+      "id": "10890338337111",
+      "ref": "301942",
+      "brand": "VALEO"
+    },
+    {
+      "index": 47,
+      "id": "10890338533719",
+      "ref": "0 986 424 597",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 48,
+      "id": "10890338664791",
+      "ref": "0 986 494 821",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 49,
+      "id": "10890338959703",
+      "ref": "16473",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 50,
+      "id": "10890339090775",
+      "ref": "16503",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 51,
+      "id": "10890339221847",
+      "ref": "SKBP-0010369",
+      "brand": "STARK"
+    },
+    {
+      "index": 52,
+      "id": "10890339352919",
+      "ref": "P 50 068",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 53,
+      "id": "10890339451223",
+      "ref": "P 06 030",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 54,
+      "id": "10890339582295",
+      "ref": "0 986 494 978",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 55,
+      "id": "10890339746135",
+      "ref": "0 986 424 867",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 56,
+      "id": "10890339844439",
+      "ref": "0 986 494 063",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 57,
+      "id": "10890339975511",
+      "ref": "0 986 494 647",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 58,
+      "id": "10890340073815",
+      "ref": "P 85 070",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 59,
+      "id": "10890340172119",
+      "ref": "P 61 079",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 60,
+      "id": "10890340303191",
+      "ref": "301067",
+      "brand": "VALEO"
+    },
+    {
+      "index": 61,
+      "id": "10890357277015",
+      "ref": "402B0785",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 62,
+      "id": "10890357375319",
+      "ref": "FDB4250",
+      "brand": "FERODO"
+    },
+    {
+      "index": 63,
+      "id": "10890357539159",
+      "ref": "402B0305",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 64,
+      "id": "10890358227287",
+      "ref": "0 986 494 690",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 65,
+      "id": "10890358325591",
+      "ref": "0 986 494 117",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 66,
+      "id": "10890358456663",
+      "ref": "402B0124P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 67,
+      "id": "10890359112023",
+      "ref": "0 986 424 558",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 68,
+      "id": "10890359210327",
+      "ref": "0 986 494 730",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 69,
+      "id": "10890359341399",
+      "ref": "302114",
+      "brand": "VALEO"
+    },
+    {
+      "index": 70,
+      "id": "10890359963991",
+      "ref": "P 50 090",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 71,
+      "id": "10890360062295",
+      "ref": "116245",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 72,
+      "id": "10890360193367",
+      "ref": "0 986 424 767",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 73,
+      "id": "10890360848727",
+      "ref": "LP3144",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 74,
+      "id": "10890361012567",
+      "ref": "P 56 065",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 75,
+      "id": "10890361176407",
+      "ref": "0 986 494 160",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 76,
+      "id": "10890361864535",
+      "ref": "0 986 424 334",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 77,
+      "id": "10890361962839",
+      "ref": "16587",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 78,
+      "id": "10890362126679",
+      "ref": "0 986 494 706",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 79,
+      "id": "10890362782039",
+      "ref": "302262",
+      "brand": "VALEO"
+    },
+    {
+      "index": 80,
+      "id": "10890362880343",
+      "ref": "402B0007P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 81,
+      "id": "10890363011415",
+      "ref": "16189",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 82,
+      "id": "10890363568471",
+      "ref": "0 986 424 741",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 83,
+      "id": "10890363666775",
+      "ref": "FDB4181",
+      "brand": "FERODO"
+    },
+    {
+      "index": 84,
+      "id": "10890363797847",
+      "ref": "0 986 494 391",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 85,
+      "id": "10890364387671",
+      "ref": "302132",
+      "brand": "VALEO"
+    },
+    {
+      "index": 86,
+      "id": "10890364551511",
+      "ref": "0 986 494 797",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 87,
+      "id": "10890364682583",
+      "ref": "0 986 494 192",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 88,
+      "id": "10890365436247",
+      "ref": "0 986 494 759",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 89,
+      "id": "10890365567319",
+      "ref": "0 986 494 526",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 90,
+      "id": "10890365665623",
+      "ref": "402B1475",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 91,
+      "id": "10890366386519",
+      "ref": "P 61 121",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 92,
+      "id": "10890366517591",
+      "ref": "116267",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 93,
+      "id": "10890366648663",
+      "ref": "16755",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 94,
+      "id": "10890367304023",
+      "ref": "0 986 424 596",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 95,
+      "id": "10890367435095",
+      "ref": "301537",
+      "brand": "VALEO"
+    },
+    {
+      "index": 96,
+      "id": "10890408755543",
+      "ref": "0 986 494 594",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 97,
+      "id": "10890408886615",
+      "ref": "LP3275",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 98,
+      "id": "10890409050455",
+      "ref": "0 986 494 214",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 99,
+      "id": "10890409148759",
+      "ref": "402B0342P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 100,
+      "id": "10890409541975",
+      "ref": "P 83 047",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 101,
+      "id": "10890409738583",
+      "ref": "0 986 494 605",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 102,
+      "id": "10890409836887",
+      "ref": "0 986 424 616",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 103,
+      "id": "10890409967959",
+      "ref": "0 986 494 581",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 104,
+      "id": "10890410426711",
+      "ref": "16343",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 105,
+      "id": "10890410557783",
+      "ref": "302153",
+      "brand": "VALEO"
+    },
+    {
+      "index": 106,
+      "id": "10890410656087",
+      "ref": "0 986 494 439",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 107,
+      "id": "10890410754391",
+      "ref": "573862J",
+      "brand": "JURID"
+    },
+    {
+      "index": 108,
+      "id": "10890410983767",
+      "ref": "116021",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 109,
+      "id": "10890411147607",
+      "ref": "0 986 460 026",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 110,
+      "id": "10890411245911",
+      "ref": "16512",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 111,
+      "id": "10890411344215",
+      "ref": "302138",
+      "brand": "VALEO"
+    },
+    {
+      "index": 112,
+      "id": "10890411573591",
+      "ref": "P 50 056",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 113,
+      "id": "10890411704663",
+      "ref": "16902",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 114,
+      "id": "10890411802967",
+      "ref": "FDB4057",
+      "brand": "FERODO"
+    },
+    {
+      "index": 115,
+      "id": "10890411966807",
+      "ref": "0 986 494 097",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 116,
+      "id": "10890412196183",
+      "ref": "0 986 494 207",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 117,
+      "id": "10890412327255",
+      "ref": "16861",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 118,
+      "id": "10890412458327",
+      "ref": "P 06 035",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 119,
+      "id": "10890412556631",
+      "ref": "P 06 065",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 120,
+      "id": "10890412786007",
+      "ref": "0 986 494 028",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 121,
+      "id": "10890412884311",
+      "ref": "0 986 494 733",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 122,
+      "id": "10890412982615",
+      "ref": "P 06 074",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 123,
+      "id": "10890413080919",
+      "ref": "16957",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 124,
+      "id": "10890413343063",
+      "ref": "16442",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 125,
+      "id": "10890413441367",
+      "ref": "116029",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 126,
+      "id": "10890413637975",
+      "ref": "0 986 494 489",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 127,
+      "id": "10890413736279",
+      "ref": "402B0019P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 128,
+      "id": "10890414031191",
+      "ref": "302484",
+      "brand": "VALEO"
+    },
+    {
+      "index": 129,
+      "id": "10890414129495",
+      "ref": "FDB4832",
+      "brand": "FERODO"
+    },
+    {
+      "index": 130,
+      "id": "10890414227799",
+      "ref": "302404",
+      "brand": "VALEO"
+    },
+    {
+      "index": 131,
+      "id": "10890414326103",
+      "ref": "16433",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 132,
+      "id": "10890414522711",
+      "ref": "0 986 494 081",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 133,
+      "id": "10890414653783",
+      "ref": "P 23 132",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 134,
+      "id": "10890414850391",
+      "ref": "P 68 073",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 135,
+      "id": "10890414981463",
+      "ref": "P 78 021",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 136,
+      "id": "10890432643415",
+      "ref": "LP3261",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 137,
+      "id": "10890433003863",
+      "ref": "GDB2166",
+      "brand": "TRW"
+    },
+    {
+      "index": 138,
+      "id": "10890433134935",
+      "ref": "P 68 015",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 139,
+      "id": "10890433233239",
+      "ref": "402B0420",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 140,
+      "id": "10890433364311",
+      "ref": "LP3143",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 141,
+      "id": "10890433462615",
+      "ref": "402B0677",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 142,
+      "id": "10890433593687",
+      "ref": "0 986 494 663",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 143,
+      "id": "10890433691991",
+      "ref": "301893",
+      "brand": "VALEO"
+    },
+    {
+      "index": 144,
+      "id": "10890433888599",
+      "ref": "GDB1478",
+      "brand": "TRW"
+    },
+    {
+      "index": 145,
+      "id": "10890434085207",
+      "ref": "402B0065P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 146,
+      "id": "10890434412887",
+      "ref": "302125",
+      "brand": "VALEO"
+    },
+    {
+      "index": 147,
+      "id": "10890434543959",
+      "ref": "0 986 494 656",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 148,
+      "id": "10890434642263",
+      "ref": "0 986 424 415",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 149,
+      "id": "10890434773335",
+      "ref": "402B1049P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 150,
+      "id": "10890434937175",
+      "ref": "16548",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 151,
+      "id": "10890435068247",
+      "ref": "FDB1693",
+      "brand": "FERODO"
+    },
+    {
+      "index": 152,
+      "id": "10890435199319",
+      "ref": "P 56 038",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 153,
+      "id": "10890435330391",
+      "ref": "0 986 460 083",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 154,
+      "id": "10890435428695",
+      "ref": "GDB1814",
+      "brand": "TRW"
+    },
+    {
+      "index": 155,
+      "id": "10890435526999",
+      "ref": "GCD020022",
+      "brand": "goCORE"
+    },
+    {
+      "index": 156,
+      "id": "10890435887447",
+      "ref": "FDB4614",
+      "brand": "FERODO"
+    },
+    {
+      "index": 157,
+      "id": "10890436018519",
+      "ref": "402B0531P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 158,
+      "id": "10890436116823",
+      "ref": "402B0138P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 159,
+      "id": "10890436215127",
+      "ref": "0 986 424 414",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 160,
+      "id": "10890436313431",
+      "ref": "0 986 494 688",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 161,
+      "id": "10890436411735",
+      "ref": "P 06 103",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 162,
+      "id": "10890436542807",
+      "ref": "LP1699",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 163,
+      "id": "10890436641111",
+      "ref": "0 986 494 461",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 164,
+      "id": "10890436739415",
+      "ref": "P 54 038",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 165,
+      "id": "10890436837719",
+      "ref": "0 986 494 777",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 166,
+      "id": "10890437296471",
+      "ref": "0 986 466 346",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 167,
+      "id": "10890437394775",
+      "ref": "GCD020171",
+      "brand": "goCORE"
+    },
+    {
+      "index": 168,
+      "id": "10890437493079",
+      "ref": "302052",
+      "brand": "VALEO"
+    },
+    {
+      "index": 169,
+      "id": "10890437624151",
+      "ref": "0 986 424 798",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 170,
+      "id": "10890437722455",
+      "ref": "16870",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 171,
+      "id": "10890437886295",
+      "ref": "13.0470-2785.2",
+      "brand": "ATE"
+    },
+    {
+      "index": 172,
+      "id": "10890437984599",
+      "ref": "402B0057P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 173,
+      "id": "10890438082903",
+      "ref": "301777",
+      "brand": "VALEO"
+    },
+    {
+      "index": 174,
+      "id": "10890438213975",
+      "ref": "402B0543P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 175,
+      "id": "10890438312279",
+      "ref": "P 49 044",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 176,
+      "id": "10890442146135",
+      "ref": "FDB4050",
+      "brand": "FERODO"
+    },
+    {
+      "index": 177,
+      "id": "10890442244439",
+      "ref": "LP2191",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 178,
+      "id": "10890443686231",
+      "ref": "0 986 494 379",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 179,
+      "id": "10890443784535",
+      "ref": "GDB2136",
+      "brand": "TRW"
+    },
+    {
+      "index": 180,
+      "id": "10890443981143",
+      "ref": "P 61 064",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 181,
+      "id": "10890444112215",
+      "ref": "FDB4662",
+      "brand": "FERODO"
+    },
+    {
+      "index": 182,
+      "id": "10890444276055",
+      "ref": "0 986 494 988",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 183,
+      "id": "10890446864727",
+      "ref": "402B0508P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 184,
+      "id": "10890446963031",
+      "ref": "573135J",
+      "brand": "JURID"
+    },
+    {
+      "index": 185,
+      "id": "10890447094103",
+      "ref": "302098",
+      "brand": "VALEO"
+    },
+    {
+      "index": 186,
+      "id": "10890447323479",
+      "ref": "302043",
+      "brand": "VALEO"
+    },
+    {
+      "index": 187,
+      "id": "10890447454551",
+      "ref": "GCD020313",
+      "brand": "goCORE"
+    },
+    {
+      "index": 188,
+      "id": "10890447585623",
+      "ref": "FDB719",
+      "brand": "FERODO"
+    },
+    {
+      "index": 189,
+      "id": "10890448798039",
+      "ref": "573192J",
+      "brand": "JURID"
+    },
+    {
+      "index": 190,
+      "id": "10890448929111",
+      "ref": "0 986 424 839",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 191,
+      "id": "10890449027415",
+      "ref": "0 986 424 582",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 192,
+      "id": "10890449256791",
+      "ref": "GDB1719",
+      "brand": "TRW"
+    },
+    {
+      "index": 193,
+      "id": "10890449453399",
+      "ref": "P 44 023",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 194,
+      "id": "10890449617239",
+      "ref": "402B0791P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 195,
+      "id": "10890449715543",
+      "ref": "402B1376",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 196,
+      "id": "10890449846615",
+      "ref": "16531",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 197,
+      "id": "10890453156183",
+      "ref": "P 24 046",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 198,
+      "id": "10890453418327",
+      "ref": "LP3306",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 199,
+      "id": "10890453516631",
+      "ref": "0 986 494 171",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 200,
+      "id": "10890453614935",
+      "ref": "301063",
+      "brand": "VALEO"
+    },
+    {
+      "index": 201,
+      "id": "10890453713239",
+      "ref": "LP490",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 202,
+      "id": "10890454237527",
+      "ref": "573315J",
+      "brand": "JURID"
+    },
+    {
+      "index": 203,
+      "id": "10890454368599",
+      "ref": "FDB4752",
+      "brand": "FERODO"
+    },
+    {
+      "index": 204,
+      "id": "10890454499671",
+      "ref": "402B0073P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 205,
+      "id": "10890454630743",
+      "ref": "GCD020683",
+      "brand": "goCORE"
+    },
+    {
+      "index": 206,
+      "id": "10890454729047",
+      "ref": "0 986 424 411",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 207,
+      "id": "10890454827351",
+      "ref": "301934",
+      "brand": "VALEO"
+    },
+    {
+      "index": 208,
+      "id": "10890454925655",
+      "ref": "16378",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 209,
+      "id": "10890455613783",
+      "ref": "P 59 050",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 210,
+      "id": "10890455777623",
+      "ref": "FVR1927",
+      "brand": "FERODO"
+    },
+    {
+      "index": 211,
+      "id": "10890456891735",
+      "ref": "573357J",
+      "brand": "JURID"
+    },
+    {
+      "index": 212,
+      "id": "10890456170839",
+      "ref": "6949/1",
+      "brand": "MAPCO"
+    },
+    {
+      "index": 213,
+      "id": "10890456269143",
+      "ref": "16891",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 214,
+      "id": "10890456400215",
+      "ref": "16728",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 215,
+      "id": "10890456564055",
+      "ref": "GDB1555",
+      "brand": "TRW"
+    },
+    {
+      "index": 216,
+      "id": "10890608116055",
+      "ref": "402B0004P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 217,
+      "id": "10890608148823",
+      "ref": "402B0151P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 218,
+      "id": "10890608181591",
+      "ref": "0 986 424 652",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 219,
+      "id": "10890608214359",
+      "ref": "0 986 494 666",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 220,
+      "id": "10890608279895",
+      "ref": "GCD020011",
+      "brand": "goCORE"
+    },
+    {
+      "index": 221,
+      "id": "10890608312663",
+      "ref": "0 986 424 580",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 222,
+      "id": "10890608345431",
+      "ref": "0 986 424 865",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 223,
+      "id": "10890608443735",
+      "ref": "0 986 494 672",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 224,
+      "id": "10890608509271",
+      "ref": "P 44 028",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 225,
+      "id": "10890608542039",
+      "ref": "16793",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 226,
+      "id": "10890608640343",
+      "ref": "573241J",
+      "brand": "JURID"
+    },
+    {
+      "index": 227,
+      "id": "10890608673111",
+      "ref": "P 83 055",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 228,
+      "id": "10890608738647",
+      "ref": "0 986 494 288",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 229,
+      "id": "10890608804183",
+      "ref": "P 50 080",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 230,
+      "id": "10890608869719",
+      "ref": "16889",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 231,
+      "id": "10890608902487",
+      "ref": "170383",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 232,
+      "id": "10890608968023",
+      "ref": "0 986 494 785",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 233,
+      "id": "10890609033559",
+      "ref": "FDB5377",
+      "brand": "FERODO"
+    },
+    {
+      "index": 234,
+      "id": "10890609066327",
+      "ref": "0 986 494 404",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 235,
+      "id": "10890609131863",
+      "ref": "0 986 494 680",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 236,
+      "id": "10890609230167",
+      "ref": "402B1047P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 237,
+      "id": "10890609262935",
+      "ref": "16897",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 238,
+      "id": "10890609328471",
+      "ref": "116265",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 239,
+      "id": "10890609394007",
+      "ref": "0 986 494 161",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 240,
+      "id": "10890609492311",
+      "ref": "0 986 494 818",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 241,
+      "id": "10890609688919",
+      "ref": "116313",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 242,
+      "id": "10890609754455",
+      "ref": "16884",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 243,
+      "id": "10890609819991",
+      "ref": "175210",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 244,
+      "id": "10890609852759",
+      "ref": "402B0042P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 245,
+      "id": "10890609885527",
+      "ref": "402B0595",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 246,
+      "id": "10890610049367",
+      "ref": "573059J",
+      "brand": "JURID"
+    },
+    {
+      "index": 247,
+      "id": "10890610147671",
+      "ref": "SKBP-0011113",
+      "brand": "STARK"
+    },
+    {
+      "index": 248,
+      "id": "10890610180439",
+      "ref": "0 986 494 096",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 249,
+      "id": "10890610245975",
+      "ref": "GDB1726",
+      "brand": "TRW"
+    },
+    {
+      "index": 250,
+      "id": "10890610278743",
+      "ref": "402B1282P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 251,
+      "id": "10890610377047",
+      "ref": "0 986 466 601",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 252,
+      "id": "10890610442583",
+      "ref": "P 83 051",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 253,
+      "id": "10890610475351",
+      "ref": "FDB4426",
+      "brand": "FERODO"
+    },
+    {
+      "index": 254,
+      "id": "10890610606423",
+      "ref": "0 986 494 802",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 255,
+      "id": "10890610737495",
+      "ref": "0 986 494 747",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 256,
+      "id": "10890610868567",
+      "ref": "P 83 074",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 257,
+      "id": "10890610901335",
+      "ref": "GCD020078",
+      "brand": "goCORE"
+    },
+    {
+      "index": 258,
+      "id": "10890610966871",
+      "ref": "571526J",
+      "brand": "JURID"
+    },
+    {
+      "index": 259,
+      "id": "10890611032407",
+      "ref": "LP1906",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 260,
+      "id": "10890612048215",
+      "ref": "GDB1495",
+      "brand": "TRW"
+    },
+    {
+      "index": 261,
+      "id": "10890612080983",
+      "ref": "402B0155P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 262,
+      "id": "10890612113751",
+      "ref": "16830",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 263,
+      "id": "10890612179287",
+      "ref": "0 986 494 303",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 264,
+      "id": "10890612212055",
+      "ref": "13.0460-2840.2",
+      "brand": "ATE"
+    },
+    {
+      "index": 265,
+      "id": "10890612244823",
+      "ref": "0 986 460 149",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 266,
+      "id": "10890612277591",
+      "ref": "GCD020101",
+      "brand": "goCORE"
+    },
+    {
+      "index": 267,
+      "id": "10890612310359",
+      "ref": "16830",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 268,
+      "id": "10890612343127",
+      "ref": "301583",
+      "brand": "VALEO"
+    },
+    {
+      "index": 269,
+      "id": "10890612375895",
+      "ref": "402B0367P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 270,
+      "id": "10890612408663",
+      "ref": "302522",
+      "brand": "VALEO"
+    },
+    {
+      "index": 271,
+      "id": "10890612441431",
+      "ref": "LP3153",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 272,
+      "id": "10890612474199",
+      "ref": "FDB4884",
+      "brand": "FERODO"
+    },
+    {
+      "index": 273,
+      "id": "10890612506967",
+      "ref": "0 986 494 157",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 274,
+      "id": "10890612539735",
+      "ref": "0 986 495 371",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 275,
+      "id": "10890612572503",
+      "ref": "402B0281P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 276,
+      "id": "10890612670807",
+      "ref": "16556",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 277,
+      "id": "10890612703575",
+      "ref": "16525",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 278,
+      "id": "10890612736343",
+      "ref": "402B0034P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 279,
+      "id": "10890612769111",
+      "ref": "302207",
+      "brand": "VALEO"
+    },
+    {
+      "index": 280,
+      "id": "10890612801879",
+      "ref": "FDB4353",
+      "brand": "FERODO"
+    },
+    {
+      "index": 281,
+      "id": "10890612834647",
+      "ref": "302429",
+      "brand": "VALEO"
+    },
+    {
+      "index": 282,
+      "id": "10890612932951",
+      "ref": "P 06 012",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 283,
+      "id": "10890612998487",
+      "ref": "16749",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 284,
+      "id": "10890613064023",
+      "ref": "171398",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 285,
+      "id": "10890613096791",
+      "ref": "0 986 494 251",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 286,
+      "id": "10890613129559",
+      "ref": "0 986 494 622",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 287,
+      "id": "10890613195095",
+      "ref": "402B0625",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 288,
+      "id": "10890613358935",
+      "ref": "P 86 032",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 289,
+      "id": "10890613424471",
+      "ref": "P 23 187",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 290,
+      "id": "10890615456087",
+      "ref": "301706",
+      "brand": "VALEO"
+    },
+    {
+      "index": 291,
+      "id": "10890615521623",
+      "ref": "ADN142117",
+      "brand": "BLUE PRINT"
+    },
+    {
+      "index": 292,
+      "id": "10890615619927",
+      "ref": "16441",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 293,
+      "id": "10890615718231",
+      "ref": "301518",
+      "brand": "VALEO"
+    },
+    {
+      "index": 294,
+      "id": "10890615783767",
+      "ref": "GCD020532",
+      "brand": "goCORE"
+    },
+    {
+      "index": 295,
+      "id": "10890616013143",
+      "ref": "301298",
+      "brand": "VALEO"
+    },
+    {
+      "index": 296,
+      "id": "10890616176983",
+      "ref": "SKBP-0010176",
+      "brand": "STARK"
+    },
+    {
+      "index": 297,
+      "id": "10890616275287",
+      "ref": "0 986 494 009",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 298,
+      "id": "10890616406359",
+      "ref": "0 986 424 489",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 299,
+      "id": "10890616504663",
+      "ref": "402B1320P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 300,
+      "id": "10890616766807",
+      "ref": "16940",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 301,
+      "id": "10890616832343",
+      "ref": "0 986 494 241",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 302,
+      "id": "10890616930647",
+      "ref": "LP3287",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 303,
+      "id": "10890616996183",
+      "ref": "0 986 494 823",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 304,
+      "id": "10890617094487",
+      "ref": "P 83 102X",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 305,
+      "id": "10890617258327",
+      "ref": "GCD020669",
+      "brand": "goCORE"
+    },
+    {
+      "index": 306,
+      "id": "10890617356631",
+      "ref": "0 986 424 410",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 307,
+      "id": "10890617454935",
+      "ref": "0 986 460 964",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 308,
+      "id": "10890617520471",
+      "ref": "P 23 131",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 309,
+      "id": "10890617618775",
+      "ref": "0 986 424 845",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 310,
+      "id": "10890617782615",
+      "ref": "573863J",
+      "brand": "JURID"
+    },
+    {
+      "index": 311,
+      "id": "10890617880919",
+      "ref": "402B0080P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 312,
+      "id": "10890618011991",
+      "ref": "302642",
+      "brand": "VALEO"
+    },
+    {
+      "index": 313,
+      "id": "10890618077527",
+      "ref": "301041",
+      "brand": "VALEO"
+    },
+    {
+      "index": 314,
+      "id": "10890618175831",
+      "ref": "GCD020365",
+      "brand": "goCORE"
+    },
+    {
+      "index": 315,
+      "id": "10890618405207",
+      "ref": "301452",
+      "brand": "VALEO"
+    },
+    {
+      "index": 316,
+      "id": "10890618470743",
+      "ref": "GDB2082",
+      "brand": "TRW"
+    },
+    {
+      "index": 317,
+      "id": "10890618569047",
+      "ref": "16738",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 318,
+      "id": "10890618634583",
+      "ref": "0 986 424 033",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 319,
+      "id": "10890618732887",
+      "ref": "0 986 494 136",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 320,
+      "id": "10890618962263",
+      "ref": "0 986 494 900",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 321,
+      "id": "10890619060567",
+      "ref": "13.0460-4856.2",
+      "brand": "ATE"
+    },
+    {
+      "index": 322,
+      "id": "10890619126103",
+      "ref": "P 06 096",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 323,
+      "id": "10890619224407",
+      "ref": "R-P1704",
+      "brand": "RAP BRAKES"
+    },
+    {
+      "index": 324,
+      "id": "10890619289943",
+      "ref": "P 23 003",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 325,
+      "id": "10890619486551",
+      "ref": "301847",
+      "brand": "VALEO"
+    },
+    {
+      "index": 326,
+      "id": "10890619584855",
+      "ref": "402B0244P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 327,
+      "id": "10890619683159",
+      "ref": "402B0471P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 328,
+      "id": "10890619748695",
+      "ref": "FDB4938",
+      "brand": "FERODO"
+    },
+    {
+      "index": 329,
+      "id": "10890619814231",
+      "ref": "301770",
+      "brand": "VALEO"
+    },
+    {
+      "index": 330,
+      "id": "10890620010839",
+      "ref": "P 50 046",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 331,
+      "id": "10890620076375",
+      "ref": "FVR4398",
+      "brand": "FERODO"
+    },
+    {
+      "index": 332,
+      "id": "10890620174679",
+      "ref": "P 83 159",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 333,
+      "id": "10890620240215",
+      "ref": "0 986 424 595",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 334,
+      "id": "10890620338519",
+      "ref": "LP1911",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 335,
+      "id": "10890620469591",
+      "ref": "FDB4933",
+      "brand": "FERODO"
+    },
+    {
+      "index": 336,
+      "id": "10890620567895",
+      "ref": "0 986 424 042",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 337,
+      "id": "10890620633431",
+      "ref": "FDB4424",
+      "brand": "FERODO"
+    },
+    {
+      "index": 338,
+      "id": "10890620731735",
+      "ref": "402B0069P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 339,
+      "id": "10890620797271",
+      "ref": "301812",
+      "brand": "VALEO"
+    },
+    {
+      "index": 340,
+      "id": "10890648191319",
+      "ref": "301665",
+      "brand": "VALEO"
+    },
+    {
+      "index": 341,
+      "id": "10890648486231",
+      "ref": "P 50 055",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 342,
+      "id": "10890648682839",
+      "ref": "16907",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 343,
+      "id": "10890648912215",
+      "ref": "16843",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 344,
+      "id": "10890649076055",
+      "ref": "0 986 494 773",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 345,
+      "id": "10890649272663",
+      "ref": "LP2070",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 346,
+      "id": "10890649731415",
+      "ref": "402B0005P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 347,
+      "id": "10890649928023",
+      "ref": "GCD020033",
+      "brand": "goCORE"
+    },
+    {
+      "index": 348,
+      "id": "10890650190167",
+      "ref": "0 986 460 935",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 349,
+      "id": "10890650321239",
+      "ref": "0 986 495 248",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 350,
+      "id": "10890650419543",
+      "ref": "P 44 005",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 351,
+      "id": "10890650747223",
+      "ref": "P 23 093",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 352,
+      "id": "10890651009367",
+      "ref": "LP3363",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 353,
+      "id": "10890651238743",
+      "ref": "0 986 494 456",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 354,
+      "id": "10890651500887",
+      "ref": "0 986 494 702",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 355,
+      "id": "10890651730263",
+      "ref": "0 986 494 385",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 356,
+      "id": "10890652254551",
+      "ref": "P 24 188",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 357,
+      "id": "10890652385623",
+      "ref": "0 986 424 965",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 358,
+      "id": "10890652582231",
+      "ref": "P 85 181",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 359,
+      "id": "10890652746071",
+      "ref": "170652",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 360,
+      "id": "10890652942679",
+      "ref": "302243",
+      "brand": "VALEO"
+    },
+    {
+      "index": 361,
+      "id": "10890653434199",
+      "ref": "P 83 053",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 362,
+      "id": "10890653696343",
+      "ref": "GDB446",
+      "brand": "TRW"
+    },
+    {
+      "index": 363,
+      "id": "10890653925719",
+      "ref": "GCD020471",
+      "brand": "goCORE"
+    },
+    {
+      "index": 364,
+      "id": "10890654187863",
+      "ref": "0 986 494 284",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 365,
+      "id": "10890654384471",
+      "ref": "0 986 468 630",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 366,
+      "id": "10890654777687",
+      "ref": "0 986 494 642",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 367,
+      "id": "10890654875991",
+      "ref": "0 986 494 464",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 368,
+      "id": "10890655007063",
+      "ref": "FDB1866",
+      "brand": "FERODO"
+    },
+    {
+      "index": 369,
+      "id": "10890655170903",
+      "ref": "P 24 158",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 370,
+      "id": "10890655334743",
+      "ref": "0 986 494 370",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 371,
+      "id": "10890656186711",
+      "ref": "P 83 171",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 372,
+      "id": "10890656317783",
+      "ref": "GCD020592",
+      "brand": "goCORE"
+    },
+    {
+      "index": 373,
+      "id": "10890656416087",
+      "ref": "16873",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 374,
+      "id": "10890656579927",
+      "ref": "16196",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 375,
+      "id": "10890656710999",
+      "ref": "P 50 008",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 376,
+      "id": "10890657104215",
+      "ref": "402B0219P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 377,
+      "id": "10890657333591",
+      "ref": "0 986 494 684",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 378,
+      "id": "10890657464663",
+      "ref": "301412",
+      "brand": "VALEO"
+    },
+    {
+      "index": 379,
+      "id": "10890657694039",
+      "ref": "P 06 011",
+      "brand": "BREMBO"
+    }
+  ],
+  "next_autodoc_ids_to_process": "Aucun - tous traités",
+  "enrichment_status": {
+    "indices_0_135": "enrichment_complete: true (previous batches)",
+    "indices_136_175": {
+      "enrichment_complete": true,
+      "metafields_set": 40,
+      "compare_at_price_set": 28,
+      "images_uploaded": 3,
+      "notes": "Rattrapage 2026-05-25 : 40 produits enrichis (metafields custom + compareAtPrice via taux 277 + 3 images manquantes ré-uploadées pour indices 136, 143, 144)."
+    },
+    "indices_216_259": {
+      "enrichment_complete": true,
+      "metafields_set": 44,
+      "compare_at_price_set": 23,
+      "images_uploaded": 44,
+      "compat_researched": 14,
+      "new_collections": [
+        "Plaquettes goCORE"
+      ],
+      "notes": "Batch 2026-05-25 indices 216-259 (44 produits) avec recherche compat WebSearch, productCreateMedia pour tous, metafields custom complets, compareAtPrice DZD calculé via taux 277."
+    },
+    "indices_290_339": {
+      "enrichment_complete": true,
+      "metafields_set": 50,
+      "compare_at_price_set": 29,
+      "images_uploaded": 50,
+      "compat_researched": 25,
+      "new_collections": [],
+      "notes": "Batch 2026-05-25 indices 290-339 (50 produits) avec recherche compat WebSearch (25 produits avec compat extraite), productCreateMedia pour tous, metafields custom complets (price_eur_original, exchange_rate_used=277, autodoc_product_id, photo_360_url, reviews_count, autodoc_url quand disponible), compareAtPrice DZD calculé via taux 277 quand original_price présent."
+    },
+    "indices_340_379": {
+      "enrichment_complete": true,
+      "metafields_set": 40,
+      "compare_at_price_set": 24,
+      "images_uploaded": 40,
+      "compat_researched": 26,
+      "new_collections": [],
+      "notes": "Batch final 2026-05-25 indices 340-379 (40 produits) avec recherche compat WebSearch (26 produits avec compat extraite), productCreateMedia pour tous, metafields custom complets, compareAtPrice DZD calculé via taux 277."
+    }
+  },
+  "all_done": true
+}
