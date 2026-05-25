@@ -1,0 +1,29 @@
+{
+  "session_date": "2026-05-25",
+  "exchange_rate_eur_to_dzd": 277,
+  "total_in_source": 380,
+  "products_created": 12,
+  "products_remaining": 368,
+  "collections_created": [
+    {"id": "gid://shopify/Collection/684131844439", "title": "Plaquettes de frein", "type": "smart", "tag": "plaquette"},
+    {"id": "gid://shopify/Collection/684131909975", "title": "Plaquettes essieu avant", "type": "smart", "tag": "essieu-avant-plaquette"},
+    {"id": "gid://shopify/Collection/684131942743", "title": "Plaquettes essieu arrière", "type": "smart", "tag": "essieu-arriere-plaquette"},
+    {"id": "gid://shopify/Collection/684131975511", "title": "Plaquettes BREMBO", "type": "smart", "tag": "marque-brembo"},
+    {"id": "gid://shopify/Collection/684132008279", "title": "Plaquettes BOSCH", "type": "smart", "tag": "marque-bosch"}
+  ],
+  "products_done": [
+    {"id": "10890220601687", "ref": "P 68 047", "brand": "BREMBO", "autodoc_id": "1661702", "price_dzd": 9969, "compare_dzd": 33910, "metafields": 7, "inventory": 10},
+    {"id": "10890221191511", "ref": "P 85 081", "brand": "BREMBO", "autodoc_id": "1661930", "price_dzd": 12601, "compare_dzd": 45860, "metafields": 7, "inventory": 10},
+    {"id": "10890242392407", "ref": "P 59 038", "brand": "BREMBO", "autodoc_id": "1661535", "price_dzd": 7061, "compare_dzd": 26595, "metafields": 7, "inventory": 0},
+    {"id": "10890242982231", "ref": "P 61 110", "brand": "BREMBO", "autodoc_id": "7517682", "price_dzd": 7615, "compare_dzd": 24731, "metafields": 7, "inventory": 0},
+    {"id": "10890245013847", "ref": "FDB4869", "brand": "FERODO", "autodoc_id": "12811145", "price_dzd": 9692, "compare_dzd": 30132, "metafields": 7, "inventory": 0},
+    {"id": "10890245308759", "ref": "0 986 494 304", "brand": "BOSCH", "autodoc_id": "1167908", "price_dzd": 10662, "compare_dzd": 31312, "metafields": 7, "inventory": 0},
+    {"id": "10890245800279", "ref": "0 986 494 199", "brand": "BOSCH", "autodoc_id": "1167818", "price_dzd": 9415, "compare_dzd": 28307, "metafields": 7, "inventory": 0},
+    {"id": "10890246127959", "ref": "301891", "brand": "VALEO", "autodoc_id": "7950565", "price_dzd": 8307, "compare_dzd": null, "metafields": 6, "inventory": 0},
+    {"id": "10890248061271", "ref": "0 986 494 332", "brand": "BOSCH", "autodoc_id": "1167934", "price_dzd": 10662, "compare_dzd": 30642, "metafields": 7, "inventory": 0},
+    {"id": "10890248421719", "ref": "0 986 494 372", "brand": "BOSCH", "autodoc_id": "1167969", "price_dzd": 12462, "compare_dzd": 41882, "metafields": 7, "inventory": 0},
+    {"id": "10890248683863", "ref": "0 986 494 582", "brand": "BOSCH", "autodoc_id": "7885412", "price_dzd": 13016, "compare_dzd": null, "metafields": 6, "inventory": 0},
+    {"id": "10890249109847", "ref": "402B0050P", "brand": "RIDEX PLUS", "autodoc_id": "22246039", "price_dzd": 4429, "compare_dzd": 10025, "metafields": 7, "inventory": 0}
+  ],
+  "next_autodoc_ids_to_process": "indices 12-379 dans plaquettes_de_frein.json"
+}
