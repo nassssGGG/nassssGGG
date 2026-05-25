@@ -9,7 +9,6 @@
 {%- liquid
   assign heading = section.settings.heading | default: 'Catalogue de pièces détachées'
   assign subtitle = section.settings.subtitle | default: 'Plus de 500 références · Livraison dans les 48 wilayas · Cash à la livraison'
-  assign search_placeholder = section.settings.search_placeholder | default: 'Rechercher une pièce, une catégorie…'
   assign top_title = section.settings.top_title | default: 'Les pièces les plus demandées'
   assign catalog_title = section.settings.catalog_title | default: 'Toutes les catégories'
 -%}
@@ -24,12 +23,6 @@
       </nav>
       <h1 class="pdz-cat__title">{{ heading }}</h1>
       <p class="pdz-cat__subtitle">{{ subtitle }}</p>
-
-      <form class="pdz-cat__search" role="search" onsubmit="return false">
-        <svg class="pdz-cat__search-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="pdz-cat-search" type="text" placeholder="{{ search_placeholder }}" autocomplete="off" aria-label="{{ search_placeholder }}">
-        <button type="button" class="pdz-cat__search-clear" id="pdz-cat-clear" aria-label="Effacer" hidden>✕</button>
-      </form>
 
       <ul class="pdz-cat__trust">
         <li><span class="pdz-cat__trust-dot"></span> Garantie 100% pièces neuves</li>
@@ -52,14 +45,8 @@
   <div class="pdz-cat__container">
     <header class="pdz-cat__sec-head">
       <h2 class="pdz-cat__h2">{{ catalog_title }}</h2>
-      <span class="pdz-cat__count-hint" id="pdz-cat-count"></span>
     </header>
     <div class="pdz-cat__grid" id="pdz-cat-grid"></div>
-    <div class="pdz-cat__empty" id="pdz-cat-empty" hidden>
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <p>Aucune catégorie ne correspond à votre recherche.</p>
-      <button type="button" class="pdz-cat__btn pdz-cat__btn--ghost" onclick="document.getElementById('pdz-cat-clear').click()">Réinitialiser</button>
-    </div>
   </div>
 
   <div class="pdz-cat__container">
@@ -77,6 +64,12 @@
 </section>
 
 {% stylesheet %}
+/* Masque le bandeau de compatibilité véhicule (EasySearch YMM) sur cette page car déjà présent dans le header */
+.template-page-toutes-les-pieces .easysearch-fitment-header,
+.template-page-toutes-les-pieces [class*="easysearch-fitment"],
+.template-page-toutes-les-pieces [class*="easysearch-vehicle-info"],
+.template-page-toutes-les-pieces .easysearch-embed-widgets,
+body.template-page .easysearch-fitment-header{display:none!important}
 .pdz-cat{--pdz-bg:#fff;--pdz-surface:#fff;--pdz-surface-2:#f6f9ff;--pdz-primary:#003580;--pdz-primary-2:#00193d;--pdz-primary-soft:#e8f0fc;--pdz-accent:#ffcc00;--pdz-ink:#00193d;--pdz-ink-2:#4a5568;--pdz-muted:#6b7280;--pdz-border:#e3ebf7;--pdz-radius:12px;--pdz-radius-sm:8px;--pdz-radius-pill:999px;--pdz-shadow-sm:0 1px 3px rgba(0,25,61,.05);--pdz-shadow-md:0 4px 14px rgba(0,25,61,.08);--pdz-shadow-lg:0 18px 40px rgba(0,53,128,.18);--pdz-trans:200ms cubic-bezier(.4,0,.2,1);background:var(--pdz-bg);color:var(--pdz-ink);font-family:var(--font-body--family,'Nunito','Inter',system-ui,sans-serif);padding-bottom:64px}
 .pdz-cat *,.pdz-cat *::before,.pdz-cat *::after{box-sizing:border-box}
 .pdz-cat__container{max-width:1320px;margin:0 auto;padding:0 20px}
@@ -361,60 +354,9 @@
     });
   }
 
-  function applySearch(q) {
-    var nq = norm((q || '').trim());
-    var visibleCats = 0;
-    document.querySelectorAll('.pdz-cat__card').forEach(function (card) {
-      var nameMatch = !nq || (card.dataset.name || '').indexOf(nq) !== -1;
-      var groupVisible = 0;
-      card.querySelectorAll('.pdz-cat__tooltip-group').forEach(function (g) {
-        var matches = 0;
-        g.querySelectorAll('a').forEach(function (a) {
-          var m = !nq || (a.dataset.name || '').indexOf(nq) !== -1;
-          a.classList.toggle('is-hidden', !m);
-          if (m) matches++;
-        });
-        var gHide = nq && matches === 0;
-        g.classList.toggle('is-hidden', gHide);
-        if (!gHide && matches > 0) groupVisible++;
-      });
-      var hide = nq && !nameMatch && groupVisible === 0;
-      card.classList.toggle('is-hidden', hide);
-      if (nq && !hide) card.classList.add('is-open');
-      if (!nq) card.classList.remove('is-open');
-      if (!hide) visibleCats++;
-    });
-    document.querySelectorAll('.pdz-cat__top-card').forEach(function (c) {
-      var m = !nq || (c.dataset.name || '').indexOf(nq) !== -1;
-      c.classList.toggle('is-hidden', !m);
-    });
-    var empty = document.getElementById('pdz-cat-empty');
-    if (empty) empty.hidden = !(nq && visibleCats === 0);
-    var clearBtn = document.getElementById('pdz-cat-clear');
-    if (clearBtn) clearBtn.hidden = !nq;
-    var hint = document.getElementById('pdz-cat-count');
-    if (hint) hint.textContent = nq ? visibleCats + ' résultat' + (visibleCats > 1 ? 's' : '') : '';
-  }
-
   function init() {
     renderTop(document.getElementById('pdz-cat-top'));
     renderGrid(document.getElementById('pdz-cat-grid'));
-    var input = document.getElementById('pdz-cat-search');
-    var clear = document.getElementById('pdz-cat-clear');
-    if (input) {
-      var t;
-      input.addEventListener('input', function () {
-        clearTimeout(t);
-        var v = this.value;
-        t = setTimeout(function () { applySearch(v); }, 100);
-      });
-    }
-    if (clear) {
-      clear.addEventListener('click', function () {
-        if (input) { input.value = ''; input.focus(); }
-        applySearch('');
-      });
-    }
     document.addEventListener('click', function (e) {
       if (!e.target.closest('.pdz-cat__card')) {
         document.querySelectorAll('.pdz-cat__card.is-open').forEach(function (c) {
@@ -427,7 +369,6 @@
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') {
         document.querySelectorAll('.pdz-cat__card.is-open').forEach(function (c) { c.classList.remove('is-open'); });
-        if (input && document.activeElement === input) input.blur();
       }
     });
   }
@@ -447,7 +388,6 @@
     { "type": "header", "content": "Hero" },
     { "type": "text", "id": "heading", "label": "Titre principal", "default": "Catalogue de pièces détachées" },
     { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Plus de 500 références · Livraison dans les 48 wilayas · Cash à la livraison" },
-    { "type": "text", "id": "search_placeholder", "label": "Placeholder de recherche", "default": "Rechercher une pièce, une catégorie…" },
     { "type": "header", "content": "Titres des sections" },
     { "type": "text", "id": "top_title", "label": "Titre — Top pièces", "default": "Les pièces les plus demandées" },
     { "type": "text", "id": "catalog_title", "label": "Titre — Catalogue", "default": "Toutes les catégories" }
