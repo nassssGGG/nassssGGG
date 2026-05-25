@@ -2,8 +2,8 @@
   "session_date": "2026-05-25",
   "exchange_rate_eur_to_dzd": 277,
   "total_in_source": 380,
-  "products_created": 216,
-  "products_remaining": 164,
+  "products_created": 260,
+  "products_remaining": 120,
   "collections_created": [
     {
       "id": "gid://shopify/Collection/684131844439",
@@ -82,6 +82,12 @@
       "title": "Plaquettes JURID",
       "type": "smart",
       "tag": "marque-jurid"
+    },
+    {
+      "id": "gid://shopify/Collection/684144427351",
+      "title": "Plaquettes goCORE",
+      "type": "smart",
+      "tag": "marque-gocore"
     }
   ],
   "products_done": [
@@ -1380,9 +1386,273 @@
       "id": "10890456564055",
       "ref": "GDB1555",
       "brand": "TRW"
+    },
+    {
+      "index": 216,
+      "id": "10890608116055",
+      "ref": "402B0004P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 217,
+      "id": "10890608148823",
+      "ref": "402B0151P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 218,
+      "id": "10890608181591",
+      "ref": "0 986 424 652",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 219,
+      "id": "10890608214359",
+      "ref": "0 986 494 666",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 220,
+      "id": "10890608279895",
+      "ref": "GCD020011",
+      "brand": "goCORE"
+    },
+    {
+      "index": 221,
+      "id": "10890608312663",
+      "ref": "0 986 424 580",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 222,
+      "id": "10890608345431",
+      "ref": "0 986 424 865",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 223,
+      "id": "10890608443735",
+      "ref": "0 986 494 672",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 224,
+      "id": "10890608509271",
+      "ref": "P 44 028",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 225,
+      "id": "10890608542039",
+      "ref": "16793",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 226,
+      "id": "10890608640343",
+      "ref": "573241J",
+      "brand": "JURID"
+    },
+    {
+      "index": 227,
+      "id": "10890608673111",
+      "ref": "P 83 055",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 228,
+      "id": "10890608738647",
+      "ref": "0 986 494 288",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 229,
+      "id": "10890608804183",
+      "ref": "P 50 080",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 230,
+      "id": "10890608869719",
+      "ref": "16889",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 231,
+      "id": "10890608902487",
+      "ref": "170383",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 232,
+      "id": "10890608968023",
+      "ref": "0 986 494 785",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 233,
+      "id": "10890609033559",
+      "ref": "FDB5377",
+      "brand": "FERODO"
+    },
+    {
+      "index": 234,
+      "id": "10890609066327",
+      "ref": "0 986 494 404",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 235,
+      "id": "10890609131863",
+      "ref": "0 986 494 680",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 236,
+      "id": "10890609230167",
+      "ref": "402B1047P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 237,
+      "id": "10890609262935",
+      "ref": "16897",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 238,
+      "id": "10890609328471",
+      "ref": "116265",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 239,
+      "id": "10890609394007",
+      "ref": "0 986 494 161",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 240,
+      "id": "10890609492311",
+      "ref": "0 986 494 818",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 241,
+      "id": "10890609688919",
+      "ref": "116313",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 242,
+      "id": "10890609754455",
+      "ref": "16884",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 243,
+      "id": "10890609819991",
+      "ref": "175210",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 244,
+      "id": "10890609852759",
+      "ref": "402B0042P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 245,
+      "id": "10890609885527",
+      "ref": "402B0595",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 246,
+      "id": "10890610049367",
+      "ref": "573059J",
+      "brand": "JURID"
+    },
+    {
+      "index": 247,
+      "id": "10890610147671",
+      "ref": "SKBP-0011113",
+      "brand": "STARK"
+    },
+    {
+      "index": 248,
+      "id": "10890610180439",
+      "ref": "0 986 494 096",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 249,
+      "id": "10890610245975",
+      "ref": "GDB1726",
+      "brand": "TRW"
+    },
+    {
+      "index": 250,
+      "id": "10890610278743",
+      "ref": "402B1282P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 251,
+      "id": "10890610377047",
+      "ref": "0 986 466 601",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 252,
+      "id": "10890610442583",
+      "ref": "P 83 051",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 253,
+      "id": "10890610475351",
+      "ref": "FDB4426",
+      "brand": "FERODO"
+    },
+    {
+      "index": 254,
+      "id": "10890610606423",
+      "ref": "0 986 494 802",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 255,
+      "id": "10890610737495",
+      "ref": "0 986 494 747",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 256,
+      "id": "10890610868567",
+      "ref": "P 83 074",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 257,
+      "id": "10890610901335",
+      "ref": "GCD020078",
+      "brand": "goCORE"
+    },
+    {
+      "index": 258,
+      "id": "10890610966871",
+      "ref": "571526J",
+      "brand": "JURID"
+    },
+    {
+      "index": 259,
+      "id": "10890611032407",
+      "ref": "LP1906",
+      "brand": "DELPHI"
     }
   ],
-  "next_autodoc_ids_to_process": "indices 176-379 dans plaquettes_de_frein.json",
+  "next_autodoc_ids_to_process": "indices 260-379 dans plaquettes_de_frein.json",
   "enrichment_status": {
     "indices_0_135": "enrichment_complete: true (previous batches)",
     "indices_136_175": {
@@ -1391,6 +1661,17 @@
       "compare_at_price_set": 28,
       "images_uploaded": 3,
       "notes": "Rattrapage 2026-05-25 : 40 produits enrichis (metafields custom + compareAtPrice via taux 277 + 3 images manquantes ré-uploadées pour indices 136, 143, 144)."
+    },
+    "indices_216_259": {
+      "enrichment_complete": true,
+      "metafields_set": 44,
+      "compare_at_price_set": 23,
+      "images_uploaded": 44,
+      "compat_researched": 14,
+      "new_collections": [
+        "Plaquettes goCORE"
+      ],
+      "notes": "Batch 2026-05-25 indices 216-259 (44 produits) avec recherche compat WebSearch, productCreateMedia pour tous, metafields custom complets, compareAtPrice DZD calculé via taux 277."
     }
   }
 }
