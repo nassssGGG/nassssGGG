@@ -460,13 +460,17 @@ body.template-page .easysearch-fitment-header{display:none!important}
       "settings": [
         {
           "type": "paragraph",
-          "content": "Format de l'ID : <code>handle-categorie</code> + tiret + nom de la sous-catégorie (minuscules, accents retirés, espaces et '&' remplacés par des tirets)."
+          "content": "Format : <code>handle-categorie-nom-sous-cat</code> (minuscules, accents retirés, '&' et espaces → tirets). Exemples : freinage-disque-plaquette, filtration-filtres-essentiels, moteur-amp-transmission-distribution."
+        },
+        {
+          "type": "paragraph",
+          "content": "Pour trouver l'ID exact d'une sous-catégorie : ouvre la page Toutes les pièces, ouvre une catégorie, fais clic droit sur le titre de la sous-catégorie → Inspecter → cherche l'attribut data-subid."
         },
         {
           "type": "text",
           "id": "subcat_id",
           "label": "ID de la sous-catégorie",
-          "info": "Freinage → freinage-disque-plaquette, freinage-etrier-hydraulique, freinage-composants. Filtre → filtration-filtres-essentiels, filtration-filtres-techniques. Moteur → moteur-amp-transmission-distribution, -lubrification, -bloc-moteur. Suspension → suspension-amp-direction-bras-triangles, -roulements, -amortissement. Direction → direction-commande, -assistance. Embrayage → embrayage-transmission-embrayage, -commande, -cardan-arbres. Distribution → distribution-courroie-courroies, -galets-tendeurs. Démarrage → demarrage-alternateur-charge, -composants. Carburant → carburant-injection-carburant, -reservoir, -admission. Turbo → turbo-admission-turbo, -peripheriques, -egr. Climatisation → climatisation-compresseur, -circuit. Éclairage → eclairage-phares, -signalisation, -ampoules. Échappement → echappement-lignes, -depollution, -fixation. Essuie-glaces → essuie-glaces-balais-balais-bras, -lavage. Batterie → batterie-allumage-allumage, -batterie. Refroidissement → refroidissement-echangeurs, -circuit. Carrosserie → carrosserie-exterieur, -portes-vitres. Pneus → pneus-et-jantes-pneus-jantes, -outils-roue. Huiles → huiles-amp-lubrifiants-moteur, -transmission, -freinage-refroidissement. Outillage → outillage-diagnostic, -mecanique. Entretien → entretien-nettoyage-interieur, -exterieur. Accessoires → frontpage-confort, -pratique."
+          "info": "Ex: freinage-disque-plaquette"
         },
         {
           "type": "image_picker",
