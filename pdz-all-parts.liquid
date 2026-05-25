@@ -1,613 +1,457 @@
 {%- comment -%}
-  Catalogue de pièces détachées — Style AUTODOC /pieces-detachees
-  Reproduction fidèle du rendu HTML/PDF de auto-doc.fr
+  Catalogue de pièces détachées — version Premium
+  - Aligné sur la charte du thème (couleurs, fonts, radius)
+  - 100% des liens internes (collections de la boutique)
+  - Pas d'index alphabétique : navigation UX moderne avec mega-tooltip
+  - Configurable via le schema et entièrement modifiable
 {%- endcomment -%}
 
-<section class="adc">
-  <div class="adc__hero">
-    <div class="container">
-      <nav class="adc__crumbs" aria-label="Fil d'Ariane">
-        <a href="/">Accueil</a>
-        <span>›</span>
-        <span class="adc__crumbs-current">Pièces détachées</span>
+{%- liquid
+  assign heading = section.settings.heading | default: 'Catalogue de pièces détachées'
+  assign subtitle = section.settings.subtitle | default: 'Plus de 500 références · Livraison dans les 48 wilayas · Cash à la livraison'
+  assign search_placeholder = section.settings.search_placeholder | default: 'Rechercher une pièce, une catégorie…'
+  assign top_title = section.settings.top_title | default: 'Les pièces les plus demandées'
+  assign catalog_title = section.settings.catalog_title | default: 'Toutes les catégories'
+-%}
+
+<section class="pdz-cat color-{{ section.settings.color_scheme }} gradient" data-section-id="{{ section.id }}">
+  <div class="pdz-cat__hero">
+    <div class="pdz-cat__container">
+      <nav class="pdz-cat__crumbs" aria-label="Fil d'Ariane">
+        <a href="{{ routes.root_url }}">Accueil</a>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        <span aria-current="page">Pièces détachées</span>
       </nav>
-      <h1 class="adc__title">Catalogue de pièces détachées</h1>
-      <p class="adc__subtitle">Plus de 500 références&nbsp;· Livraison dans les 48 wilayas&nbsp;· Cash à la livraison</p>
-      <div class="adc__searchbar">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <input id="adc-search" type="text" placeholder="Saisissez la catégorie (p. ex. frein, filtre, amortisseur)" autocomplete="off">
-        <button type="button" class="adc__searchbar-clear" id="adc-search-clear" aria-label="Effacer">✕</button>
-      </div>
+      <h1 class="pdz-cat__title">{{ heading }}</h1>
+      <p class="pdz-cat__subtitle">{{ subtitle }}</p>
+
+      <form class="pdz-cat__search" role="search" onsubmit="return false">
+        <svg class="pdz-cat__search-ico" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="pdz-cat-search" type="text" placeholder="{{ search_placeholder }}" autocomplete="off" aria-label="{{ search_placeholder }}">
+        <button type="button" class="pdz-cat__search-clear" id="pdz-cat-clear" aria-label="Effacer" hidden>✕</button>
+      </form>
+
+      <ul class="pdz-cat__trust">
+        <li><span class="pdz-cat__trust-dot"></span> Garantie 100% pièces neuves</li>
+        <li><span class="pdz-cat__trust-dot"></span> Cash à la livraison</li>
+        <li><span class="pdz-cat__trust-dot"></span> Support 7j/7</li>
+      </ul>
     </div>
   </div>
 
-  <div class="container">
-    <h2 class="adc__h2">LE TOP DES PIÈCES LES PLUS DEMANDÉES</h2>
-    <div class="adc__top-grid" id="adc-top-grid"></div>
+  <div class="pdz-cat__container">
+    <header class="pdz-cat__sec-head">
+      <h2 class="pdz-cat__h2">{{ top_title }}</h2>
+      <a href="{{ routes.collections_url }}" class="pdz-cat__see-all">Voir toutes les pièces
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </a>
+    </header>
+    <div class="pdz-cat__top" id="pdz-cat-top"></div>
   </div>
 
-  <div class="container">
-    <div class="adc__catalog-head">
-      <h2 class="adc__h2 adc__h2--no-pad">CATALOGUE DE PIÈCES DÉTACHÉES</h2>
-      <p class="adc__sub2">Recherche rapide par catégorie</p>
+  <div class="pdz-cat__container">
+    <header class="pdz-cat__sec-head">
+      <h2 class="pdz-cat__h2">{{ catalog_title }}</h2>
+      <span class="pdz-cat__count-hint" id="pdz-cat-count"></span>
+    </header>
+    <div class="pdz-cat__grid" id="pdz-cat-grid"></div>
+    <div class="pdz-cat__empty" id="pdz-cat-empty" hidden>
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p>Aucune catégorie ne correspond à votre recherche.</p>
+      <button type="button" class="pdz-cat__btn pdz-cat__btn--ghost" onclick="document.getElementById('pdz-cat-clear').click()">Réinitialiser</button>
     </div>
-    <div class="adc__grid" id="adc-grid"></div>
   </div>
 
-  <div class="container">
-    <h2 class="adc__h2">INDEX ALPHABÉTIQUE</h2>
-    <div class="adc__alpha-nav" id="adc-alpha-nav"></div>
-    <div class="adc__alpha-sections" id="adc-alpha-sections"></div>
-    <div class="adc__no-result" id="adc-no-result" style="display:none">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      <p>Aucune pièce trouvée pour votre recherche.</p>
-    </div>
-  </div>
-
-  <div class="container">
-    <h2 class="adc__h2">ACCESSOIRES & ÉQUIPEMENTS</h2>
-    <div class="adc__top-grid" id="adc-acc-grid"></div>
-  </div>
-
-  <div class="container">
-    <div class="adc__trust">
-      <div class="adc__trust-item">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <div><div class="adc__trust-title">Commande sécurisée</div><div class="adc__trust-desc">Pièces 100% authentiques</div></div>
+  <div class="pdz-cat__container">
+    <div class="pdz-cat__cta">
+      <div class="pdz-cat__cta-text">
+        <h3>Vous ne trouvez pas votre pièce&nbsp;?</h3>
+        <p>Notre équipe vous aide à identifier la bonne référence à partir de votre carte grise.</p>
       </div>
-      <div class="adc__trust-item">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        <div><div class="adc__trust-title">Cash à la livraison</div><div class="adc__trust-desc">Payez à la réception</div></div>
-      </div>
-      <div class="adc__trust-item">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-        <div><div class="adc__trust-title">Livraison 48 wilayas</div><div class="adc__trust-desc">48–72h</div></div>
-      </div>
-      <div class="adc__trust-item">
-        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <div><div class="adc__trust-title">Support 6j/7</div><div class="adc__trust-desc">Lun–Sam · 8h–19h</div></div>
-      </div>
+      <a href="{{ pages.contact.url | default: '/pages/contact' }}" class="pdz-cat__btn pdz-cat__btn--primary">
+        Nous contacter
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
     </div>
   </div>
 </section>
 
-<style>
-.adc{font-family:'Inter','Roboto','Helvetica Neue',Arial,sans-serif;color:#1a1a1a;background:#f7f8fa;padding-bottom:50px}
-.adc *,.adc *::before,.adc *::after{box-sizing:border-box}
-.adc .container{max-width:1240px;margin:0 auto;padding:0 16px}
+{% stylesheet %}
+.pdz-cat{--pdz-bg:#fff;--pdz-surface:#fff;--pdz-surface-2:#f6f9ff;--pdz-primary:#003580;--pdz-primary-2:#00193d;--pdz-primary-soft:#e8f0fc;--pdz-accent:#ffcc00;--pdz-ink:#00193d;--pdz-ink-2:#4a5568;--pdz-muted:#6b7280;--pdz-border:#e3ebf7;--pdz-radius:12px;--pdz-radius-sm:8px;--pdz-radius-pill:999px;--pdz-shadow-sm:0 1px 3px rgba(0,25,61,.05);--pdz-shadow-md:0 4px 14px rgba(0,25,61,.08);--pdz-shadow-lg:0 18px 40px rgba(0,53,128,.18);--pdz-trans:200ms cubic-bezier(.4,0,.2,1);background:var(--pdz-bg);color:var(--pdz-ink);font-family:var(--font-body--family,'Nunito','Inter',system-ui,sans-serif);padding-bottom:64px}
+.pdz-cat *,.pdz-cat *::before,.pdz-cat *::after{box-sizing:border-box}
+.pdz-cat__container{max-width:1320px;margin:0 auto;padding:0 20px}
+.pdz-cat__hero{background:radial-gradient(1200px 400px at 90% -10%,rgba(255,204,0,.14),transparent 60%),linear-gradient(135deg,var(--pdz-primary) 0%,var(--pdz-primary-2) 100%);color:#fff;padding:36px 0 40px;margin-bottom:40px;position:relative;overflow:hidden}
+.pdz-cat__hero::after{content:'';position:absolute;inset:auto 0 0 0;height:40px;background:linear-gradient(to bottom,transparent,var(--pdz-bg));pointer-events:none}
+.pdz-cat__crumbs{display:flex;align-items:center;gap:6px;font-size:13px;opacity:.85;margin-bottom:18px}
+.pdz-cat__crumbs a{color:#fff;text-decoration:none;opacity:.9;transition:opacity var(--pdz-trans)}
+.pdz-cat__crumbs a:hover{opacity:1;text-decoration:underline}
+.pdz-cat__crumbs span[aria-current]{color:var(--pdz-accent);font-weight:600}
+.pdz-cat__title{font-family:var(--font-heading--family,'Roboto',system-ui,sans-serif);font-size:clamp(28px,4vw,42px);font-weight:700;line-height:1.1;letter-spacing:-.02em;margin:0 0 10px;color:#fff}
+.pdz-cat__subtitle{font-size:15px;opacity:.92;margin:0 0 28px;max-width:640px}
+.pdz-cat__search{position:relative;max-width:680px;background:#fff;border-radius:var(--pdz-radius-pill);box-shadow:var(--pdz-shadow-lg);transition:transform var(--pdz-trans)}
+.pdz-cat__search:focus-within{transform:translateY(-1px)}
+.pdz-cat__search-ico{position:absolute;left:22px;top:50%;transform:translateY(-50%);color:var(--pdz-primary);pointer-events:none}
+.pdz-cat__search input{width:100%;height:56px;border:0;outline:0;padding:0 56px 0 56px;border-radius:inherit;background:transparent;font:inherit;font-size:15.5px;color:var(--pdz-ink)}
+.pdz-cat__search input::placeholder{color:var(--pdz-muted)}
+.pdz-cat__search-clear{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;border:0;background:var(--pdz-primary-soft);color:var(--pdz-primary);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--pdz-trans)}
+.pdz-cat__search-clear:hover{background:var(--pdz-primary);color:#fff}
+.pdz-cat__trust{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:14px 24px;font-size:13px;opacity:.92}
+.pdz-cat__trust li{display:flex;align-items:center;gap:8px}
+.pdz-cat__trust-dot{width:6px;height:6px;border-radius:50%;background:var(--pdz-accent);box-shadow:0 0 0 4px rgba(255,204,0,.2)}
+.pdz-cat__sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:40px 0 20px}
+.pdz-cat__h2{font-family:var(--font-heading--family,'Roboto',system-ui,sans-serif);font-size:clamp(20px,2.4vw,26px);font-weight:700;letter-spacing:-.01em;margin:0;color:var(--pdz-primary-2)}
+.pdz-cat__see-all{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--pdz-primary);text-decoration:none;padding:6px 0;transition:gap var(--pdz-trans),color var(--pdz-trans)}
+.pdz-cat__see-all:hover{color:var(--pdz-primary-2);gap:8px}
+.pdz-cat__count-hint{font-size:13px;color:var(--pdz-muted)}
+.pdz-cat__top{display:grid;grid-template-columns:repeat(8,1fr);gap:10px}
+.pdz-cat__top-card{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;color:var(--pdz-ink);background:var(--pdz-surface);border:1px solid var(--pdz-border);border-radius:var(--pdz-radius);padding:16px 10px 14px;transition:transform var(--pdz-trans),box-shadow var(--pdz-trans),border-color var(--pdz-trans);min-height:142px}
+.pdz-cat__top-card:hover{transform:translateY(-3px);border-color:var(--pdz-primary);box-shadow:var(--pdz-shadow-md)}
+.pdz-cat__top-img{width:64px;height:64px;display:flex;align-items:center;justify-content:center;margin-bottom:8px}
+.pdz-cat__top-img img{width:100%;height:100%;object-fit:contain}
+.pdz-cat__top-fb{width:56px;height:56px;background:linear-gradient(135deg,var(--pdz-primary),var(--pdz-primary-2));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:20px}
+.pdz-cat__top-name{font-size:12.5px;font-weight:600;line-height:1.3;color:var(--pdz-ink)}
+.pdz-cat__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.pdz-cat__card{position:relative;background:var(--pdz-surface);border:1px solid var(--pdz-border);border-radius:var(--pdz-radius);transition:border-color var(--pdz-trans),box-shadow var(--pdz-trans),transform var(--pdz-trans)}
+.pdz-cat__card:hover{border-color:var(--pdz-primary);box-shadow:var(--pdz-shadow-md);z-index:2}
+.pdz-cat__card.is-open{border-color:var(--pdz-primary);box-shadow:var(--pdz-shadow-lg);z-index:30}
+.pdz-cat__card-head{display:flex;align-items:center;gap:14px;padding:14px 16px;cursor:pointer;user-select:none;background:none;border:0;width:100%;text-align:left;color:inherit;font:inherit}
+.pdz-cat__card-img{flex-shrink:0;width:52px;height:52px;background:var(--pdz-surface-2);border-radius:var(--pdz-radius-sm);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pdz-cat__card-img img{width:44px;height:44px;object-fit:contain}
+.pdz-cat__card-fb{width:44px;height:44px;background:linear-gradient(135deg,var(--pdz-primary),var(--pdz-primary-2));color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+.pdz-cat__card-info{flex:1;min-width:0}
+.pdz-cat__card-name{font-size:14.5px;font-weight:700;line-height:1.25;margin-bottom:3px;color:var(--pdz-ink)}
+.pdz-cat__card-meta{font-size:12px;color:var(--pdz-muted)}
+.pdz-cat__card-chev{flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;color:var(--pdz-primary);transition:transform var(--pdz-trans)}
+.pdz-cat__card.is-open .pdz-cat__card-chev{transform:rotate(180deg)}
+.pdz-cat__tooltip{display:none;position:absolute;top:calc(100% + 8px);left:0;right:0;background:var(--pdz-surface);border:1px solid var(--pdz-border);border-radius:var(--pdz-radius);box-shadow:var(--pdz-shadow-lg);padding:22px 22px 18px;min-width:100%}
+.pdz-cat__card.is-open .pdz-cat__tooltip{display:block;animation:pdzFade .2s ease}
+@keyframes pdzFade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+.pdz-cat__tooltip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px 24px}
+.pdz-cat__tooltip-group{min-width:0}
+.pdz-cat__tooltip-subtitle{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--pdz-primary);padding-bottom:8px;margin-bottom:6px;border-bottom:1px solid var(--pdz-border)}
+.pdz-cat__tooltip-list{list-style:none;margin:0;padding:0}
+.pdz-cat__tooltip-list a{display:flex;align-items:center;gap:8px;padding:6px 8px 6px 6px;font-size:13px;color:var(--pdz-ink-2);text-decoration:none;border-radius:6px;line-height:1.3;transition:background var(--pdz-trans),color var(--pdz-trans),padding var(--pdz-trans)}
+.pdz-cat__tooltip-list a::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pdz-primary);opacity:.5;flex-shrink:0;transition:opacity var(--pdz-trans),transform var(--pdz-trans)}
+.pdz-cat__tooltip-list a:hover{background:var(--pdz-primary-soft);color:var(--pdz-primary);padding-left:10px}
+.pdz-cat__tooltip-list a:hover::before{opacity:1;transform:scale(1.4)}
+.pdz-cat__tooltip-foot{margin-top:16px;padding-top:14px;border-top:1px solid var(--pdz-border);display:flex;justify-content:flex-end}
+.pdz-cat__btn{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;font-family:inherit;font-size:13px;font-weight:700;text-decoration:none;border-radius:var(--pdz-radius-pill);border:1px solid transparent;cursor:pointer;transition:background var(--pdz-trans),color var(--pdz-trans),transform var(--pdz-trans),box-shadow var(--pdz-trans)}
+.pdz-cat__btn--primary{background:var(--pdz-primary);color:#fff;border-color:var(--pdz-primary)}
+.pdz-cat__btn--primary:hover{background:var(--pdz-primary-2);border-color:var(--pdz-primary-2);transform:translateY(-1px);box-shadow:var(--pdz-shadow-md)}
+.pdz-cat__btn--ghost{background:transparent;color:var(--pdz-primary);border-color:var(--pdz-border)}
+.pdz-cat__btn--ghost:hover{background:var(--pdz-primary-soft);border-color:var(--pdz-primary)}
+.pdz-cat__empty{padding:56px 24px;text-align:center;background:var(--pdz-surface);border:1px dashed var(--pdz-border);border-radius:var(--pdz-radius);color:var(--pdz-muted)}
+.pdz-cat__empty svg{color:var(--pdz-border);margin-bottom:14px}
+.pdz-cat__empty p{margin:0 0 18px;font-size:14px}
+.pdz-cat__cta{margin-top:48px;background:linear-gradient(135deg,var(--pdz-primary-soft),var(--pdz-surface-2));border:1px solid var(--pdz-border);border-radius:var(--pdz-radius);padding:28px 32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.pdz-cat__cta-text h3{font-family:var(--font-heading--family,'Roboto',system-ui,sans-serif);font-size:19px;font-weight:700;margin:0 0 4px;color:var(--pdz-primary-2)}
+.pdz-cat__cta-text p{margin:0;font-size:14px;color:var(--pdz-ink-2)}
+.pdz-cat__card.is-hidden,.pdz-cat__top-card.is-hidden,.pdz-cat__tooltip-list a.is-hidden,.pdz-cat__tooltip-group.is-hidden{display:none!important}
+@media (max-width:1100px){.pdz-cat__top{grid-template-columns:repeat(6,1fr)}.pdz-cat__grid{grid-template-columns:repeat(3,1fr)}.pdz-cat__tooltip-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:760px){.pdz-cat__hero{padding:28px 0 32px;margin-bottom:28px}.pdz-cat__search input{height:50px;font-size:14.5px}.pdz-cat__top{grid-template-columns:repeat(3,1fr);gap:8px}.pdz-cat__top-card{min-height:130px;padding:12px 6px}.pdz-cat__grid{grid-template-columns:1fr 1fr;gap:10px}.pdz-cat__tooltip-grid{grid-template-columns:1fr;gap:14px}.pdz-cat__cta{padding:22px;flex-direction:column;align-items:flex-start;text-align:left}.pdz-cat__sec-head{margin:32px 0 16px}}
+@media (max-width:480px){.pdz-cat__grid{grid-template-columns:1fr}.pdz-cat__card-head{padding:12px}}
+{% endstylesheet %}
 
-.adc__hero{background:linear-gradient(135deg,#003580 0%,#0071bc 100%);color:#fff;padding:28px 0 30px;margin-bottom:24px;position:relative;overflow:hidden}
-.adc__hero::before{content:'';position:absolute;top:-40%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,102,0,.15) 0%,transparent 60%);pointer-events:none}
-.adc__crumbs{font-size:12px;margin-bottom:12px;opacity:.9}
-.adc__crumbs a{color:#fff;text-decoration:none;opacity:.85}
-.adc__crumbs a:hover{opacity:1;text-decoration:underline}
-.adc__crumbs span{margin:0 6px;opacity:.6}
-.adc__crumbs-current{opacity:.7}
-.adc__title{font-size:28px;font-weight:700;margin:0 0 6px;letter-spacing:-.3px}
-.adc__subtitle{font-size:14px;opacity:.92;margin:0 0 22px;line-height:1.5}
-.adc__searchbar{position:relative;max-width:640px;background:#fff;border-radius:6px;box-shadow:0 4px 16px rgba(0,0,0,.12)}
-.adc__searchbar svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#6b7280;pointer-events:none}
-.adc__searchbar input{width:100%;height:50px;border:none;border-radius:6px;padding:0 50px 0 46px;font-size:14.5px;font-family:inherit;outline:none;background:transparent;color:#1a1a1a}
-.adc__searchbar input:focus{box-shadow:0 0 0 3px rgba(255,102,0,.35)}
-.adc__searchbar-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);background:#f3f4f6;border:none;width:28px;height:28px;border-radius:50%;cursor:pointer;color:#6b7280;font-size:13px;display:none;align-items:center;justify-content:center;transition:all .15s ease}
-.adc__searchbar-clear:hover{background:#e5e7eb;color:#1a1a1a}
-.adc__searchbar.has-value .adc__searchbar-clear{display:flex}
-
-.adc__h2{font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:#1a1a1a;margin:32px 0 16px;padding-left:14px;border-left:4px solid #ff6600;line-height:1.3}
-.adc__h2--no-pad{margin-top:0}
-.adc__sub2{font-size:13px;color:#6b7280;margin:0 0 16px;padding-left:18px}
-.adc__catalog-head{margin-top:30px}
-
-/* TOP categories grid (8 columns desktop) */
-.adc__top-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:10px;background:#fff;border:1px solid #e8e8e8;border-radius:6px;padding:14px}
-.adc__top-card{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;text-decoration:none;color:#1a1a1a;padding:10px 6px;border-radius:5px;transition:all .18s ease;border:1px solid transparent;background:#fff;min-height:120px}
-.adc__top-card:hover{background:#f0f7ff;border-color:#0071bc;transform:translateY(-2px);box-shadow:0 4px 14px rgba(0,113,188,.15)}
-.adc__top-card img{width:62px;height:62px;object-fit:contain;margin-bottom:6px;transition:transform .18s ease}
-.adc__top-card:hover img{transform:scale(1.08)}
-.adc__top-card-name{font-size:11.5px;line-height:1.3;font-weight:500;color:#374151}
-.adc__top-card:hover .adc__top-card-name{color:#0071bc}
-.adc__top-card-fallback{width:62px;height:62px;background:#f3f4f6;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:6px;color:#9ca3af;font-size:22px;font-weight:700}
-
-/* Main catalog grid — parent categories with hover tooltips */
-.adc__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px}
-.adc__cat{position:relative;background:#fff;border:1px solid #e8e8e8;border-radius:5px;cursor:pointer;transition:all .18s ease;user-select:none}
-.adc__cat:hover{border-color:#0071bc;box-shadow:0 3px 12px rgba(0,113,188,.12);z-index:2}
-.adc__cat.is-open{border-color:#ff6600;box-shadow:0 4px 16px rgba(255,102,0,.2);z-index:10}
-.adc__cat-head{display:flex;align-items:center;gap:12px;padding:12px 14px}
-.adc__cat-img{flex-shrink:0;width:54px;height:54px;background:#f8fafc;border-radius:5px;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.adc__cat-img img{width:48px;height:48px;object-fit:contain}
-.adc__cat-fallback{width:48px;height:48px;background:linear-gradient(135deg,#0071bc,#003580);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700}
-.adc__cat-info{flex:1;min-width:0}
-.adc__cat-name{font-size:13.5px;font-weight:600;color:#1a1a1a;line-height:1.3;margin-bottom:2px}
-.adc__cat-count{font-size:11px;color:#6b7280}
-.adc__cat-chev{color:#0071bc;font-size:11px;transition:transform .25s cubic-bezier(0.4,0,0.2,1);flex-shrink:0}
-.adc__cat.is-open .adc__cat-chev{transform:rotate(180deg);color:#ff6600}
-
-/* Tooltip / expanded panel */
-.adc__tooltip{display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;background:#fff;border:1px solid #ff6600;border-radius:6px;box-shadow:0 12px 32px rgba(0,0,0,.18);z-index:50;padding:18px 20px 16px;animation:adcFade .22s ease}
-.adc__cat.is-open .adc__tooltip{display:block}
-@keyframes adcFade{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
-.adc__tooltip-close{position:absolute;top:8px;right:10px;background:none;border:none;color:#9ca3af;font-size:16px;cursor:pointer;line-height:1;padding:6px;transition:all .15s ease}
-.adc__tooltip-close:hover{color:#ff6600;transform:rotate(90deg)}
-.adc__tooltip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 20px;margin-right:24px}
-.adc__tooltip-group{min-width:0}
-.adc__tooltip-subtitle{font-size:12px;font-weight:700;color:#0071bc;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;padding-bottom:5px;border-bottom:1.5px solid #f3f4f6}
-.adc__tooltip-list{list-style:none;margin:0;padding:0}
-.adc__tooltip-list li{margin:0}
-.adc__tooltip-list a{display:flex;align-items:center;gap:7px;padding:5px 4px;font-size:12.5px;color:#374151;text-decoration:none;border-radius:3px;transition:all .12s ease;line-height:1.35}
-.adc__tooltip-list a::before{content:'';width:4px;height:4px;background:#0071bc;border-radius:50%;flex-shrink:0;opacity:.6;transition:all .12s ease}
-.adc__tooltip-list a:hover{color:#0071bc;background:#f0f7ff;padding-left:8px}
-.adc__tooltip-list a:hover::before{opacity:1;transform:scale(1.5);background:#ff6600}
-.adc__tooltip-foot{margin-top:14px;padding-top:12px;border-top:1px solid #f3f4f6;text-align:right}
-.adc__tooltip-all{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#fff;background:#0071bc;font-weight:700;text-decoration:none;padding:8px 14px;border-radius:3px;text-transform:uppercase;letter-spacing:.5px;transition:all .15s ease}
-.adc__tooltip-all:hover{background:#003580;transform:translateY(-1px);box-shadow:0 3px 10px rgba(0,113,188,.3)}
-
-/* Alpha section */
-.adc__alpha-nav{display:grid;grid-template-columns:repeat(13,1fr);gap:4px;background:#fff;border:1px solid #e8e8e8;border-radius:5px;padding:10px;margin-bottom:18px;position:sticky;top:0;z-index:20}
-.adc__alpha-link{display:flex;align-items:center;justify-content:center;height:32px;border-radius:3px;font-size:12.5px;font-weight:700;color:#0071bc;text-decoration:none;background:#f0f7ff;border:1px solid #e0e7ff;transition:all .15s ease}
-.adc__alpha-link:hover:not(.is-empty){background:#0071bc;color:#fff;transform:translateY(-1px);box-shadow:0 2px 6px rgba(0,113,188,.3)}
-.adc__alpha-link.is-active{background:#ff6600;color:#fff;border-color:#ff6600}
-.adc__alpha-link.is-empty{opacity:.35;pointer-events:none}
-.adc__alpha-sections{display:flex;flex-direction:column;gap:14px;margin-bottom:32px}
-.adc__letter{background:#fff;border:1px solid #e8e8e8;border-radius:5px;padding:14px 18px;scroll-margin-top:60px}
-.adc__letter-title{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:linear-gradient(135deg,#0071bc,#003580);color:#fff;font-size:18px;font-weight:700;border-radius:50%;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,113,188,.3)}
-.adc__letter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:2px 14px}
-.adc__letter-part{display:flex;align-items:baseline;gap:6px;padding:5px 4px;font-size:12.5px;color:#374151;text-decoration:none;border-bottom:1px dashed transparent;transition:all .15s ease;border-radius:3px}
-.adc__letter-part:hover{color:#0071bc;border-bottom-color:#0071bc;padding-left:6px}
-.adc__letter-part small{color:#9ca3af;font-size:10.5px;font-weight:500}
-
-.adc__no-result{padding:50px 20px;text-align:center;color:#6b7280;font-size:13.5px;background:#fff;border:1px solid #e8e8e8;border-radius:5px;margin-bottom:24px}
-.adc__no-result p{margin:10px 0 0}
-
-/* Trust bar */
-.adc__trust{margin-top:30px;background:#fff;border:1px solid #e8e8e8;border-radius:6px;padding:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.adc__trust-item{display:flex;align-items:center;gap:12px;color:#0071bc}
-.adc__trust-title{font-size:13.5px;font-weight:600;color:#1a1a1a;margin-bottom:2px}
-.adc__trust-desc{font-size:11.5px;color:#6b7280}
-
-.adc__cat.hidden,.adc__top-card.hidden,.adc__letter.hidden,.adc__letter-part.hidden,.adc__tooltip-list a.hidden,.adc__tooltip-group.hidden{display:none!important}
-
-@media (max-width:1100px){
-  .adc__top-grid{grid-template-columns:repeat(6,1fr)}
-  .adc__grid{grid-template-columns:repeat(3,1fr)}
-  .adc__alpha-nav{grid-template-columns:repeat(13,1fr)}
-  .adc__trust{grid-template-columns:repeat(2,1fr)}
-}
-@media (max-width:760px){
-  .adc__title{font-size:22px}
-  .adc__top-grid{grid-template-columns:repeat(3,1fr);padding:10px;gap:6px}
-  .adc__top-card{min-height:108px;padding:8px 4px}
-  .adc__top-card img{width:52px;height:52px}
-  .adc__top-card-name{font-size:11px}
-  .adc__grid{grid-template-columns:1fr 1fr;gap:8px}
-  .adc__cat-head{padding:10px 12px;gap:10px}
-  .adc__cat-img{width:46px;height:46px}
-  .adc__cat-img img{width:40px;height:40px}
-  .adc__cat-name{font-size:12.5px}
-  .adc__tooltip-grid{grid-template-columns:1fr;margin-right:0;gap:10px}
-  .adc__alpha-nav{grid-template-columns:repeat(7,1fr);position:relative}
-  .adc__letter-grid{grid-template-columns:1fr}
-  .adc__trust{grid-template-columns:1fr;gap:14px}
-}
-</style>
-
-<script>
-(function(){
+{% javascript %}
+(function () {
   'use strict';
-
   var CDN = 'https://scdn.autodoc.de/catalog/categories/100x100/';
+  var COLL = '/collections/';
+  var H = {
+    freinage: 'freinage', filtre: 'filtration', moteur: 'moteur-amp-transmission',
+    suspension: 'suspension-amp-direction', direction: 'direction',
+    embrayage: 'embrayage-transmission', distribution: 'distribution-courroie',
+    demarrage: 'demarrage-alternateur', carburant: 'carburant-injection',
+    turbo: 'turbo-admission', clim: 'climatisation', eclairage: 'eclairage',
+    echappement: 'echappement', essuie: 'essuie-glaces-balais',
+    allumage: 'batterie-allumage', refroid: 'refroidissement',
+    carrosserie: 'carrosserie', pneus: 'pneus-et-jantes',
+    huiles: 'huiles-amp-lubrifiants', outillage: 'outillage',
+    nettoyage: 'entretien-nettoyage', accessoires: 'frontpage',
+    entretien: 'entretien-accessoires'
+  };
+  function linkCol(handle, q) { var u = COLL + handle; if (q) u += '?q=' + encodeURIComponent(q); return u; }
 
   var TOP = [
-    {id:10132,name:"Disque de frein"},
-    {id:10151,name:"Kit d'embrayage"},
-    {id:10221,name:"Amortisseur"},
-    {id:10130,name:"Plaquette de frein"},
-    {id:10505,name:"Kit de distribution"},
-    {id:12094,name:"Huile moteur"},
-    {id:10671,name:"Bras de suspension"},
-    {id:10553,name:"Kit distrib. + pompe à eau"},
-    {id:10533,name:"Phare avant"},
-    {id:10142,name:"Batterie"},
-    {id:10361,name:"Filtre à carburant"},
-    {id:10531,name:"Courroie d'alternateur"},
-    {id:10666,name:"Rétroviseur"},
-    {id:10450,name:"Alternateur"},
-    {id:10471,name:"Coupelle d'amortisseur"},
-    {id:10162,name:"Cardan"},
-    {id:10678,name:"Moyeu de roue"},
-    {id:10360,name:"Filtre à air"},
-    {id:10359,name:"Filtre à huile"},
-    {id:10148,name:"Sonde lambda"},
-    {id:10679,name:"Roulement de roue"},
-    {id:12899,name:"Injecteur"},
-    {id:10554,name:"Feu arrière"},
-    {id:10972,name:"Turbo"}
+    { n: "Disque de frein",        id: 10132, h: H.freinage,     q: 'disque' },
+    { n: "Plaquette de frein",     id: 10130, h: H.freinage,     q: 'plaquette' },
+    { n: "Kit d'embrayage",        id: 10151, h: H.embrayage },
+    { n: "Amortisseur",            id: 10221, h: H.suspension,   q: 'amortisseur' },
+    { n: "Kit de distribution",    id: 10505, h: H.distribution },
+    { n: "Huile moteur",           id: 12094, h: H.huiles,       q: 'huile moteur' },
+    { n: "Bras de suspension",     id: 10671, h: H.suspension,   q: 'bras' },
+    { n: "Phare avant",            id: 10533, h: H.eclairage,    q: 'phare' },
+    { n: "Batterie",               id: 10142, h: H.allumage,     q: 'batterie' },
+    { n: "Filtre à carburant",     id: 10361, h: H.filtre,       q: 'carburant' },
+    { n: "Courroie d'alternateur", id: 10531, h: H.distribution, q: 'courroie' },
+    { n: "Rétroviseur",            id: 10666, h: H.carrosserie,  q: 'retroviseur' },
+    { n: "Alternateur",            id: 10450, h: H.demarrage,    q: 'alternateur' },
+    { n: "Coupelle d'amortisseur", id: 10471, h: H.suspension,   q: 'coupelle' },
+    { n: "Cardan",                 id: 10162, h: H.embrayage,    q: 'cardan' },
+    { n: "Moyeu de roue",          id: 10678, h: H.suspension,   q: 'moyeu' },
+    { n: "Filtre à air",           id: 10360, h: H.filtre,       q: 'air' },
+    { n: "Filtre à huile",         id: 10359, h: H.filtre,       q: 'huile' },
+    { n: "Sonde lambda",           id: 10148, h: H.echappement,  q: 'lambda' },
+    { n: "Roulement de roue",      id: 10679, h: H.suspension,   q: 'roulement' },
+    { n: "Injecteur",              id: 12899, h: H.carburant,    q: 'injecteur' },
+    { n: "Feu arrière",            id: 10554, h: H.eclairage,    q: 'feu arrière' },
+    { n: "Turbo",                  id: 10972, h: H.turbo },
+    { n: "Bougie d'allumage",      id: 10501, h: H.allumage,     q: 'bougie' }
   ];
 
-  var ACCESSORIES = [
-    {id:11013,name:"Tapis de coffre"},
-    {id:11048,name:"Pommeau de vitesse"},
-    {id:10921,name:"Enjoliveurs"},
-    {id:10841,name:"Chaîne neige"},
-    {id:11014,name:"Housses de siège"},
-    {id:11046,name:"Couvre-volant"},
-    {id:11015,name:"Housse de voiture"},
-    {id:10737,name:"Chauffage auxiliaire"},
-    {id:11045,name:"Protège pare-brise"},
-    {id:10666,name:"Rétroviseur angle mort"},
-    {id:11012,name:"Tapis en caoutchouc"},
-    {id:11043,name:"Chargeur de batterie"},
-    {id:10828,name:"Cric"},
-    {id:10829,name:"Clé démonte-roue"},
-    {id:11055,name:"Gonfleur pneu"},
-    {id:10827,name:"Manomètre pression"}
-  ];
-
-  // Main catalog: 38 parent categories with grouped sub-items
-  var CATEGORIES = [
-    { id:10828, name:"Pneus, jantes et accessoires", groups:[
-      { title:"Pneus & Jantes", items:["Pneus","Jantes","Boulon de roue","Écrou de roue","Antivols de roue","Enjoliveurs","Capteur pression pneu TPMS","Housses de roue"] },
-      { title:"Outils roue", items:["Cric","Clé démonte-roue","Gonfleur pneu","Manomètre pression","Kit réparation pneu","Cale de roue","Chaîne neige","Élargisseur de voie"] },
-      { title:"Produits associés", items:["Pâte de montage","Nettoyant intérieur","Adhésifs caoutchouc"] }
+  var CATS = [
+    { n: "Freinage", id: 10106, h: H.freinage, g: [
+      { t: "Disque & Plaquette", i: ["Disque de frein","Plaquette de frein","Mâchoires de frein","Tambour de frein"] },
+      { t: "Étrier & Hydraulique", i: ["Étrier de frein","Maître-cylindre","Cylindre de roue","Mastervac","Flexible de frein"] },
+      { t: "Composants", i: ["Régulateur frein","Câble frein à main","Capteur ABS","Capteur usure plaquette"] }
     ]},
-    { id:12094, name:"Huiles et fluides", groups:[
-      { title:"Moteur", items:["Huile moteur","Additif huile moteur"] },
-      { title:"Transmission", items:["Huile boîte de vitesses","Huile pont","Huile direction assistée"] },
-      { title:"Freinage & Refroidissement", items:["Liquide de frein","Liquide de refroidissement","Antigel","Liquide lave-glace"] }
+    { n: "Filtre", id: 10105, h: H.filtre, g: [
+      { t: "Filtres essentiels", i: ["Filtre à huile","Filtre à air","Filtre à carburant","Filtre d'habitacle"] },
+      { t: "Filtres techniques", i: ["Filtre boîte automatique","Bouteille déshydratante","Kit de filtres"] }
     ]},
-    { id:10261, name:"Frein", groups:[
-      { title:"Disque & Plaquette", items:["Disque de frein","Plaquette de frein","Mâchoire de frein","Tambour de frein"] },
-      { title:"Étrier & Hydraulique", items:["Étrier de frein","Maître-cylindre","Cylindre de roue","Servo-frein","Flexible de frein"] },
-      { title:"Composants", items:["Régulateur frein","Câble de frein à main","Kit de frein","Capteur usure plaquette"] }
+    { n: "Moteur", id: 10102, h: H.moteur, g: [
+      { t: "Distribution", i: ["Kit de distribution","Courroie de distribution","Chaîne de distribution","Tendeur de courroie","Galet tendeur","Pompe à eau"] },
+      { t: "Lubrification", i: ["Pompe à huile","Carter d'huile","Bouchon vidange","Refroidisseur d'huile"] },
+      { t: "Bloc moteur", i: ["Joint culasse","Vis culasse","Support moteur","Volant moteur","Bielle","Piston"] }
     ]},
-    { id:10359, name:"Filtre", groups:[
-      { title:"Filtres essentiels", items:["Filtre à huile","Filtre à air","Filtre à carburant","Filtre habitacle"] },
-      { title:"Filtres techniques", items:["Filtre boîte automatique","Filtre déshydrateur clim","Filtre hydraulique","Kit de filtres"] }
+    { n: "Suspension", id: 10113, h: H.suspension, g: [
+      { t: "Bras & Triangles", i: ["Bras de suspension","Silent bloc de triangle","Rotule de suspension","Kit réparation bras"] },
+      { t: "Roulements", i: ["Moyeu de roue","Roulement de roue","Écrou bout d'essieu"] },
+      { t: "Amortissement", i: ["Amortisseur","Ressort d'amortisseur","Coupelle d'amortisseur","Barre stabilisatrice","Biellette barre stabilisatrice"] }
     ]},
-    { id:10262, name:"Moteur", groups:[
-      { title:"Distribution", items:["Kit de distribution","Courroie de distribution","Chaîne de distribution","Tendeur de courroie","Galet tendeur","Pompe à eau"] },
-      { title:"Lubrification", items:["Pompe à huile","Carter d'huile","Bouchon vidange"] },
-      { title:"Bloc moteur", items:["Joint culasse","Vis culasse","Support moteur","Volant moteur","Vilebrequin","Bielle","Piston"] }
+    { n: "Direction", id: 10112, h: H.direction, g: [
+      { t: "Commande", i: ["Crémaillère de direction","Rotule de direction","Biellette de direction","Soufflet de direction","Barre de direction"] },
+      { t: "Assistance", i: ["Pompe direction assistée","Capteur angle braquage","Durite direction assistée","Volant"] }
     ]},
-    { id:10233, name:"Système d'essuie-glaces", groups:[
-      { title:"Balais & Bras", items:["Balai essuie-glace","Bras essuie-glace","Balai essuie-glace arrière"] },
-      { title:"Moteur & Tringlerie", items:["Moteur essuie-glace","Tringlerie essuie-glace","Tuyau lave-glace","Gicleur lave-glace","Réservoir lave-glace"] }
+    { n: "Embrayage & Transmission", id: 10150, h: H.embrayage, g: [
+      { t: "Embrayage", i: ["Kit d'embrayage","Disque d'embrayage","Mécanisme d'embrayage","Butée d'embrayage","Volant moteur"] },
+      { t: "Commande", i: ["Câble d'embrayage","Émetteur d'embrayage","Récepteur d'embrayage"] },
+      { t: "Cardan & Arbres", i: ["Cardan","Soufflet de cardan","Joint homocinétique","Arbre de transmission","Tripode"] }
     ]},
-    { id:10251, name:"Allumage et préchauffage", groups:[
-      { title:"Bougies", items:["Bougie d'allumage","Bougie de préchauffage","Câble d'allumage"] },
-      { title:"Bobines & Capteurs", items:["Bobine d'allumage","Module d'allumage","Capteur cliquetis","Boîtier de préchauffage"] }
+    { n: "Distribution & Courroie", id: 10116, h: H.distribution, g: [
+      { t: "Courroies", i: ["Courroie d'alternateur","Courroie de distribution","Courroie trapézoïdale","Kit courroie accessoire"] },
+      { t: "Galets & Tendeurs", i: ["Galet tendeur distribution","Galet tendeur accessoire","Poulie damper","Kit chaîne distribution"] }
     ]},
-    { id:10264, name:"Suspension", groups:[
-      { title:"Bras & Triangles", items:["Bras de suspension","Triangle de suspension","Rotule de suspension","Silentbloc"] },
-      { title:"Barres", items:["Barre stabilisatrice","Biellette barre stabilisatrice","Coussinet barre","Support barre stabilisatrice"] }
+    { n: "Démarrage & Alternateur", id: 10110, h: H.demarrage, g: [
+      { t: "Charge", i: ["Alternateur","Démarreur","Régulateur d'alternateur"] },
+      { t: "Composants", i: ["Contacteur démarrage","Relais","Fusible","Faisceau électrique"] }
     ]},
-    { id:10142, name:"Électricité", groups:[
-      { title:"Charge", items:["Alternateur","Batterie","Démarreur","Régulateur d'alternateur","Pignon démarreur"] },
-      { title:"Commandes", items:["Contacteur de démarrage","Commande de feux","Interrupteur stop","Relais"] }
+    { n: "Carburant & Injection", id: 10354, h: H.carburant, g: [
+      { t: "Carburant", i: ["Filtre à carburant","Pompe de gavage","Régulateur pression carburant","Injecteur","Pompe d'injection"] },
+      { t: "Réservoir", i: ["Réservoir carburant","Bouchon réservoir","Jauge à carburant","Tuyau de carburant"] },
+      { t: "Admission", i: ["Débitmètre d'air","Boîtier papillon","Régulateur ralenti","Câble accélérateur"] }
     ]},
-    { id:10471, name:"Amortissement", groups:[
-      { title:"Amortisseurs", items:["Amortisseur","Amortisseur arrière","Kit amortisseurs","Butée d'amortisseur"] },
-      { title:"Suspension hydraulique", items:["Coupelle d'amortisseur","Ressort de suspension","Suspension pneumatique","Compresseur suspension"] }
+    { n: "Turbo & Admission", id: 11001, h: H.turbo, g: [
+      { t: "Turbo", i: ["Turbocompresseur","Joint de turbo","Kit montage turbo","Électrovanne de turbo"] },
+      { t: "Périphériques", i: ["Intercooler","Durite de turbo","Capteur pression suralimentation"] },
+      { t: "EGR", i: ["Vanne EGR","Refroidisseur EGR","Module EGR","Joint vanne EGR"] }
     ]},
-    { id:10504, name:"Courroies, chaînes, galets", groups:[
-      { title:"Courroies", items:["Courroie de distribution","Courroie d'alternateur","Courroie trapézoïdale"] },
-      { title:"Galets & Tendeurs", items:["Galet tendeur","Galet enrouleur","Tendeur de courroie","Kit chaîne distribution"] }
+    { n: "Climatisation", id: 10343, h: H.clim, g: [
+      { t: "Compresseur", i: ["Compresseur climatisation","Embrayage compresseur clim","Détendeur climatisation"] },
+      { t: "Circuit", i: ["Évaporateur clim","Condenseur clim","Bouteille déshydratante","Pressostat clim","Tuyau de clim"] }
     ]},
-    { id:10203, name:"Refroidissement moteur", groups:[
-      { title:"Échangeurs", items:["Radiateur","Radiateur d'huile","Échangeur EGR","Radiateur de chauffage"] },
-      { title:"Circuit", items:["Pompe à eau","Thermostat","Durite","Vase d'expansion","Bouchon radiateur","Capteur température","Ventilateur radiateur"] }
+    { n: "Éclairage", id: 74832, h: H.eclairage, g: [
+      { t: "Phares", i: ["Phare avant","Phare avant LED","Phare au xénon","Feu arrière"] },
+      { t: "Signalisation", i: ["Clignotant","Feu antibrouillard","Feu de jour","Feu de stop"] },
+      { t: "Ampoules", i: ["Ampoule H4","Ampoule H7","Ampoule clignotant","Ampoule feu arrière"] }
     ]},
-    { id:10308, name:"Carrosserie", groups:[
-      { title:"Extérieur", items:["Pare-chocs","Aile","Capot","Calandre","Optique de phare"] },
-      { title:"Portes & Vitres", items:["Lève-vitre","Mécanisme lève-vitre","Joint de porte","Poignée extérieure","Rétroviseur"] }
+    { n: "Échappement", id: 10104, h: H.echappement, g: [
+      { t: "Lignes", i: ["Pot d'échappement","Silencieux intermédiaire","Silencieux avant","Tuyau d'échappement"] },
+      { t: "Dépollution", i: ["Catalyseur","Sonde lambda","Filtre à particules FAP","Vanne EGR"] },
+      { t: "Fixation", i: ["Silent-bloc échappement","Collier d'échappement","Joint d'étanchéité"] }
     ]},
-    { id:10737, name:"Chauffage et ventilation", groups:[
-      { title:"Chauffage", items:["Radiateur de chauffage","Bouton chauffage","Résistance ventilateur"] },
-      { title:"Ventilation", items:["Ventilateur intérieur","Pulseur d'air","Bouche d'aération","Capteur température habitacle"] }
+    { n: "Essuie-glaces", id: 10118, h: H.essuie, g: [
+      { t: "Balais & Bras", i: ["Essuie-glace","Bras essuie-glace","Essuie-glace arrière"] },
+      { t: "Lavage", i: ["Moteur essuie-glace","Pompe lave-glace","Gicleur lave-glace","Réservoir lave-glace"] }
     ]},
-    { id:10157, name:"Joints et bagues d'étanchéité", groups:[
-      { title:"Joints moteur", items:["Joint culasse","Joint carter d'huile","Joint distribution","Joint pompe à eau"] },
-      { title:"Bagues & Étanchéité", items:["Bague étanchéité vilebrequin","Joint spi","Joint torique","Pochette joints"] }
+    { n: "Batterie & Allumage", id: 10108, h: H.allumage, g: [
+      { t: "Allumage", i: ["Bougie d'allumage","Bougie de préchauffage","Bobine d'allumage","Module d'allumage","Faisceau moteur"] },
+      { t: "Batterie", i: ["Batterie","Chargeur batterie","Cosse batterie"] }
     ]},
-    { id:10269, name:"Échappement", groups:[
-      { title:"Lignes", items:["Silencieux","Silencieux arrière","Pot d'échappement","Tube d'échappement"] },
-      { title:"Dépollution", items:["Catalyseur","Sonde lambda","FAP / Filtre à particules","Vanne EGR","Capteur NOx"] }
+    { n: "Refroidissement", id: 10107, h: H.refroid, g: [
+      { t: "Échangeurs", i: ["Radiateur","Radiateur d'huile","Intercooler"] },
+      { t: "Circuit", i: ["Pompe à eau","Thermostat","Durite","Vase d'expansion","Bouchon radiateur","Ventilateur moteur"] }
     ]},
-    { id:11013, name:"Intérieur", groups:[
-      { title:"Sièges & Habillage", items:["Housse de siège","Tapis de sol","Tapis de coffre","Couvre-volant"] },
-      { title:"Habitacle", items:["Bouton commande","Levier vitesse","Pommeau de vitesse","Filtre habitacle"] }
+    { n: "Carrosserie", id: 10101, h: H.carrosserie, g: [
+      { t: "Extérieur", i: ["Pare-choc","Aile","Capot","Calandre","Optique de phare"] },
+      { t: "Portes & Vitres", i: ["Lève-vitre","Joint de porte","Poignée de porte","Rétroviseur","Serrure de porte"] }
     ]},
-    { id:10279, name:"Système d'alimentation", groups:[
-      { title:"Carburant", items:["Pompe à carburant","Pompe d'injection","Régulateur pression carburant","Injecteur"] },
-      { title:"Réservoir", items:["Réservoir carburant","Bouchon réservoir","Jauge carburant","Tuyau carburant"] }
+    { n: "Pneus & Jantes", id: 11000, h: H.pneus, g: [
+      { t: "Pneus & Jantes", i: ["Pneus","Jantes","Boulon de roue","Antivols de roue","Capteur pression pneu TPMS","Enjoliveurs"] },
+      { t: "Outils roue", i: ["Cric","Clé démonte-roue","Gonfleur pneu","Manomètre pression","Kit réparation pneu"] }
     ]},
-    { id:10160, name:"Direction", groups:[
-      { title:"Commande", items:["Volant","Crémaillère de direction","Rotule de direction","Biellette de direction"] },
-      { title:"Assistance", items:["Pompe direction assistée","Capteur angle volant","Soufflet de direction"] }
+    { n: "Huiles & fluides", id: 10435, h: H.huiles, g: [
+      { t: "Moteur", i: ["Huile moteur","Additif huile moteur"] },
+      { t: "Transmission", i: ["Huile boîte vitesses","Huile pont","Huile direction assistée"] },
+      { t: "Freinage & Refroidissement", i: ["Liquide de frein","Liquide refroidissement","Antigel","Lave-glace"] }
     ]},
-    { id:10151, name:"Embrayage", groups:[
-      { title:"Kit & Disques", items:["Kit d'embrayage","Disque d'embrayage","Mécanisme d'embrayage","Butée d'embrayage"] },
-      { title:"Commande", items:["Câble d'embrayage","Émetteur d'embrayage","Récepteur d'embrayage","Volant moteur bi-masse"] }
+    { n: "Outillage & équipement", id: 36000, h: H.outillage, g: [
+      { t: "Diagnostic", i: ["Valise diagnostic OBD","Multimètre","Manomètre"] },
+      { t: "Mécanique", i: ["Clé dynamométrique","Cric hydraulique","Chandelle","Clé à choc"] }
     ]},
-    { id:10162, name:"Cardan de transmission", groups:[
-      { title:"Cardans", items:["Cardan complet","Soufflet de cardan","Kit cardan","Roulement cardan"] },
-      { title:"Joints", items:["Joint homocinétique","Tripode","Kit joint cardan"] }
+    { n: "Entretien & nettoyage", id: 30000, h: H.nettoyage, g: [
+      { t: "Intérieur", i: ["Nettoyant intérieur","Désodorisant","Tapis","Couvre-volant"] },
+      { t: "Extérieur", i: ["Shampoing carrosserie","Nettoyant jantes","Nettoyant frein","Démoustiqueur"] }
     ]},
-    { id:10688, name:"Dispositif d'attelage", groups:[
-      { title:"Attelage", items:["Boule d'attelage","Crochet d'attelage","Faisceau d'attelage","Support de boule"] },
-      { title:"Accessoires", items:["Cache boule","Support plaque","Adaptateur prise"] }
-    ]},
-    { id:10644, name:"Boîte de vitesse", groups:[
-      { title:"Mécanique", items:["Boîte de vitesse complète","Pignon","Synchroniseur","Joint de boîte"] },
-      { title:"Commande", items:["Levier de vitesse","Câble de commande","Capteur boîte","Huile de boîte"] }
-    ]},
-    { id:10454, name:"Climatisation", groups:[
-      { title:"Compression", items:["Compresseur clim","Embrayage compresseur","Bobine d'embrayage"] },
-      { title:"Circuit", items:["Évaporateur","Condenseur","Détendeur","Filtre déshydrateur","Pressostat","Tuyau clim"] }
-    ]},
-    { id:10679, name:"Roulements", groups:[
-      { title:"Roue", items:["Roulement de roue","Kit roulement","Moyeu de roue","Joint moyeu"] },
-      { title:"Autres", items:["Roulement direction","Roulement boîte","Roulement embrayage"] }
-    ]},
-    { id:10162, name:"Arbres de transmission", groups:[
-      { title:"Arbres", items:["Arbre de transmission","Différentiel","Joint d'arbre"] },
-      { title:"Composants", items:["Roulement arbre","Palier intermédiaire","Soufflet arbre"] }
-    ]},
-    { id:10340, name:"Capteurs, relais, unités de commande", groups:[
-      { title:"Capteurs moteur", items:["Capteur vilebrequin","Capteur arbre à cames","Capteur cliquetis","Capteur PMH","Débitmètre"] },
-      { title:"Capteurs température/pression", items:["Capteur température","Capteur pression","Capteur ABS","Sonde lambda"] },
-      { title:"Calculateurs & Relais", items:["Calculateur moteur","Calculateur ABS","Relais","Unité de commande"] }
-    ]},
-    { id:11015, name:"Accessoires voiture", groups:[
-      { title:"Confort", items:["Tapis de sol","Tapis de coffre","Couvre-volant","Housses de siège","Protège pare-brise"] },
-      { title:"Pratique", items:["Chargeur batterie","Compresseur portatif","Triangle de signalisation","Gilet sécurité"] }
-    ]},
-    { id:10638, name:"Kits de réparation", groups:[
-      { title:"Kits moteur", items:["Kit pompe à eau","Kit chaîne distribution","Kit injecteur","Kit cylindre"] },
-      { title:"Kits châssis", items:["Kit roulement","Kit cardan","Kit étrier","Kit amortisseur"] }
-    ]},
-    { id:10827, name:"Outillage & équipement", groups:[
-      { title:"Diagnostic", items:["Valise diagnostic OBD","Multimètre","Manomètre"] },
-      { title:"Mécanique", items:["Clé dynamométrique","Cric hydraulique","Chandelle","Compresseur","Clé à choc","Extracteur"] }
-    ]},
-    { id:10737, name:"Tuyaux et conduites", groups:[
-      { title:"Refroidissement", items:["Durite radiateur","Durite chauffage","Manchon de durite"] },
-      { title:"Autres circuits", items:["Tuyau carburant","Tuyau hydraulique","Tuyau frein","Tuyau clim","Conduite air"] }
-    ]},
-    { id:11055, name:"Produits de nettoyage", groups:[
-      { title:"Intérieur", items:["Nettoyant intérieur","Désodorisant","Nettoyant vitres"] },
-      { title:"Extérieur", items:["Shampoing carrosserie","Nettoyant jantes","Cire de protection","Démoustiqueur","Dégraissant moteur"] }
-    ]},
-    { id:10533, name:"Éclairage", groups:[
-      { title:"Avant", items:["Phare avant","Optique de phare","Feu antibrouillard","Feu de jour"] },
-      { title:"Arrière & Habitacle", items:["Feu arrière","Feu antibrouillard arrière","Feu stop","Clignotant","Éclairage plaque","Éclairage intérieur"] },
-      { title:"Ampoules", items:["Ampoule H4","Ampoule H7","Ampoule LED","Ampoule xénon"] }
-    ]},
-    { id:10921, name:"Tuning", groups:[
-      { title:"Esthétique", items:["Becquet","Aileron","Pare-chocs sport","Bas de caisse"] },
-      { title:"Performance", items:["Filtre à air sport","Échappement sport","Volant sport","Amortisseur sport"] }
-    ]},
-    { id:10157, name:"Fixations", groups:[
-      { title:"Visserie", items:["Vis","Boulon","Écrou","Rondelle"] },
-      { title:"Attaches", items:["Goupille","Rivet","Collier","Agrafe","Clips de fixation"] }
-    ]},
-    { id:10651, name:"Recirculation des gaz d'échappement", groups:[
-      { title:"EGR", items:["Vanne EGR","Module EGR","Refroidisseur EGR","Joint EGR"] },
-      { title:"Capteurs", items:["Capteur EGR","Électrovanne EGR","Tuyau EGR"] }
-    ]},
-    { id:10972, name:"Composants pour la suralimentation", groups:[
-      { title:"Turbo", items:["Turbocompresseur","Kit montage turbo","Joint turbo","Actuateur turbo"] },
-      { title:"Périphériques", items:["Échangeur intercooler","Tuyau turbo","Électrovanne de turbo","Capteur pression turbo"] }
-    ]},
-    { id:11045, name:"Fermeture centralisée", groups:[
-      { title:"Serrures", items:["Serrure de porte","Serrure de coffre","Cylindre de serrure"] },
-      { title:"Commande", items:["Actuateur fermeture","Télécommande","Boîtier de commande","Câble fermeture"] }
+    { n: "Accessoires voiture", id: 33000, h: H.accessoires, g: [
+      { t: "Confort", i: ["Tapis de sol","Tapis de coffre","Couvre-volant","Housses de siège","Protège pare-brise"] },
+      { t: "Pratique", i: ["Chargeur batterie","Compresseur portatif","Triangle signalisation"] }
     ]}
   ];
 
-  function norm(s){ return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,''); }
-  function firstLetter(s){ var L = norm(s).charAt(0).toUpperCase(); return /[A-Z]/.test(L) ? L : '#'; }
-  function partLink(p){ return (window.PDZ_PART_URL ? window.PDZ_PART_URL(p) : '/search?type=product&q=' + encodeURIComponent(p)); }
-  function imgUrl(id){ return CDN + id + '.png'; }
-  function imgFallback(name){
-    var L = (name || '?').charAt(0).toUpperCase();
-    return '<div class="adc__cat-fallback">' + L + '</div>';
-  }
-  function topFallback(name){
-    var L = (name || '?').charAt(0).toUpperCase();
-    return '<div class="adc__top-card-fallback">' + L + '</div>';
-  }
+  function norm(s) { return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+  function escAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+  function imgUrl(id) { return CDN + id + '.png'; }
+  function fallbackLetter(name) { var L = (name || '?').charAt(0).toUpperCase(); return /[A-Z]/.test(L) ? L : '?'; }
 
-  function imgWithFallback(id, name, cls){
-    // We use onerror to swap to fallback if Autodoc CDN image fails
-    return '<img src="' + imgUrl(id) + '" alt="' + name + '" loading="lazy" decoding="async" onerror="this.outerHTML=\'' + (cls === 'top' ? topFallback(name) : imgFallback(name)).replace(/'/g, "\\'") + '\'">';
-  }
-
-  // ===== Render TOP grid =====
-  function renderTop(target, list){
-    var host = document.getElementById(target);
+  function renderTop(host) {
     if (!host) return;
-    host.innerHTML = list.map(function(c){
-      return '<a class="adc__top-card" href="' + partLink(c.name) + '" data-name="' + norm(c.name) + '">' +
-        '<img src="' + imgUrl(c.id) + '" alt="' + c.name + '" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=&quot;adc__top-card-fallback&quot;>' + (c.name.charAt(0).toUpperCase()) + '</div>\'">' +
-        '<div class="adc__top-card-name">' + c.name + '</div>' +
-      '</a>';
+    host.innerHTML = TOP.map(function (c) {
+      var href = linkCol(c.h, c.q);
+      var L = fallbackLetter(c.n);
+      return '<a class="pdz-cat__top-card" href="' + href + '" data-name="' + escAttr(norm(c.n)) + '">' +
+        '<div class="pdz-cat__top-img"><img src="' + imgUrl(c.id) + '" alt="' + escAttr(c.n) + '" loading="lazy" decoding="async" ' +
+        'onerror="this.parentNode.innerHTML=&quot;<div class=\\&quot;pdz-cat__top-fb\\&quot;>' + L + '</div>&quot;"></div>' +
+        '<div class="pdz-cat__top-name">' + c.n + '</div></a>';
     }).join('');
   }
 
-  // ===== Render Main Grid =====
-  function renderGrid(){
-    var host = document.getElementById('adc-grid');
+  function renderGrid(host) {
     if (!host) return;
-    host.innerHTML = CATEGORIES.map(function(cat, idx){
+    host.innerHTML = CATS.map(function (cat, idx) {
       var total = 0;
-      cat.groups.forEach(function(g){ total += g.items.length; });
-      var groupsHtml = cat.groups.map(function(g){
-        var items = g.items.map(function(it){
-          return '<li><a href="' + partLink(it) + '" data-name="' + norm(it) + '">' + it + '</a></li>';
+      cat.g.forEach(function (g) { total += g.i.length; });
+      var L = fallbackLetter(cat.n);
+      var groups = cat.g.map(function (g) {
+        var items = g.i.map(function (it) {
+          return '<li><a href="' + linkCol(cat.h, it) + '" data-name="' + escAttr(norm(it)) + '">' + it + '</a></li>';
         }).join('');
-        return '<div class="adc__tooltip-group" data-grp="' + norm(g.title) + '">' +
-          '<div class="adc__tooltip-subtitle">' + g.title + '</div>' +
-          '<ul class="adc__tooltip-list">' + items + '</ul>' +
-        '</div>';
+        return '<div class="pdz-cat__tooltip-group" data-grp="' + escAttr(norm(g.t)) + '">' +
+          '<div class="pdz-cat__tooltip-subtitle">' + g.t + '</div>' +
+          '<ul class="pdz-cat__tooltip-list">' + items + '</ul></div>';
       }).join('');
-      return '<div class="adc__cat" data-idx="' + idx + '" data-name="' + norm(cat.name) + '" tabindex="0">' +
-        '<div class="adc__cat-head" onclick="adcCatToggle(this.parentNode)">' +
-          '<div class="adc__cat-img">' +
-            '<img src="' + imgUrl(cat.id) + '" alt="' + cat.name + '" loading="lazy" decoding="async" onerror="this.outerHTML=\'<div class=&quot;adc__cat-fallback&quot;>' + (cat.name.charAt(0).toUpperCase()) + '</div>\'">' +
-          '</div>' +
-          '<div class="adc__cat-info">' +
-            '<div class="adc__cat-name">' + cat.name + '</div>' +
-            '<div class="adc__cat-count">' + total + ' sous-catégories</div>' +
-          '</div>' +
-          '<div class="adc__cat-chev">▾</div>' +
-        '</div>' +
-        '<div class="adc__tooltip">' +
-          '<button class="adc__tooltip-close" type="button" onclick="adcCatClose(event)" aria-label="Fermer">✕</button>' +
-          '<div class="adc__tooltip-grid">' + groupsHtml + '</div>' +
-          '<div class="adc__tooltip-foot">' +
-            '<a class="adc__tooltip-all" href="' + partLink(cat.name) + '">Voir toute la catégorie ' + cat.name + ' →</a>' +
-          '</div>' +
-        '</div>' +
-      '</div>';
+      return '<div class="pdz-cat__card" data-idx="' + idx + '" data-name="' + escAttr(norm(cat.n)) + '">' +
+        '<button type="button" class="pdz-cat__card-head" aria-expanded="false">' +
+        '<span class="pdz-cat__card-img"><img src="' + imgUrl(cat.id) + '" alt="' + escAttr(cat.n) + '" loading="lazy" decoding="async" ' +
+        'onerror="this.parentNode.innerHTML=&quot;<div class=\\&quot;pdz-cat__card-fb\\&quot;>' + L + '</div>&quot;"></span>' +
+        '<span class="pdz-cat__card-info"><span class="pdz-cat__card-name">' + cat.n + '</span>' +
+        '<span class="pdz-cat__card-meta">' + total + ' sous-catégories</span></span>' +
+        '<span class="pdz-cat__card-chev" aria-hidden="true">' +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>' +
+        '</span></button>' +
+        '<div class="pdz-cat__tooltip" role="region"><div class="pdz-cat__tooltip-grid">' + groups + '</div>' +
+        '<div class="pdz-cat__tooltip-foot">' +
+        '<a class="pdz-cat__btn pdz-cat__btn--primary" href="' + linkCol(cat.h) + '">Tout voir dans ' + cat.n +
+        '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>' +
+        '</a></div></div></div>';
     }).join('');
-  }
 
-  window.adcCatToggle = function(card){
-    var wasOpen = card.classList.contains('is-open');
-    document.querySelectorAll('.adc__cat.is-open').forEach(function(c){ c.classList.remove('is-open'); });
-    if (!wasOpen) card.classList.add('is-open');
-  };
-  window.adcCatClose = function(e){
-    if (e) e.stopPropagation();
-    document.querySelectorAll('.adc__cat.is-open').forEach(function(c){ c.classList.remove('is-open'); });
-  };
-
-  document.addEventListener('click', function(e){
-    if (!e.target.closest('.adc__cat')) {
-      document.querySelectorAll('.adc__cat.is-open').forEach(function(c){ c.classList.remove('is-open'); });
-    }
-  });
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape') document.querySelectorAll('.adc__cat.is-open').forEach(function(c){ c.classList.remove('is-open'); });
-  });
-
-  // ===== Render Alphabetic Index =====
-  function buildAlphaIndex(){
-    var ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    var idx = {}; ALPHABET.forEach(function(L){ idx[L] = []; });
-    var seen = {};
-    CATEGORIES.forEach(function(cat){
-      cat.groups.forEach(function(g){
-        g.items.forEach(function(p){
-          var L = firstLetter(p);
-          if (idx[L] && !seen[p + L]) {
-            idx[L].push({ name: p, cat: cat.name });
-            seen[p + L] = true;
-          }
+    host.querySelectorAll('.pdz-cat__card-head').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var card = btn.parentNode;
+        var willOpen = !card.classList.contains('is-open');
+        host.querySelectorAll('.pdz-cat__card.is-open').forEach(function (c) {
+          c.classList.remove('is-open');
+          var b = c.querySelector('.pdz-cat__card-head');
+          if (b) b.setAttribute('aria-expanded', 'false');
         });
-      });
-    });
-    Object.keys(idx).forEach(function(k){
-      idx[k].sort(function(a,b){ return a.name.localeCompare(b.name, 'fr'); });
-    });
-    return idx;
-  }
-  function renderAlpha(){
-    var ALPHABET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
-    var idx = buildAlphaIndex();
-    var nav = document.getElementById('adc-alpha-nav');
-    if (!nav) return;
-    nav.innerHTML = ALPHABET.map(function(L){
-      var has = idx[L].length > 0;
-      return '<a href="#adc-L-' + L + '" class="adc__alpha-link ' + (has ? '' : 'is-empty') + '" data-letter="' + L + '">' + L + '</a>';
-    }).join('');
-    var sec = document.getElementById('adc-alpha-sections');
-    sec.innerHTML = ALPHABET.filter(function(L){ return idx[L].length > 0; }).map(function(L){
-      var parts = idx[L].map(function(p){
-        return '<a href="' + partLink(p.name) + '" class="adc__letter-part" data-name="' + norm(p.name) + '">' + p.name + ' <small>(' + p.cat + ')</small></a>';
-      }).join('');
-      return '<div class="adc__letter" id="adc-L-' + L + '" data-letter="' + L + '">' +
-        '<div class="adc__letter-title">' + L + '</div>' +
-        '<div class="adc__letter-grid">' + parts + '</div>' +
-      '</div>';
-    }).join('');
-    document.querySelectorAll('.adc__alpha-link').forEach(function(a){
-      a.addEventListener('click', function(e){
-        e.preventDefault();
-        if (this.classList.contains('is-empty')) return;
-        var t = document.getElementById('adc-L-' + this.dataset.letter);
-        if (t) t.scrollIntoView({ behavior:'smooth', block:'start' });
+        if (willOpen) { card.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); }
       });
     });
   }
 
-  // ===== Search =====
-  function applySearch(q){
-    q = norm((q || '').trim());
-    var anyVisible = false;
-    document.querySelectorAll('.adc__cat').forEach(function(cat){
-      var name = cat.dataset.name || '';
-      var inName = !q || name.indexOf(q) !== -1;
-      var grpVisible = 0;
-      cat.querySelectorAll('.adc__tooltip-group').forEach(function(g){
+  function applySearch(q) {
+    var nq = norm((q || '').trim());
+    var visibleCats = 0;
+    document.querySelectorAll('.pdz-cat__card').forEach(function (card) {
+      var nameMatch = !nq || (card.dataset.name || '').indexOf(nq) !== -1;
+      var groupVisible = 0;
+      card.querySelectorAll('.pdz-cat__tooltip-group').forEach(function (g) {
         var matches = 0;
-        g.querySelectorAll('a').forEach(function(a){
-          var match = !q || a.dataset.name.indexOf(q) !== -1;
-          if (match) { a.classList.remove('hidden'); matches++; } else a.classList.add('hidden');
+        g.querySelectorAll('a').forEach(function (a) {
+          var m = !nq || (a.dataset.name || '').indexOf(nq) !== -1;
+          a.classList.toggle('is-hidden', !m);
+          if (m) matches++;
         });
-        if (q && matches === 0) g.classList.add('hidden');
-        else { g.classList.remove('hidden'); if (matches > 0) grpVisible++; }
+        var gHide = nq && matches === 0;
+        g.classList.toggle('is-hidden', gHide);
+        if (!gHide && matches > 0) groupVisible++;
       });
-      if (q && !inName && grpVisible === 0) cat.classList.add('hidden');
-      else { cat.classList.remove('hidden'); if (q) cat.classList.add('is-open'); else cat.classList.remove('is-open'); anyVisible = true; }
+      var hide = nq && !nameMatch && groupVisible === 0;
+      card.classList.toggle('is-hidden', hide);
+      if (nq && !hide) card.classList.add('is-open');
+      if (!nq) card.classList.remove('is-open');
+      if (!hide) visibleCats++;
     });
-    // Top grid
-    document.querySelectorAll('.adc__top-card').forEach(function(c){
-      var match = !q || (c.dataset.name || '').indexOf(q) !== -1;
-      if (match) c.classList.remove('hidden'); else c.classList.add('hidden');
+    document.querySelectorAll('.pdz-cat__top-card').forEach(function (c) {
+      var m = !nq || (c.dataset.name || '').indexOf(nq) !== -1;
+      c.classList.toggle('is-hidden', !m);
     });
-    // Alpha
-    document.querySelectorAll('.adc__letter-part').forEach(function(el){
-      var match = !q || el.dataset.name.indexOf(q) !== -1;
-      if (match) el.classList.remove('hidden'); else el.classList.add('hidden');
-    });
-    document.querySelectorAll('.adc__letter').forEach(function(blk){
-      var visible = blk.querySelectorAll('.adc__letter-part:not(.hidden)').length;
-      if (q && visible === 0) blk.classList.add('hidden'); else blk.classList.remove('hidden');
-    });
-    document.getElementById('adc-no-result').style.display = (q && !anyVisible) ? 'block' : 'none';
-    document.querySelector('.adc__searchbar').classList.toggle('has-value', !!q);
+    var empty = document.getElementById('pdz-cat-empty');
+    if (empty) empty.hidden = !(nq && visibleCats === 0);
+    var clearBtn = document.getElementById('pdz-cat-clear');
+    if (clearBtn) clearBtn.hidden = !nq;
+    var hint = document.getElementById('pdz-cat-count');
+    if (hint) hint.textContent = nq ? visibleCats + ' résultat' + (visibleCats > 1 ? 's' : '') : '';
   }
 
-  function initSearch(){
-    var input = document.getElementById('adc-search');
-    var clear = document.getElementById('adc-search-clear');
-    if (!input) return;
-    var t;
-    input.addEventListener('input', function(){
-      clearTimeout(t);
-      var v = this.value;
-      t = setTimeout(function(){ applySearch(v); }, 80);
+  function init() {
+    renderTop(document.getElementById('pdz-cat-top'));
+    renderGrid(document.getElementById('pdz-cat-grid'));
+    var input = document.getElementById('pdz-cat-search');
+    var clear = document.getElementById('pdz-cat-clear');
+    if (input) {
+      var t;
+      input.addEventListener('input', function () {
+        clearTimeout(t);
+        var v = this.value;
+        t = setTimeout(function () { applySearch(v); }, 100);
+      });
+    }
+    if (clear) {
+      clear.addEventListener('click', function () {
+        if (input) { input.value = ''; input.focus(); }
+        applySearch('');
+      });
+    }
+    document.addEventListener('click', function (e) {
+      if (!e.target.closest('.pdz-cat__card')) {
+        document.querySelectorAll('.pdz-cat__card.is-open').forEach(function (c) {
+          c.classList.remove('is-open');
+          var b = c.querySelector('.pdz-cat__card-head');
+          if (b) b.setAttribute('aria-expanded', 'false');
+        });
+      }
     });
-    if (clear) clear.addEventListener('click', function(){
-      input.value = ''; applySearch(''); input.focus();
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.pdz-cat__card.is-open').forEach(function (c) { c.classList.remove('is-open'); });
+        if (input && document.activeElement === input) input.blur();
+      }
     });
   }
 
-  // ===== Init =====
-  function init(){
-    renderTop('adc-top-grid', TOP);
-    renderTop('adc-acc-grid', ACCESSORIES);
-    renderGrid();
-    renderAlpha();
-    initSearch();
-  }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
-</script>
+{% endjavascript %}
 
 {% schema %}
-{"name":"Catalogue AUTODOC","settings":[],"presets":[{"name":"Catalogue AUTODOC"}]}
+{
+  "name": "Catalogue de pièces",
+  "tag": "section",
+  "class": "section-pdz-catalog",
+  "settings": [
+    { "type": "color_scheme", "id": "color_scheme", "label": "Schéma de couleurs", "default": "scheme-1" },
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "heading", "label": "Titre principal", "default": "Catalogue de pièces détachées" },
+    { "type": "text", "id": "subtitle", "label": "Sous-titre", "default": "Plus de 500 références · Livraison dans les 48 wilayas · Cash à la livraison" },
+    { "type": "text", "id": "search_placeholder", "label": "Placeholder de recherche", "default": "Rechercher une pièce, une catégorie…" },
+    { "type": "header", "content": "Titres des sections" },
+    { "type": "text", "id": "top_title", "label": "Titre — Top pièces", "default": "Les pièces les plus demandées" },
+    { "type": "text", "id": "catalog_title", "label": "Titre — Catalogue", "default": "Toutes les catégories" }
+  ],
+  "presets": [ { "name": "Catalogue de pièces" } ]
+}
 {% endschema %}
