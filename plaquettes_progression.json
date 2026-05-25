@@ -2,8 +2,8 @@
   "session_date": "2026-05-25",
   "exchange_rate_eur_to_dzd": 277,
   "total_in_source": 380,
-  "products_created": 260,
-  "products_remaining": 120,
+  "products_created": 290,
+  "products_remaining": 90,
   "collections_created": [
     {
       "id": "gid://shopify/Collection/684131844439",
@@ -1650,6 +1650,186 @@
       "id": "10890611032407",
       "ref": "LP1906",
       "brand": "DELPHI"
+    },
+    {
+      "index": 260,
+      "id": "10890612048215",
+      "ref": "GDB1495",
+      "brand": "TRW"
+    },
+    {
+      "index": 261,
+      "id": "10890612080983",
+      "ref": "402B0155P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 262,
+      "id": "10890612113751",
+      "ref": "16830",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 263,
+      "id": "10890612179287",
+      "ref": "0 986 494 303",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 264,
+      "id": "10890612212055",
+      "ref": "13.0460-2840.2",
+      "brand": "ATE"
+    },
+    {
+      "index": 265,
+      "id": "10890612244823",
+      "ref": "0 986 460 149",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 266,
+      "id": "10890612277591",
+      "ref": "GCD020101",
+      "brand": "goCORE"
+    },
+    {
+      "index": 267,
+      "id": "10890612310359",
+      "ref": "16830",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 268,
+      "id": "10890612343127",
+      "ref": "301583",
+      "brand": "VALEO"
+    },
+    {
+      "index": 269,
+      "id": "10890612375895",
+      "ref": "402B0367P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 270,
+      "id": "10890612408663",
+      "ref": "302522",
+      "brand": "VALEO"
+    },
+    {
+      "index": 271,
+      "id": "10890612441431",
+      "ref": "LP3153",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 272,
+      "id": "10890612474199",
+      "ref": "FDB4884",
+      "brand": "FERODO"
+    },
+    {
+      "index": 273,
+      "id": "10890612506967",
+      "ref": "0 986 494 157",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 274,
+      "id": "10890612539735",
+      "ref": "0 986 495 371",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 275,
+      "id": "10890612572503",
+      "ref": "402B0281P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 276,
+      "id": "10890612670807",
+      "ref": "16556",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 277,
+      "id": "10890612703575",
+      "ref": "16525",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 278,
+      "id": "10890612736343",
+      "ref": "402B0034P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 279,
+      "id": "10890612769111",
+      "ref": "302207",
+      "brand": "VALEO"
+    },
+    {
+      "index": 280,
+      "id": "10890612801879",
+      "ref": "FDB4353",
+      "brand": "FERODO"
+    },
+    {
+      "index": 281,
+      "id": "10890612834647",
+      "ref": "302429",
+      "brand": "VALEO"
+    },
+    {
+      "index": 282,
+      "id": "10890612932951",
+      "ref": "P 06 012",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 283,
+      "id": "10890612998487",
+      "ref": "16749",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 284,
+      "id": "10890613064023",
+      "ref": "171398",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 285,
+      "id": "10890613096791",
+      "ref": "0 986 494 251",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 286,
+      "id": "10890613129559",
+      "ref": "0 986 494 622",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 287,
+      "id": "10890613195095",
+      "ref": "402B0625",
+      "brand": "RIDEX"
+    },
+    {
+      "index": 288,
+      "id": "10890613358935",
+      "ref": "P 86 032",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 289,
+      "id": "10890613424471",
+      "ref": "P 23 187",
+      "brand": "BREMBO"
     }
   ],
   "next_autodoc_ids_to_process": "indices 260-379 dans plaquettes_de_frein.json",
