@@ -1,19 +1,46 @@
-/* === Override: barre de recherche header longue + masquage YMM banner === */
+/* === Override: tout doit tenir dans le header sans chevauchement, sans changer le design === */
 
-/* Élargit la barre de recherche du header */
+/* Conteneur élargi pour donner de la place */
 .site-header .container.header__inner,
-.header__inner{max-width:1480px}
-.search-bar{flex:1 1 auto!important;max-width:none!important;min-width:0;height:48px!important}
-.search-bar__input{font-size:14px;height:48px;padding:0 20px}
-.search-bar__btn{padding:0 32px;font-size:14px;letter-spacing:.4px}
-.header__vtype{height:48px}
-
-/* Le conteneur du header peut être plus large pour donner de la place à la barre */
+.header__inner{
+  max-width:1480px;
+  display:flex;
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:12px;
+  overflow:visible;
+}
 .site-header .container{max-width:1480px}
 
-/* === MASQUAGE DÉFINITIF DE TOUS LES ÉLÉMENTS EASYSEARCH YMM ===
-   Le sélecteur de véhicule + la barre de recherche du header suffisent.
-   On masque TOUT ce que l'app EasySearch injecte sur la page. */
+/* Tous les enfants directs du header doivent pouvoir rétrécir (pas dépasser) */
+.header__inner > *{
+  min-width:0;
+  flex-shrink:1;
+}
+
+/* Logo : taille fixe, ne se compresse pas */
+.header__inner > .logo{flex:0 0 auto}
+
+/* Sélecteur de type véhicule : taille fixe */
+.header__vtype{flex:0 0 auto;height:48px}
+
+/* Barre de recherche : prend l'espace restant mais peut rétrécir */
+.search-bar{
+  flex:1 1 280px!important;
+  min-width:240px;
+  max-width:none!important;
+  height:48px!important;
+  position:relative;
+  z-index:1;
+}
+.search-bar__input{font-size:14px;height:48px;padding:0 16px;min-width:0;width:100%}
+.search-bar__btn{padding:0 24px;font-size:14px;letter-spacing:.4px;flex-shrink:0;white-space:nowrap}
+
+/* Bloc actions à droite : taille fixe */
+.header__actions{flex:0 0 auto;display:flex;align-items:center;gap:8px}
+
+/* ===== Widget Mon Garage / EasySearch : on le garde visible mais on le remet dans le flux normal ===== */
+/* Empêche tout overlay : pas de position absolute/fixed qui chevauche la search bar */
 [class*="easysearch" i],
 [id*="easysearch" i],
 [class*="ymm" i],
@@ -21,29 +48,41 @@
 [class*="es-garage" i],
 [class*="es-fitment" i],
 [class*="es-vehicle" i],
+[class*="garage-widget" i],
+[class*="my-garage" i],
 [data-easysearch],
 [data-ymm],
-.fitment-header,
-.vehicle-banner,
-.garage-widget,
-shopify-app-block[data-block-handle*="easysearch"],
-div[data-shopify-app-handle*="easysearch"],
-/* Bandeau visible : "Vous voyez les pièces compatibles avec..." */
-*:has(> [class*="fitment"]),
-*:has(> a[href*="changer"][href*="vehicule"]){
-  display:none!important;
-  visibility:hidden!important;
-  width:0!important;
-  height:0!important;
-  max-height:0!important;
-  overflow:hidden!important;
-  position:absolute!important;
-  left:-9999px!important;
-  top:-9999px!important;
-  pointer-events:none!important;
-  opacity:0!important;
+[data-garage]{
+  position:static!important;
+  top:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:auto!important;
+  transform:none!important;
+  margin:0!important;
+  z-index:auto!important;
+  flex:0 0 auto;
+  max-width:200px;
 }
 
-/* Filet de sécurité : tout bandeau injecté entre header et main contenant le texte */
-.shopify-section[id*="easysearch"],
-.shopify-section[id*="ymm"]{display:none!important}
+/* Si le widget se retrouve injecté DANS la search-bar, on le sort visuellement */
+.search-bar [class*="easysearch" i],
+.search-bar [class*="garage" i],
+.search-bar [class*="ymm" i],
+.search-bar [data-easysearch],
+.search-bar [data-garage],
+.search-bar [data-ymm]{
+  position:absolute!important;
+  right:-9999px!important;
+  visibility:hidden!important;
+}
+
+/* Bandeau de compatibilité véhicule "Vous voyez les pièces compatibles..." : on cache uniquement celui-là */
+.fitment-header,
+.vehicle-banner{display:none!important}
+
+/* Sécurité responsive : sur petit écran, on autorise le wrap */
+@media (max-width:1100px){
+  .header__inner{flex-wrap:wrap;row-gap:8px}
+  .search-bar{flex:1 1 100%;order:5}
+}
