@@ -2,8 +2,11 @@
 (function () {
   'use strict';
 
-  var TEXT_MATCH = /(Vous voyez les pi[eè]ces compatibles|MON GARAGE|Mon Garage|Mon GARAGE)/i;
-  var ATTR_MATCH = /(easysearch|ymm|fitment|es-garage|es-vehicle)/i;
+  var TEXT_MATCH = /(Vous voyez les pi[eè]ces compatibles|MON GARAGE|Mon Garage)/i;
+  var ATTR_MATCH = /(easysearch|ymm|fitment|es-garage|es-vehicle|garage-widget|vehicle-banner)/i;
+
+  /* Conteneurs que l'on ne doit JAMAIS supprimer (on supprime seulement leurs enfants parasites). */
+  var SAFE_CONTAINERS = 'header.site-header, .site-header, .header__main, .header__inner, main, body, html';
 
   function isEasySearchEl(el) {
     if (!el || el.nodeType !== 1) return false;
@@ -18,33 +21,47 @@
     return false;
   }
 
+  function safeRemove(el) {
+    if (!el || !el.parentNode) return;
+    if (el.matches && el.matches(SAFE_CONTAINERS)) return;
+    /* Ne pas supprimer notre propre barre de recherche / sélecteur véhicule. */
+    if (el.matches && el.matches('.search-bar, .search-bar *, .header__vtype, .header__vtype *, .pdz-cat, .pdz-cat *')) return;
+    try { el.remove(); } catch (e) {}
+  }
+
+  /* Trouve le plus petit conteneur "widget" autour d'un nœud texte parasite. */
+  function bubbleWidget(el) {
+    var top = el;
+    for (var j = 0; j < 6; j++) {
+      if (!top.parentNode || top.parentNode === document.body) break;
+      var p = top.parentNode;
+      if (p.matches && p.matches(SAFE_CONTAINERS)) break;
+      /* Si on remonte dans la search-bar, on s'arrête juste avant pour ne supprimer que le widget invasif, pas la search-bar. */
+      if (p.matches && p.matches('.search-bar, .header__vtype, .pdz-cat')) break;
+      top = p;
+    }
+    return top;
+  }
+
   function killByContent(root) {
-    if (!root) return;
-    var nodes = root.querySelectorAll('div, section, aside, span, p, a');
+    if (!root || !root.querySelectorAll) return;
+    var nodes = root.querySelectorAll('div, section, aside, span, p, a, button');
     for (var i = 0; i < nodes.length; i++) {
       var el = nodes[i];
       if (!el.parentNode) continue;
-      if (el.closest('.search-bar, .header__vtype, .pdz-cat, header.site-header > .header__main')) continue;
       var t = (el.textContent || '').trim();
-      if (t.length > 0 && t.length < 200 && TEXT_MATCH.test(t)) {
-        var top = el;
-        for (var j = 0; j < 4; j++) {
-          if (!top.parentNode || top.parentNode === document.body) break;
-          if (top.parentNode.children.length === 1) top = top.parentNode;
-          else break;
-        }
-        try { top.remove(); } catch (e) {}
-      }
+      if (t.length === 0 || t.length > 200) continue;
+      if (!TEXT_MATCH.test(t)) continue;
+      /* Ne pas supprimer le label "MON COMPTE" et compagnie : on exige strictement MON GARAGE / Mon Garage. */
+      safeRemove(bubbleWidget(el));
     }
   }
 
   function killByAttr(root) {
-    if (!root) return;
+    if (!root || !root.querySelectorAll) return;
     var all = root.querySelectorAll('*');
     for (var i = 0; i < all.length; i++) {
-      if (isEasySearchEl(all[i])) {
-        try { all[i].remove(); } catch (e) {}
-      }
+      if (isEasySearchEl(all[i])) safeRemove(all[i]);
     }
   }
 
@@ -56,29 +73,29 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', sweep);
   else sweep();
 
-  setTimeout(sweep, 500);
-  setTimeout(sweep, 1500);
-  setTimeout(sweep, 3000);
+  /* Plusieurs passes : l'app peut s'injecter tardivement. */
+  [100, 300, 600, 1200, 2500, 5000, 10000].forEach(function (ms) { setTimeout(sweep, ms); });
 
   if (window.MutationObserver) {
     var obs = new MutationObserver(function (mutations) {
       for (var i = 0; i < mutations.length; i++) {
         var m = mutations[i];
-        if (m.addedNodes && m.addedNodes.length) {
-          for (var j = 0; j < m.addedNodes.length; j++) {
-            var n = m.addedNodes[j];
-            if (n.nodeType === 1) {
-              if (isEasySearchEl(n)) { try { n.remove(); } catch (e) {} continue; }
-              if (n.querySelectorAll) {
-                killByAttr(n);
-                var txt = (n.textContent || '');
-                if (TEXT_MATCH.test(txt)) killByContent(n);
-              }
-            }
+        if (!m.addedNodes || !m.addedNodes.length) continue;
+        for (var j = 0; j < m.addedNodes.length; j++) {
+          var n = m.addedNodes[j];
+          if (n.nodeType !== 1) continue;
+          if (isEasySearchEl(n)) { safeRemove(n); continue; }
+          if (n.querySelectorAll) {
+            killByAttr(n);
+            var txt = (n.textContent || '');
+            if (TEXT_MATCH.test(txt)) killByContent(n);
+          } else {
+            var txt2 = (n.textContent || '');
+            if (TEXT_MATCH.test(txt2)) safeRemove(bubbleWidget(n));
           }
         }
       }
     });
-    obs.observe(document.documentElement || document.body, { childList: true, subtree: true });
+    obs.observe(document.documentElement || document.body, { childList: true, subtree: true, characterData: true });
   }
 })();

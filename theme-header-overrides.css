@@ -3,7 +3,7 @@
 /* Élargit la barre de recherche du header */
 .site-header .container.header__inner,
 .header__inner{max-width:1480px}
-.search-bar{flex:1 1 auto!important;max-width:none!important;min-width:0;height:48px!important}
+.search-bar{flex:1 1 auto!important;max-width:none!important;min-width:0;height:48px!important;position:relative;z-index:1}
 .search-bar__input{font-size:14px;height:48px;padding:0 20px}
 .search-bar__btn{padding:0 32px;font-size:14px;letter-spacing:.4px}
 .header__vtype{height:48px}
@@ -21,13 +21,23 @@
 [class*="es-garage" i],
 [class*="es-fitment" i],
 [class*="es-vehicle" i],
+[class*="garage-widget" i],
+[class*="vehicle-banner" i],
+[class*="my-garage" i],
+[class*="mygarage" i],
 [data-easysearch],
 [data-ymm],
+[data-garage],
+[data-fitment],
 .fitment-header,
 .vehicle-banner,
 .garage-widget,
 shopify-app-block[data-block-handle*="easysearch"],
+shopify-app-block[data-block-handle*="ymm"],
+shopify-app-block[data-block-handle*="garage"],
 div[data-shopify-app-handle*="easysearch"],
+div[data-shopify-app-handle*="ymm"],
+div[data-shopify-app-handle*="garage"],
 /* Bandeau visible : "Vous voyez les pièces compatibles avec..." */
 *:has(> [class*="fitment"]),
 *:has(> a[href*="changer"][href*="vehicule"]){
@@ -44,6 +54,16 @@ div[data-shopify-app-handle*="easysearch"],
   opacity:0!important;
 }
 
-/* Filet de sécurité : tout bandeau injecté entre header et main contenant le texte */
+/* Filet de sécurité : section entière injectée par l'app */
 .shopify-section[id*="easysearch"],
-.shopify-section[id*="ymm"]{display:none!important}
+.shopify-section[id*="ymm"],
+.shopify-section[id*="garage"]{display:none!important}
+
+/* Filet ULTIME : tout élément en position absolue/fixe à l'intérieur de la search-bar
+   qui ne fait pas partie de notre input ni de notre bouton est forcément un widget parasite. */
+.search-bar > *:not(.search-bar__input):not(.search-bar__btn):not(form):not(label){
+  display:none!important;
+}
+.search-bar form > *:not(.search-bar__input):not(.search-bar__btn):not(label){
+  display:none!important;
+}
