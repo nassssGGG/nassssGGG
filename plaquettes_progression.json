@@ -2,8 +2,8 @@
   "session_date": "2026-05-25",
   "exchange_rate_eur_to_dzd": 277,
   "total_in_source": 380,
-  "products_created": 290,
-  "products_remaining": 90,
+  "products_created": 340,
+  "products_remaining": 40,
   "collections_created": [
     {
       "id": "gid://shopify/Collection/684131844439",
@@ -1830,9 +1830,309 @@
       "id": "10890613424471",
       "ref": "P 23 187",
       "brand": "BREMBO"
+    },
+    {
+      "index": 290,
+      "id": "10890615456087",
+      "ref": "301706",
+      "brand": "VALEO"
+    },
+    {
+      "index": 291,
+      "id": "10890615521623",
+      "ref": "ADN142117",
+      "brand": "BLUE PRINT"
+    },
+    {
+      "index": 292,
+      "id": "10890615619927",
+      "ref": "16441",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 293,
+      "id": "10890615718231",
+      "ref": "301518",
+      "brand": "VALEO"
+    },
+    {
+      "index": 294,
+      "id": "10890615783767",
+      "ref": "GCD020532",
+      "brand": "goCORE"
+    },
+    {
+      "index": 295,
+      "id": "10890616013143",
+      "ref": "301298",
+      "brand": "VALEO"
+    },
+    {
+      "index": 296,
+      "id": "10890616176983",
+      "ref": "SKBP-0010176",
+      "brand": "STARK"
+    },
+    {
+      "index": 297,
+      "id": "10890616275287",
+      "ref": "0 986 494 009",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 298,
+      "id": "10890616406359",
+      "ref": "0 986 424 489",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 299,
+      "id": "10890616504663",
+      "ref": "402B1320P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 300,
+      "id": "10890616766807",
+      "ref": "16940",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 301,
+      "id": "10890616832343",
+      "ref": "0 986 494 241",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 302,
+      "id": "10890616930647",
+      "ref": "LP3287",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 303,
+      "id": "10890616996183",
+      "ref": "0 986 494 823",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 304,
+      "id": "10890617094487",
+      "ref": "P 83 102X",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 305,
+      "id": "10890617258327",
+      "ref": "GCD020669",
+      "brand": "goCORE"
+    },
+    {
+      "index": 306,
+      "id": "10890617356631",
+      "ref": "0 986 424 410",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 307,
+      "id": "10890617454935",
+      "ref": "0 986 460 964",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 308,
+      "id": "10890617520471",
+      "ref": "P 23 131",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 309,
+      "id": "10890617618775",
+      "ref": "0 986 424 845",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 310,
+      "id": "10890617782615",
+      "ref": "573863J",
+      "brand": "JURID"
+    },
+    {
+      "index": 311,
+      "id": "10890617880919",
+      "ref": "402B0080P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 312,
+      "id": "10890618011991",
+      "ref": "302642",
+      "brand": "VALEO"
+    },
+    {
+      "index": 313,
+      "id": "10890618077527",
+      "ref": "301041",
+      "brand": "VALEO"
+    },
+    {
+      "index": 314,
+      "id": "10890618175831",
+      "ref": "GCD020365",
+      "brand": "goCORE"
+    },
+    {
+      "index": 315,
+      "id": "10890618405207",
+      "ref": "301452",
+      "brand": "VALEO"
+    },
+    {
+      "index": 316,
+      "id": "10890618470743",
+      "ref": "GDB2082",
+      "brand": "TRW"
+    },
+    {
+      "index": 317,
+      "id": "10890618569047",
+      "ref": "16738",
+      "brand": "FEBI BILSTEIN"
+    },
+    {
+      "index": 318,
+      "id": "10890618634583",
+      "ref": "0 986 424 033",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 319,
+      "id": "10890618732887",
+      "ref": "0 986 494 136",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 320,
+      "id": "10890618962263",
+      "ref": "0 986 494 900",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 321,
+      "id": "10890619060567",
+      "ref": "13.0460-4856.2",
+      "brand": "ATE"
+    },
+    {
+      "index": 322,
+      "id": "10890619126103",
+      "ref": "P 06 096",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 323,
+      "id": "10890619224407",
+      "ref": "R-P1704",
+      "brand": "RAP BRAKES"
+    },
+    {
+      "index": 324,
+      "id": "10890619289943",
+      "ref": "P 23 003",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 325,
+      "id": "10890619486551",
+      "ref": "301847",
+      "brand": "VALEO"
+    },
+    {
+      "index": 326,
+      "id": "10890619584855",
+      "ref": "402B0244P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 327,
+      "id": "10890619683159",
+      "ref": "402B0471P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 328,
+      "id": "10890619748695",
+      "ref": "FDB4938",
+      "brand": "FERODO"
+    },
+    {
+      "index": 329,
+      "id": "10890619814231",
+      "ref": "301770",
+      "brand": "VALEO"
+    },
+    {
+      "index": 330,
+      "id": "10890620010839",
+      "ref": "P 50 046",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 331,
+      "id": "10890620076375",
+      "ref": "FVR4398",
+      "brand": "FERODO"
+    },
+    {
+      "index": 332,
+      "id": "10890620174679",
+      "ref": "P 83 159",
+      "brand": "BREMBO"
+    },
+    {
+      "index": 333,
+      "id": "10890620240215",
+      "ref": "0 986 424 595",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 334,
+      "id": "10890620338519",
+      "ref": "LP1911",
+      "brand": "DELPHI"
+    },
+    {
+      "index": 335,
+      "id": "10890620469591",
+      "ref": "FDB4933",
+      "brand": "FERODO"
+    },
+    {
+      "index": 336,
+      "id": "10890620567895",
+      "ref": "0 986 424 042",
+      "brand": "BOSCH"
+    },
+    {
+      "index": 337,
+      "id": "10890620633431",
+      "ref": "FDB4424",
+      "brand": "FERODO"
+    },
+    {
+      "index": 338,
+      "id": "10890620731735",
+      "ref": "402B0069P",
+      "brand": "RIDEX PLUS"
+    },
+    {
+      "index": 339,
+      "id": "10890620797271",
+      "ref": "301812",
+      "brand": "VALEO"
     }
   ],
-  "next_autodoc_ids_to_process": "indices 260-379 dans plaquettes_de_frein.json",
+  "next_autodoc_ids_to_process": "indices 340-379 dans plaquettes_de_frein.json",
   "enrichment_status": {
     "indices_0_135": "enrichment_complete: true (previous batches)",
     "indices_136_175": {
@@ -1852,6 +2152,15 @@
         "Plaquettes goCORE"
       ],
       "notes": "Batch 2026-05-25 indices 216-259 (44 produits) avec recherche compat WebSearch, productCreateMedia pour tous, metafields custom complets, compareAtPrice DZD calculé via taux 277."
+    },
+    "indices_290_339": {
+      "enrichment_complete": true,
+      "metafields_set": 50,
+      "compare_at_price_set": 29,
+      "images_uploaded": 50,
+      "compat_researched": 25,
+      "new_collections": [],
+      "notes": "Batch 2026-05-25 indices 290-339 (50 produits) avec recherche compat WebSearch (25 produits avec compat extraite), productCreateMedia pour tous, metafields custom complets (price_eur_original, exchange_rate_used=277, autodoc_product_id, photo_360_url, reviews_count, autodoc_url quand disponible), compareAtPrice DZD calculé via taux 277 quand original_price présent."
     }
   }
 }
